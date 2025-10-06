@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tentang Kami - DRYcycle</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .team-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .hero-section {
+            background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&h=600&fit=crop');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to right, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.7));
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    
+  
+
+    <!-- Hero Section -->
+    <section class="hero-section py-32 px-6">
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="max-w-xl">
+                <h1 class="text-6xl font-bold text-gray-900 mb-6">
+                    Tentang Kami
+                </h1>
+                <p class="text-xl text-gray-700 leading-relaxed">
+                    Misi kami adalah menyediakan masyarakat dengan alat pengelolaan sampah yang mereka butuhkan untuk berkembang di pasar saat ini.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Story Section -->
+    <section class="py-20 px-6 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-5xl font-bold text-gray-900 text-center mb-16">Kisah Kami</h2>
+            
+            <div class="grid md:grid-cols-3 gap-12">
+                
+                <!-- History Column -->
+                <div class="text-center">
+                    <div class="border-l-4 border-gray-300 h-full pl-8 text-left">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Sejarah Perusahaan</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            Tidak ada lagi siapa pun yang <span class="font-semibold">mencintai</span> atau <span class="font-semibold">mengejar</span> atau <span class="font-semibold">menginginkan untuk mendapatkan rasa sakit</span> dari <span class="font-semibold">dirinya sendiri</span>, karena itu adalah rasa sakit, tetapi karena kadang-kadang keadaan terjadi di mana kerja keras dan rasa sakit dapat memberinya beberapa kesenangan besar. Untuk mengambil contoh sepele.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Mission Column -->
+                <div class="text-center">
+                    <div class="border-l-4 border-gray-300 h-full pl-8 text-left">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Misi</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            Tidak ada lagi siapa pun yang <span class="font-semibold">mencintai</span> atau <span class="font-semibold">mengejar</span> atau <span class="font-semibold">menginginkan untuk mendapatkan rasa sakit</span> dari <span class="font-semibold">dirinya sendiri</span>, karena itu adalah rasa sakit, tetapi karena kadang-kadang keadaan terjadi di mana kerja keras dan rasa sakit dapat memberinya beberapa kesenangan besar.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Company Values Column -->
+                <div class="text-center">
+                    <div class="border-l-4 border-gray-300 h-full pl-8 text-left">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Nilai Perusahaan</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            Tidak ada lagi siapa pun yang <span class="font-semibold">mencintai</span> atau <span class="font-semibold">mengejar</span> atau <span class="font-semibold">menginginkan untuk mendapatkan rasa sakit</span> dari <span class="font-semibold">dirinya sendiri</span>, karena itu adalah rasa sakit, tetapi karena kadang-kadang keadaan terjadi di mana kerja keras dan rasa sakit dapat memberinya beberapa kesenangan besar.
+                        </p>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    
