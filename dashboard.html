@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - DRYcycle</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="assets/css/main.css">
 
     
     <style>
@@ -42,6 +43,33 @@
     </style>
 </head>
 <body class="bg-gray-50">
+
+
+        <!-- Preloader Animation -->
+    <div id="preloader">
+        <div class="loader-content">
+            <div class="logo-container">
+                <div class="recycle-particles">
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                </div>
+                <div class="logo-circle">
+                    <img src="assets/image/logo/logo.png" class="logo-icon" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                    </img>
+                </div>
+            </div>
+            <h1 class="loader-text">DRYcycle</h1>
+            <p class="loader-subtitle">One Click to Clean the Planet</p>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+        </div>
+    </div>
     
     <!-- Sidebar -->
     <div class="flex h-screen overflow-hidden">
@@ -606,6 +634,8 @@
     </main>
     
 </div>
+
+<script src="assets/js/script.js"></script>
 
 </body>
 </html>

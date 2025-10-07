@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - DRYcycle</title>
+
+    <link rel="stylesheet" href="assets/css/main.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
@@ -38,6 +40,32 @@
 </head>
 
 <body class="gradient-bg min-h-screen">
+
+        <!-- Preloader Animation -->
+    <div id="preloader">
+        <div class="loader-content">
+            <div class="logo-container">
+                <div class="recycle-particles">
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                </div>
+                <div class="logo-circle">
+                    <img src="assets/image/logo/logo.png" class="logo-icon" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                    </img>
+                </div>
+            </div>
+            <h1 class="loader-text">DRYcycle</h1>
+            <p class="loader-subtitle">One Click to Clean the Planet</p>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+        </div>
+    </div>
 
     <div class="min-h-screen flex items-center justify-center px-6 py-12">
         <div class="max-w-6xl w-full grid md:grid-cols-2 gap-0 bg-white rounded-3xl shadow-2xl overflow-hidden">
@@ -224,6 +252,8 @@
             }
         }
     </script>
+
+    <script src="assets/js/script.js"></script>
 
 </body>
 
