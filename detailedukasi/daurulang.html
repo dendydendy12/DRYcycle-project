@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edukasi - DRYcycle</title>
+    <title>Edukasi Daur Ulang - DRYcycle</title>
     <script src="https://cdn.tailwindcss.com"></script>
     
     <style>
@@ -81,7 +81,7 @@
                 <div class="p-6 border-b border-gray-200">
                     <div class="flex items-center space-x-2">
                         <div class="w-10 h-10 rounded-lg flex items-center justify-center">
-                            <img src="assets/image/logo/logo.png" class="w-10 h-10" alt="Logo">
+                            <img src="../assets/image/logo/logo.png" class="w-10 h-10" alt="Logo">
                         </div>
                         <span class="text-2xl font-bold text-emerald-700">DRYcycle</span>
                     </div>
@@ -166,8 +166,8 @@
             <header class="bg-white shadow-sm sticky top-0 z-10">
                 <div class="px-8 py-4 flex items-center justify-between">
                     <div>
-                        <h1 class="text-2xl font-bold text-gray-900">Edukasi Lingkungan</h1>
-                        <p class="text-gray-600 text-sm">Belajar dan berkontribusi untuk planet yang lebih hijau</p>
+                        <h1 class="text-2xl font-bold text-gray-900">Edukasi Daur Ulang</h1>
+                        <p class="text-gray-600 text-sm">Pelajari cara mendaur ulang sampah dengan benar untuk masa depan berkelanjutan</p>
                     </div>
                     
                     <div class="flex items-center space-x-4">
@@ -179,7 +179,7 @@
                         </button>
                         
                         <div class="relative">
-                            <input type="text" placeholder="Cari konten edukasi..." class="pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 w-64 text-sm">
+                            <input type="text" placeholder="Cari konten daur ulang..." class="pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 w-64 text-sm">
                             <svg class="w-5 h-5 text-gray-400 absolute left-3 top-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                             </svg>
@@ -191,11 +191,30 @@
             <!-- Dashboard Content -->
             <div class="p-8">
                 
+                <!-- Hero Banner -->
+                <div class="bg-gradient-to-r from-green-500 to-green-600 rounded-2xl shadow-xl p-10 text-white mb-8">
+                    <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                        <div class="flex-1">
+                            <div class="inline-block px-4 py-1 bg-white bg-opacity-20 rounded-full text-sm font-semibold mb-4">
+                                🔄 Kategori: Daur Ulang
+                            </div>
+                            <h2 class="text-3xl font-bold mb-3">Ubah Sampah Jadi Berkah</h2>
+                            <p class="text-green-50 text-lg mb-2">Setiap tahun, Indonesia menghasilkan 67 juta ton sampah. Mari bersama-sama mengurangi dampaknya melalui daur ulang yang tepat!</p>
+                        </div>
+                        <div class="flex-shrink-0">
+                            <div class="w-32 h-32 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
+                                <svg class="w-20 h-20" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             
                 <!-- Filter Section -->
                 <div class="mb-8">
                     <div class="flex items-center justify-between mb-6">
-                        <h2 class="text-2xl font-bold text-gray-900">Jelajahi Konten</h2>
+                        <h2 class="text-2xl font-bold text-gray-900">Jelajahi Konten Daur Ulang</h2>
                         <select class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 bg-white">
                             <option>Semua Konten</option>
                             <option>Video</option>
@@ -205,10 +224,10 @@
                     
                     <!-- Kategori Tabs -->
                     <div class="flex space-x-3 overflow-x-auto pb-2 scrollbar-hide">
-                        <button class="px-5 py-2.5 bg-green-600 text-white rounded-full font-medium whitespace-nowrap shadow-md hover:bg-green-700 transition">Semua</button>
-                       <a href="detailedukasi/daurulang.html"><button class="px-5 py-2.5 bg-white text-gray-700 rounded-full font-medium hover:bg-gray-50 whitespace-nowrap shadow-sm border border-gray-200 transition">Daur Ulang</button> </a>
-                       <a href="detailedukasi/zerowaste.html"> <button class="px-5 py-2.5 bg-white text-gray-700 rounded-full font-medium hover:bg-gray-50 whitespace-nowrap shadow-sm border border-gray-200 transition">Zero Waste</button></a>
-                       <a href="detailedukasi/tips.html"> <button class="px-5 py-2.5 bg-white text-gray-700 rounded-full font-medium hover:bg-gray-50 whitespace-nowrap shadow-sm border border-gray-200 transition">Tips & Trik</button></a>
+                       <a href="../edukasi.html"><button class="px-5 py-2.5 bg-white text-gray-700 rounded-full font-medium hover:bg-gray-50 whitespace-nowrap shadow-sm border border-gray-200 transition">Semua</button></a>
+                       <a href="daurulang.html"> <button class="px-5 py-2.5 bg-green-600 text-white rounded-full font-medium whitespace-nowrap shadow-md hover:bg-green-700 transition">Daur Ulang</button></a>
+                      <a href="zerowaste.html">  <button class="px-5 py-2.5 bg-white text-gray-700 rounded-full font-medium hover:bg-gray-50 whitespace-nowrap shadow-sm border border-gray-200 transition">Zero Waste</button></a>
+                       <a href="tips.html"> <button class="px-5 py-2.5 bg-white text-gray-700 rounded-full font-medium hover:bg-gray-50 whitespace-nowrap shadow-sm border border-gray-200 transition">Tips & Trik</button></a>
                     </div>
                 </div>
                 
@@ -221,7 +240,7 @@
                                     <path d="M21.582 6.186c-.23-1.237-1.065-2.19-2.1-2.404C18.254 3.5 12 3.5 12 3.5s-6.254 0-7.482.282c-1.035.214-1.87 1.167-2.1 2.404C2.142 7.636 2 9.5 2 12s.142 4.364.418 5.814c.23 1.237 1.065 2.19 2.1 2.404C5.746 20.5 12 20.5 12 20.5s6.254 0 7.482-.282c1.035-.214 1.87-1.167 2.1-2.404C21.858 16.364 22 14.5 22 12s-.142-4.364-.418-5.814zM10 15.5v-7l6 3.5-6 3.5z"/>
                                 </svg>
                             </div>
-                            Video Pilihan
+                            Video Pilihan Daur Ulang
                         </h3>
                         <a href="#" class="text-green-600 hover:text-green-700 font-medium text-sm flex items-center">
                             Lihat Semua
@@ -235,7 +254,7 @@
                         <!-- Video Card 1 -->
                         <div class="bg-white rounded-xl shadow-md overflow-hidden content-card">
                             <div class="relative group cursor-pointer">
-                                <img src="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?w=600&h=340&fit=crop" alt="Video" class="w-full h-52 object-cover">
+                                <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=600&h=340&fit=crop" alt="Video" class="w-full h-52 object-cover">
                                 <div class="absolute inset-0 bg-black bg-opacity-30 group-hover:bg-opacity-40 transition flex items-center justify-center">
                                     <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center video-overlay shadow-xl">
                                         <svg class="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
@@ -244,21 +263,87 @@
                                     </div>
                                 </div>
                                 <div class="absolute top-3 right-3 bg-black bg-opacity-75 text-white px-2 py-1 rounded text-xs font-semibold">
-                                    15:42
+                                    12:34
                                 </div>
                                 <div class="absolute bottom-3 left-3 right-3">
-                                    <span class="px-3 py-1 bg-purple-600 text-white rounded-full text-xs font-semibold inline-block">Zero Waste</span>
+                                    <span class="px-3 py-1 bg-green-600 text-white rounded-full text-xs font-semibold inline-block">Daur Ulang</span>
                                 </div>
                             </div>
                             <div class="p-5">
-                                <h3 class="font-bold text-gray-900 mb-2 line-clamp-2">Panduan Lengkap Zero Waste Lifestyle untuk Pemula</h3>
-                                <p class="text-sm text-gray-600 mb-4 line-clamp-2">Mulai perjalanan hidup tanpa sampah dengan langkah mudah dan praktis</p>
+                                <h3 class="font-bold text-gray-900 mb-2 line-clamp-2">Tutorial Mendaur Ulang Plastik Menjadi Kerajinan Tangan</h3>
+                                <p class="text-sm text-gray-600 mb-4 line-clamp-2">Pelajari teknik mengubah botol plastik bekas menjadi produk bernilai ekonomis</p>
                                 <div class="flex items-center justify-between">
                                     <div class="flex items-center space-x-2">
-                                        <img src="https://i.pravatar.cc/150?img=53" alt="Creator" class="w-8 h-8 rounded-full">
+                                        <img src="https://i.pravatar.cc/150?img=60" alt="Creator" class="w-8 h-8 rounded-full">
                                         <div>
-                                            <p class="text-sm font-medium text-gray-700">Eco Warriors</p>
-                                            <p class="text-xs text-gray-500">15.8K views</p>
+                                            <p class="text-sm font-medium text-gray-700">Kreasi Hijau</p>
+                                            <p class="text-xs text-gray-500">24.3K views</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Video Card 2 -->
+                        <div class="bg-white rounded-xl shadow-md overflow-hidden content-card">
+                            <div class="relative group cursor-pointer">
+                                <img src="https://images.unsplash.com/photo-1607968565043-36af90dde238?w=600&h=340&fit=crop" alt="Video" class="w-full h-52 object-cover">
+                                <div class="absolute inset-0 bg-black bg-opacity-30 group-hover:bg-opacity-40 transition flex items-center justify-center">
+                                    <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center video-overlay shadow-xl">
+                                        <svg class="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M8 5v14l11-7z"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="absolute top-3 right-3 bg-black bg-opacity-75 text-white px-2 py-1 rounded text-xs font-semibold">
+                                    18:45
+                                </div>
+                                <div class="absolute bottom-3 left-3 right-3">
+                                    <span class="px-3 py-1 bg-green-600 text-white rounded-full text-xs font-semibold inline-block">Daur Ulang</span>
+                                </div>
+                            </div>
+                            <div class="p-5">
+                                <h3 class="font-bold text-gray-900 mb-2 line-clamp-2">Proses Daur Ulang Kertas di Pabrik Modern</h3>
+                                <p class="text-sm text-gray-600 mb-4 line-clamp-2">Lihat bagaimana kertas bekas diproses menjadi kertas baru yang berkualitas</p>
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center space-x-2">
+                                        <img src="https://i.pravatar.cc/150?img=61" alt="Creator" class="w-8 h-8 rounded-full">
+                                        <div>
+                                            <p class="text-sm font-medium text-gray-700">Industri Hijau TV</p>
+                                            <p class="text-xs text-gray-500">31.2K views</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Video Card 3 -->
+                        <div class="bg-white rounded-xl shadow-md overflow-hidden content-card">
+                            <div class="relative group cursor-pointer">
+                                <img src="https://images.unsplash.com/photo-1611284446314-60a58ac0deb9?w=600&h=340&fit=crop" alt="Video" class="w-full h-52 object-cover">
+                                <div class="absolute inset-0 bg-black bg-opacity-30 group-hover:bg-opacity-40 transition flex items-center justify-center">
+                                    <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center video-overlay shadow-xl">
+                                        <svg class="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M8 5v14l11-7z"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="absolute top-3 right-3 bg-black bg-opacity-75 text-white px-2 py-1 rounded text-xs font-semibold">
+                                    10:28
+                                </div>
+                                <div class="absolute bottom-3 left-3 right-3">
+                                    <span class="px-3 py-1 bg-green-600 text-white rounded-full text-xs font-semibold inline-block">Daur Ulang</span>
+                                </div>
+                            </div>
+                            <div class="p-5">
+                                <h3 class="font-bold text-gray-900 mb-2 line-clamp-2">Mengolah Sampah Elektronik dengan Aman dan Benar</h3>
+                                <p class="text-sm text-gray-600 mb-4 line-clamp-2">Panduan mendaur ulang e-waste untuk mencegah pencemaran lingkungan</p>
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center space-x-2">
+                                        <img src="https://i.pravatar.cc/150?img=62" alt="Creator" class="w-8 h-8 rounded-full">
+                                        <div>
+                                            <p class="text-sm font-medium text-gray-700">Tech Recycle</p>
+                                            <p class="text-xs text-gray-500">19.7K views</p>
                                         </div>
                                     </div>
                                 </div>
@@ -276,7 +361,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
                                 </svg>
                             </div>
-                            Artikel Terbaru
+                            Artikel Terbaru tentang Daur Ulang
                         </h3>
                         <a href="#" class="text-green-600 hover:text-green-700 font-medium text-sm flex items-center">
                             Lihat Semua
@@ -289,25 +374,25 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         <!-- Article Card 1 -->
                         <div class="bg-white rounded-xl shadow-md overflow-hidden content-card">
-                            <img src="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?w=400&h=240&fit=crop" alt="Article" class="w-full h-48 object-cover">
+                            <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=400&h=240&fit=crop" alt="Article" class="w-full h-48 object-cover">
                             <div class="p-5">
                                 <div class="flex items-center space-x-2 mb-3">
-                                    <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-semibold">Zero Waste</span>
+                                    <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-semibold">Daur Ulang</span>
                                     <span class="text-xs text-gray-500 flex items-center">
                                         <svg class="w-3.5 h-3.5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                         </svg>
-                                        5 menit
+                                        6 menit
                                     </span>
                                 </div>
-                                <h3 class="font-bold text-gray-900 mb-2 line-clamp-2 hover:text-green-600 cursor-pointer transition">10 Langkah Mudah Memulai Gaya Hidup Zero Waste</h3>
-                                <p class="text-sm text-gray-600 mb-4 line-clamp-3">Panduan praktis untuk mengurangi sampah rumah tangga hingga 80% dengan perubahan kebiasaan sederhana yang bisa dimulai hari ini</p>
+                                <h3 class="font-bold text-gray-900 mb-2 line-clamp-2 hover:text-green-600 cursor-pointer transition">Jenis-Jenis Plastik dan Cara Mendaur Ulangnya</h3>
+                                <p class="text-sm text-gray-600 mb-4 line-clamp-3">Kenali 7 simbol daur ulang plastik dan pelajari mana yang bisa didaur ulang dan mana yang tidak</p>
                                 <div class="flex items-center justify-between pt-3 border-t border-gray-100">
                                     <div class="flex items-center space-x-2">
-                                        <img src="https://i.pravatar.cc/150?img=53" alt="Author" class="w-8 h-8 rounded-full">
+                                        <img src="https://i.pravatar.cc/150?img=63" alt="Author" class="w-8 h-8 rounded-full">
                                         <div>
-                                            <p class="text-sm font-medium text-gray-900">Dr. Maya Sari</p>
-                                            <p class="text-xs text-gray-500">3 hari lalu</p>
+                                            <p class="text-sm font-medium text-gray-900">Dr. Siti Rahayu</p>
+                                            <p class="text-xs text-gray-500">2 hari lalu</p>
                                         </div>
                                     </div>
                                 </div>
@@ -319,22 +404,22 @@
                             <img src="https://images.unsplash.com/photo-1607968565043-36af90dde238?w=400&h=240&fit=crop" alt="Article" class="w-full h-48 object-cover">
                             <div class="p-5">
                                 <div class="flex items-center space-x-2 mb-3">
-                                    <span class="px-3 py-1 bg-orange-100 text-orange-700 rounded-full text-xs font-semibold">Tips & Trik</span>
+                                    <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-semibold">Daur Ulang</span>
                                     <span class="text-xs text-gray-500 flex items-center">
                                         <svg class="w-3.5 h-3.5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                         </svg>
-                                        7 menit
+                                        8 menit
                                     </span>
                                 </div>
-                                <h3 class="font-bold text-gray-900 mb-2 line-clamp-2 hover:text-green-600 cursor-pointer transition">Cara Memisahkan Sampah yang Benar untuk Daur Ulang</h3>
-                                <p class="text-sm text-gray-600 mb-4 line-clamp-3">Pahami teknik pemilahan sampah yang efektif agar proses daur ulang berjalan maksimal dan memberikan manfaat optimal</p>
+                                <h3 class="font-bold text-gray-900 mb-2 line-clamp-2 hover:text-green-600 cursor-pointer transition">Bisnis Daur Ulang: Peluang Ekonomi dari Sampah</h3>
+                                <p class="text-sm text-gray-600 mb-4 line-clamp-3">Temukan berbagai ide bisnis daur ulang yang menguntungkan dan ramah lingkungan untuk pemula</p>
                                 <div class="flex items-center justify-between pt-3 border-t border-gray-100">
                                     <div class="flex items-center space-x-2">
-                                        <img src="https://i.pravatar.cc/150?img=54" alt="Author" class="w-8 h-8 rounded-full">
+                                        <img src="https://i.pravatar.cc/150?img=64" alt="Author" class="w-8 h-8 rounded-full">
                                         <div>
-                                            <p class="text-sm font-medium text-gray-900">Andi Kusuma</p>
-                                            <p class="text-xs text-gray-500">1 minggu lalu</p>
+                                            <p class="text-sm font-medium text-gray-900">Budi Wirausaha</p>
+                                            <p class="text-xs text-gray-500">3 hari lalu</p>
                                         </div>
                                     </div>
                                 </div>
@@ -343,25 +428,25 @@
                         
                         <!-- Article Card 3 -->
                         <div class="bg-white rounded-xl shadow-md overflow-hidden content-card">
-                            <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=400&h=240&fit=crop" alt="Article" class="w-full h-48 object-cover">
+                            <img src="https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?w=400&h=240&fit=crop" alt="Article" class="w-full h-48 object-cover">
                             <div class="p-5">
                                 <div class="flex items-center space-x-2 mb-3">
-                                    <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-semibold">Daur Ulang</span>
+                                    <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-semibold">Daur Ulang</span>
                                     <span class="text-xs text-gray-500 flex items-center">
                                         <svg class="w-3.5 h-3.5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                         </svg>
-                                        4 menit
+                                        5 menit
                                     </span>
                                 </div>
-                                <h3 class="font-bold text-gray-900 mb-2 line-clamp-2 hover:text-green-600 cursor-pointer transition">Kreasi Unik dari Barang Bekas: Ide Bisnis Ramah Lingkungan</h3>
-                                <p class="text-sm text-gray-600 mb-4 line-clamp-3">Temukan inspirasi mengubah sampah menjadi produk bernilai ekonomis sambil berkontribusi pada kelestarian lingkungan</p>
+                                <h3 class="font-bold text-gray-900 mb-2 line-clamp-2 hover:text-green-600 cursor-pointer transition">Cara Memisahkan Sampah untuk Proses Daur Ulang Optimal</h3>
+                                <p class="text-sm text-gray-600 mb-4 line-clamp-3">Panduan lengkap pemilahan sampah berdasarkan jenis material agar mudah didaur ulang</p>
                                 <div class="flex items-center justify-between pt-3 border-t border-gray-100">
                                     <div class="flex items-center space-x-2">
-                                        <img src="https://i.pravatar.cc/150?img=55" alt="Author" class="w-8 h-8 rounded-full">
+                                        <img src="https://i.pravatar.cc/150?img=65" alt="Author" class="w-8 h-8 rounded-full">
                                         <div>
-                                            <p class="text-sm font-medium text-gray-900">Rina Craft</p>
-                                            <p class="text-xs text-gray-500">2 hari lalu</p>
+                                            <p class="text-sm font-medium text-gray-900">Rina Pratiwi</p>
+                                            <p class="text-xs text-gray-500">1 minggu lalu</p>
                                         </div>
                                     </div>
                                 </div>
@@ -370,25 +455,25 @@
                         
                         <!-- Article Card 4 -->
                         <div class="bg-white rounded-xl shadow-md overflow-hidden content-card">
-                            <img src="https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?w=400&h=240&fit=crop" alt="Article" class="w-full h-48 object-cover">
+                            <img src="https://images.unsplash.com/photo-1611284446314-60a58ac0deb9?w=400&h=240&fit=crop" alt="Article" class="w-full h-48 object-cover">
                             <div class="p-5">
                                 <div class="flex items-center space-x-2 mb-3">
-                                    <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-semibold">Kompos</span>
+                                    <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-semibold">Daur Ulang</span>
                                     <span class="text-xs text-gray-500 flex items-center">
                                         <svg class="w-3.5 h-3.5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                         </svg>
-                                        6 menit
+                                        7 menit
                                     </span>
                                 </div>
-                                <h3 class="font-bold text-gray-900 mb-2 line-clamp-2 hover:text-green-600 cursor-pointer transition">Panduan Lengkap Membuat Pupuk Organik dari Sampah Rumah</h3>
-                                <p class="text-sm text-gray-600 mb-4 line-clamp-3">Rahasia mengolah sampah organik menjadi pupuk berkualitas tinggi untuk tanaman hias dan sayuran Anda</p>
+                                <h3 class="font-bold text-gray-900 mb-2 line-clamp-2 hover:text-green-600 cursor-pointer transition">Teknologi Terbaru dalam Industri Daur Ulang</h3>
+                                <p class="text-sm text-gray-600 mb-4 line-clamp-3">Inovasi mesin dan metode daur ulang modern yang meningkatkan efisiensi hingga 90%</p>
                                 <div class="flex items-center justify-between pt-3 border-t border-gray-100">
                                     <div class="flex items-center space-x-2">
-                                        <img src="https://i.pravatar.cc/150?img=56" alt="Author" class="w-8 h-8 rounded-full">
+                                        <img src="https://i.pravatar.cc/150?img=66" alt="Author" class="w-8 h-8 rounded-full">
                                         <div>
-                                            <p class="text-sm font-medium text-gray-900">Taman Hijau</p>
-                                            <p class="text-xs text-gray-500">5 hari lalu</p>
+                                            <p class="text-sm font-medium text-gray-900">Tech Innovation</p>
+                                            <p class="text-xs text-gray-500">4 hari lalu</p>
                                         </div>
                                     </div>
                                 </div>
@@ -400,22 +485,22 @@
                             <img src="https://images.unsplash.com/photo-1550948390-6eb7fa773072?w=400&h=240&fit=crop" alt="Article" class="w-full h-48 object-cover">
                             <div class="p-5">
                                 <div class="flex items-center space-x-2 mb-3">
-                                    <span class="px-3 py-1 bg-red-100 text-red-700 rounded-full text-xs font-semibold">Tips & Trik</span>
+                                    <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-semibold">Daur Ulang</span>
                                     <span class="text-xs text-gray-500 flex items-center">
                                         <svg class="w-3.5 h-3.5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                         </svg>
-                                        5 menit
+                                        6 menit
                                     </span>
                                 </div>
-                                <h3 class="font-bold text-gray-900 mb-2 line-clamp-2 hover:text-green-600 cursor-pointer transition">5 Kesalahan Umum dalam Pengelolaan Sampah yang Harus Dihindari</h3>
-                                <p class="text-sm text-gray-600 mb-4 line-clamp-3">Kenali kesalahan fatal dalam mengelola sampah yang sering terjadi dan cara menghindarinya untuk hasil maksimal</p>
+                                <h3 class="font-bold text-gray-900 mb-2 line-clamp-2 hover:text-green-600 cursor-pointer transition">15 Ide Kreatif Daur Ulang untuk Rumah Tangga</h3>
+                                <p class="text-sm text-gray-600 mb-4 line-clamp-3">Inspirasi mengubah barang bekas menjadi dekorasi rumah unik dan fungsional</p>
                                 <div class="flex items-center justify-between pt-3 border-t border-gray-100">
                                     <div class="flex items-center space-x-2">
-                                        <img src="https://i.pravatar.cc/150?img=57" alt="Author" class="w-8 h-8 rounded-full">
+                                        <img src="https://i.pravatar.cc/150?img=67" alt="Author" class="w-8 h-8 rounded-full">
                                         <div>
-                                            <p class="text-sm font-medium text-gray-900">Eco Expert</p>
-                                            <p class="text-xs text-gray-500">1 minggu lalu</p>
+                                            <p class="text-sm font-medium text-gray-900">DIY Creative</p>
+                                            <p class="text-xs text-gray-500">5 hari lalu</p>
                                         </div>
                                     </div>
                                 </div>
@@ -427,22 +512,22 @@
                             <img src="https://images.unsplash.com/photo-1564939558297-fc396f18e5c7?w=400&h=240&fit=crop" alt="Article" class="w-full h-48 object-cover">
                             <div class="p-5">
                                 <div class="flex items-center space-x-2 mb-3">
-                                    <span class="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-xs font-semibold">Zero Waste</span>
+                                    <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-semibold">Daur Ulang</span>
                                     <span class="text-xs text-gray-500 flex items-center">
                                         <svg class="w-3.5 h-3.5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                         </svg>
-                                        8 menit
+                                        9 menit
                                     </span>
                                 </div>
-                                <h3 class="font-bold text-gray-900 mb-2 line-clamp-2 hover:text-green-600 cursor-pointer transition">Belanja Tanpa Sampah: Panduan Praktis Shopping Zero Waste</h3>
-                                <p class="text-sm text-gray-600 mb-4 line-clamp-3">Tips belanja cerdas tanpa menghasilkan sampah plastik sekali pakai dan tetap hemat budget bulanan</p>
+                                <h3 class="font-bold text-gray-900 mb-2 line-clamp-2 hover:text-green-600 cursor-pointer transition">Dampak Positif Daur Ulang Terhadap Lingkungan</h3>
+                                <p class="text-sm text-gray-600 mb-4 line-clamp-3">Data dan fakta mengejutkan tentang bagaimana daur ulang menyelamatkan planet kita</p>
                                 <div class="flex items-center justify-between pt-3 border-t border-gray-100">
                                     <div class="flex items-center space-x-2">
-                                        <img src="https://i.pravatar.cc/150?img=58" alt="Author" class="w-8 h-8 rounded-full">
+                                        <img src="https://i.pravatar.cc/150?img=68" alt="Author" class="w-8 h-8 rounded-full">
                                         <div>
-                                            <p class="text-sm font-medium text-gray-900">Sari Lestari</p>
-                                            <p class="text-xs text-gray-500">4 hari lalu</p>
+                                            <p class="text-sm font-medium text-gray-900">Eco Research</p>
+                                            <p class="text-xs text-gray-500">1 minggu lalu</p>
                                         </div>
                                     </div>
                                 </div>
@@ -462,11 +547,11 @@
                 </div>
                 
                 <!-- CTA Banner -->
-                <div class="bg-gradient-to-r from-green-500 to-emerald-600 rounded-2xl shadow-xl p-8 text-white">
+                <div class="bg-gradient-to-r from-green-500 to-cyan-600 rounded-2xl shadow-xl p-8 text-white">
                     <div class="flex flex-col md:flex-row items-center justify-between gap-6">
                         <div class="flex-1 text-center md:text-left">
-                            <h2 class="text-2xl font-bold mb-2">Mulai Kontribusi Nyata untuk Lingkungan!</h2>
-                            <p class="text-green-50 mb-6">Upload sampah Anda sekarang dan dapatkan poin reward sambil membantu planet ini</p>
+                            <h2 class="text-2xl font-bold mb-2">Mulai Daur Ulang Sampahmu Sekarang!</h2>
+                            <p class="text-green-50 mb-6">Upload sampah yang bisa didaur ulang dan dapatkan reward sambil membantu mengurangi pencemaran lingkungan</p>
                             <button class="bg-white text-green-600 px-6 py-3 rounded-lg hover:bg-green-50 transition font-semibold shadow-lg inline-flex items-center space-x-2">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
@@ -485,7 +570,7 @@
                 <!-- Footer -->
                 <div class="mt-8 bg-white rounded-xl shadow-sm p-8 text-center border-t-4 border-green-500">
                     <div class="flex items-center justify-center space-x-2 mb-3">
-                        <img src="assets/image/logo/logo.png" class="w-10 h-10" alt="Logo">
+                        <img src="../assets/image/logo/logo.png" class="w-10 h-10" alt="Logo">
                         <span class="text-2xl font-bold text-emerald-700">DRYcycle</span>
                     </div>
                     <p class="text-gray-700 font-medium text-sm mb-2">One Click to Clean the Planet</p>
