@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edukasi - DRYcycle</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50">
+    <!-- Sidebar -->
+    <div class="fixed left-0 top-0 h-screen w-64 bg-white shadow-sm">
+        <div class="p-6">
+            <!-- Logo -->
+            <div class="flex items-center gap-3 mb-10">
+                <div class="w-10 h-10 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center">
+                    <span class="text-white text-xl">♻️</span>
+                </div>
+                <span class="text-2xl font-bold text-green-600">DRYcycle</span>
+            </div>
+
+            <!-- Menu Items -->
+            <nav class="space-y-2">
+                <a href="#" class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-green-50 hover:text-green-600 rounded-lg transition-colors">
+                    <span class="text-xl">🏠</span>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-green-50 hover:text-green-600 rounded-lg transition-colors">
+                    <span class="text-xl">🗑️</span>
+                    <span>Sampah Tersedia</span>
+                </a>
+                <a href="#" class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-green-50 hover:text-green-600 rounded-lg transition-colors">
+                    <span class="text-xl">➕</span>
+                    <span>Upload Sampah</span>
+                </a>
+                <a href="#" class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-green-50 hover:text-green-600 rounded-lg transition-colors">
+                    <span class="text-xl">📅</span>
+                    <span>Booking Saya</span>
+                </a>
+                <a href="#" class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-green-50 hover:text-green-600 rounded-lg transition-colors">
+                    <span class="text-xl">📊</span>
+                    <span>Leaderboard</span>
+                </a>
+                <a href="#" class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-green-50 hover:text-green-600 rounded-lg transition-colors">
+                    <span class="text-xl">👥</span>
+                    <span>Komunitas</span>
+                </a>
+                <a href="#" class="flex items-center gap-3 px-4 py-3 bg-green-100 text-green-600 rounded-lg transition-colors">
+                    <span class="text-xl">📚</span>
+                    <span>Edukasi</span>
+                </a>
+            </nav>
+        </div>
+
+        <!-- User Profile -->
+        <div class="absolute bottom-0 left-0 right-0 p-6 border-t border-gray-100">
+            <div class="flex items-center gap-3">
+                <img src="https://ui-avatars.com/api/?name=Budi+Santoso&background=10b981&color=fff" alt="Profile" class="w-10 h-10 rounded-full">
+                <div class="flex-1">
+                    <div class="font-semibold text-gray-800 text-sm">Budi Santoso</div>
+                    <div class="text-xs text-gray-500">Level 5 • 2.5K Poin</div>
+                </div>
+                <span class="text-gray-400 text-xl cursor-pointer">⚙️</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="ml-64 p-8">
+        <!-- Header -->
+        <div class="flex justify-between items-center mb-8">
+            <div>
+                <h1 class="text-3xl font-bold text-gray-800">Edukasi</h1>
+                <p class="text-gray-500 text-sm mt-1">Pelajari cara mengelola sampah dan surplus makanan dengan baik</p>
+            </div>
+            <div class="flex items-center gap-4">
+                <div class="relative">
+                    <span class="text-2xl text-gray-600 cursor-pointer">🔔</span>
+                    <span class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
+                </div>
+                <button class="bg-green-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-green-700 transition-colors">
+                    + Upload Sampah
+                </button>
+            </div>
+        </div>
+
+        <!-- Category Tabs -->
+        <div class="mb-8">
+            <div class="flex gap-4 border-b border-gray-200">
+                <button onclick="showCategory('video')" id="tab-video" class="px-6 py-3 font-medium text-green-600 border-b-2 border-green-600 transition-colors">
+                    🎥 Video Edukasi
+                </button>
+                <button onclick="showCategory('artikel')" id="tab-artikel" class="px-6 py-3 font-medium text-gray-500 hover:text-gray-700 transition-colors">
+                    📰 Artikel Edukasi
+                </button>
+            </div>
+        </div>
+
+        <!-- Video Edukasi Section -->
+        <div id="content-video" class="space-y-6">
+            <div class="grid grid-cols-3 gap-6">
+                <!-- Video Card 1 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow cursor-pointer">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?w=500&h=300&fit=crop" alt="Pemilahan Sampah" class="w-full h-48 object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center">
+                            <div class="w-16 h-16 bg-white bg-opacity-90 rounded-full flex items-center justify-center">
+                                <span class="text-3xl text-green-600">▶️</span>
+                            </div>
+                        </div>
+                        <span class="absolute top-3 left-3 bg-green-600 text-white text-xs px-3 py-1 rounded-full font-medium">12 menit</span>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-bold text-gray-800 text-lg mb-2">Cara Memilah Sampah dengan Benar</h3>
+                        <p class="text-gray-600 text-sm mb-4">Pelajari teknik pemilahan sampah organik, anorganik, dan B3 untuk pengelolaan yang lebih efektif</p>
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="text-gray-500">👁️ 2.5K views</span>
+                            <span class="text-green-600 font-medium">Pemula</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Video Card 2 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow cursor-pointer">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1611284446314-60a58ac0deb9?w=500&h=300&fit=crop" alt="Kompos" class="w-full h-48 object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center">
+                            <div class="w-16 h-16 bg-white bg-opacity-90 rounded-full flex items-center justify-center">
+                                <span class="text-3xl text-green-600">▶️</span>
+                            </div>
+                        </div>
+                        <span class="absolute top-3 left-3 bg-green-600 text-white text-xs px-3 py-1 rounded-full font-medium">18 menit</span>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-bold text-gray-800 text-lg mb-2">Membuat Kompos dari Sampah Organik</h3>
+                        <p class="text-gray-600 text-sm mb-4">Tutorial lengkap mengolah sampah organik menjadi kompos berkualitas untuk tanaman</p>
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="text-gray-500">👁️ 3.8K views</span>
+                            <span class="text-green-600 font-medium">Menengah</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Video Card 3 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow cursor-pointer">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=500&h=300&fit=crop" alt="Daur Ulang" class="w-full h-48 object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center">
+                            <div class="w-16 h-16 bg-white bg-opacity-90 rounded-full flex items-center justify-center">
+                                <span class="text-3xl text-green-600">▶️</span>
+                            </div>
+                        </div>
+                        <span class="absolute top-3 left-3 bg-green-600 text-white text-xs px-3 py-1 rounded-full font-medium">15 menit</span>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-bold text-gray-800 text-lg mb-2">Kreasi Daur Ulang Plastik</h3>
+                        <p class="text-gray-600 text-sm mb-4">Ide kreatif mengubah sampah plastik menjadi produk bernilai ekonomis</p>
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="text-gray-500">👁️ 4.2K views</span>
+                            <span class="text-green-600 font-medium">Menengah</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Video Card 4 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow cursor-pointer">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=500&h=300&fit=crop" alt="Food Waste" class="w-full h-48 object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center">
+                            <div class="w-16 h-16 bg-white bg-opacity-90 rounded-full flex items-center justify-center">
+                                <span class="text-3xl text-green-600">▶️</span>
+                            </div>
+                        </div>
+                        <span class="absolute top-3 left-3 bg-green-600 text-white text-xs px-3 py-1 rounded-full font-medium">10 menit</span>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-bold text-gray-800 text-lg mb-2">Mengelola Surplus Makanan</h3>
+                        <p class="text-gray-600 text-sm mb-4">Cara efektif mengurangi food waste dan memanfaatkan sisa makanan dengan bijak</p>
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="text-gray-500">👁️ 1.9K views</span>
+                            <span class="text-green-600 font-medium">Pemula</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Video Card 5 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow cursor-pointer">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?w=500&h=300&fit=crop" alt="Bank Sampah" class="w-full h-48 object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center">
+                            <div class="w-16 h-16 bg-white bg-opacity-90 rounded-full flex items-center justify-center">
+                                <span class="text-3xl text-green-600">▶️</span>
+                            </div>
+                        </div>
+                        <span class="absolute top-3 left-3 bg-green-600 text-white text-xs px-3 py-1 rounded-full font-medium">14 menit</span>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-bold text-gray-800 text-lg mb-2">Sistem Bank Sampah Digital</h3>
+                        <p class="text-gray-600 text-sm mb-4">Memahami cara kerja bank sampah digital dan manfaatnya untuk lingkungan</p>
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="text-gray-500">👁️ 3.1K views</span>
+                            <span class="text-green-600 font-medium">Pemula</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Video Card 6 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow cursor-pointer">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1622360038532-0be93d7b0dab?w=500&h=300&fit=crop" alt="Zero Waste" class="w-full h-48 object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center">
+                            <div class="w-16 h-16 bg-white bg-opacity-90 rounded-full flex items-center justify-center">
+                                <span class="text-3xl text-green-600">▶️</span>
+                            </div>
+                        </div>
+                        <span class="absolute top-3 left-3 bg-green-600 text-white text-xs px-3 py-1 rounded-full font-medium">20 menit</span>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-bold text-gray-800 text-lg mb-2">Zero Waste Lifestyle</h3>
+                        <p class="text-gray-600 text-sm mb-4">Panduan praktis menerapkan gaya hidup zero waste dalam keseharian</p>
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="text-gray-500">👁️ 5.7K views</span>
+                            <span class="text-green-600 font-medium">Lanjutan</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Artikel Edukasi Section -->
+        <div id="content-artikel" class="space-y-6 hidden">
+            <div class="grid grid-cols-1 gap-6">
+                <!-- Artikel Card 1 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow cursor-pointer">
+                    <div class="flex">
+                        <img src="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?w=300&h=200&fit=crop" alt="Artikel" class="w-64 h-48 object-cover">
+                        <div class="flex-1 p-6">
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="bg-green-100 text-green-600 text-xs px-3 py-1 rounded-full font-medium">Panduan</span>
+                                <span class="text-gray-400 text-sm">•</span>
+                                <span class="text-gray-500 text-sm">5 menit baca</span>
+                            </div>
+                            <h3 class="font-bold text-gray-800 text-xl mb-3">Panduan Lengkap Pemilahan Sampah di Rumah</h3>
+                            <p class="text-gray-600 mb-4">Memilah sampah adalah langkah pertama dalam pengelolaan sampah yang bertanggung jawab. Artikel ini membahas cara memilah sampah organik, anorganik, dan B3 dengan tepat, serta memberikan tips praktis untuk memulai kebiasaan ini di rumah tangga Anda.</p>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-4 text-sm text-gray-500">
+                                    <span>👁️ 8.5K views</span>
+                                    <span>📅 2 hari lalu</span>
+                                </div>
+                                <button class="text-green-600 font-medium hover:text-green-700">Baca Selengkapnya →</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Artikel Card 2 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow cursor-pointer">
+                    <div class="flex">
+                        <img src="https://images.unsplash.com/photo-1611284446314-60a58ac0deb9?w=300&h=200&fit=crop" alt="Artikel" class="w-64 h-48 object-cover">
+                        <div class="flex-1 p-6">
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="bg-yellow-100 text-yellow-600 text-xs px-3 py-1 rounded-full font-medium">Tips & Trik</span>
+                                <span class="text-gray-400 text-sm">•</span>
+                                <span class="text-gray-500 text-sm">7 menit baca</span>
+                            </div>
+                            <h3 class="font-bold text-gray-800 text-xl mb-3">10 Cara Kreatif Mengolah Sampah Organik Menjadi Kompos</h3>
+                            <p class="text-gray-600 mb-4">Sampah organik tidak harus berakhir di TPA. Dengan metode yang tepat, Anda bisa mengubahnya menjadi kompos berkualitas tinggi untuk tanaman. Pelajari berbagai teknik composting yang sesuai dengan kondisi rumah Anda, mulai dari metode tradisional hingga modern.</p>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-4 text-sm text-gray-500">
+                                    <span>👁️ 6.2K views</span>
+                                    <span>📅 5 hari lalu</span>
+                                </div>
+                                <button class="text-green-600 font-medium hover:text-green-700">Baca Selengkapnya →</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Artikel Card 3 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow cursor-pointer">
+                    <div class="flex">
+                        <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=300&h=200&fit=crop" alt="Artikel" class="w-64 h-48 object-cover">
+                        <div class="flex-1 p-6">
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="bg-blue-100 text-blue-600 text-xs px-3 py-1 rounded-full font-medium">Inspirasi</span>
+                                <span class="text-gray-400 text-sm">•</span>
+                                <span class="text-gray-500 text-sm">6 menit baca</span>
+                            </div>
+                            <h3 class="font-bold text-gray-800 text-xl mb-3">Mengubah Sampah Plastik Menjadi Produk Bernilai Ekonomis</h3>
+                            <p class="text-gray-600 mb-4">Daur ulang plastik bukan hanya tentang mengurangi sampah, tetapi juga membuka peluang ekonomi. Temukan berbagai ide kreatif dan inovatif untuk mengolah sampah plastik menjadi produk yang memiliki nilai jual tinggi, lengkap dengan panduan step-by-step.</p>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-4 text-sm text-gray-500">
+                                    <span>👁️ 9.1K views</span>
+                                    <span>📅 1 minggu lalu</span>
+                                </div>
+                                <button class="text-green-600 font-medium hover:text-green-700">Baca Selengkapnya →</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Artikel Card 4 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow cursor-pointer">
+                    <div class="flex">
+                        <img src="https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=300&h=200&fit=crop" alt="Artikel" class="w-64 h-48 object-cover">
+                        <div class="flex-1 p-6">
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="bg-red-100 text-red-600 text-xs px-3 py-1 rounded-full font-medium">Food Waste</span>
+                                <span class="text-gray-400 text-sm">•</span>
+                                <span class="text-gray-500 text-sm">8 menit baca</span>
+                            </div>
+                            <h3 class="font-bold text-gray-800 text-xl mb-3">Strategi Efektif Mengurangi Food Waste di Rumah Tangga</h3>
+                            <p class="text-gray-600 mb-4">Indonesia membuang jutaan ton makanan setiap tahunnya. Artikel ini memberikan solusi praktis untuk mengurangi pemborosan makanan, mulai dari perencanaan menu, penyimpanan yang tepat, hingga cara kreatif memanfaatkan sisa makanan agar tetap bergizi dan lezat.</p>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-4 text-sm text-gray-500">
+                                    <span>👁️ 7.8K views</span>
+                                    <span>📅 3 hari lalu</span>
+                                </div>
+                                <button class="text-green-600 font-medium hover:text-green-700">Baca Selengkapnya →</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Artikel Card 5 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow cursor-pointer">
+                    <div class="flex">
+                        <img src="https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?w=300&h=200&fit=crop" alt="Artikel" class="w-64 h-48 object-cover">
+                        <div class="flex-1 p-6">
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="bg-purple-100 text-purple-600 text-xs px-3 py-1 rounded-full font-medium">Teknologi</span>
+                                <span class="text-gray-400 text-sm">•</span>
+                                <span class="text-gray-500 text-sm">10 menit baca</span>
+                            </div>
+                            <h3 class="font-bold text-gray-800 text-xl mb-3">Revolusi Bank Sampah Digital: Mengubah Sampah Jadi Cuan</h3>
+                            <p class="text-gray-600 mb-4">Bank sampah digital menghadirkan cara baru dalam pengelolaan sampah yang lebih modern dan efisien. Pelajari bagaimana teknologi ini bekerja, keuntungan yang bisa Anda dapatkan, dan bagaimana memulai berkontribusi untuk lingkungan sambil mendapatkan penghasilan tambahan.</p>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-4 text-sm text-gray-500">
+                                    <span>👁️ 11.3K views</span>
+                                    <span>📅 4 hari lalu</span>
+                                </div>
+                                <button class="text-green-600 font-medium hover:text-green-700">Baca Selengkapnya →</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showCategory(category) {
+            const videoTab = document.getElementById('tab-video');
+            const artikelTab = document.getElementById('tab-artikel');
+            const videoContent = document.getElementById('content-video');
+            const artikelContent = document.getElementById('content-artikel');
+
+            if (category === 'video') {
+                videoTab.className = 'px-6 py-3 font-medium text-green-600 border-b-2 border-green-600 transition-colors';
+                artikelTab.className = 'px-6 py-3 font-medium text-gray-500 hover:text-gray-700 transition-colors';
+                
+                artikelContent.classList.add('hidden');
+                setTimeout(() => {
+                    videoContent.classList.remove('hidden');
+                }, 150);
+            } else {
+                artikelTab.className = 'px-6 py-3 font-medium text-green-600 border-b-2 border-green-600 transition-colors';
+                videoTab.className = 'px-6 py-3 font-medium text-gray-500 hover:text-gray-700 transition-colors';
+                
+                videoContent.classList.add('hidden');
+                setTimeout(() => {
+                    artikelContent.classList.remove('hidden');
+                }, 150);
+            }
+        }
+    </script>
+</body>
+</html>
