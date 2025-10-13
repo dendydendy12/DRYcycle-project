@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Smart Food Scanner IoT</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
+    <style>
+      video, canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+      .focus-anim {
+        animation: pulse 1.5s infinite;
+      }
+      @keyframes pulse {
+        0%, 100% { box-shadow: 0 0 10px 2px rgba(59,130,246,0.5); }
+        50% { box-shadow: 0 0 20px 4px rgba(59,130,246,0.8); }
+      }
+    </style>
+  </head>
+  <body class="bg-gray-900 text-white flex flex-col items-center min-h-screen">
+    <header class="py-4 text-center">
+      <h1 class="text-3xl font-bold text-blue-400">🍽️ Smart Food Scanner IoT</h1>
+      <p class="text-gray-400 text-sm">Scan objek makanan dengan kamera AI realtime</p>
+    </header>
+
+    <main class="relative w-full max-w-md flex flex-col items-center">
+      <video id="video" autoplay playsinline class="rounded-xl shadow-lg w-full"></video>
+      <canvas id="canvas" class="focus-anim rounded-xl"></canvas>
+
+      <div id="status" class="absolute bottom-2 left-2 bg-gray-800/70 px-3 py-1 rounded text-xs text-green-400">
+        IoT Status: <span id="iot-status">Connecting...</span>
+      </div>
+
+      <div class="absolute bottom-2 right-2">
+        <button id="switchCam" class="bg-blue-500 hover:bg-blue-600 text-xs px-3 py-1 rounded">
+          🔄 Ganti Kamera
+        </button>
+      </div>
+    </main>
+
+    <section id="result" class="mt-6 text-center">
+      <h2 class="text-xl font-semibold mb-1 text-blue-300">Deteksi:</h2>
+      <p id="label" class="text-lg">Menunggu kamera...</p>
+    </section>
+
+    <audio id="beep" src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg" preload="auto"></audio>
+
+    <script>
+      const video = document.getElementById('video');
+      const canvas = document.getElementById('canvas');
+      const ctx = canvas.getContext('2d');
+      const labelEl = document.getElementById('label');
+      const beep = document.getElementById('beep');
+      const iotStatus = document.getElementById('iot-status');
+
+      let model, stream, useFrontCamera = true;
+      let lastLabel = "";
+
+      async function setupCamera() {
+        if (stream) {
+          stream.getTracks().forEach(track => track.stop());
+        }
+        const constraints = {
+          audio: false,
+          video: { facingMode: useFrontCamera ? "user" : "environment" }
+        };
+        stream = await navigator.mediaDevices.getUserMedia(constraints);
+        video.srcObject = stream;
+        return new Promise(resolve => {
+          video.onloadedmetadata = () => {
+            video.play();
+            resolve();
+          };
+        });
+      }
+
+      async function detectFrame() {
+        const predictions = await model.detect(video);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.lineWidth = 2;
+
+        if (predictions.length > 0) {
+          const p = predictions[0];
+          ctx.strokeStyle = "#3B82F6";
+          ctx.strokeRect(p.bbox[0], p.bbox[1], p.bbox[2], p.bbox[3]);
+          ctx.font = "16px sans-serif";
+          ctx.fillStyle = "#3B82F6";
+          ctx.fillText(p.class, p.bbox[0] + 5, p.bbox[1] - 5);
+
+          if (p.class !== lastLabel) {
+            lastLabel = p.class;
+            beep.play();
+            labelEl.innerText = p.class.toUpperCase();
+            fakeIoTUpdate(p.class);
+          }
+        } else {
+          labelEl.innerText = "Tidak ada objek terdeteksi";
+        }
+        requestAnimationFrame(detectFrame);
+      }
+
+      function fakeIoTUpdate(label) {
+        iotStatus.innerText = "Mengirim data...";
+        setTimeout(() => {
+          iotStatus.innerText = `📡 Data "${label}" terkirim ke dashboard`;
+        }, 500);
+      }
+
+      document.getElementById('switchCam').addEventListener('click', async () => {
+        useFrontCamera = !useFrontCamera;
+        await setupCamera();
+      });
+
+      async function main() {
+        await setupCamera();
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        model = await cocoSsd.load();
+        iotStatus.innerText = "✅ Terhubung ke IoT Dashboard";
+        detectFrame();
+      }
+
+      main();
+    </script>
+  </body>
+</html>
