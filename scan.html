@@ -1,131 +1,373 @@
 <!DOCTYPE html>
 <html lang="id">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Smart Food Scanner IoT</title>
+    <title>DRYcycle - Smart Waste Scanner</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
     <style>
-      video, canvas {
-        position: absolute;
-        top: 0;
-        left: 0;
-      }
-      .focus-anim {
-        animation: pulse 1.5s infinite;
-      }
-      @keyframes pulse {
-        0%, 100% { box-shadow: 0 0 10px 2px rgba(59,130,246,0.5); }
-        50% { box-shadow: 0 0 20px 4px rgba(59,130,246,0.8); }
-      }
+        .gradient-emerald {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+
+        .gradient-text-emerald {
+            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .scan-ring {
+            animation: scanRing 2s ease-in-out infinite;
+        }
+
+        @keyframes scanRing {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+            50% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
+        }
+
+        .pulse-soft {
+            animation: pulseSoft 3s ease-in-out infinite;
+        }
+
+        @keyframes pulseSoft {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        video, canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .camera-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .waste-card {
+            transition: all 0.3s ease;
+        }
+
+        .waste-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .category-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .organic { background-color: #dcfce7; color: #166534; }
+        .plastic { background-color: #fef3c7; color: #92400e; }
+        .metal { background-color: #dbeafe; color: #0c4a6e; }
+        .paper { background-color: #fce7f3; color: #831843; }
     </style>
-  </head>
-  <body class="bg-gray-900 text-white flex flex-col items-center min-h-screen">
-    <header class="py-4 text-center">
-      <h1 class="text-3xl font-bold text-blue-400">🍽️ Smart Food Scanner IoT</h1>
-      <p class="text-gray-400 text-sm">Scan objek makanan dengan kamera AI realtime</p>
-    </header>
+</head>
+<body class="bg-gradient-to-br from-green-50 via-blue-50 to-emerald-50 min-h-screen font-sans">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm border-b border-emerald-100 sticky top-0 z-10">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="text-3xl">♻️</div>
+                <div>
+                    <h1 class="text-2xl font-bold gradient-text-emerald">DRYcycle</h1>
+                    <p class="text-xs text-gray-500">Smart Waste Scanner</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-4">
+                <div class="text-right">
+                    <p class="text-xs text-gray-600">Status IoT</p>
+                    <p id="iot-status" class="font-semibold text-emerald-600">🔄 Menghubungkan...</p>
+                </div>
+            </div>
+        </nav>
 
-    <main class="relative w-full max-w-md flex flex-col items-center">
-      <video id="video" autoplay playsinline class="rounded-xl shadow-lg w-full"></video>
-      <canvas id="canvas" class="focus-anim rounded-xl"></canvas>
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-6 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Camera Section -->
+            <div class="lg:col-span-2">
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden border-2 border-emerald-200 p-4">
+                    <div class="mb-4">
+                        <h2 class="text-xl font-bold text-gray-800 mb-2 flex items-center gap-2">
+                            <span class="text-2xl">📸</span> Pemindai AI Sampah
+                        </h2>
+                        <p class="text-sm text-gray-600">Arahkan kamera ke sampah untuk deteksi otomatis</p>
+                    </div>
 
-      <div id="status" class="absolute bottom-2 left-2 bg-gray-800/70 px-3 py-1 rounded text-xs text-green-400">
-        IoT Status: <span id="iot-status">Connecting...</span>
-      </div>
+                    <div class="relative bg-gray-100 rounded-xl overflow-hidden mb-4 scan-ring" style="aspect-ratio: 4/3;">
+                        <div class="camera-container">
+                            <video id="video" autoplay playsinline muted></video>
+                            <canvas id="canvas"></canvas>
+                        </div>
+                    </div>
 
-      <div class="absolute bottom-2 right-2">
-        <button id="switchCam" class="bg-blue-500 hover:bg-blue-600 text-xs px-3 py-1 rounded">
-          🔄 Ganti Kamera
-        </button>
-      </div>
-    </main>
+                    <!-- Camera Controls -->
+                    <div class="flex gap-3 justify-center">
+                        <button id="switchCam" class="gradient-emerald text-white px-6 py-2 rounded-lg font-semibold hover:shadow-lg transition-all">
+                            🔄 Ganti Kamera
+                        </button>
+                        <button id="resetScan" class="bg-blue-100 text-blue-700 px-6 py-2 rounded-lg font-semibold hover:bg-blue-200 transition-all">
+                            🔄 Reset
+                        </button>
+                    </div>
+                </div>
+            </div>
 
-    <section id="result" class="mt-6 text-center">
-      <h2 class="text-xl font-semibold mb-1 text-blue-300">Deteksi:</h2>
-      <p id="label" class="text-lg">Menunggu kamera...</p>
-    </section>
+            <!-- Detection Result Section -->
+            <div>
+                <div class="bg-white rounded-2xl shadow-lg p-6 border-2 border-emerald-200">
+                    <h2 class="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
+                        <span class="text-2xl">🔍</span> Hasil Deteksi
+                    </h2>
+
+                    <!-- Detection Status -->
+                    <div id="detection-result" class="space-y-4">
+                        <div class="bg-gradient-to-r from-blue-50 to-blue-100 rounded-xl p-4 border border-blue-200">
+                            <p class="text-sm text-gray-600 mb-1">Status</p>
+                            <p id="detection-label" class="text-2xl font-bold text-blue-700">Menunggu deteksi...</p>
+                        </div>
+
+                        <div class="bg-gradient-to-r from-emerald-50 to-emerald-100 rounded-xl p-4 border border-emerald-200" id="category-section" style="display: none;">
+                            <p class="text-sm text-gray-600 mb-2">Kategori Sampah</p>
+                            <div id="category-display"></div>
+                        </div>
+
+                        <div class="bg-gradient-to-r from-amber-50 to-amber-100 rounded-xl p-4 border border-amber-200" id="recommendation-section" style="display: none;">
+                            <p class="text-sm font-semibold text-gray-700 mb-2">📋 Rekomendasi Pengelolaan</p>
+                            <p id="recommendation-text" class="text-sm text-gray-700 leading-relaxed"></p>
+                        </div>
+
+                        <div class="bg-gradient-to-r from-purple-50 to-purple-100 rounded-xl p-4 border border-purple-200" id="confidence-section" style="display: none;">
+                            <p class="text-sm text-gray-600 mb-2">Tingkat Kepercayaan</p>
+                            <div class="flex items-center gap-2">
+                                <div class="flex-1 bg-gray-200 rounded-full h-2">
+                                    <div id="confidence-bar" class="bg-emerald-500 h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
+                                </div>
+                                <span id="confidence-text" class="text-sm font-bold text-purple-700">0%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Info -->
+                <div class="bg-emerald-50 rounded-2xl shadow-lg p-6 border-2 border-emerald-200 mt-6">
+                    <h3 class="font-bold text-gray-800 mb-3 flex items-center gap-2">
+                        <span class="text-xl">💡</span> Tips Scanning
+                    </h3>
+                    <ul class="text-sm text-gray-700 space-y-2">
+                        <li>✓ Pencahayaan yang cukup</li>
+                        <li>✓ Posisikan sampah di tengah frame</li>
+                        <li>✓ Hindari bayangan</li>
+                        <li>✓ Tunggu hasil deteksi stabil</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Scans -->
+        <div class="mt-8 bg-white rounded-2xl shadow-lg p-6 border-2 border-emerald-200">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+                <span class="text-2xl">📝</span> Riwayat Deteksi
+            </h2>
+            <div id="scans-history" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="bg-gray-50 rounded-xl p-4 text-center border border-gray-200">
+                    <p class="text-xs text-gray-600 mb-1">Belum ada deteksi</p>
+                    <p class="text-sm text-gray-500">Mulai scanning sampah Anda</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <audio id="beep" src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg" preload="auto"></audio>
 
     <script>
-      const video = document.getElementById('video');
-      const canvas = document.getElementById('canvas');
-      const ctx = canvas.getContext('2d');
-      const labelEl = document.getElementById('label');
-      const beep = document.getElementById('beep');
-      const iotStatus = document.getElementById('iot-status');
+        const video = document.getElementById('video');
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        const detectionLabel = document.getElementById('detection-label');
+        const beep = document.getElementById('beep');
+        const iotStatus = document.getElementById('iot-status');
+        const categorySection = document.getElementById('category-section');
+        const categoryDisplay = document.getElementById('category-display');
+        const recommendationSection = document.getElementById('recommendation-section');
+        const recommendationText = document.getElementById('recommendation-text');
+        const confidenceSection = document.getElementById('confidence-section');
+        const confidenceBar = document.getElementById('confidence-bar');
+        const confidenceText = document.getElementById('confidence-text');
+        const scansHistory = document.getElementById('scans-history');
 
-      let model, stream, useFrontCamera = true;
-      let lastLabel = "";
+        let model, stream, useFrontCamera = false;
+        let lastLabel = "";
+        let scans = [];
 
-      async function setupCamera() {
-        if (stream) {
-          stream.getTracks().forEach(track => track.stop());
-        }
-        const constraints = {
-          audio: false,
-          video: { facingMode: useFrontCamera ? "user" : "environment" }
+        const recommendations = {
+            'bottle': { category: 'Plastik', color: 'plastic', text: 'Cuci botol, keringkan, dan masukkan ke kontainer daur ulang plastik.' },
+            'cup': { category: 'Plastik', color: 'plastic', text: 'Kosongkan sisa isi, cuci ringan, kirim ke tempat daur ulang.' },
+            'banana': { category: 'Organik', color: 'organic', text: 'Sampah organik - cocok untuk kompos atau pakan ternak.' },
+            'apple': { category: 'Organik', color: 'organic', text: 'Sampah makanan - bisa dijadikan kompos atau pakan ternak.' },
+            'cake': { category: 'Organik', color: 'organic', text: 'Makanan surplus - prioritas untuk donasi ke yang membutuhkan.' },
+            'food': { category: 'Organik', color: 'organic', text: 'Jika masih layak, donasikan. Jika tidak, jadikan kompos.' },
+            'can': { category: 'Logam', color: 'metal', text: 'Cuci kaleng, keringkan, dan kirim ke pengolah logam.' },
+            'aluminum foil': { category: 'Logam', color: 'metal', text: 'Bersihkan dan kirim ke pengolah daur ulang logam.' },
+            'newspaper': { category: 'Kertas', color: 'paper', text: 'Kertas bisa didaur ulang - kumpulkan dan kirim ke pengolah kertas.' },
+            'cardboard': { category: 'Kertas', color: 'paper', text: 'Karton daur ulang - kumpulkan dalam kondisi kering.' },
+            'plastic bag': { category: 'Plastik Non-Daur Ulang', color: 'plastic', text: 'Plastik non-daur ulang - kerjasama dengan pengolah paving block.' },
+            'styrofoam': { category: 'Plastik Non-Daur Ulang', color: 'plastic', text: 'Styrofoam - serahkan ke pengolah khusus paving block.' },
         };
-        stream = await navigator.mediaDevices.getUserMedia(constraints);
-        video.srcObject = stream;
-        return new Promise(resolve => {
-          video.onloadedmetadata = () => {
-            video.play();
-            resolve();
-          };
-        });
-      }
 
-      async function detectFrame() {
-        const predictions = await model.detect(video);
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.lineWidth = 2;
-
-        if (predictions.length > 0) {
-          const p = predictions[0];
-          ctx.strokeStyle = "#3B82F6";
-          ctx.strokeRect(p.bbox[0], p.bbox[1], p.bbox[2], p.bbox[3]);
-          ctx.font = "16px sans-serif";
-          ctx.fillStyle = "#3B82F6";
-          ctx.fillText(p.class, p.bbox[0] + 5, p.bbox[1] - 5);
-
-          if (p.class !== lastLabel) {
-            lastLabel = p.class;
-            beep.play();
-            labelEl.innerText = p.class.toUpperCase();
-            fakeIoTUpdate(p.class);
-          }
-        } else {
-          labelEl.innerText = "Tidak ada objek terdeteksi";
+        async function setupCamera() {
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
+            }
+            const constraints = {
+                audio: false,
+                video: { facingMode: useFrontCamera ? "user" : "environment" }
+            };
+            try {
+                stream = await navigator.mediaDevices.getUserMedia(constraints);
+                video.srcObject = stream;
+                return new Promise(resolve => {
+                    video.onloadedmetadata = () => {
+                        canvas.width = video.videoWidth;
+                        canvas.height = video.videoHeight;
+                        video.play();
+                        resolve();
+                    };
+                });
+            } catch (err) {
+                alert('Tidak dapat mengakses kamera: ' + err.message);
+            }
         }
-        requestAnimationFrame(detectFrame);
-      }
 
-      function fakeIoTUpdate(label) {
-        iotStatus.innerText = "Mengirim data...";
-        setTimeout(() => {
-          iotStatus.innerText = `📡 Data "${label}" terkirim ke dashboard`;
-        }, 500);
-      }
+        async function detectFrame() {
+            if (!model) return;
+            const predictions = await model.detect(video);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      document.getElementById('switchCam').addEventListener('click', async () => {
-        useFrontCamera = !useFrontCamera;
-        await setupCamera();
-      });
+            if (predictions.length > 0) {
+                const p = predictions[0];
+                const conf = Math.round(p.score * 100);
 
-      async function main() {
-        await setupCamera();
-        canvas.width = video.videoWidth;
-        canvas.height = video.videoHeight;
-        model = await cocoSsd.load();
-        iotStatus.innerText = "✅ Terhubung ke IoT Dashboard";
-        detectFrame();
-      }
+                // Draw detection box
+                ctx.strokeStyle = '#10b981';
+                ctx.lineWidth = 3;
+                ctx.strokeRect(p.bbox[0], p.bbox[1], p.bbox[2], p.bbox[3]);
 
-      main();
+                // Draw label
+                ctx.fillStyle = '#10b981';
+                ctx.fillRect(p.bbox[0], p.bbox[1] - 30, p.bbox[2], 30);
+                ctx.fillStyle = '#ffffff';
+                ctx.font = 'bold 14px sans-serif';
+                ctx.fillText(`${p.class} (${conf}%)`, p.bbox[0] + 5, p.bbox[1] - 10);
+
+                if (p.class !== lastLabel) {
+                    lastLabel = p.class;
+                    beep.play();
+                    updateDetection(p.class, conf);
+                    addToHistory(p.class, conf);
+                }
+
+                // Update confidence
+                confidenceBar.style.width = conf + '%';
+                confidenceText.textContent = conf + '%';
+                confidenceSection.style.display = 'block';
+            } else {
+                detectionLabel.textContent = 'Tidak ada sampah terdeteksi';
+                categorySection.style.display = 'none';
+                recommendationSection.style.display = 'none';
+                lastLabel = "";
+            }
+
+            requestAnimationFrame(detectFrame);
+        }
+
+        function updateDetection(label, confidence) {
+            detectionLabel.textContent = label.charAt(0).toUpperCase() + label.slice(1);
+            
+            const rec = recommendations[label.toLowerCase()] || {
+                category: 'Tidak Diketahui',
+                color: 'plastic',
+                text: 'Sampah tidak dikenali. Silakan coba positioning ulang.'
+            };
+
+            categoryDisplay.innerHTML = `<span class="category-badge ${rec.color}">${rec.category}</span>`;
+            recommendationText.textContent = rec.text;
+            
+            categorySection.style.display = 'block';
+            recommendationSection.style.display = 'block';
+
+            fakeIoTUpdate(label, confidence);
+        }
+
+        function addToHistory(label, confidence) {
+            const time = new Date().toLocaleTimeString('id-ID');
+            scans.unshift({ label, confidence, time });
+            if (scans.length > 8) scans.pop();
+            
+            renderHistory();
+        }
+
+        function renderHistory() {
+            if (scans.length === 0) {
+                scansHistory.innerHTML = '<div class="bg-gray-50 rounded-xl p-4 text-center border border-gray-200 col-span-full"><p class="text-sm text-gray-500">Belum ada deteksi</p></div>';
+                return;
+            }
+
+            scansHistory.innerHTML = scans.map((scan, i) => `
+                <div class="waste-card bg-gradient-to-br from-emerald-50 to-blue-50 rounded-xl p-4 border border-emerald-200">
+                    <div class="flex items-start justify-between mb-2">
+                        <p class="font-semibold text-gray-800">${scan.label}</p>
+                        <span class="text-xs bg-emerald-200 text-emerald-800 px-2 py-1 rounded-full">${scan.confidence}%</span>
+                    </div>
+                    <p class="text-xs text-gray-600">${scan.time}</p>
+                </div>
+            `).join('');
+        }
+
+        function fakeIoTUpdate(label, confidence) {
+            iotStatus.textContent = '🔄 Mengirim...';
+            setTimeout(() => {
+                iotStatus.innerHTML = `✅ Data "${label}" (${confidence}%) terkirim`;
+            }, 1000);
+            setTimeout(() => {
+                iotStatus.innerHTML = '🔗 Siap untuk deteksi berikutnya';
+            }, 3000);
+        }
+
+        document.getElementById('switchCam').addEventListener('click', async () => {
+            useFrontCamera = !useFrontCamera;
+            await setupCamera();
+        });
+
+        document.getElementById('resetScan').addEventListener('click', () => {
+            lastLabel = "";
+            detectionLabel.textContent = 'Menunggu deteksi...';
+            categorySection.style.display = 'none';
+            recommendationSection.style.display = 'none';
+            confidenceSection.style.display = 'none';
+        });
+
+        async function main() {
+            await setupCamera();
+            model = await cocoSsd.load();
+            iotStatus.textContent = '✅ IoT Terhubung';
+            detectFrame();
+        }
+
+        main();
     </script>
-  </body>
+</body>
 </html>
