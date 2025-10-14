@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sampah Tersedia - DRYcycle</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+<div class="flex h-screen overflow-hidden">
+    
+    <!-- Sidebar -->
+    <aside class="w-64 bg-white shadow-lg flex-shrink-0 hidden lg:flex lg:flex-col">
+        <div class="h-full flex flex-col">
+            <!-- Logo -->
+            <div class="p-6 border-b border-gray-200">
+                <div class="flex items-center space-x-2">
+                    <div class="w-10 h-10 rounded-lg flex items-center justify-center">
+                        <img src="assets/image/logo/logo.png" class="w-18 h-18" alt="DRYcycle Logo">
+                    </div>
+                    <span class="text-2xl font-bold text-emerald-700">DRYcycle</span>
+                </div>
+            </div>
+            
+            <!-- Navigation -->
+            <nav class="flex-1 p-4 overflow-y-auto">
+                <div class="space-y-2">
+                    <a href="#" class="flex items-center space-x-3 px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg font-medium">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                        </svg>
+                        <span>Dashboard</span>
+                    </a>
+                    
+                    <a href="#" class="flex items-center space-x-3 px-4 py-3 bg-green-50 text-green-600 rounded-lg font-medium">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                        </svg>
+                        <span>Sampah Tersedia</span>
+                    </a>
+                    
+                    <a href="#" class="flex items-center space-x-3 px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg font-medium">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                        </svg>
+                        <span>Upload Sampah</span>
+                    </a>
+                    
+                    <a href="#" class="flex items-center space-x-3 px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg font-medium">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                        </svg>
+                        <span>Booking Saya</span>
+                    </a>
+                    
+                    <a href="#" class="flex items-center space-x-3 px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg font-medium">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                        </svg>
+                        <span>Leaderboard</span>
+                    </a>
+                    
+                    <a href="#" class="flex items-center space-x-3 px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg font-medium">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                        </svg>
+                        <span>Komunitas</span>
+                    </a>
+                    
+                    <a href="#" class="flex items-center space-x-3 px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg font-medium">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                        </svg>
+                        <span>Edukasi</span>
+                    </a>
+                </div>
+            </nav>
+            
+            <!-- User Profile -->
+            <div class="p-4 border-t border-gray-200">
+                <div class="flex items-center space-x-3">
+                    <img src="https://i.pravatar.cc/150?img=12" alt="User" class="w-10 h-10 rounded-full">
+                    <div class="flex-1">
+                        <p class="text-sm font-semibold text-gray-900">Budi Santoso</p>
+                        <p class="text-xs text-gray-500">Level 5 • 2.5K Poin</p>
+                    </div>
+                    <button class="text-gray-400 hover:text-gray-600">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </aside>
+    
+    <!-- Main Content -->
+    <main class="flex-1 overflow-y-auto">
+        
+        <!-- Header -->
+        <header class="bg-white shadow-sm sticky top-0 z-10">
+            <div class="px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+                <div>
+                    <h1 class="text-xl sm:text-2xl font-bold text-gray-900">Sampah Tersedia</h1>
+                    <p class="text-gray-600 text-sm hidden sm:block">Temukan sampah di sekitar Anda</p>
+                </div>
+                
+                <div class="flex items-center space-x-2 sm:space-x-4">
+                    <button class="relative p-2 text-gray-400 hover:text-gray-600">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+                        </svg>
+                        <span class="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+                    </button>
+                    
+                    <button class="bg-green-600 text-white px-3 sm:px-6 py-2 sm:py-2.5 rounded-lg hover:bg-green-700 transition font-medium flex items-center space-x-2 text-sm sm:text-base">
+                        <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                        </svg>
+                        <span class="hidden sm:inline">Upload Sampah</span>
+                        <span class="sm:hidden">Upload</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+        
+        <!-- Content -->
+        <div class="p-4 sm:p-6 lg:p-8">
+            
+            <!-- Filter Section -->
+            <div class="mb-6">
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                    <div class="flex-1">
+                        <input type="text" placeholder="Cari sampah..." class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <select class="flex-1 sm:flex-none px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 text-sm sm:text-base">
+                            <option>Semua Kategori</option>
+                            <option>Makanan</option>
+                            <option>Plastik</option>
+                            <option>Kertas</option>
+                            <option>Logam</option>
+                            <option>Kaca</option>
+                        </select>
+                        <button class="px-4 py-2 text-green-600 border border-green-600 rounded-lg hover:bg-green-50 font-medium text-sm sm:text-base">
+                            Filter
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Waste Cards Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                
+                <!-- Waste Card 1 -->
+                <div class="bg-white rounded-xl shadow overflow-hidden hover:shadow-lg transition">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=400&h=300&fit=crop" alt="Food Waste" class="w-full h-48 object-cover">
+                        <div class="absolute top-3 right-3 bg-red-500 text-white px-3 py-1 rounded-full text-xs font-semibold flex items-center">
+                            <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            2 jam lagi
+                        </div>
+                        <div class="absolute top-3 left-3 bg-orange-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                            Makanan
+                        </div>
+                    </div>
+                    <div class="p-4 sm:p-5">
+                        <h3 class="font-bold text-gray-900 mb-2">Sisa Sayuran Segar</h3>
+                        <p class="text-sm text-gray-600 mb-4">Sayuran masih segar, cocok untuk pakan ternak atau kompos</p>
+                        
+                        <div class="flex items-center space-x-2 text-sm text-gray-500 mb-4">
+                            <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            <span class="truncate">Jl. Merdeka No. 45, Jakarta - 1.2 km</span>
+                        </div>
+                        
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center space-x-2">
+                                <img src="https://i.pravatar.cc/150?img=20" alt="User" class="w-8 h-8 rounded-full">
+                                <div>
+                                    <p class="text-sm font-semibold text-gray-900">Siti Aminah</p>
+                                    <div class="flex items-center">
+                                        <span class="text-xs text-yellow-500">★★★★★</span>
+                                        <span class="text-xs text-gray-500 ml-1">(48)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-xs text-gray-500">Berat</p>
+                                <p class="text-sm font-bold text-gray-900">3 kg</p>
+                            </div>
+                        </div>
+                        
+                        <button class="w-full bg-green-600 text-white py-2.5 rounded-lg hover:bg-green-700 transition font-medium">
+                            Book Sekarang
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Waste Card 2 -->
+                <div class="bg-white rounded-xl shadow overflow-hidden hover:shadow-lg transition">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1604187351574-c75ca79f5807?w=400&h=300&fit=crop" alt="Plastic Waste" class="w-full h-48 object-cover">
+                        <div class="absolute top-3 left-3 bg-blue-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                            Plastik
+                        </div>
+                    </div>
+                    <div class="p-4 sm:p-5">
+                        <h3 class="font-bold text-gray-900 mb-2">Botol Plastik Bersih</h3>
+                        <p class="text-sm text-gray-600 mb-4">Botol plastik sudah dicuci, siap daur ulang</p>
+                        
+                        <div class="flex items-center space-x-2 text-sm text-gray-500 mb-4">
+                            <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            <span class="truncate">Jl. Sudirman No. 12, Jakarta - 0.8 km</span>
+                        </div>
+                        
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center space-x-2">
+                                <img src="https://i.pravatar.cc/150?img=15" alt="User" class="w-8 h-8 rounded-full">
+                                <div>
+                                    <p class="text-sm font-semibold text-gray-900">Ahmad Rizki</p>
+                                    <div class="flex items-center">
+                                        <span class="text-xs text-yellow-500">★★★★★</span>
+                                        <span class="text-xs text-gray-500 ml-1">(32)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-xs text-gray-500">Berat</p>
+                                <p class="text-sm font-bold text-gray-900">5 kg</p>
+                            </div>
+                        </div>
+                        
+                        <button class="w-full bg-green-600 text-white py-2.5 rounded-lg hover:bg-green-700 transition font-medium">
+                            Book Sekarang
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Waste Card 3 -->
+                <div class="bg-white rounded-xl shadow overflow-hidden hover:shadow-lg transition">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1594322436404-5a0526db4d13?w=400&h=300&fit=crop" alt="Paper Waste" class="w-full h-48 object-cover">
+                        <div class="absolute top-3 left-3 bg-amber-600 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                            Kertas
+                        </div>
+                    </div>
+                    <div class="p-4 sm:p-5">
+                        <h3 class="font-bold text-gray-900 mb-2">Kardus & Kertas Bekas</h3>
+                        <p class="text-sm text-gray-600 mb-4">Kardus dan kertas koran dalam kondisi baik</p>
+                        
+                        <div class="flex items-center space-x-2 text-sm text-gray-500 mb-4">
+                            <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            <span class="truncate">Jl. Gatot Subroto, Jakarta - 2.1 km</span>
+                        </div>
+                        
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center space-x-2">
+                                <img src="https://i.pravatar.cc/150?img=25" alt="User" class="w-8 h-8 rounded-full">
+                                <div>
+                                    <p class="text-sm font-semibold text-gray-900">Dewi Lestari</p>
+                                    <div class="flex items-center">
+                                        <span class="text-xs text-yellow-500">★★★★☆</span>
+                                        <span class="text-xs text-gray-500 ml-1">(21)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-xs text-gray-500">Berat</p>
+                                <p class="text-sm font-bold text-gray-900">8 kg</p>
+                            </div>
+                        </div>
+                        
+                        <button class="w-full bg-green-600 text-white py-2.5 rounded-lg hover:bg-green-700 transition font-medium">
+                            Book Sekarang
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Waste Card 4 -->
+                <div class="bg-white rounded-xl shadow overflow-hidden hover:shadow-lg transition">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1611284446314-60a58ac0deb9?w=400&h=300&fit=crop" alt="Metal Waste" class="w-full h-48 object-cover">
+                        <div class="absolute top-3 left-3 bg-gray-600 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                            Logam
+                        </div>
+                    </div>
+                    <div class="p-4 sm:p-5">
+                        <h3 class="font-bold text-gray-900 mb-2">Kaleng Alumunium</h3>
+                        <p class="text-sm text-gray-600 mb-4">Kaleng minuman alumunium bersih</p>
+                        
+                        <div class="flex items-center space-x-2 text-sm text-gray-500 mb-4">
+                            <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            <span class="truncate">Jl. Thamrin No. 88, Jakarta - 1.5 km</span>
+                        </div>
+                        
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center space-x-2">
+                                <img src="https://i.pravatar.cc/150?img=30" alt="User" class="w-8 h-8 rounded-full">
+                                <div>
+                                    <p class="text-sm font-semibold text-gray-900">Eko Prasetyo</p>
+                                    <div class="flex items-center">
+                                        <span class="text-xs text-yellow-500">★★★★★</span>
+                                        <span class="text-xs text-gray-500 ml-1">(55)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-xs text-gray-500">Berat</p>
+                                <p class="text-sm font-bold text-gray-900">2 kg</p>
+                            </div>
+                        </div>
+                        
+                        <button class="w-full bg-green-600 text-white py-2.5 rounded-lg hover:bg-green-700 transition font-medium">
+                            Book Sekarang
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Waste Card 5 -->
+                <div class="bg-white rounded-xl shadow overflow-hidden hover:shadow-lg transition">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=400&h=300&fit=crop" alt="Food Waste" class="w-full h-48 object-cover">
+                        <div class="absolute top-3 right-3 bg-yellow-500 text-white px-3 py-1 rounded-full text-xs font-semibold flex items-center">
+                            <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            5 jam lagi
+                        </div>
+                        <div class="absolute top-3 left-3 bg-orange-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                            Makanan
+                        </div>
+                    </div>
+                    <div class="p-4 sm:p-5">
+                        <h3 class="font-bold text-gray-900 mb-2">Roti Surplus</h3>
+                        <p class="text-sm text-gray-600 mb-4">Roti masih layak konsumsi, expired besok</p>
+                        
+                        <div class="flex items-center space-x-2 text-sm text-gray-500 mb-4">
+                            <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            <span class="truncate">Jl. Diponegoro, Jakarta - 0.5 km</span>
+                        </div>
+                        
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center space-x-2">
+                                <img src="https://i.pravatar.cc/150?img=35" alt="User" class="w-8 h-8 rounded-full">
+                                <div>
+                                    <p class="text-sm font-semibold text-gray-900">Toko Roti Mawar</p>
+                                    <div class="flex items-center">
+                                        <span class="text-xs text-yellow-500">★★★★★</span>
+                                        <span class="text-xs text-gray-500 ml-1">(89)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-xs text-gray-500">Jumlah</p>
+                                <p class="text-sm font-bold text-gray-900">20 pcs</p>
+                            </div>
+                        </div>
+                        
+                        <button class="w-full bg-green-600 text-white py-2.5 rounded-lg hover:bg-green-700 transition font-medium">
+                            Book Sekarang
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Waste Card 6 -->
+                <div class="bg-white rounded-xl shadow overflow-hidden hover:shadow-lg transition">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1611396463321-a4082e60c3c9?w=400&h=300&fit=crop" alt="Glass Waste" class="w-full h-48 object-cover">
+                        <div class="absolute top-3 left-3 bg-teal-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                            Kaca
+                        </div>
+                    </div>
+                    <div class="p-4 sm:p-5">
+                        <h3 class="font-bold text-gray-900 mb-2">Botol Kaca Bersih</h3>
+                        <p class="text-sm text-gray-600 mb-4">Botol kaca bekas minuman, kondisi baik</p>
+                        
+                        <div class="flex items-center space-x-2 text-sm text-gray-500 mb-4">
+                            <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            <span class="truncate">Jl. Asia Afrika, Jakarta - 1.8 km</span>
+                        </div>
+                        
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center space-x-2">
+                                <img src="https://i.pravatar.cc/150?img=40" alt="User" class="w-8 h-8 rounded-full">
+                                <div>
+                                    <p class="text-sm font-semibold text-gray-900">Rina Wati</p>
+                                    <div class="flex items-center">
+                                        <span class="text-xs text-yellow-500">★★★★☆</span>
+                                        <span class="text-xs text-gray-500 ml-1">(28)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-xs text-gray-500">Berat</p>
+                                <p class="text-sm font-bold text-gray-900">4 kg</p>
+                            </div>
+                        </div>
+                        
+                        <button class="w-full bg-green-600 text-white py-2.5 rounded-lg hover:bg-green-700 transition font-medium">
+                            Book Sekarang
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Waste Card 7 -->
+                <div class="bg-white rounded-xl shadow overflow-hidden hover:shadow-lg transition">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?w=400&h=300&fit=crop" alt="Electronics Waste" class="w-full h-48 object-cover">
+                        <div class="absolute top-3 left-3 bg-indigo-600 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                            Elektronik
+                        </div>
+                    </div>
+                    <div class="p-4 sm:p-5">
+                        <h3 class="font-bold text-gray-900 mb-2">Kabel & Komponen</h3>
+                        <p class="text-sm text-gray-600 mb-4">Kabel bekas dan komponen elektronik</p>
+                        
+                        <div class="flex items-center space-x-2 text-sm text-gray-500 mb-4">
+                            <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            <span class="truncate">Jl. Kuningan, Jakarta - 2.3 km</span>
+                        </div>
+                        
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center space-x-2">
+                                <img src="https://i.pravatar.cc/150?img=50" alt="User" class="w-8 h-8 rounded-full">
+                                <div>
+                                    <p class="text-sm font-semibold text-gray-900">Budi Elektronik</p>
+                                    <div class="flex items-center">
+                                        <span class="text-xs text-yellow-500">★★★★★</span>
+                                        <span class="text-xs text-gray-500 ml-1">(42)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-xs text-gray-500">Berat</p>
+                                <p class="text-sm font-bold text-gray-900">1.5 kg</p>
+                            </div>
+                        </div>
+                        
+                        <button class="w-full bg-green-600 text-white py-2.5 rounded-lg hover:bg-green-700 transition font-medium">
+                            Book Sekarang
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Waste Card 8 -->
+                <div class="bg-white rounded-xl shadow overflow-hidden hover:shadow-lg transition">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1528323273322-d81458248d40?w=400&h=300&fit=crop" alt="Textile Waste" class="w-full h-48 object-cover">
+                        <div class="absolute top-3 left-3 bg-pink-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                            Tekstil
+                        </div>
+                    </div>
+                    <div class="p-4 sm:p-5">
+                        <h3 class="font-bold text-gray-900 mb-2">Pakaian Bekas Layak</h3>
+                        <p class="text-sm text-gray-600 mb-4">Pakaian bekas dalam kondisi baik</p>
+                        
+                        <div class="flex items-center space-x-2 text-sm text-gray-500 mb-4">
+                            <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            <span class="truncate">Jl. Kemang, Jakarta - 1.7 km</span>
+                        </div>
+                        
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center space-x-2">
+                                <img src="https://i.pravatar.cc/150?img=55" alt="User" class="w-8 h-8 rounded-full">
+                                <div>
+                                    <p class="text-sm font-semibold text-gray-900">Maya Sari</p>
+                                    <div class="flex items-center">
+                                        <span class="text-xs text-yellow-500">★★★★☆</span>
+                                        <span class="text-xs text-gray-500 ml-1">(36)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-xs text-gray-500">Berat</p>
+                                <p class="text-sm font-bold text-gray-900">6 kg</p>
+                            </div>
+                        </div>
+                        
+                        <button class="w-full bg-green-600 text-white py-2.5 rounded-lg hover:bg-green-700 transition font-medium">
+                            Book Sekarang
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Waste Card 9 -->
+                <div class="bg-white rounded-xl shadow overflow-hidden hover:shadow-lg transition">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1586864387634-80daa48d2341?w=400&h=300&fit=crop" alt="Organic Waste" class="w-full h-48 object-cover">
+                        <div class="absolute top-3 right-3 bg-red-500 text-white px-3 py-1 rounded-full text-xs font-semibold flex items-center">
+                            <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            1 jam lagi
+                        </div>
+                        <div class="absolute top-3 left-3 bg-green-600 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                            Organik
+                        </div>
+                    </div>
+                    <div class="p-4 sm:p-5">
+                        <h3 class="font-bold text-gray-900 mb-2">Daun & Ranting Kering</h3>
+                        <p class="text-sm text-gray-600 mb-4">Limbah taman, cocok untuk kompos</p>
+                        
+                        <div class="flex items-center space-x-2 text-sm text-gray-500 mb-4">
+                            <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            <span class="truncate">Jl. Pejaten, Jakarta - 1.1 km</span>
+                        </div>
+                        
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center space-x-2">
+                                <img src="https://i.pravatar.cc/150?img=60" alt="User" class="w-8 h-8 rounded-full">
+                                <div>
+                                    <p class="text-sm font-semibold text-gray-900">Pak Tani</p>
+                                    <div class="flex items-center">
+                                        <span class="text-xs text-yellow-500">★★★★★</span>
+                                        <span class="text-xs text-gray-500 ml-1">(67)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-xs text-gray-500">Berat</p>
+                                <p class="text-sm font-bold text-gray-900">10 kg</p>
+                            </div>
+                        </div>
+                        
+                        <button class="w-full bg-green-600 text-white py-2.5 rounded-lg hover:bg-green-700 transition font-medium">
+                            Book Sekarang
+                        </button>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <!-- Load More Button -->
+            <div class="text-center mt-8">
+                <button class="px-6 py-3 border-2 border-green-600 text-green-600 rounded-lg hover:bg-green-50 transition font-medium">
+                    Lihat Lebih Banyak
+                </button>
+            </div>
+            
+        </div>
+    </main>
+    
+</div>
+
+
+
+
