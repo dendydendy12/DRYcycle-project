@@ -7,6 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         .gradient-emerald {
             background: linear-gradient(135deg, #10b981 0%, #059669 100%);
@@ -73,41 +74,68 @@
         .plastic { background-color: #fef3c7; color: #92400e; }
         .metal { background-color: #dbeafe; color: #0c4a6e; }
         .paper { background-color: #fce7f3; color: #831843; }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .category-badge {
+                padding: 0.375rem 0.75rem;
+                font-size: 0.75rem;
+            }
+        }
+
+        .spin-slow {
+            animation: spin 3s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body class="bg-gradient-to-br from-green-50 via-blue-50 to-emerald-50 min-h-screen font-sans">
     <!-- Navigation -->
     <nav class="bg-white shadow-sm border-b border-emerald-100 sticky top-0 z-10">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <div class="text-3xl">♻️</div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between">
+            <div class="flex items-center gap-2 sm:gap-3">
+                <button id="backBtn" class="p-2 hover:bg-emerald-50 rounded-lg transition-all" title="Kembali">
+                    <i class="fas fa-arrow-left text-emerald-600 text-lg sm:text-xl"></i>
+                </button>
+                <div class="text-2xl sm:text-3xl">
+                    <img src="assets/image/logo/logo.png" alt="logo" class="h-10 sm:h-12 md:h-16 w-auto" />
+                </div>
                 <div>
-                    <h1 class="text-2xl font-bold gradient-text-emerald">DRYcycle</h1>
-                    <p class="text-xs text-gray-500">Smart Waste Scanner</p>
+                    <h1 class="text-xl sm:text-2xl font-bold gradient-text-emerald">DRYcycle</h1>
+                    <p class="text-xs text-gray-500 hidden sm:block">Smart Waste Scanner</p>
                 </div>
             </div>
-            <div class="flex items-center gap-4">
+            <div class="flex items-center gap-2 sm:gap-4">
                 <div class="text-right">
-                    <p class="text-xs text-gray-600">Status IoT</p>
-                    <p id="iot-status" class="font-semibold text-emerald-600">🔄 Menghubungkan...</p>
+                    <p class="text-xs text-gray-600 hidden sm:block">Status IoT</p>
+                    <p id="iot-status" class="text-xs sm:text-sm font-semibold text-emerald-600">
+                        <i class="fas fa-spinner spin-slow"></i> Menghubungkan...
+                    </p>
                 </div>
             </div>
-        </nav>
+        </div>
+    </nav>
 
     <!-- Main Content -->
-    <div class="max-w-7xl mx-auto px-6 py-8">
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-8">
             <!-- Camera Section -->
             <div class="lg:col-span-2">
-                <div class="bg-white rounded-2xl shadow-lg overflow-hidden border-2 border-emerald-200 p-4">
-                    <div class="mb-4">
-                        <h2 class="text-xl font-bold text-gray-800 mb-2 flex items-center gap-2">
-                            <span class="text-2xl">📸</span> Pemindai AI Sampah
+                <div class="bg-white rounded-xl sm:rounded-2xl shadow-lg overflow-hidden border-2 border-emerald-200 p-3 sm:p-4">
+                    <div class="mb-3 sm:mb-4">
+                        <h2 class="text-lg sm:text-xl font-bold text-gray-800 mb-2 flex items-center gap-2">
+                            <i class="fas fa-camera text-emerald-600"></i>
+                            <span class="hidden sm:inline">Pemindai AI Sampah</span>
+                            <span class="sm:hidden">Pemindai AI</span>
                         </h2>
-                        <p class="text-sm text-gray-600">Arahkan kamera ke sampah untuk deteksi otomatis</p>
+                        <p class="text-xs sm:text-sm text-gray-600">Arahkan kamera ke sampah untuk deteksi otomatis</p>
                     </div>
 
-                    <div class="relative bg-gray-100 rounded-xl overflow-hidden mb-4 scan-ring" style="aspect-ratio: 4/3;">
+                    <div class="relative bg-gray-100 rounded-lg sm:rounded-xl overflow-hidden mb-3 sm:mb-4 scan-ring" style="aspect-ratio: 4/3;">
                         <div class="camera-container">
                             <video id="video" autoplay playsinline muted></video>
                             <canvas id="canvas"></canvas>
@@ -115,77 +143,79 @@
                     </div>
 
                     <!-- Camera Controls -->
-                    <div class="flex gap-3 justify-center">
-                        <button id="switchCam" class="gradient-emerald text-white px-6 py-2 rounded-lg font-semibold hover:shadow-lg transition-all">
-                            🔄 Ganti Kamera
+                    <div class="flex flex-col sm:flex-row gap-2 sm:gap-3 justify-center">
+                        <button id="switchCam" class="gradient-emerald text-white px-4 sm:px-6 py-2 rounded-lg text-sm sm:text-base font-semibold hover:shadow-lg transition-all">
+                            <i class="fas fa-sync-alt mr-2"></i>Ganti Kamera
                         </button>
-                        <button id="resetScan" class="bg-blue-100 text-blue-700 px-6 py-2 rounded-lg font-semibold hover:bg-blue-200 transition-all">
-                            🔄 Reset
+                        <button id="resetScan" class="bg-blue-100 text-blue-700 px-4 sm:px-6 py-2 rounded-lg text-sm sm:text-base font-semibold hover:bg-blue-200 transition-all">
+                            <i class="fas fa-redo mr-2"></i>Reset
                         </button>
                     </div>
                 </div>
             </div>
 
             <!-- Detection Result Section -->
-            <div>
-                <div class="bg-white rounded-2xl shadow-lg p-6 border-2 border-emerald-200">
-                    <h2 class="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
-                        <span class="text-2xl">🔍</span> Hasil Deteksi
+            <div class="space-y-4 sm:space-y-6">
+                <div class="bg-white rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-6 border-2 border-emerald-200">
+                    <h2 class="text-base sm:text-lg font-bold text-gray-800 mb-3 sm:mb-4 flex items-center gap-2">
+                        <i class="fas fa-search text-emerald-600"></i> Hasil Deteksi
                     </h2>
 
                     <!-- Detection Status -->
-                    <div id="detection-result" class="space-y-4">
-                        <div class="bg-gradient-to-r from-blue-50 to-blue-100 rounded-xl p-4 border border-blue-200">
-                            <p class="text-sm text-gray-600 mb-1">Status</p>
-                            <p id="detection-label" class="text-2xl font-bold text-blue-700">Menunggu deteksi...</p>
+                    <div id="detection-result" class="space-y-3 sm:space-y-4">
+                        <div class="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg sm:rounded-xl p-3 sm:p-4 border border-blue-200">
+                            <p class="text-xs sm:text-sm text-gray-600 mb-1">Status</p>
+                            <p id="detection-label" class="text-lg sm:text-2xl font-bold text-blue-700">Menunggu deteksi...</p>
                         </div>
 
-                        <div class="bg-gradient-to-r from-emerald-50 to-emerald-100 rounded-xl p-4 border border-emerald-200" id="category-section" style="display: none;">
-                            <p class="text-sm text-gray-600 mb-2">Kategori Sampah</p>
+                        <div class="bg-gradient-to-r from-emerald-50 to-emerald-100 rounded-lg sm:rounded-xl p-3 sm:p-4 border border-emerald-200" id="category-section" style="display: none;">
+                            <p class="text-xs sm:text-sm text-gray-600 mb-2">Kategori Sampah</p>
                             <div id="category-display"></div>
                         </div>
 
-                        <div class="bg-gradient-to-r from-amber-50 to-amber-100 rounded-xl p-4 border border-amber-200" id="recommendation-section" style="display: none;">
-                            <p class="text-sm font-semibold text-gray-700 mb-2">📋 Rekomendasi Pengelolaan</p>
-                            <p id="recommendation-text" class="text-sm text-gray-700 leading-relaxed"></p>
+                        <div class="bg-gradient-to-r from-amber-50 to-amber-100 rounded-lg sm:rounded-xl p-3 sm:p-4 border border-amber-200" id="recommendation-section" style="display: none;">
+                            <p class="text-xs sm:text-sm font-semibold text-gray-700 mb-2">
+                                <i class="fas fa-clipboard-list mr-1"></i>Rekomendasi Pengelolaan
+                            </p>
+                            <p id="recommendation-text" class="text-xs sm:text-sm text-gray-700 leading-relaxed"></p>
                         </div>
 
-                        <div class="bg-gradient-to-r from-purple-50 to-purple-100 rounded-xl p-4 border border-purple-200" id="confidence-section" style="display: none;">
-                            <p class="text-sm text-gray-600 mb-2">Tingkat Kepercayaan</p>
+                        <div class="bg-gradient-to-r from-purple-50 to-purple-100 rounded-lg sm:rounded-xl p-3 sm:p-4 border border-purple-200" id="confidence-section" style="display: none;">
+                            <p class="text-xs sm:text-sm text-gray-600 mb-2">Tingkat Kepercayaan</p>
                             <div class="flex items-center gap-2">
                                 <div class="flex-1 bg-gray-200 rounded-full h-2">
                                     <div id="confidence-bar" class="bg-emerald-500 h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
                                 </div>
-                                <span id="confidence-text" class="text-sm font-bold text-purple-700">0%</span>
+                                <span id="confidence-text" class="text-xs sm:text-sm font-bold text-purple-700">0%</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Quick Info -->
-                <div class="bg-emerald-50 rounded-2xl shadow-lg p-6 border-2 border-emerald-200 mt-6">
-                    <h3 class="font-bold text-gray-800 mb-3 flex items-center gap-2">
-                        <span class="text-xl">💡</span> Tips Scanning
+                <div class="bg-emerald-50 rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-6 border-2 border-emerald-200">
+                    <h3 class="text-sm sm:text-base font-bold text-gray-800 mb-3 flex items-center gap-2">
+                        <i class="fas fa-lightbulb text-yellow-500"></i> Tips Scanning
                     </h3>
-                    <ul class="text-sm text-gray-700 space-y-2">
-                        <li>✓ Pencahayaan yang cukup</li>
-                        <li>✓ Posisikan sampah di tengah frame</li>
-                        <li>✓ Hindari bayangan</li>
-                        <li>✓ Tunggu hasil deteksi stabil</li>
+                    <ul class="text-xs sm:text-sm text-gray-700 space-y-2">
+                        <li><i class="fas fa-check text-emerald-600 mr-2"></i>Pencahayaan yang cukup</li>
+                        <li><i class="fas fa-check text-emerald-600 mr-2"></i>Posisikan sampah di tengah frame</li>
+                        <li><i class="fas fa-check text-emerald-600 mr-2"></i>Hindari bayangan</li>
+                        <li><i class="fas fa-check text-emerald-600 mr-2"></i>Tunggu hasil deteksi stabil</li>
                     </ul>
                 </div>
             </div>
         </div>
 
         <!-- Recent Scans -->
-        <div class="mt-8 bg-white rounded-2xl shadow-lg p-6 border-2 border-emerald-200">
-            <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-                <span class="text-2xl">📝</span> Riwayat Deteksi
+        <div class="mt-6 sm:mt-8 bg-white rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-6 border-2 border-emerald-200">
+            <h2 class="text-lg sm:text-2xl font-bold text-gray-800 mb-3 sm:mb-4 flex items-center gap-2">
+                <i class="fas fa-history text-emerald-600"></i> Riwayat Deteksi
             </h2>
-            <div id="scans-history" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                <div class="bg-gray-50 rounded-xl p-4 text-center border border-gray-200">
+            <div id="scans-history" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+                <div class="bg-gray-50 rounded-lg sm:rounded-xl p-3 sm:p-4 text-center border border-gray-200">
                     <p class="text-xs text-gray-600 mb-1">Belum ada deteksi</p>
-                    <p class="text-sm text-gray-500">Mulai scanning sampah Anda</p>
+                    <p class="text-xs sm:text-sm text-gray-500">Mulai scanning sampah Anda</p>
                 </div>
             </div>
         </div>
@@ -227,6 +257,14 @@
             'plastic bag': { category: 'Plastik Non-Daur Ulang', color: 'plastic', text: 'Plastik non-daur ulang - kerjasama dengan pengolah paving block.' },
             'styrofoam': { category: 'Plastik Non-Daur Ulang', color: 'plastic', text: 'Styrofoam - serahkan ke pengolah khusus paving block.' },
         };
+
+        // Tombol Kembali
+        document.getElementById('backBtn').addEventListener('click', () => {
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
+            }
+            window.history.back();
+        });
 
         async function setupCamera() {
             if (stream) {
@@ -327,23 +365,23 @@
             }
 
             scansHistory.innerHTML = scans.map((scan, i) => `
-                <div class="waste-card bg-gradient-to-br from-emerald-50 to-blue-50 rounded-xl p-4 border border-emerald-200">
+                <div class="waste-card bg-gradient-to-br from-emerald-50 to-blue-50 rounded-lg sm:rounded-xl p-3 sm:p-4 border border-emerald-200">
                     <div class="flex items-start justify-between mb-2">
-                        <p class="font-semibold text-gray-800">${scan.label}</p>
+                        <p class="text-sm sm:text-base font-semibold text-gray-800">${scan.label}</p>
                         <span class="text-xs bg-emerald-200 text-emerald-800 px-2 py-1 rounded-full">${scan.confidence}%</span>
                     </div>
-                    <p class="text-xs text-gray-600">${scan.time}</p>
+                    <p class="text-xs text-gray-600"><i class="far fa-clock mr-1"></i>${scan.time}</p>
                 </div>
             `).join('');
         }
 
         function fakeIoTUpdate(label, confidence) {
-            iotStatus.textContent = '🔄 Mengirim...';
+            iotStatus.innerHTML = '<i class="fas fa-spinner spin-slow"></i> Mengirim...';
             setTimeout(() => {
-                iotStatus.innerHTML = `✅ Data "${label}" (${confidence}%) terkirim`;
+                iotStatus.innerHTML = `<i class="fas fa-check-circle text-emerald-600"></i> Data "${label}" (${confidence}%) terkirim`;
             }, 1000);
             setTimeout(() => {
-                iotStatus.innerHTML = '🔗 Siap untuk deteksi berikutnya';
+                iotStatus.innerHTML = '<i class="fas fa-link text-emerald-600"></i> Siap untuk deteksi berikutnya';
             }, 3000);
         }
 
@@ -363,7 +401,7 @@
         async function main() {
             await setupCamera();
             model = await cocoSsd.load();
-            iotStatus.textContent = '✅ IoT Terhubung';
+            iotStatus.innerHTML = '<i class="fas fa-check-circle text-emerald-600"></i> IoT Terhubung';
             detectFrame();
         }
 
