@@ -2,9 +2,9 @@
 <html lang="id">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login - DRYcycle</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register - DRYcycle</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
@@ -13,32 +13,43 @@
   <div class="min-h-screen flex items-center justify-center px-6 py-12">
     <div class="max-w-6xl w-full grid md:grid-cols-2 gap-0 bg-white rounded-3xl overflow-hidden">
 
-      <!-- Left Side - Login Form -->
+      <!-- Left Side - Register Form -->
       <div class="p-8 md:p-12 flex flex-col justify-center">
         <div class="mb-8">
           <div class="flex items-center gap-3 mb-4">
-            <img src="assets/image/logo/logo.png" class="w-10 h-10" alt="Logo DRYcycle">
+            <img src="assets/image/logo/logo.png" class="w-10 h-10" alt="Logo DRYcycle" />
             <h1 class="text-3xl font-bold text-gray-900">DRYcycle</h1>
           </div>
-          <h2 class="text-4xl font-bold text-gray-900 mb-3">Welcome back!</h2>
+          <h2 class="text-4xl font-bold text-gray-900 mb-3">Create your account</h2>
           <p class="text-gray-600">
-            Simplify your waste management and boost your environmental impact with
-            <span class="font-semibold">DRYcycle</span>. Get started for free.
+            Join <span class="font-semibold">DRYcycle</span> today and make waste management smarter.
           </p>
         </div>
 
-        <form class="space-y-5" onsubmit="handleLogin(event)">
+        <form class="space-y-5" onsubmit="handleRegister(event)">
+          <div>
+            <input type="text" placeholder="Full Name"
+              class="w-full px-5 py-4 border-2 border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition"
+              required />
+          </div>
+
+          <div>
+            <input type="email" placeholder="Email Address"
+              class="w-full px-5 py-4 border-2 border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition"
+              required />
+          </div>
+
           <div>
             <input type="text" placeholder="Username"
               class="w-full px-5 py-4 border-2 border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition"
-              required>
+              required />
           </div>
 
           <div class="relative">
             <input type="password" id="password" placeholder="Password"
               class="w-full px-5 py-4 border-2 border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition"
-              required>
-            <button type="button" onclick="togglePassword()"
+              required />
+            <button type="button" onclick="togglePassword('password')"
               class="absolute right-5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -50,16 +61,29 @@
             </button>
           </div>
 
-          <div class="text-right">
-            <a href="#" class="text-sm text-gray-700 hover:text-gray-900">Forgot Password?</a>
+          <div class="relative">
+            <input type="password" id="confirm-password" placeholder="Confirm Password"
+              class="w-full px-5 py-4 border-2 border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition"
+              required />
+            <button type="button" onclick="togglePassword('confirm-password')"
+              class="absolute right-5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
+                </path>
+              </svg>
+            </button>
           </div>
 
           <button type="submit"
             class="w-full bg-green-600 text-white py-4 rounded-full hover:bg-green-700 transition font-semibold text-base">
-            Login
+            Register
           </button>
         </form>
 
+        <!-- Divider -->
         <div class="mt-6">
           <div class="relative">
             <div class="absolute inset-0 flex items-center">
@@ -70,7 +94,9 @@
             </div>
           </div>
 
+          <!-- Social Register Buttons -->
           <div class="mt-6 flex justify-center gap-4">
+            <!-- Google -->
             <button
               class="w-14 h-14 bg-gray-900 text-white rounded-full flex items-center justify-center hover:bg-gray-800 transition">
               <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
@@ -85,6 +111,7 @@
               </svg>
             </button>
 
+            <!-- GitHub -->
             <button
               class="w-14 h-14 bg-gray-900 text-white rounded-full flex items-center justify-center hover:bg-gray-800 transition">
               <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
@@ -93,6 +120,7 @@
               </svg>
             </button>
 
+            <!-- Facebook -->
             <button
               class="w-14 h-14 bg-gray-900 text-white rounded-full flex items-center justify-center hover:bg-gray-800 transition">
               <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
@@ -105,31 +133,40 @@
 
         <div class="mt-8 text-center">
           <p class="text-gray-600">
-            Not a member?
-            <a href="#" class="text-green-600 hover:text-green-700 font-semibold">Register now</a>
+            Already have an account?
+            <a href="login.html" class="text-green-600 hover:text-green-700 font-semibold">Login here</a>
           </p>
         </div>
       </div>
 
-      <!-- Right Side - Image Illustration -->
+      <!-- Right Side - Illustration -->
       <div class="hidden md:flex items-center justify-center bg-gray-100">
-        <img src="assets/image/images/ear.png" alt="DRYcycle Illustration"
-          class="w-full h-full object-cover" onerror="this.style.display='none';">
+        <img src="assets/image/images/ear.png" alt="Register Illustration"
+          class="w-full h-full object-cover" onerror="this.style.display='none';" />
       </div>
 
     </div>
   </div>
 
   <script>
-    function handleLogin(event) {
+    function handleRegister(event) {
       event.preventDefault();
-      alert('Login berhasil! Redirecting to dashboard...');
-      window.location.href = 'dashboard.html';
+
+      const password = document.getElementById("password").value;
+      const confirmPassword = document.getElementById("confirm-password").value;
+
+      if (password !== confirmPassword) {
+        alert("Password and confirmation do not match!");
+        return;
+      }
+
+      alert("Registration successful! Redirecting to login...");
+      window.location.href = "login.html";
     }
 
-    function togglePassword() {
-      const passwordInput = document.getElementById('password');
-      passwordInput.type = passwordInput.type === 'password' ? 'text' : 'password';
+    function togglePassword(id) {
+      const input = document.getElementById(id);
+      input.type = input.type === "password" ? "text" : "password";
     }
   </script>
 
