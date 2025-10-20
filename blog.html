@@ -6,9 +6,103 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EcoLearn - Blog Edukasi Sampah</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/navbar.css">
 </head>
 
 <body class="bg-white text-gray-900">
+
+     <!-- Preloader Animation -->
+    <div id="preloader">
+        <div class="loader-content">
+            <div class="logo-container">
+                <div class="recycle-particles">
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                </div>
+                <div class="logo-circle">
+                    <img src="assets/image/logo/logo.png" class="logo-icon" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                    </img>
+                </div>
+            </div>
+            <h1 class="loader-text">DRYcycle</h1>
+            <p class="loader-subtitle">One Click to Clean the Planet</p>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+
+       <!-- Navigation -->
+<nav class="bg-white shadow-sm sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <!-- Logo -->
+    <div class="flex items-center space-x-2">
+      <div class="w-10 h-10 rounded-lg flex items-center justify-center">
+        <img src="assets/image/logo/logo.png" alt="Logo" class="w-10 h-10">
+      </div>
+      <span class="text-2xl font-bold text-emerald-700">DRYcycle</span>
+    </div>
+
+    <!-- Desktop Menu -->
+    <div class="hidden md:flex items-center space-x-8">
+      <a href="index.html" class="text-gray-700 hover:text-green-600 transition">Beranda</a>
+      <a href="about.html" class="text-gray-700 hover:text-green-600 transition">Tentang Kami</a>
+      <a href="browse.html" class="text-gray-700 hover:text-green-600 transition">Lihat Sampah</a>
+      <a href="blog.html" class="text-gray-700 hover:text-green-600 transition">Blog</a>
+      <a href="contact.html" class="text-gray-700 hover:text-green-600 transition">Kontak</a>
+    </div>
+
+    <!-- Desktop Buttons -->
+    <div class="hidden md:flex items-center space-x-3">
+      <a href="login.html" class="text-gray-700 hover:text-green-600 font-medium">Masuk</a>
+     <a href="daftar.html"
+   class="bg-gray-900 text-white px-6 py-2.5 rounded-lg hover:bg-gray-800 transition inline-block text-center">
+   Daftar Gratis
+</a>
+
+    </div>
+
+    <!-- Hamburger Button -->
+    <button id="menu-btn" class="md:hidden flex flex-col justify-center items-center space-y-1 relative z-60">
+      <span class="block w-6 h-0.5 bg-gray-700 transition-transform duration-300"></span>
+      <span class="block w-6 h-0.5 bg-gray-700 transition-transform duration-300"></span>
+      <span class="block w-6 h-0.5 bg-gray-700 transition-transform duration-300"></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Slide Menu -->
+<div id="mobile-menu"
+  class="fixed top-0 left-0 w-64 h-screen bg-white transform -translate-x-full transition-transform duration-300 ease-in-out shadow-lg z-50 md:hidden">
+  <div class="px-6 py-6 flex flex-col space-y-5">
+    <a href="index.html" class="text-gray-700 hover:text-green-600 transition">Beranda</a>
+    <a href="about.html" class="text-gray-700 hover:text-green-600 transition">Tentang Kami</a>
+    <a href="browse.html" class="text-gray-700 hover:text-green-600 transition">Lihat Sampah</a>
+    <a href="blog.html" class="text-gray-700 hover:text-green-600 transition">Blog</a>
+    <a href="contact.html" class="text-gray-700 hover:text-green-600 transition">Kontak</a>
+
+    <div class="border-t border-gray-200 pt-3 flex flex-col space-y-3">
+      <a href="login.html" class="text-gray-700 hover:text-green-600 font-medium">Masuk</a>
+    <a href="login.html"
+   class="bg-gray-900 text-white px-6 py-2.5 rounded-lg hover:bg-gray-800 transition w-full text-center inline-block">
+   Daftar Gratis
+</a>
+
+    </div>
+  </div>
+</div>
+
+<!-- Overlay -->
+<div id="overlay" class="hidden fixed inset-0 bg-black bg-opacity-40 z-40 md:hidden"></div>
 
 
 
@@ -181,6 +275,8 @@
         </div>
     </section>
 
+    <script src="assets/js/navbar.js"></script>
+    <script src="assets/js/script.js"></script>
 
 
 </body>

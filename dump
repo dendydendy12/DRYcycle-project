@@ -3,40 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DRYcycle - Alur Kerja</title>
+    <title>Our Team</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        .step-card {
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .step-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-            transition: left 0.5s;
-        }
-        
-        .step-card:hover::before {
-            left: 100%;
-        }
-
-        .step-number {
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-    </style>
 </head>
-<body class="bg-white">
-
-
-
+<body class="bg-gray-50">
+   
 </body>
 </html>
