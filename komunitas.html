@@ -115,22 +115,91 @@
                     </div>
                 </nav>
                 
-                <!-- User Profile -->
-                <div class="p-4 border-t border-gray-200">
-                    <div class="flex items-center space-x-3">
-                        <img src="https://i.pravatar.cc/150?img=12" alt="User" class="w-10 h-10 rounded-full">
-                        <div class="flex-1">
-                            <p class="text-sm font-semibold text-gray-900">Budi Santoso</p>
-                            <p class="text-xs text-gray-500">Level 5 • 2.5K Poin</p>
-                        </div>
-                        <button class="text-gray-400 hover:text-gray-600">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-            </div>
+             <!-- User Profile -->
+<div class="p-4 border-t border-gray-200">
+    <div class="flex items-center space-x-3">
+      <img src="https://i.pravatar.cc/150?img=12" alt="User" class="w-10 h-10 rounded-full">
+      <div class="flex-1">
+        <p class="text-sm font-semibold text-gray-900">Budi Santoso</p>
+        <p class="text-xs text-gray-500">Level 5 • 2.5K Poin</p>
+      </div>
+  
+      <!-- Tombol logout -->
+      <button id="logoutBtn" class="text-gray-400 hover:text-red-500 transition">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+        </svg>
+      </button>
+    </div>
+  </div>
+  
+  <!-- Modal Konfirmasi Logout -->
+  <div id="logoutModal" class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 animate-fade-in">
+    <div class="bg-white rounded-2xl shadow-2xl p-8 w-80 text-center transform scale-95 opacity-0 animate-pop-up">
+      
+      <!-- Icon -->
+      <div class="mx-auto mb-4 flex items-center justify-center w-16 h-16 rounded-full bg-red-100">
+        <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round"
+                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+        </svg>
+      </div>
+  
+      <!-- Text -->
+      <h2 class="text-lg font-semibold text-gray-800 mb-2">Yakin mau logout?</h2>
+      <p class="text-sm text-gray-500 mb-6">Kamu akan keluar dari sesi ini.</p>
+  
+      <!-- Tombol -->
+      <div class="flex justify-center space-x-3">
+        <button id="confirmLogout" class="px-5 py-2.5 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-all duration-200">Iya</button>
+        <button id="cancelLogout" class="px-5 py-2.5 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition-all duration-200">Tidak</button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Animasi -->
+  <style>
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes popUp {
+      0% { transform: scale(0.9); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .animate-fade-in { animation: fadeIn 0.3s ease forwards; }
+    .animate-pop-up { animation: popUp 0.25s ease forwards; }
+  </style>
+  
+  <!-- Script -->
+  <script>
+    const logoutBtn = document.getElementById('logoutBtn');
+    const logoutModal = document.getElementById('logoutModal');
+    const confirmLogout = document.getElementById('confirmLogout');
+    const cancelLogout = document.getElementById('cancelLogout');
+  
+    // buka modal
+    logoutBtn.addEventListener('click', () => {
+      logoutModal.classList.remove('hidden');
+    });
+  
+    // konfirmasi logout
+    confirmLogout.addEventListener('click', () => {
+      localStorage.removeItem('user');
+      sessionStorage.removeItem('user');
+      window.location.href = 'login.html'; // ganti sesuai halaman login lu
+    });
+  
+    // batal logout
+    cancelLogout.addEventListener('click', () => {
+      logoutModal.classList.add('hidden');
+    });
+  </script>
+  
+  
+  
+
         </aside>
         
         <!-- Main Content -->
@@ -327,3 +396,59 @@
                                         <p class="text-sm text-gray-600 mt-2">Setara dengan 500kg CO2 yang dikurangi</p>
                                     </div>
                                 </div>
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span class="px-3 py-1 bg-green-100 text-green-700 text-xs font-semibold rounded-full">#Recycling</span>
+                                    <span class="px-3 py-1 bg-green-100 text-green-700 text-xs font-semibold rounded-full">#Milestone</span>
+                                    <span class="px-3 py-1 bg-green-100 text-green-700 text-xs font-semibold rounded-full">#EcoFriendly</span>
+                                </div>
+                                
+                                <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                                    <button class="like-button flex items-center space-x-2 text-gray-600 hover:text-green-600 transition">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                        </svg>
+                                        <span class="font-semibold">320</span>
+                                    </button>
+                                    
+                                    <button class="flex items-center space-x-2 text-gray-600 hover:text-green-600 transition">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                                        </svg>
+                                        <span class="font-semibold">78</span>
+                                    </button>
+                                    
+                                    <button class="flex items-center space-x-2 text-gray-600 hover:text-green-600 transition">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path>
+                                        </svg>
+                                        <span class="font-semibold">42</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                    <!-- Right Column - Sidebar / Events -->
+                    <div class="space-y-6">
+                        <!-- Event Card Example -->
+                        <div class="bg-white rounded-xl shadow event-card p-4">
+                            <img src="https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=400&h=200&fit=crop" alt="Event" class="w-full h-40 object-cover rounded-lg mb-4">
+                            <h3 class="font-bold text-gray-900 text-lg mb-2">Workshop Daur Ulang Plastik</h3>
+                            <p class="text-gray-600 text-sm mb-2">Jakarta • 20 Oktober 2025</p>
+                            <button class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition">Daftar</button>
+                        </div>
+                        
+                        <!-- Bisa ditambahin event lain disini -->
+                    </div>
+                    
+                </div>
+                
+            </div>
+            
+        </main>
+        
+    </div>
+    
+</body>
+</html>
