@@ -71,11 +71,15 @@
         }
 
         .organic { background-color: #dcfce7; color: #166534; }
-        .plastic { background-color: #fef3c7; color: #92400e; }
-        .metal { background-color: #dbeafe; color: #0c4a6e; }
+        .plastic-pet { background-color: #dbeafe; color: #1e40af; }
+        .plastic-hdpe { background-color: #e0e7ff; color: #3730a3; }
+        .plastic-pp { background-color: #fef3c7; color: #92400e; }
+        .plastic-other { background-color: #fed7aa; color: #9a3412; }
+        .metal { background-color: #d1d5db; color: #1f2937; }
         .paper { background-color: #fce7f3; color: #831843; }
+        .glass { background-color: #cffafe; color: #155e75; }
+        .ewaste { background-color: #fecaca; color: #991b1b; }
 
-        /* Responsive adjustments */
         @media (max-width: 768px) {
             .category-badge {
                 padding: 0.375rem 0.75rem;
@@ -171,6 +175,7 @@
                         <div class="bg-gradient-to-r from-emerald-50 to-emerald-100 rounded-lg sm:rounded-xl p-3 sm:p-4 border border-emerald-200" id="category-section" style="display: none;">
                             <p class="text-xs sm:text-sm text-gray-600 mb-2">Kategori Sampah</p>
                             <div id="category-display"></div>
+                            <div id="subcategory-display" class="mt-2 text-xs text-gray-600"></div>
                         </div>
 
                         <div class="bg-gradient-to-r from-amber-50 to-amber-100 rounded-lg sm:rounded-xl p-3 sm:p-4 border border-amber-200" id="recommendation-section" style="display: none;">
@@ -232,6 +237,7 @@
         const iotStatus = document.getElementById('iot-status');
         const categorySection = document.getElementById('category-section');
         const categoryDisplay = document.getElementById('category-display');
+        const subcategoryDisplay = document.getElementById('subcategory-display');
         const recommendationSection = document.getElementById('recommendation-section');
         const recommendationText = document.getElementById('recommendation-text');
         const confidenceSection = document.getElementById('confidence-section');
@@ -244,18 +250,245 @@
         let scans = [];
 
         const recommendations = {
-            'bottle': { category: 'Plastik', color: 'plastic', text: 'Cuci botol, keringkan, dan masukkan ke kontainer daur ulang plastik.' },
-            'cup': { category: 'Plastik', color: 'plastic', text: 'Kosongkan sisa isi, cuci ringan, kirim ke tempat daur ulang.' },
-            'banana': { category: 'Organik', color: 'organic', text: 'Sampah organik - cocok untuk kompos atau pakan ternak.' },
-            'apple': { category: 'Organik', color: 'organic', text: 'Sampah makanan - bisa dijadikan kompos atau pakan ternak.' },
-            'cake': { category: 'Organik', color: 'organic', text: 'Makanan surplus - prioritas untuk donasi ke yang membutuhkan.' },
-            'food': { category: 'Organik', color: 'organic', text: 'Jika masih layak, donasikan. Jika tidak, jadikan kompos.' },
-            'can': { category: 'Logam', color: 'metal', text: 'Cuci kaleng, keringkan, dan kirim ke pengolah logam.' },
-            'aluminum foil': { category: 'Logam', color: 'metal', text: 'Bersihkan dan kirim ke pengolah daur ulang logam.' },
-            'newspaper': { category: 'Kertas', color: 'paper', text: 'Kertas bisa didaur ulang - kumpulkan dan kirim ke pengolah kertas.' },
-            'cardboard': { category: 'Kertas', color: 'paper', text: 'Karton daur ulang - kumpulkan dalam kondisi kering.' },
-            'plastic bag': { category: 'Plastik Non-Daur Ulang', color: 'plastic', text: 'Plastik non-daur ulang - kerjasama dengan pengolah paving block.' },
-            'styrofoam': { category: 'Plastik Non-Daur Ulang', color: 'plastic', text: 'Styrofoam - serahkan ke pengolah khusus paving block.' },
+            // PLASTIK PET (Kode 1)
+            'bottle': { 
+                category: 'Plastik PET (Kode 1)', 
+                color: 'plastic-pet', 
+                subcategory: 'Botol air mineral, botol soda',
+                text: 'Cuci botol hingga bersih, keringkan, dan masukkan ke kontainer daur ulang plastik PET. Plastik PET sangat mudah didaur ulang menjadi produk baru.'
+            },
+            
+            // PLASTIK HDPE (Kode 2)
+            'jug': { 
+                category: 'Plastik HDPE (Kode 2)', 
+                color: 'plastic-hdpe',
+                subcategory: 'Galon air, jeriken',
+                text: 'Bersihkan galon/jeriken dari sisa cairan. HDPE bisa didaur ulang menjadi produk seperti pipa, ember, atau botol detergen.'
+            },
+            'soap dispenser': { 
+                category: 'Plastik HDPE (Kode 2)', 
+                color: 'plastic-hdpe',
+                subcategory: 'Botol sabun, botol shampo',
+                text: 'Kosongkan dan bilas botol sabun. HDPE sangat cocok untuk daur ulang dan pembuatan produk rumah tangga.'
+            },
+
+            // PLASTIK PP (Kode 5)
+            'cup': { 
+                category: 'Plastik PP (Kode 5)', 
+                color: 'plastic-pp',
+                subcategory: 'Wadah makanan, gelas plastik tebal',
+                text: 'Kosongkan sisa isi, cuci ringan. PP dapat didaur ulang menjadi wadah makanan baru atau komponen otomotif.'
+            },
+            'straw': { 
+                category: 'Plastik PP (Kode 5)', 
+                color: 'plastic-pp',
+                subcategory: 'Sedotan tebal, tutup botol',
+                text: 'Kumpulkan sedotan dan tutup botol dalam wadah terpisah. PP bisa didaur ulang menjadi produk keras seperti sapu atau sikat.'
+            },
+
+            // PLASTIK LAINNYA
+            'plastic bag': { 
+                category: 'Plastik Non-Daur Ulang', 
+                color: 'plastic-other',
+                subcategory: 'Kantong kresek, plastik kemasan',
+                text: 'Plastik jenis ini sulit didaur ulang konvensional. Kumpulkan dan serahkan ke pengolah khusus untuk paving block atau ecobrick.'
+            },
+            'styrofoam': { 
+                category: 'Plastik Non-Daur Ulang', 
+                color: 'plastic-other',
+                subcategory: 'Styrofoam, busa kemasan',
+                text: 'Styrofoam tidak bisa didaur ulang biasa. Serahkan ke pengolah khusus yang mengolahnya menjadi paving block atau bahan bangunan.'
+            },
+
+            // ORGANIK
+            'banana': { 
+                category: 'Organik', 
+                color: 'organic',
+                subcategory: 'Sisa buah dan sayuran',
+                text: 'Sampah organik cocok untuk kompos atau pakan ternak. Pisahkan dari sampah lain untuk mempercepat pengomposan.'
+            },
+            'apple': { 
+                category: 'Organik', 
+                color: 'organic',
+                subcategory: 'Sisa buah segar',
+                text: 'Sisa buah bisa dijadikan kompos berkualitas tinggi. Potong kecil-kecil untuk mempercepat dekomposisi.'
+            },
+            'orange': { 
+                category: 'Organik', 
+                color: 'organic',
+                subcategory: 'Kulit jeruk dan buah sitrus',
+                text: 'Kulit jeruk bisa dikomposkan. Hindari terlalu banyak sekaligus karena keasamannya yang tinggi.'
+            },
+            'broccoli': { 
+                category: 'Organik', 
+                color: 'organic',
+                subcategory: 'Sisa sayuran hijau',
+                text: 'Sayuran hijau sangat baik untuk kompos. Kaya nitrogen dan cepat terurai.'
+            },
+            'carrot': { 
+                category: 'Organik', 
+                color: 'organic',
+                subcategory: 'Sisa sayuran akar',
+                text: 'Sisa wortel dan sayuran akar cocok untuk kompos atau pakan ternak.'
+            },
+            'cake': { 
+                category: 'Organik', 
+                color: 'organic',
+                subcategory: 'Makanan surplus',
+                text: 'Jika masih layak konsumsi, prioritaskan untuk donasi. Jika sudah tidak layak, jadikan kompos.'
+            },
+            'pizza': { 
+                category: 'Organik', 
+                color: 'organic',
+                subcategory: 'Sisa makanan',
+                text: 'Pisahkan dari kemasan. Sisa makanan bisa dikomposkan, namun hindari yang terlalu berminyak.'
+            },
+            'hot dog': { 
+                category: 'Organik', 
+                color: 'organic',
+                subcategory: 'Sisa makanan berprotein',
+                text: 'Sisa makanan berprotein bisa dikomposkan tapi lebih baik untuk pakan ternak. Hindari pengomposan langsung jika terlalu banyak.'
+            },
+            'sandwich': { 
+                category: 'Organik', 
+                color: 'organic',
+                subcategory: 'Makanan surplus',
+                text: 'Jika masih segar, donasikan. Jika tidak, komposkan setelah memisahkan dari kemasan.'
+            },
+
+            // KERTAS & KARTON
+            'book': { 
+                category: 'Kertas & Karton', 
+                color: 'paper',
+                subcategory: 'Buku, majalah, koran',
+                text: 'Kertas bisa didaur ulang. Kumpulkan dalam kondisi kering dan bersih dari plastik atau lakban.'
+            },
+            'newspaper': { 
+                category: 'Kertas & Karton', 
+                color: 'paper',
+                subcategory: 'Koran, kertas bekas',
+                text: 'Koran sangat mudah didaur ulang. Pastikan dalam kondisi kering dan tidak terkontaminasi minyak.'
+            },
+            'cardboard': { 
+                category: 'Kertas & Karton', 
+                color: 'paper',
+                subcategory: 'Kardus, karton kemasan',
+                text: 'Lipat kardus untuk menghemat ruang. Kardus dalam kondisi baik sangat bernilai untuk didaur ulang.'
+            },
+            'box': { 
+                category: 'Kertas & Karton', 
+                color: 'paper',
+                subcategory: 'Kotak karton',
+                text: 'Buka dan ratakan kotak. Lepaskan selotip dan plastik sebelum daur ulang.'
+            },
+
+            // KACA
+            'wine glass': { 
+                category: 'Kaca', 
+                color: 'glass',
+                subcategory: 'Botol kaca, gelas kaca',
+                text: 'Bersihkan botol kaca dari sisa isi. Kaca bisa didaur ulang tanpa batas tanpa kehilangan kualitas.'
+            },
+            'vase': { 
+                category: 'Kaca', 
+                color: 'glass',
+                subcategory: 'Vas kaca, botol parfum',
+                text: 'Kaca dekoratif bisa didaur ulang atau digunakan ulang. Pisahkan tutup logam atau plastik.'
+            },
+
+            // LOGAM
+            'can': { 
+                category: 'Logam', 
+                color: 'metal',
+                subcategory: 'Kaleng aluminium',
+                text: 'Cuci kaleng, keringkan, dan pipihkan untuk menghemat ruang. Aluminium sangat bernilai untuk daur ulang.'
+            },
+            'fork': { 
+                category: 'Logam', 
+                color: 'metal',
+                subcategory: 'Peralatan makan logam',
+                text: 'Logam seperti sendok dan garpu bisa didaur ulang. Kumpulkan bersama logam lainnya.'
+            },
+            'knife': { 
+                category: 'Logam', 
+                color: 'metal',
+                subcategory: 'Pisau, peralatan tajam',
+                text: 'Bungkus dengan aman sebelum didaur ulang. Logam tajam berbahaya jika tidak ditangani dengan baik.'
+            },
+            'spoon': { 
+                category: 'Logam', 
+                color: 'metal',
+                subcategory: 'Sendok logam',
+                text: 'Peralatan makan logam bisa didaur ulang. Pastikan bersih dari sisa makanan.'
+            },
+
+            // SAMPAH ELEKTRONIK (E-WASTE)
+            'cell phone': { 
+                category: 'Sampah Elektronik (E-Waste)', 
+                color: 'ewaste',
+                subcategory: 'Smartphone, handphone',
+                text: 'JANGAN buang ke tempat sampah biasa! E-waste mengandung logam berharga dan bahan berbahaya. Serahkan ke pusat pengumpulan e-waste atau program tukar tambah.'
+            },
+            'laptop': { 
+                category: 'Sampah Elektronik (E-Waste)', 
+                color: 'ewaste',
+                subcategory: 'Laptop, komputer',
+                text: 'Laptop mengandung material berharga dan berbahaya. Hapus data pribadi, lalu serahkan ke pengolah e-waste bersertifikat.'
+            },
+            'keyboard': { 
+                category: 'Sampah Elektronik (E-Waste)', 
+                color: 'ewaste',
+                subcategory: 'Keyboard, mouse, aksesori elektronik',
+                text: 'Aksesori elektronik termasuk e-waste. Kumpulkan dan serahkan ke tempat pengumpulan khusus e-waste.'
+            },
+            'mouse': { 
+                category: 'Sampah Elektronik (E-Waste)', 
+                color: 'ewaste',
+                subcategory: 'Mouse, perangkat input',
+                text: 'Perangkat elektronik kecil juga perlu pengelolaan khusus. Serahkan ke pusat daur ulang e-waste.'
+            },
+            'remote': { 
+                category: 'Sampah Elektronik (E-Waste)', 
+                color: 'ewaste',
+                subcategory: 'Remote kontrol',
+                text: 'Lepaskan baterai terlebih dahulu. Remote termasuk e-waste dan perlu didaur ulang dengan benar.'
+            },
+            'toaster': { 
+                category: 'Sampah Elektronik (E-Waste)', 
+                color: 'ewaste',
+                subcategory: 'Peralatan elektronik rumah tangga',
+                text: 'Alat elektronik rumah tangga mengandung logam dan komponen yang bisa didaur ulang. Serahkan ke pengolah e-waste.'
+            },
+            'hair drier': { 
+                category: 'Sampah Elektronik (E-Waste)', 
+                color: 'ewaste',
+                subcategory: 'Alat elektronik kecil',
+                text: 'Alat elektronik kecil termasuk e-waste. Jangan buang ke tempat sampah biasa.'
+            },
+            'microwave': { 
+                category: 'Sampah Elektronik (E-Waste)', 
+                color: 'ewaste',
+                subcategory: 'Microwave, oven elektrik',
+                text: 'Microwave mengandung komponen berbahaya seperti kapasitor. HARUS diserahkan ke pengolah e-waste profesional.'
+            },
+            'oven': { 
+                category: 'Sampah Elektronik (E-Waste)', 
+                color: 'ewaste',
+                subcategory: 'Oven listrik',
+                text: 'Oven listrik termasuk e-waste besar. Hubungi jasa pengangkut e-waste atau program tukar tambah toko elektronik.'
+            },
+            'refrigerator': { 
+                category: 'Sampah Elektronik (E-Waste)', 
+                color: 'ewaste',
+                subcategory: 'Kulkas, freezer',
+                text: 'Kulkas mengandung freon yang berbahaya bagi lingkungan. HARUS ditangani oleh teknisi profesional sebelum didaur ulang.'
+            },
+            'tv': { 
+                category: 'Sampah Elektronik (E-Waste)', 
+                color: 'ewaste',
+                subcategory: 'Televisi, monitor',
+                text: 'TV mengandung logam berat dan bahan berbahaya. Serahkan ke pusat pengumpulan e-waste atau program tukar tambah.'
+            },
         };
 
         // Tombol Kembali
@@ -299,12 +532,10 @@
                 const p = predictions[0];
                 const conf = Math.round(p.score * 100);
 
-                // Draw detection box
                 ctx.strokeStyle = '#10b981';
                 ctx.lineWidth = 3;
                 ctx.strokeRect(p.bbox[0], p.bbox[1], p.bbox[2], p.bbox[3]);
 
-                // Draw label
                 ctx.fillStyle = '#10b981';
                 ctx.fillRect(p.bbox[0], p.bbox[1] - 30, p.bbox[2], 30);
                 ctx.fillStyle = '#ffffff';
@@ -318,7 +549,6 @@
                     addToHistory(p.class, conf);
                 }
 
-                // Update confidence
                 confidenceBar.style.width = conf + '%';
                 confidenceText.textContent = conf + '%';
                 confidenceSection.style.display = 'block';
@@ -337,22 +567,25 @@
             
             const rec = recommendations[label.toLowerCase()] || {
                 category: 'Tidak Diketahui',
-                color: 'plastic',
-                text: 'Sampah tidak dikenali. Silakan coba positioning ulang.'
+                color: 'plastic-other',
+                subcategory: 'Kategori belum terdaftar',
+                text: 'Sampah tidak dikenali dalam database. Silakan coba positioning ulang atau hubungi admin untuk menambahkan kategori ini.'
             };
 
             categoryDisplay.innerHTML = `<span class="category-badge ${rec.color}">${rec.category}</span>`;
+            subcategoryDisplay.innerHTML = rec.subcategory ? `<i class="fas fa-tag mr-1"></i><strong>Contoh:</strong> ${rec.subcategory}` : '';
             recommendationText.textContent = rec.text;
             
             categorySection.style.display = 'block';
             recommendationSection.style.display = 'block';
 
-            fakeIoTUpdate(label, confidence);
+            fakeIoTUpdate(label, confidence, rec.category);
         }
 
         function addToHistory(label, confidence) {
             const time = new Date().toLocaleTimeString('id-ID');
-            scans.unshift({ label, confidence, time });
+            const rec = recommendations[label.toLowerCase()] || { category: 'Tidak Diketahui' };
+            scans.unshift({ label, confidence, time, category: rec.category });
             if (scans.length > 8) scans.pop();
             
             renderHistory();
@@ -367,21 +600,24 @@
             scansHistory.innerHTML = scans.map((scan, i) => `
                 <div class="waste-card bg-gradient-to-br from-emerald-50 to-blue-50 rounded-lg sm:rounded-xl p-3 sm:p-4 border border-emerald-200">
                     <div class="flex items-start justify-between mb-2">
-                        <p class="text-sm sm:text-base font-semibold text-gray-800">${scan.label}</p>
-                        <span class="text-xs bg-emerald-200 text-emerald-800 px-2 py-1 rounded-full">${scan.confidence}%</span>
+                        <div class="flex-1 min-w-0">
+                            <p class="text-sm sm:text-base font-semibold text-gray-800 truncate">${scan.label}</p>
+                            <p class="text-xs text-gray-600 mt-1 truncate">${scan.category}</p>
+                        </div>
+                        <span class="text-xs bg-emerald-200 text-emerald-800 px-2 py-1 rounded-full ml-2 flex-shrink-0">${scan.confidence}%</span>
                     </div>
                     <p class="text-xs text-gray-600"><i class="far fa-clock mr-1"></i>${scan.time}</p>
                 </div>
             `).join('');
         }
 
-        function fakeIoTUpdate(label, confidence) {
+        function fakeIoTUpdate(label, confidence, category) {
             iotStatus.innerHTML = '<i class="fas fa-spinner spin-slow"></i> Mengirim...';
             setTimeout(() => {
-                iotStatus.innerHTML = `<i class="fas fa-check-circle text-emerald-600"></i> Data "${label}" (${confidence}%) terkirim`;
+                iotStatus.innerHTML = `<i class="fas fa-check-circle text-emerald-600"></i> ${category} terkirim`;
             }, 1000);
             setTimeout(() => {
-                iotStatus.innerHTML = '<i class="fas fa-link text-emerald-600"></i> Siap untuk deteksi berikutnya';
+                iotStatus.innerHTML = '<i class="fas fa-link text-emerald-600"></i> Siap deteksi';
             }, 3000);
         }
 
