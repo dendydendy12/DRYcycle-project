@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Sampah</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .upload-zone {
+            border: 2px dashed #d1d5db;
+            transition: all 0.3s;
+        }
+        .upload-zone:hover {
+            border-color: #10b981;
+            background-color: #f0fdf4;
+        }
+        .category-card {
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .category-card:hover {
+            border-color: #10b981;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .category-card.selected {
+            border-color: #10b981;
+            background-color: #f0fdf4;
+        }
+        .popup-overlay {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        .popup-content {
+            animation: slideUp 0.3s ease-out;
+        }
+        @keyframes slideUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+
+    <script>
+        let selectedCategory = null;
+        let uploadedFiles = [];
+
+        // Upload Zone
+        const uploadZone = document.getElementById('uploadZone');
+        const fileInput = document.getElementById('fileInput');
+        const imagePreview = document.getElementById('imagePreview');
+
+        uploadZone.addEventListener('click', () => fileInput.click());
+
+        fileInput.addEventListener('change', (e) => {
+            const files = Array.from(e.target.files);
+            uploadedFiles = uploadedFiles.concat(files);
+            displayImages();
+        });
+
+        uploadZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadZone.style.borderColor = '#10b981';
+            uploadZone.style.backgroundColor = '#f0fdf4';
+        });
+
+        uploadZone.addEventListener('dragleave', () => {
+            uploadZone.style.borderColor = '#d1d5db';
+            uploadZone.style.backgroundColor = '';
+        });
+
+        uploadZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            const files = Array.from(e.dataTransfer.files);
+            uploadedFiles = uploadedFiles.concat(files);
+            displayImages();
+            uploadZone.style.borderColor = '#d1d5db';
+            uploadZone.style.backgroundColor = '';
+        });
+
+        function displayImages() {
+            if (uploadedFiles.length > 0) {
+                imagePreview.classList.remove('hidden');
+                imagePreview.innerHTML = '';
+                
+                uploadedFiles.forEach((file, index) => {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        const div = document.createElement('div');
+                        div.className = 'relative group';
+                        div.innerHTML = `
+                            <img src="${e.target.result}" class="w-full h-32 md:h-40 object-cover rounded-lg">
+                            <button onclick="removeImage(${index})" class="absolute top-2 right-2 w-8 h-8 bg-red-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        `;
+                        imagePreview.appendChild(div);
+                    };
+                    reader.readAsDataURL(file);
+                });
+            }
+        }
+
+        window.removeImage = function(index) {
+            uploadedFiles.splice(index, 1);
+            if (uploadedFiles.length === 0) {
+                imagePreview.classList.add('hidden');
+            }
+            displayImages();
+        };
+
+        // Category Selection
+        const categoryCards = document.querySelectorAll('.category-card');
+        categoryCards.forEach(card => {
+            card.addEventListener('click', () => {
+                categoryCards.forEach(c => c.classList.remove('selected'));
+                card.classList.add('selected');
+                selectedCategory = card.dataset.category;
+            });
+        });
+
+        // Next Button
+        const nextBtn = document.getElementById('nextBtn');
+        const successPopup = document.getElementById('successPopup');
+        const closePopup = document.getElementById('closePopup');
+        const popupTitle = document.getElementById('popupTitle');
+        const popupIcon = document.getElementById('popupIcon');
+
+        nextBtn.addEventListener('click', () => {
+            if (selectedCategory === 'makanan-surplus') {
+                popupTitle.textContent = 'Sudah Diposting!';
+                popupIcon.className = 'fas fa-check-circle text-3xl md:text-4xl text-green-600';
+            } else {
+                popupTitle.textContent = 'Telah Dikirim!';
+                popupIcon.className = 'fas fa-check-circle text-3xl md:text-4xl text-green-600';
+            }
+            
+            successPopup.classList.remove('hidden');
+            successPopup.classList.add('flex');
+        });
+
+        closePopup.addEventListener('click', () => {
+            successPopup.classList.add('hidden');
+            successPopup.classList.remove('flex');
+        });
+
+        successPopup.addEventListener('click', (e) => {
+            if (e.target === successPopup) {
+                successPopup.classList.add('hidden');
+                successPopup.classList.remove('flex');
+            }
+        });
+    </script>
+</body>
+</html>
