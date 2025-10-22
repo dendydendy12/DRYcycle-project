@@ -32,7 +32,7 @@
 
 <body class="bg-white">
 
- <!-- Preloader Animation -->
+  <!-- Preloader Animation -->
   <div id="preloader">
     <div class="loader-content">
       <div class="logo-container">
@@ -200,17 +200,6 @@
 
           <!-- Header Actions -->
           <div class="flex items-center space-x-2 sm:space-x-4">
-            <a href="scan.html"
-              class="inline-flex items-center gap-2 px-6 py-3 rounded-lg text-white bg-emerald-600 hover:bg-emerald-700 active:scale-95 focus:outline-none focus:ring-4 focus:ring-emerald-200 transition"
-              aria-label="Buka halaman scan">
-              <!-- ikon sederhana (SVG) -->
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-                stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M15 10l4.553-4.553a2 2 0 00-2.828-2.828L12 7.172 8.707 3.879A2 2 0 006.293 6.293L10 10M4 20h16" />
-              </svg>
-              Scan
-            </a>
 
             <!-- Search Bar - Hidden on mobile -->
             <div class="relative hidden md:block">
@@ -222,6 +211,18 @@
                   d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
               </svg>
             </div>
+
+            <a href="scan.html"
+              class="inline-flex items-center gap-2 px-6 py-3 rounded-lg text-white bg-emerald-600 hover:bg-emerald-700 active:scale-95 focus:outline-none focus:ring-4 focus:ring-emerald-200 transition"
+              aria-label="Buka halaman scan">
+              <!-- ikon sederhana (SVG) -->
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M15 10l4.553-4.553a2 2 0 00-2.828-2.828L12 7.172 8.707 3.879A2 2 0 006.293 6.293L10 10M4 20h16" />
+              </svg>
+              Scan
+            </a>
 
             <!-- Notification -->
             <button class="relative p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-xl transition-all">
@@ -251,12 +252,12 @@
 
               <!-- Dropdown Menu -->
               <div id="profileDropdown"
-                class="dropdown-menu absolute right-0 mt-2 w-64 bg-white rounded-xl shadow-lg border border-gray-100 py-2 z-50">
+                class="dropdown-menu absolute right-0 mt-2 w-56 sm:w-64 max-w-[90vw] bg-white rounded-xl shadow-lg border border-gray-100 py-2 z-50 transform transition-all">
                 <!-- User Info -->
                 <div class="px-4 py-3 border-b border-gray-100">
                   <p class="text-sm font-semibold text-gray-900">Budi Santoso</p>
-                  <p class="text-xs text-gray-500 mt-0.5">budisantoso@email.com</p>
-                  <div class="flex items-center space-x-2 mt-2">
+                  <p class="text-xs text-gray-500 mt-0.5 truncate">budisantoso@email.com</p>
+                  <div class="flex flex-wrap items-center gap-2 mt-2">
                     <span class="px-2 py-1 bg-green-100 text-green-700 text-xs font-semibold rounded-lg">Level 5</span>
                     <span class="px-2 py-1 bg-yellow-100 text-yellow-700 text-xs font-semibold rounded-lg">2.5K
                       Poin</span>
@@ -310,6 +311,7 @@
                 </div>
               </div>
             </div>
+
           </div>
         </div>
       </header>
