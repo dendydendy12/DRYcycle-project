@@ -1,8 +1,8 @@
-# 📱 DRYcycle Sidebar Template - Dokumentasi
+ 📱 DRYcycle Sidebar Template - Dokumentasi
 
 Template sidebar yang responsive dan konsisten untuk semua halaman aplikasi DRYcycle.
 
-## 📁 Struktur File
+ 📁 Struktur File
 
 ```
 project/
@@ -25,17 +25,17 @@ project/
 └── login.html                  # Halaman login
 ```
 
-## 🚀 Cara Instalasi
+ 🚀 Cara Instalasi
 
-### 1. Copy File JavaScript
+ 1. Copy File JavaScript
 
 Buat file `assets/js/sidebar.js` dan copy kode JavaScript yang sudah disediakan.
 
-### 2. Copy File CSS (Opsional)
+ 2. Copy File CSS (Opsional)
 
 Buat file `assets/css/sidebar.css` dan copy kode CSS yang sudah disediakan.
 
-### 3. Setup HTML
+ 3. Setup HTML
 
 Tambahkan link ke file CSS dan JS di setiap halaman:
 
@@ -63,9 +63,9 @@ Tambahkan link ke file CSS dan JS di setiap halaman:
 </html>
 ```
 
-## ⚙️ Konfigurasi
+ ⚙️ Konfigurasi
 
-### Update Nama Halaman
+ Update Nama Halaman
 
 Setiap link navigasi memiliki atribut `data-page` yang harus sesuai dengan nama file HTML:
 
