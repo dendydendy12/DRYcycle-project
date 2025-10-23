@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Pengguna - DRYcycle</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        .star-yellow {
+            color: #FFC107;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+    <!-- Navigasi Profil ala X -->
+    <nav class="bg-white sticky top-0 z-50 flex items-center justify-between px-4 py-3 shadow-md">
+        <!-- Kiri: Tombol Back + Nama -->
+        <div class="flex items-center space-x-3">
+            <button onclick="window.history.back()"
+                class="text-gray-700 hover:text-emerald-600 transition transform hover:scale-110">
+                <i class="fa-solid fa-arrow-left text-xl"></i>
+            </button>
+            <div>
+                <h1 class="text-lg font-semibold text-gray-800 leading-tight">Budi Santoso</h1>
+                <p class="text-xs text-gray-500">@budisnt</p>
+            </div>
+        </div>
+
+        <!-- Kanan: Icon Aksi -->
+        <button class="text-gray-700 hover:text-emerald-600 transition transform hover:scale-110">
+            <i class="fa-solid fa-ellipsis-vertical text-xl"></i>
+        </button>
+    </nav>
+
+    <div class="container mx-auto px-4 py-8 max-w-7xl">
+        <!-- Header Cover Image -->
+        <div class="bg-white rounded-lg shadow-sm overflow-hidden mb-6">
+            <div class="h-48 bg-gradient-to-r from-emerald-400 to-teal-500 relative">
+                <img src="assets/image/images/banner.png" alt="Cover" class="w-full h-full object-cover">
+
+            </div>
+
+            <!-- Profile Info -->
+            <div class="px-4 md:px-8 pb-6">
+                <div class="flex items-start -mt-16 mb-6">
+                    <div class="relative">
+                        <img src="assets/image/userprofile/user1.png" alt="Profile"
+                            class="w-24 h-24 md:w-32 md:h-32 rounded-full border-4 border-white shadow-lg">
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-6 md:gap-8">
+                    <!-- Left Column - Profile Info -->
+                    <div class="col-span-1">
+                        <h1 class="text-xl md:text-2xl font-bold text-gray-800 mb-1">Budi Santoso</h1>
+                        <p class="text-gray-600 mb-4 text-sm md:text-base">Eco Volunteer</p>
+
+                        <!-- Stats -->
+                        <div class="flex space-x-8 mb-6">
+                            <div>
+                                <p class="md:text-2xl text-xl font-bold text-gray-800">41k</p>
+                                <p class="text-sm text-gray-500">Followers</p>
+                            </div>
+                            <div>
+                                <p class="md:text-2xl text-xl font-bold text-gray-800">21k</p>
+                                <p class="text-sm text-gray-500">Following</p>
+                            </div>
+                        </div>
+
+                        <!-- Action Button - Edit Profile -->
+                        <div class="mb-6">
+                            <a href="editprofile.html"
+                                class="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-medium py-3 px-4 rounded-full flex items-center justify-center space-x-2 transition">
+                                <i class="fas fa-edit"></i>
+                                <span>Edit Profile</span>
+                        </a>
+                        </div>
+
+                        <!-- Tags/Categories -->
+                        <div class="mb-6">
+                            <span
+                                class="inline-block bg-gray-100 text-gray-700 text-sm px-4 py-2 rounded-full mr-2 mb-2">Organik
+                                Expert</span>
+                            <span
+                                class="inline-block bg-gray-100 text-gray-700 text-sm px-4 py-2 rounded-full mr-2 mb-2">Plastik
+                                Recycler</span>
+                            <span
+                                class="inline-block bg-gray-100 text-gray-700 text-sm px-4 py-2 rounded-full mr-2 mb-2">Food
+                                Savior</span>
+                        </div>
+
+                        <!-- Bio -->
+                        <div class="mb-6">
+                            <p class="text-gray-600 text-sm leading-relaxed">
+                                Saya adalah kontributor aktif DRYcycle yang berdedikasi dalam pengelolaan sampah
+                                berkelanjutan. Memiliki pengalaman luas dalam pemilahan sampah organik dan anorganik,
+                                serta aktif menyalurkan makanan surplus ke pihak yang membutuhkan. Bergabung sejak 2024
+                                dengan misi membuat lingkungan lebih bersih dan berkelanjutan.
+                            </p>
+                            <a href="#" class="text-emerald-500 text-sm font-medium">Show More...</a>
+                        </div>
+
+                        <!-- Follow Us -->
+                        <div class="mb-8">
+                            <h3 class="text-gray-800 font-semibold mb-3 flex items-center space-x-2">
+                                <i class="fa-solid fa-share-nodes text-emerald-500"></i>
+                                <span>Follow Us</span>
+                            </h3>
+                            <div class="flex items-center space-x-5">
+                                <a href="https://instagram.com/username" target="_blank"
+                                    class="text-gray-500 hover:text-pink-500 transition transform hover:scale-110">
+                                    <i class="fab fa-instagram text-2xl"></i>
+                                </a>
+                                <a href="https://twitter.com/username" target="_blank"
+                                    class="text-gray-500 hover:text-sky-500 transition transform hover:scale-110">
+                                    <i class="fab fa-x-twitter text-2xl"></i>
+                                </a>
+                                <a href="https://linkedin.com/in/username" target="_blank"
+                                    class="text-gray-500 hover:text-blue-600 transition transform hover:scale-110">
+                                    <i class="fab fa-linkedin text-2xl"></i>
+                                </a>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <!-- Middle Column - Activities -->
+                    <div class="md:col-span-1 col-span-1">
+                        <!-- Recent Activities / Community Posts -->
+                        <div class="mb-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <h2 class="text-lg font-bold text-gray-800">Aktivitas Terbaru</h2>
+                                <button id="viewAllBtn"
+                                    class="text-emerald-500 hover:text-emerald-600 font-medium text-sm flex items-center space-x-1">
+                                    <i class="fas fa-plus-circle"></i>
+                                    <span id="btnText">Lihat Semua</span>
+                                </button>
+                            </div>
+
+                            <!-- Activity Posts -->
+                            <div id="activityContainer" class="space-y-4">
+                                <!-- Post 1 -->
+                                <div class="activity-post border rounded-lg p-4 hover:shadow-md transition">
+                                    <div class="flex items-start space-x-3 mb-3">
+                                        <img src="assets/image/userprofile/user1.png" alt="User"
+                                            class="w-10 h-10 rounded-full">
+                                        <div class="flex-1">
+                                            <h4 class="font-semibold text-gray-800">Budi Santoso</h4>
+                                            <p class="text-xs text-gray-500">2 jam yang lalu</p>
+                                        </div>
+                                    </div>
+                                    <p class="text-sm text-gray-700 mb-2">
+                                        Berhasil menyerahkan 5kg sampah plastik untuk didaur ulang. Terima kasih kepada
+                                        komunitas yang sudah membantu pengambilan!
+                                    </p>
+                                    <div class="flex items-center space-x-4 text-sm text-gray-500">
+                                        <span><i class="fas fa-heart text-pink-500 mr-1"></i> 24 Likes</span>
+                                        <span><i class="fas fa-comment mr-1"></i> 8 Comments</span>
+                                    </div>
+                                </div>
+
+                                <!-- Post 2 -->
+                                <div class="activity-post border rounded-lg p-4 hover:shadow-md transition">
+                                    <div class="flex items-start space-x-3 mb-3">
+                                        <img src="assets/image/userprofile/user1.png" alt="User"
+                                            class="w-10 h-10 rounded-full">
+                                        <div class="flex-1">
+                                            <h4 class="font-semibold text-gray-800">Budi Santoso</h4>
+                                            <p class="text-xs text-gray-500">1 hari yang lalu</p>
+                                        </div>
+                                    </div>
+                                    <p class="text-sm text-gray-700 mb-2">
+                                        Tips pemilahan sampah plastik yang benar: pastikan plastik sudah dibersihkan
+                                        dari sisa makanan sebelum diserahkan. Ini memudahkan proses daur ulang!
+                                    </p>
+                                    <div class="flex items-center space-x-4 text-sm text-gray-500">
+                                        <span><i class="fas fa-heart text-pink-500 mr-1"></i> 156 Likes</span>
+                                        <span><i class="fas fa-comment mr-1"></i> 32 Comments</span>
+                                    </div>
+                                </div>
+
+                                <!-- Post 3 -->
+                                <div class="activity-post border rounded-lg p-4 hover:shadow-md transition">
+                                    <div class="flex items-start space-x-3 mb-3">
+                                        <img src="assets/image/userprofile/user1.png" alt="User"
+                                            class="w-10 h-10 rounded-full">
+                                        <div class="flex-1">
+                                            <h4 class="font-semibold text-gray-800">Budi Santoso</h4>
+                                            <p class="text-xs text-gray-500">3 hari yang lalu</p>
+                                        </div>
+                                    </div>
+                                    <p class="text-sm text-gray-700 mb-2">
+                                        Menyalurkan 10 porsi makanan surplus ke panti asuhan setempat. Alhamdulillah
+                                        makanan tidak terbuang sia-sia dan bisa bermanfaat untuk yang membutuhkan!
+                                    </p>
+                                    <div class="flex items-center space-x-4 text-sm text-gray-500">
+                                        <span><i class="fas fa-heart text-pink-500 mr-1"></i> 289 Likes</span>
+                                        <span><i class="fas fa-comment mr-1"></i> 45 Comments</span>
+                                    </div>
+                                </div>
+
+                                <!-- Post 4 - Initially Hidden -->
+                                <div class="activity-post hidden border rounded-lg p-4 hover:shadow-md transition">
+                                    <div class="flex items-start space-x-3 mb-3">
+                                        <img src="assets/image/userprofile/user1.png" alt="User"
+                                            class="w-10 h-10 rounded-full">
+                                        <div class="flex-1">
+                                            <h4 class="font-semibold text-gray-800">Budi Santoso</h4>
+                                            <p class="text-xs text-gray-500">5 hari yang lalu</p>
+                                        </div>
+                                    </div>
+                                    <p class="text-sm text-gray-700 mb-2">
+                                        Mengikuti workshop pengelolaan sampah organik menjadi kompos. Sangat bermanfaat
+                                        untuk diterapkan di rumah! Mari kita mulai dari hal kecil untuk lingkungan yang
+                                        lebih baik
+                                    </p>
+                                    <div class="flex items-center space-x-4 text-sm text-gray-500">
+                                        <span><i class="fas fa-heart text-pink-500 mr-1"></i> 97 Likes</span>
+                                        <span><i class="fas fa-comment mr-1"></i> 18 Comments</span>
+                                    </div>
+                                </div>
+
+                                <!-- Post 5 - Initially Hidden -->
+                                <div class="activity-post hidden border rounded-lg p-4 hover:shadow-md transition">
+                                    <div class="flex items-start space-x-3 mb-3">
+                                        <img src="assets/image/userprofile/user1.png" alt="User"
+                                            class="w-10 h-10 rounded-full">
+                                        <div class="flex-1">
+                                            <h4 class="font-semibold text-gray-800">Budi Santoso</h4>
+                                            <p class="text-xs text-gray-500">1 minggu yang lalu</p>
+                                        </div>
+                                    </div>
+                                    <p class="text-sm text-gray-700 mb-2">
+                                        Berhasil mengumpulkan 15kg botol plastik dari lingkungan sekitar. Terima kasih
+                                        untuk semua yang sudah ikut berpartisipasi dalam program cleaning day!
+                                    </p>
+                                    <div class="flex items-center space-x-4 text-sm text-gray-500">
+                                        <span><i class="fas fa-heart text-pink-500 mr-1"></i> 342 Likes</span>
+                                        <span><i class="fas fa-comment mr-1"></i> 67 Comments</span>
+                                    </div>
+                                </div>
+
+                                <!-- Post 6 - Initially Hidden -->
+                                <div class="activity-post hidden border rounded-lg p-4 hover:shadow-md transition">
+                                    <div class="flex items-start space-x-3 mb-3">
+                                        <img src="assets/image/userprofile/user1.png" alt="User"
+                                            class="w-10 h-10 rounded-full">
+                                        <div class="flex-1">
+                                            <h4 class="font-semibold text-gray-800">Budi Santoso</h4>
+                                            <p class="text-xs text-gray-500">2 minggu yang lalu</p>
+                                        </div>
+                                    </div>
+                                    <p class="text-sm text-gray-700 mb-2">
+                                        Membagikan tutorial cara membuat ecobrick dari botol plastik bekas. Simple tapi
+                                        berdampak besar untuk lingkungan!
+                                    </p>
+                                    <div class="flex items-center space-x-4 text-sm text-gray-500">
+                                        <span><i class="fas fa-heart text-pink-500 mr-1"></i> 178 Likes</span>
+                                        <span><i class="fas fa-comment mr-1"></i> 29 Comments</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column - Sidebar -->
+                    <div class="md:col-span-1 col-span-1">
+
+
+                        <!-- Leaderboard Position -->
+                        <div
+                            class="mb-6 p-6 bg-gradient-to-br from-yellow-50 to-amber-50 rounded-lg border-2 border-yellow-300">
+                            <h3 class="font-bold text-gray-800 mb-2 text-center">Peringkat Leaderboard</h3>
+                            <div class="text-center">
+                                <p class="text-5xl font-bold text-yellow-600 mb-1">#12</p>
+                                <p class="text-sm text-gray-600">dari 1,248 pengguna</p>
+                            </div>
+                        </div>
+
+                        <!-- Impact Stats -->
+                        <div class="mb-6">
+                            <h3 class="font-bold text-gray-800 mb-4">Dampak Kontribusi</h3>
+
+                            <div class="space-y-2">
+                                <div class="bg-white p-3 rounded-lg border border-gray-200">
+                                    <p class="text-xl font-bold text-gray-800">45 kg</p>
+                                    <p class="text-sm text-gray-600">Sampah Organik</p>
+                                </div>
+
+                                <div class="bg-white p-3 rounded-lg border border-gray-200">
+                                    <p class="text-xl font-bold text-gray-800">82 kg</p>
+                                    <p class="text-sm text-gray-600">Plastik Didaur Ulang</p>
+                                </div>
+
+                                <div class="bg-white p-3 rounded-lg border border-gray-200">
+                                    <p class="text-xl font-bold text-gray-800">23 kg</p>
+                                    <p class="text-sm text-gray-600">Makanan Diselamatkan</p>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <script>
+        // View All / Show Less functionality
+        const viewAllBtn = document.getElementById('viewAllBtn');
+        const btnText = document.getElementById('btnText');
+        const activityPosts = document.querySelectorAll('.activity-post');
+        let isShowingAll = false;
+
+        viewAllBtn.addEventListener('click', function () {
+            isShowingAll = !isShowingAll;
+
+            activityPosts.forEach((post, index) => {
+                if (index >= 3) {
+                    if (isShowingAll) {
+                        post.classList.remove('hidden');
+                    } else {
+                        post.classList.add('hidden');
+                    }
+                }
+            });
+
+            if (isShowingAll) {
+                btnText.textContent = 'Sembunyikan';
+                viewAllBtn.querySelector('i').classList.remove('fa-plus-circle');
+                viewAllBtn.querySelector('i').classList.add('fa-minus-circle');
+            } else {
+                btnText.textContent = 'Lihat Semua';
+                viewAllBtn.querySelector('i').classList.remove('fa-minus-circle');
+                viewAllBtn.querySelector('i').classList.add('fa-plus-circle');
+
+                // Scroll to activities section smoothly
+                document.getElementById('activityContainer').scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
