@@ -33,7 +33,7 @@
 
 <body class="bg-white">
 
- <!-- Preloader Animation -->
+  <!-- Preloader Animation -->
   <div id="preloader">
     <div class="loader-content">
       <div class="logo-container">
@@ -305,154 +305,188 @@
       </header>
 
       <!-- Content Area -->
-<div class="p-4 md:p-8 bg-gray-50 min-h-screen">
-    <!-- Progress Steps -->
-    <div class="mb-6 md:mb-8">
-        <div class="flex items-center justify-center space-x-2 md:space-x-4">
+      <div class="p-4 md:p-8 bg-gray-50 min-h-screen">
+        <!-- Progress Steps -->
+        <div class="mb-6 md:mb-8">
+          <div class="flex items-center justify-center space-x-2 md:space-x-4">
             <div class="flex items-center">
-                <div class="w-8 h-8 md:w-10 md:h-10 bg-green-600 text-white rounded-full flex items-center justify-center font-semibold text-sm md:text-base">
-                    1
-                </div>
-                <span class="ml-2 text-xs md:text-sm font-medium text-green-600 hidden sm:inline">Upload Foto</span>
+              <div
+                class="w-8 h-8 md:w-10 md:h-10 bg-green-600 text-white rounded-full flex items-center justify-center font-semibold text-sm md:text-base">
+                1
+              </div>
+              <span class="ml-2 text-xs md:text-sm font-medium text-green-600 hidden sm:inline">Upload Foto</span>
             </div>
             <div class="w-8 md:w-16 h-1 bg-gray-300"></div>
             <div class="flex items-center">
-                <div class="w-8 h-8 md:w-10 md:h-10 bg-gray-300 text-gray-600 rounded-full flex items-center justify-center font-semibold text-sm md:text-base">
-                    2
-                </div>
-                <span class="ml-2 text-xs md:text-sm font-medium text-gray-500 hidden sm:inline">Detail Sampah</span>
+              <div
+                class="w-8 h-8 md:w-10 md:h-10 bg-gray-300 text-gray-600 rounded-full flex items-center justify-center font-semibold text-sm md:text-base">
+                2
+              </div>
+              <span class="ml-2 text-xs md:text-sm font-medium text-gray-500 hidden sm:inline">Detail Sampah</span>
             </div>
             <div class="w-8 md:w-16 h-1 bg-gray-300"></div>
             <div class="flex items-center">
-                <div class="w-8 h-8 md:w-10 md:h-10 bg-gray-300 text-gray-600 rounded-full flex items-center justify-center font-semibold text-sm md:text-base">
-                    3
-                </div>
-                <span class="ml-2 text-xs md:text-sm font-medium text-gray-500 hidden sm:inline">Konfirmasi</span>
+              <div
+                class="w-8 h-8 md:w-10 md:h-10 bg-gray-300 text-gray-600 rounded-full flex items-center justify-center font-semibold text-sm md:text-base">
+                3
+              </div>
+              <span class="ml-2 text-xs md:text-sm font-medium text-gray-500 hidden sm:inline">Konfirmasi</span>
             </div>
+          </div>
         </div>
-    </div>
-    
-    <div class="max-w-4xl mx-auto">
-        <!-- Upload Zone -->
-<div class="bg-white rounded-xl shadow p-4 md:p-8 mb-6">
-  <h2 class="text-lg md:text-xl font-bold text-gray-900 mb-4 md:mb-6">Upload Foto Sampah</h2>
 
-  <div id="uploadZone"
-    class="border-2 border-dashed border-gray-300 hover:border-green-500 hover:bg-green-50 transition-all duration-300 rounded-lg p-8 md:p-12 text-center cursor-pointer">
-    <i class="fas fa-cloud-upload-alt text-4xl md:text-5xl text-gray-400 mb-4 block"></i>
-    <p class="text-base md:text-lg font-semibold text-gray-700 mb-2">Klik untuk upload atau drag & drop</p>
-    <p class="text-xs md:text-sm text-gray-500">PNG, JPG, JPEG hingga 10MB</p>
-    <input type="file" id="fileInput" class="hidden" accept="image/*" multiple>
-  </div>
+        <div class="max-w-4xl mx-auto">
+          <!-- Upload Zone -->
+          <div class="bg-white rounded-xl shadow p-4 md:p-8 mb-6">
+            <h2 class="text-lg md:text-xl font-bold text-gray-900 mb-4 md:mb-6">Upload Foto Sampah</h2>
 
-  <div id="imagePreview" class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 mt-4 md:mt-6 hidden"></div>
-</div>
-        
-        <!-- Category Selection -->
-        <div class="bg-white rounded-xl shadow p-4 md:p-8 mb-6">
+            <div id="uploadZone"
+              class="border-2 border-dashed border-gray-300 hover:border-green-500 hover:bg-green-50 transition-all duration-300 rounded-lg p-8 md:p-12 text-center cursor-pointer">
+              <i class="fas fa-cloud-upload-alt text-4xl md:text-5xl text-gray-400 mb-4 block"></i>
+              <p class="text-base md:text-lg font-semibold text-gray-700 mb-2">Klik untuk upload atau drag & drop</p>
+              <p class="text-xs md:text-sm text-gray-500">PNG, JPG, JPEG hingga 10MB</p>
+              <input type="file" id="fileInput" class="hidden" accept="image/*" multiple>
+            </div>
+
+            <div id="imagePreview" class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 mt-4 md:mt-6 hidden"></div>
+          </div>
+
+          <!-- Category Selection -->
+          <div class="bg-white rounded-xl shadow p-4 md:p-8 mb-6">
             <h2 class="text-lg md:text-xl font-bold text-gray-900 mb-4 md:mb-6">Pilih Kategori Sampah</h2>
-            
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4">
-                <div class="category-card group border-2 border-gray-200 hover:border-green-500 hover:shadow-lg hover:-translate-y-1 active:border-green-600 active:bg-green-50 transition-all duration-300 rounded-lg p-4 md:p-5 text-center cursor-pointer" data-category="makanan-surplus">
-                    <div class="w-12 h-12 md:w-14 md:h-14 bg-orange-100 group-hover:bg-orange-200 transition-colors duration-300 rounded-full flex items-center justify-center mx-auto mb-3">
-                        <i class="fas fa-utensils text-xl md:text-2xl text-orange-600"></i>
-                    </div>
-                    <h3 class="text-sm md:text-base font-semibold text-gray-900 mb-1">Makanan Surplus</h3>
-                    <p class="text-xs text-gray-500">Makanan layak konsumsi</p>
-                </div>
-                
-                <div class="category-card group border-2 border-gray-200 hover:border-green-500 hover:shadow-lg hover:-translate-y-1 active:border-green-600 active:bg-green-50 transition-all duration-300 rounded-lg p-4 md:p-5 text-center cursor-pointer" data-category="organik">
-                    <div class="w-12 h-12 md:w-14 md:h-14 bg-green-100 group-hover:bg-green-200 transition-colors duration-300 rounded-full flex items-center justify-center mx-auto mb-3">
-                        <i class="fas fa-leaf text-xl md:text-2xl text-green-600"></i>
-                    </div>
-                    <h3 class="text-sm md:text-base font-semibold text-gray-900 mb-1">Sampah Organik</h3>
-                    <p class="text-xs text-gray-500">Sisa makanan, daun</p>
-                </div>
-                
-                <div class="category-card group border-2 border-gray-200 hover:border-green-500 hover:shadow-lg hover:-translate-y-1 active:border-green-600 active:bg-green-50 transition-all duration-300 rounded-lg p-4 md:p-5 text-center cursor-pointer" data-category="anorganik">
-                    <div class="w-12 h-12 md:w-14 md:h-14 bg-blue-100 group-hover:bg-blue-200 transition-colors duration-300 rounded-full flex items-center justify-center mx-auto mb-3">
-                        <i class="fas fa-recycle text-xl md:text-2xl text-blue-600"></i>
-                    </div>
-                    <h3 class="text-sm md:text-base font-semibold text-gray-900 mb-1">Sampah Anorganik</h3>
-                    <p class="text-xs text-gray-500">Plastik, kertas, logam</p>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Detail Form -->
-        <div class="bg-white rounded-xl shadow p-4 md:p-8 mb-6">
-            <h2 class="text-lg md:text-xl font-bold text-gray-900 mb-4 md:mb-6">Detail Sampah</h2>
-            
-            <div class="space-y-4 md:space-y-6">
-                <div>
-                    <label class="block text-sm font-semibold text-gray-700 mb-2">Judul</label>
-                    <input type="text" id="titleInput" placeholder="Misal: Botol Plastik Bersih" class="w-full px-3 md:px-4 py-2 md:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 text-sm md:text-base transition-all">
-                </div>
-                
-                <div>
-                    <label class="block text-sm font-semibold text-gray-700 mb-2">Deskripsi</label>
-                    <textarea id="descInput" rows="4" placeholder="Jelaskan kondisi sampah Anda..." class="w-full px-3 md:px-4 py-2 md:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 text-sm md:text-base transition-all resize-none"></textarea>
-                </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">Berat (kg)</label>
-                        <input type="number" id="weightInput" placeholder="0" step="0.1" class="w-full px-3 md:px-4 py-2 md:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 text-sm md:text-base transition-all">
-                    </div>
-                    
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">Waktu Booking</label>
-                        <select id="timeInput" placeholder="pilih waktu" class="w-full px-3 md:px-4 py-2 md:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 text-sm md:text-base transition-all bg-white">
-                            <option>Hari ini (08:00 - 17:00)</option>
-                            <option>Besok (08:00 - 17:00)</option>
-                            <option>2 hari lagi</option>
-                            <option>3 hari lagi</option>
-                        </select>
-                    </div>
-                </div>
-                
-                <div>
-                    <label class="block text-sm font-semibold text-gray-700 mb-2">Alamat Lengkap</label>
-                    <textarea id="addressInput" rows="3" placeholder="Masukkan alamat lengkap untuk pickup..." class="w-full px-3 md:px-4 py-2 md:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 text-sm md:text-base transition-all resize-none"></textarea>
-                </div>
-                
-                <div>
-                    <label class="flex items-start sm:items-center space-x-3 cursor-pointer group">
-                        <input type="checkbox" id="reusableCheck" class="w-4 h-4 md:w-5 md:h-5 text-green-600 rounded focus:ring-green-500 focus:ring-2 mt-0.5 sm:mt-0 flex-shrink-0 cursor-pointer transition-all">
-                        <span class="text-xs md:text-sm text-gray-700 group-hover:text-gray-900 transition-colors">Sampah ini masih layak untuk digunakan kembali</span>
-                    </label>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Action Buttons -->
-        <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
-            <button class="w-full sm:w-auto px-6 py-3 border-2 border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 hover:border-gray-400 active:bg-gray-100 transition-all duration-200 font-medium text-sm md:text-base order-2 sm:order-1">
-                Batal
-            </button>
-            <button id="nextBtn" class="w-full sm:w-auto px-8 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 hover:shadow-lg active:bg-green-800 transition-all duration-200 font-medium flex items-center justify-center space-x-2 text-sm md:text-base order-1 sm:order-2">
-                <span>Posting</span>
-                <i class="fas fa-paper-plane"></i>
-            </button>
-        </div>
-    </div>
-</div>
 
-<!-- Popup Success -->
-<div id="successPopup" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50 px-4">
-    <div class="bg-white rounded-2xl shadow-2xl p-6 md:p-8 w-full max-w-sm text-center transform transition-all duration-300 scale-95 opacity-0" id="popupContent">
-        <div class="w-16 h-16 md:w-20 md:h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <i id="popupIcon" class="fas fa-check-circle text-3xl md:text-4xl text-green-600"></i>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4">
+              <div
+                class="category-card group border-2 border-gray-200 hover:border-green-500 hover:shadow-lg hover:-translate-y-1 active:border-green-600 active:bg-green-50 transition-all duration-300 rounded-lg p-4 md:p-5 text-center cursor-pointer"
+                data-category="makanan-surplus">
+                <div
+                  class="w-12 h-12 md:w-14 md:h-14 bg-orange-100 group-hover:bg-orange-200 transition-colors duration-300 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <i class="fas fa-utensils text-xl md:text-2xl text-orange-600"></i>
+                </div>
+                <h3 class="text-sm md:text-base font-semibold text-gray-900 mb-1">Makanan Surplus</h3>
+                <p class="text-xs text-gray-500">Makanan layak konsumsi</p>
+              </div>
+
+              <div
+                class="category-card group border-2 border-gray-200 hover:border-green-500 hover:shadow-lg hover:-translate-y-1 active:border-green-600 active:bg-green-50 transition-all duration-300 rounded-lg p-4 md:p-5 text-center cursor-pointer"
+                data-category="organik">
+                <div
+                  class="w-12 h-12 md:w-14 md:h-14 bg-green-100 group-hover:bg-green-200 transition-colors duration-300 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <i class="fas fa-leaf text-xl md:text-2xl text-green-600"></i>
+                </div>
+                <h3 class="text-sm md:text-base font-semibold text-gray-900 mb-1">Sampah Organik</h3>
+                <p class="text-xs text-gray-500">Sisa makanan, daun</p>
+              </div>
+
+              <div
+                class="category-card group border-2 border-gray-200 hover:border-green-500 hover:shadow-lg hover:-translate-y-1 active:border-green-600 active:bg-green-50 transition-all duration-300 rounded-lg p-4 md:p-5 text-center cursor-pointer"
+                data-category="anorganik">
+                <div
+                  class="w-12 h-12 md:w-14 md:h-14 bg-blue-100 group-hover:bg-blue-200 transition-colors duration-300 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <i class="fas fa-recycle text-xl md:text-2xl text-blue-600"></i>
+                </div>
+                <h3 class="text-sm md:text-base font-semibold text-gray-900 mb-1">Sampah Anorganik</h3>
+                <p class="text-xs text-gray-500">Plastik, kertas, logam</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Detail Form -->
+          <div class="bg-white rounded-xl shadow p-4 md:p-8 mb-6">
+            <h2 class="text-lg md:text-xl font-bold text-gray-900 mb-4 md:mb-6">Detail Sampah</h2>
+
+            <div class="space-y-4 md:space-y-6">
+              <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-2">Judul</label>
+                <input type="text" id="titleInput" placeholder="Misal: Botol Plastik Bersih"
+                  class="w-full px-3 md:px-4 py-2 md:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 text-sm md:text-base transition-all">
+              </div>
+
+              <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-2">Deskripsi</label>
+                <textarea id="descInput" rows="4" placeholder="Jelaskan kondisi sampah Anda..."
+                  class="w-full px-3 md:px-4 py-2 md:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 text-sm md:text-base transition-all resize-none"></textarea>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                <div>
+                  <label class="block text-sm font-semibold text-gray-700 mb-2">Kuantitas</label>
+                  <div class="flex gap-2">
+                    <input type="number" id="quantityInput" placeholder="0" step="0.1"
+                      class="w-full px-3 md:px-4 py-2 md:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 text-sm md:text-base transition-all">
+                    <select id="quantityUnit"
+                      class="px-3 md:px-4 py-2 md:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 text-sm md:text-base transition-all bg-white">
+                      <option value="kg">kg</option>
+                      <option value="porsi">porsi</option>
+                    </select>
+                  </div>
+                </div>
+
+
+                <div>
+                  <label class="block text-sm font-semibold text-gray-700 mb-2">Waktu Booking</label>
+                  <select id="timeInput" placeholder="pilih waktu"
+                    class="w-full px-3 md:px-4 py-2 md:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 text-sm md:text-base transition-all bg-white">
+                    <option>Hari ini (08:00 - 17:00)</option>
+                    <option>Besok (08:00 - 17:00)</option>
+                    <option>2 hari lagi</option>
+                    <option>3 hari lagi</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-2">Alamat Lengkap</label>
+                <textarea id="addressInput" rows="3" placeholder="Masukkan alamat lengkap untuk pickup..."
+                  class="w-full px-3 md:px-4 py-2 md:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 text-sm md:text-base transition-all resize-none"></textarea>
+              </div>
+
+              <div>
+                <label class="flex items-start sm:items-center space-x-3 cursor-pointer group">
+                  <input type="checkbox" id="reusableCheck"
+                    class="w-4 h-4 md:w-5 md:h-5 text-green-600 rounded focus:ring-green-500 focus:ring-2 mt-0.5 sm:mt-0 flex-shrink-0 cursor-pointer transition-all">
+                  <span class="text-xs md:text-sm text-gray-700 group-hover:text-gray-900 transition-colors">Sampah ini
+                    masih layak untuk digunakan kembali</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+            <button
+              class="w-full sm:w-auto px-6 py-3 border-2 border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 hover:border-gray-400 active:bg-gray-100 transition-all duration-200 font-medium text-sm md:text-base order-2 sm:order-1">
+              Batal
+            </button>
+            <button id="nextBtn"
+              class="w-full sm:w-auto px-8 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 hover:shadow-lg active:bg-green-800 transition-all duration-200 font-medium flex items-center justify-center space-x-2 text-sm md:text-base order-1 sm:order-2">
+              <span>Posting</span>
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </div>
         </div>
-        <h3 id="popupTitle" class="text-xl md:text-2xl font-bold text-gray-900 mb-2">Telah Dikirim!</h3>
-        <p id="popupDesc" class="text-sm md:text-base text-gray-600 mb-6 leading-relaxed">Data sampah Anda berhasil dikirim dan akan segera diproses.</p>
-        <button id="closePopup" class="w-full px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 active:bg-green-800 transition-all duration-200 font-medium text-sm md:text-base">
+      </div>
+
+      <!-- Popup Success -->
+      <div id="successPopup" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50 px-4">
+        <div
+          class="bg-white rounded-2xl shadow-2xl p-6 md:p-8 w-full max-w-sm text-center transform transition-all duration-300 scale-95 opacity-0"
+          id="popupContent">
+          <div
+            class="w-16 h-16 md:w-20 md:h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i id="popupIcon" class="fas fa-check-circle text-3xl md:text-4xl text-green-600"></i>
+          </div>
+          <h3 id="popupTitle" class="text-xl md:text-2xl font-bold text-gray-900 mb-2">Telah Dikirim!</h3>
+          <p id="popupDesc" class="text-sm md:text-base text-gray-600 mb-6 leading-relaxed">Data sampah Anda berhasil
+            dikirim dan akan segera diproses.</p>
+          <button id="closePopup"
+            class="w-full px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 active:bg-green-800 transition-all duration-200 font-medium text-sm md:text-base">
             Tutup
-        </button>
-    </div>
-</div>
-  
-        
+          </button>
+        </div>
+      </div>
+
+
 
       <!-- End Content Area -->
 
@@ -490,128 +524,128 @@
   <script src="assets/js/sidebar.js"></script>
   <script src="assets/js/script.js"></script>
 
-<script>
-  let selectedCategory = null;
-  let uploadedFiles = [];
+  <script>
+    let selectedCategory = null;
+    let uploadedFiles = [];
 
-  // === UPLOAD ZONE ===
-  const uploadZone = document.getElementById('uploadZone');
-  const fileInput = document.getElementById('fileInput');
-  const imagePreview = document.getElementById('imagePreview');
+    // === UPLOAD ZONE ===
+    const uploadZone = document.getElementById('uploadZone');
+    const fileInput = document.getElementById('fileInput');
+    const imagePreview = document.getElementById('imagePreview');
 
-  uploadZone.addEventListener('click', () => fileInput.click());
+    uploadZone.addEventListener('click', () => fileInput.click());
 
-  fileInput.addEventListener('change', (e) => {
-    const files = Array.from(e.target.files);
-    uploadedFiles = uploadedFiles.concat(files);
-    displayImages();
-  });
+    fileInput.addEventListener('change', (e) => {
+      const files = Array.from(e.target.files);
+      uploadedFiles = uploadedFiles.concat(files);
+      displayImages();
+    });
 
-  uploadZone.addEventListener('dragover', (e) => {
-    e.preventDefault();
-    uploadZone.classList.add('border-green-500', 'bg-green-50');
-  });
+    uploadZone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      uploadZone.classList.add('border-green-500', 'bg-green-50');
+    });
 
-  uploadZone.addEventListener('dragleave', () => {
-    uploadZone.classList.remove('border-green-500', 'bg-green-50');
-  });
+    uploadZone.addEventListener('dragleave', () => {
+      uploadZone.classList.remove('border-green-500', 'bg-green-50');
+    });
 
-  uploadZone.addEventListener('drop', (e) => {
-    e.preventDefault();
-    uploadZone.classList.remove('border-green-500', 'bg-green-50');
-    const files = Array.from(e.dataTransfer.files);
-    uploadedFiles = uploadedFiles.concat(files);
-    displayImages();
-  });
+    uploadZone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      uploadZone.classList.remove('border-green-500', 'bg-green-50');
+      const files = Array.from(e.dataTransfer.files);
+      uploadedFiles = uploadedFiles.concat(files);
+      displayImages();
+    });
 
-  function displayImages() {
-    imagePreview.innerHTML = '';
-    if (uploadedFiles.length > 0) {
-      imagePreview.classList.remove('hidden');
-      uploadedFiles.forEach((file, index) => {
-        if (!file.type.startsWith('image/')) return;
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          const div = document.createElement('div');
-          div.className = 'relative group';
-          div.innerHTML = `
+    function displayImages() {
+      imagePreview.innerHTML = '';
+      if (uploadedFiles.length > 0) {
+        imagePreview.classList.remove('hidden');
+        uploadedFiles.forEach((file, index) => {
+          if (!file.type.startsWith('image/')) return;
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            const div = document.createElement('div');
+            div.className = 'relative group';
+            div.innerHTML = `
             <img src="${e.target.result}" class="w-full h-32 md:h-40 object-cover rounded-lg">
             <button onclick="removeImage(${index})" 
               class="absolute top-2 right-2 w-8 h-8 bg-red-500 hover:bg-red-600 text-white rounded-full opacity-0 group-hover:opacity-100 transition-all duration-200 flex items-center justify-center">
               <i class="fas fa-times"></i>
             </button>
           `;
-          imagePreview.appendChild(div);
-        };
-        reader.readAsDataURL(file);
-      });
-    } else {
-      imagePreview.classList.add('hidden');
+            imagePreview.appendChild(div);
+          };
+          reader.readAsDataURL(file);
+        });
+      } else {
+        imagePreview.classList.add('hidden');
+      }
     }
-  }
 
-  window.removeImage = function(index) {
-    uploadedFiles.splice(index, 1);
-    displayImages();
-  };
+    window.removeImage = function (index) {
+      uploadedFiles.splice(index, 1);
+      displayImages();
+    };
 
-  // === CATEGORY SELECTION ===
-  const categoryCards = document.querySelectorAll('.category-card');
-  categoryCards.forEach(card => {
-    card.addEventListener('click', function () {
-      categoryCards.forEach(c => {
-        c.classList.remove('border-green-600', 'bg-green-50');
-        c.classList.add('border-gray-200');
+    // === CATEGORY SELECTION ===
+    const categoryCards = document.querySelectorAll('.category-card');
+    categoryCards.forEach(card => {
+      card.addEventListener('click', function () {
+        categoryCards.forEach(c => {
+          c.classList.remove('border-green-600', 'bg-green-50');
+          c.classList.add('border-gray-200');
+        });
+        this.classList.remove('border-gray-200');
+        this.classList.add('border-green-600', 'bg-green-50');
+        selectedCategory = this.dataset.category;
       });
-      this.classList.remove('border-gray-200');
-      this.classList.add('border-green-600', 'bg-green-50');
-      selectedCategory = this.dataset.category;
     });
-  });
 
-  // === POPUP HANDLING ===
-  const nextBtn = document.getElementById('nextBtn');
-  const successPopup = document.getElementById('successPopup');
-  const popupContent = document.getElementById('popupContent');
-  const closePopup = document.getElementById('closePopup');
-  const popupTitle = document.getElementById('popupTitle');
-  const popupDesc = document.getElementById('popupDesc');
+    // === POPUP HANDLING ===
+    const nextBtn = document.getElementById('nextBtn');
+    const successPopup = document.getElementById('successPopup');
+    const popupContent = document.getElementById('popupContent');
+    const closePopup = document.getElementById('closePopup');
+    const popupTitle = document.getElementById('popupTitle');
+    const popupDesc = document.getElementById('popupDesc');
 
-  nextBtn.addEventListener('click', () => {
-    if (selectedCategory === 'makanan-surplus') {
-      popupTitle.textContent = 'Sudah Diposting!';
-      popupDesc.textContent = 'Makanan surplus Anda telah diposting dan dapat dilihat oleh pengguna lain.';
-    } else {
-      popupTitle.textContent = 'Telah Dikirim!';
-      popupDesc.textContent = 'Data sampah Anda berhasil dikirim dan akan segera diproses.';
+    nextBtn.addEventListener('click', () => {
+      if (selectedCategory === 'makanan-surplus') {
+        popupTitle.textContent = 'Sudah Diposting!';
+        popupDesc.textContent = 'Makanan surplus Anda telah diposting dan dapat dilihat oleh pengguna lain.';
+      } else {
+        popupTitle.textContent = 'Telah Dikirim!';
+        popupDesc.textContent = 'Data sampah Anda berhasil dikirim dan akan segera diproses.';
+      }
+
+      successPopup.classList.remove('hidden');
+      successPopup.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+
+      setTimeout(() => {
+        popupContent.classList.remove('scale-95', 'opacity-0');
+        popupContent.classList.add('scale-100', 'opacity-100');
+      }, 10);
+    });
+
+    function closePopupFunc() {
+      popupContent.classList.remove('scale-100', 'opacity-100');
+      popupContent.classList.add('scale-95', 'opacity-0');
+
+      setTimeout(() => {
+        successPopup.classList.add('hidden');
+        successPopup.classList.remove('flex');
+        document.body.style.overflow = '';
+      }, 300);
     }
 
-    successPopup.classList.remove('hidden');
-    successPopup.classList.add('flex');
-    document.body.style.overflow = 'hidden';
-
-    setTimeout(() => {
-      popupContent.classList.remove('scale-95', 'opacity-0');
-      popupContent.classList.add('scale-100', 'opacity-100');
-    }, 10);
-  });
-
-  function closePopupFunc() {
-    popupContent.classList.remove('scale-100', 'opacity-100');
-    popupContent.classList.add('scale-95', 'opacity-0');
-
-    setTimeout(() => {
-      successPopup.classList.add('hidden');
-      successPopup.classList.remove('flex');
-      document.body.style.overflow = '';
-    }, 300);
-  }
-
-  closePopup.addEventListener('click', closePopupFunc);
-  successPopup.addEventListener('click', (e) => {
-    if (e.target === successPopup) closePopupFunc();
-  });
-</script> 
+    closePopup.addEventListener('click', closePopupFunc);
+    successPopup.addEventListener('click', (e) => {
+      if (e.target === successPopup) closePopupFunc();
+    });
+  </script>
 
 </body>
 
