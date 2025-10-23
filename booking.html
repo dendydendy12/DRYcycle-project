@@ -15,6 +15,20 @@
       font-family: 'Inter', sans-serif;
     }
 
+  .filter-tab {
+    color: #6B7280;
+  }
+  
+  .filter-tab.active {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+  }
+  
+  .filter-tab:not(.active):hover {
+    background: #F3F4F6;
+    color: #111827;
+  }
+
     .dropdown-menu {
       opacity: 0;
       visibility: hidden;
@@ -315,8 +329,286 @@
       </header>
 
       <!-- Content Area -->
+       
 
+<div class="p-4 sm:p-6 lg:p-8">
 
+  
+  <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-2 mb-6">
+    <div class="flex flex-wrap gap-2">
+      <button onclick="filterBooking('semua')" class="filter-tab active px-4 py-2 rounded-xl font-medium text-sm transition-all">
+        Semua
+      </button>
+      <button onclick="filterBooking('menunggu')" class="filter-tab px-4 py-2 rounded-xl font-medium text-sm transition-all">
+        Menunggu
+      </button>
+      <button onclick="filterBooking('diproses')" class="filter-tab px-4 py-2 rounded-xl font-medium text-sm transition-all">
+        Diproses
+      </button>
+      <button onclick="filterBooking('selesai')" class="filter-tab px-4 py-2 rounded-xl font-medium text-sm transition-all">
+        Selesai
+      </button>
+      <button onclick="filterBooking('dibatalkan')" class="filter-tab px-4 py-2 rounded-xl font-medium text-sm transition-all">
+        Dibatalkan
+      </button>
+    </div>
+  </div>
+
+  <!-- Booking List -->
+  <div id="bookingList" class="space-y-4">
+    <!-- Booking Card 1 - Menunggu -->
+    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-all" data-status="menunggu" data-id="BKG001">
+      <div class="p-5">
+        <div class="flex flex-col lg:flex-row gap-4">
+          <!-- Image -->
+          <div class="lg:w-48 h-48 lg:h-auto flex-shrink-0">
+            <img src="assets/image/browse/nasiboxsisaevent.jpg" alt="Nasi Box" class="w-full h-full object-cover rounded-xl">
+          </div>
+
+          <!-- Content -->
+          <div class="flex-1">
+            <div class="flex items-start justify-between mb-3">
+              <div>
+                <h3 class="text-lg font-bold text-gray-900 mb-1">Nasi Box Surplus</h3>
+                <p class="text-sm text-gray-500">ID Booking: #BKG001</p>
+              </div>
+              <span class="status-badge px-3 py-1 bg-yellow-100 text-yellow-700 text-xs font-semibold rounded-full">Menunggu</span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
+              <div class="flex items-start gap-2">
+                <svg class="w-5 h-5 text-gray-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+                <div>
+                  <p class="text-xs text-gray-500">Lokasi</p>
+                  <p class="text-sm font-medium text-gray-700">Jl. Merdeka No. 45, Bogor</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-2">
+                <svg class="w-5 h-5 text-gray-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <div>
+                  <p class="text-xs text-gray-500">Tanggal Booking</p>
+                  <p class="text-sm font-medium text-gray-700">23 Oktober 2025</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-2">
+                <svg class="w-5 h-5 text-gray-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"/>
+                </svg>
+                <div>
+                  <p class="text-xs text-gray-500">Berat</p>
+                  <p class="text-sm font-medium text-gray-700">10 porsi</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-2">
+                <svg class="w-5 h-5 text-gray-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                </svg>
+                <div>
+                  <p class="text-xs text-gray-500">Pemilik</p>
+                  <p class="text-sm font-medium text-gray-700">Budi Santoso</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="action-buttons flex flex-wrap gap-2">
+              <button onclick="contactOwner('081234567890')" class="flex-1 sm:flex-none px-4 py-2 bg-emerald-600 text-white rounded-xl hover:bg-emerald-700 transition-all text-sm font-medium">
+                Hubungi Pemilik
+              </button>
+              <button onclick="viewBookingDetail('BKG001')" class="flex-1 sm:flex-none px-4 py-2 bg-gray-100 text-gray-700 rounded-xl hover:bg-gray-200 transition-all text-sm font-medium">
+                Lihat Detail
+              </button>
+              <button onclick="cancelBooking('BKG001')" class="cancel-btn flex-1 sm:flex-none px-4 py-2 bg-red-100 text-red-700 rounded-xl hover:bg-red-200 transition-all text-sm font-medium">
+                Batalkan
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Booking Card 2 - Diproses -->
+    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-all" data-status="diproses" data-id="BKG002">
+      <div class="p-5">
+        <div class="flex flex-col lg:flex-row gap-4">
+          <div class="lg:w-48 h-48 lg:h-auto flex-shrink-0">
+            <img src="assets/image/browse/botolplastik.jpg" alt="Botol Plastik" class="w-full h-full object-cover rounded-xl">
+          </div>
+
+          <div class="flex-1">
+            <div class="flex items-start justify-between mb-3">
+              <div>
+                <h3 class="text-lg font-bold text-gray-900 mb-1">Botol Plastik Bekas</h3>
+                <p class="text-sm text-gray-500">ID Booking: #BKG002</p>
+              </div>
+              <span class="status-badge px-3 py-1 bg-blue-100 text-blue-700 text-xs font-semibold rounded-full">Diproses</span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
+              <div class="flex items-start gap-2">
+                <svg class="w-5 h-5 text-gray-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+                <div>
+                  <p class="text-xs text-gray-500">Lokasi</p>
+                  <p class="text-sm font-medium text-gray-700">Jl. Gatot Subroto No. 56, Tangerang</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-2">
+                <svg class="w-5 h-5 text-gray-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <div>
+                  <p class="text-xs text-gray-500">Tanggal Booking</p>
+                  <p class="text-sm font-medium text-gray-700">22 Oktober 2025</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-2">
+                <svg class="w-5 h-5 text-gray-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"/>
+                </svg>
+                <div>
+                  <p class="text-xs text-gray-500">Berat</p>
+                  <p class="text-sm font-medium text-gray-700">15 kg</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-2">
+                <svg class="w-5 h-5 text-gray-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                </svg>
+                <div>
+                  <p class="text-xs text-gray-500">Pemilik</p>
+                  <p class="text-sm font-medium text-gray-700">Rudi Hermawan</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-blue-50 border-l-4 border-blue-500 rounded-lg p-3 mb-3">
+              <p class="text-xs text-blue-700"><strong>Update:</strong> Pemilik sedang mempersiapkan sampah untuk diambil</p>
+            </div>
+
+            <div class="action-buttons flex flex-wrap gap-2">
+              <button onclick="contactOwner('081678901234')" class="flex-1 sm:flex-none px-4 py-2 bg-emerald-600 text-white rounded-xl hover:bg-emerald-700 transition-all text-sm font-medium">
+                Hubungi Pemilik
+              </button>
+              <button onclick="viewBookingDetail('BKG002')" class="flex-1 sm:flex-none px-4 py-2 bg-gray-100 text-gray-700 rounded-xl hover:bg-gray-200 transition-all text-sm font-medium">
+                Lihat Detail
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Booking Card 3 - Selesai -->
+    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-all" data-status="selesai" data-id="BKG003">
+      <div class="p-5">
+        <div class="flex flex-col lg:flex-row gap-4">
+          <div class="lg:w-48 h-48 lg:h-auto flex-shrink-0">
+            <img src="assets/image/browse/kardusbekas.jpg" alt="Kardus Bekas" class="w-full h-full object-cover rounded-xl">
+          </div>
+
+          <div class="flex-1">
+            <div class="flex items-start justify-between mb-3">
+              <div>
+                <h3 class="text-lg font-bold text-gray-900 mb-1">Kardus Bekas</h3>
+                <p class="text-sm text-gray-500">ID Booking: #BKG003</p>
+              </div>
+              <span class="status-badge px-3 py-1 bg-emerald-100 text-emerald-700 text-xs font-semibold rounded-full">Selesai</span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
+              <div class="flex items-start gap-2">
+                <svg class="w-5 h-5 text-gray-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+                <div>
+                  <p class="text-xs text-gray-500">Lokasi</p>
+                  <p class="text-sm font-medium text-gray-700">Jl. Ahmad Yani No. 34, Bekasi</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-2">
+                <svg class="w-5 h-5 text-gray-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <div>
+                  <p class="text-xs text-gray-500">Tanggal Selesai</p>
+                  <p class="text-sm font-medium text-gray-700">20 Oktober 2025</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-2">
+                <svg class="w-5 h-5 text-gray-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"/>
+                </svg>
+                <div>
+                  <p class="text-xs text-gray-500">Berat</p>
+                  <p class="text-sm font-medium text-gray-700">15 kg</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-2">
+                <svg class="w-5 h-5 text-emerald-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <div>
+                  <p class="text-xs text-gray-500">Poin Didapat</p>
+                  <p class="text-sm font-semibold text-emerald-600">+150 Poin</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-emerald-50 border-l-4 border-emerald-500 rounded-lg p-3 mb-3">
+              <p class="text-xs text-emerald-700"><strong>Selesai!</strong> Terima kasih telah berkontribusi untuk lingkungan</p>
+            </div>
+
+            <div class="action-buttons flex flex-wrap gap-2">
+              <button onclick="viewBookingDetail('BKG003')" class="flex-1 sm:flex-none px-4 py-2 bg-gray-100 text-gray-700 rounded-xl hover:bg-gray-200 transition-all text-sm font-medium">
+                Lihat Detail
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Empty State -->
+  <div id="emptyState" class="hidden text-center py-12">
+    <div class="mx-auto w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mb-4">
+      <svg class="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+      </svg>
+    </div>
+    <h3 class="text-lg font-semibold text-gray-900 mb-2">Belum Ada Booking</h3>
+    <p class="text-gray-500 mb-6">Yuk mulai berkontribusi dengan booking sampah!</p>
+    <a href="sampahtersedia.html" class="inline-block px-6 py-3 bg-emerald-600 text-white rounded-xl hover:bg-emerald-700 transition-all font-medium">
+      Cari Sampah
+    </a>
+  </div>
+
+</div>
+
+<!-- Modal Detail Booking -->
+<div id="detailModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+  <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl" onclick="event.stopPropagation()">
+    <div id="detailModalContent"></div>
+  </div>
+</div>
 
 
       <!-- End Content Area -->
@@ -354,6 +646,299 @@
   <!-- Link to external JavaScript file -->
   <script src="assets/js/sidebar.js"></script>
   <script src="assets/js/script.js"></script>
+
+ <script>
+  // Data booking detail
+  const bookingData = {
+    'BKG001': {
+      id: 'BKG001',
+      nama: 'Nasi Box Surplus',
+      kategori: 'Makanan Surplus',
+      berat: '10 porsi',
+      lokasi: 'Jl. Merdeka No. 45, Bogor',
+      alamatLengkap: 'Jl. Merdeka No. 45, RT 03/RW 05, Kelurahan Ciwaringin, Kecamatan Bogor Tengah, Bogor',
+      tanggalBooking: '23 Oktober 2025',
+      pemilik: 'Budi Santoso',
+      telepon: '081789012345',
+      status: 'selesai',
+      deskripsi: 'Kardus bekas dalam kondisi kering dan tidak rusak. Sudah dipotong dan dilipat rapi untuk memudahkan pengangkutan.',
+      gambar: 'assets/image/browse/kardusbekas.jpg',
+      poinDidapat: 150
+    }
+  };
+
+  function filterBooking(status) {
+    // Update active tab
+    document.querySelectorAll('.filter-tab').forEach(btn => {
+      btn.classList.remove('active');
+    });
+    event.target.classList.add('active');
+
+    // Filter booking cards
+    const bookingCards = document.querySelectorAll('[data-status]');
+    const emptyState = document.getElementById('emptyState');
+    let visibleCount = 0;
+
+    bookingCards.forEach(card => {
+      if (status === 'semua' || card.dataset.status === status) {
+        card.style.display = 'block';
+        visibleCount++;
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    // Show empty state if no results
+    if (visibleCount === 0) {
+      emptyState.classList.remove('hidden');
+      document.getElementById('bookingList').classList.add('hidden');
+    } else {
+      emptyState.classList.add('hidden');
+      document.getElementById('bookingList').classList.remove('hidden');
+    }
+  }
+
+  function contactOwner(phone) {
+    // Redirect to WhatsApp
+    const message = encodeURIComponent('Halo, saya ingin menanyakan tentang sampah yang saya booking.');
+    window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+  }
+
+  function viewBookingDetail(bookingId) {
+    const booking = bookingData[bookingId];
+    if (!booking) return;
+
+    const modal = document.getElementById('detailModal');
+    const content = document.getElementById('detailModalContent');
+
+    let statusBadge = '';
+    let statusInfo = '';
+    
+    if (booking.status === 'menunggu') {
+      statusBadge = '<span class="px-3 py-1 bg-yellow-100 text-yellow-700 text-xs font-semibold rounded-full">Menunggu</span>';
+      statusInfo = `
+        <div class="bg-yellow-50 border-l-4 border-yellow-500 rounded-lg p-4 mb-4">
+          <p class="text-sm text-yellow-700"><strong>Status:</strong> Booking Anda sedang menunggu konfirmasi dari pemilik.</p>
+        </div>
+      `;
+    } else if (booking.status === 'diproses') {
+      statusBadge = '<span class="px-3 py-1 bg-blue-100 text-blue-700 text-xs font-semibold rounded-full">Diproses</span>';
+      statusInfo = `
+        <div class="bg-blue-50 border-l-4 border-blue-500 rounded-lg p-4 mb-4">
+          <p class="text-sm text-blue-700"><strong>Update:</strong> ${booking.updateInfo || 'Booking sedang diproses.'}</p>
+        </div>
+      `;
+    } else if (booking.status === 'selesai') {
+      statusBadge = '<span class="px-3 py-1 bg-emerald-100 text-emerald-700 text-xs font-semibold rounded-full">Selesai</span>';
+      statusInfo = `
+        <div class="bg-emerald-50 border-l-4 border-emerald-500 rounded-lg p-4 mb-4">
+          <p class="text-sm text-emerald-700"><strong>Selesai!</strong> Terima kasih telah berkontribusi untuk lingkungan. Anda mendapatkan ${booking.poinDidapat} poin.</p>
+        </div>
+      `;
+    } else if (booking.status === 'dibatalkan') {
+      statusBadge = '<span class="px-3 py-1 bg-red-100 text-red-700 text-xs font-semibold rounded-full">Dibatalkan</span>';
+      statusInfo = `
+        <div class="bg-red-50 border-l-4 border-red-500 rounded-lg p-4 mb-4">
+          <p class="text-sm text-red-700"><strong>Dibatalkan:</strong> Booking ini telah dibatalkan.</p>
+        </div>
+      `;
+    }
+
+    content.innerHTML = `
+      <!-- Header -->
+      <div class="bg-gradient-to-r from-emerald-500 to-green-600 p-6 rounded-t-3xl">
+        <div class="flex items-center justify-between">
+          <h2 class="text-2xl font-bold text-white">Detail Booking</h2>
+          <button onclick="closeDetailModal()" class="bg-white bg-opacity-20 hover:bg-opacity-30 rounded-full p-2 transition">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+          </button>
+        </div>
+        <p class="text-emerald-50 mt-2">ID Booking: #${booking.id}</p>
+      </div>
+
+      <!-- Content -->
+      <div class="p-6">
+        <!-- Image -->
+        <img src="${booking.gambar}" alt="${booking.nama}" class="w-full h-64 object-cover rounded-2xl mb-6 shadow-lg">
+
+        <!-- Status Badge -->
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-2xl font-bold text-gray-900">${booking.nama}</h3>
+          ${statusBadge}
+        </div>
+
+        <!-- Status Info -->
+        ${statusInfo}
+
+        <!-- Info Grid -->
+        <div class="space-y-4 mb-6">
+          <!-- Kategori & Berat -->
+          <div class="grid grid-cols-2 gap-4">
+            <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl p-4">
+              <p class="text-xs text-gray-500 font-medium mb-1">Kategori</p>
+              <p class="text-sm font-bold text-gray-800">${booking.kategori}</p>
+            </div>
+            <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-4">
+              <p class="text-xs text-gray-500 font-medium mb-1">Berat</p>
+              <p class="text-sm font-bold text-gray-800">${booking.berat}</p>
+            </div>
+          </div>
+
+          <!-- Tanggal -->
+          <div class="bg-gradient-to-br from-orange-50 to-amber-50 rounded-xl p-4">
+            <p class="text-xs text-gray-500 font-medium mb-1">${booking.tanggalSelesai ? 'Tanggal Selesai' : 'Tanggal Booking'}</p>
+            <p class="text-sm font-bold text-gray-800">${booking.tanggalSelesai || booking.tanggalBooking}</p>
+          </div>
+
+          <!-- Pemilik -->
+          <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-4">
+            <div class="flex items-center justify-between">
+              <div class="flex-1">
+                <p class="text-xs text-gray-500 font-medium mb-1">Pemilik</p>
+                <p class="text-sm font-bold text-gray-800">${booking.pemilik}</p>
+                <a href="https://wa.me/${booking.telepon}" class="text-xs text-emerald-600 hover:text-emerald-700 font-medium mt-1 inline-block">
+                  <svg class="w-3 h-3 inline mr-1" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                  </svg>
+                  Hubungi via WhatsApp
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Alamat -->
+          <div class="bg-gradient-to-br from-red-50 to-pink-50 rounded-xl p-4">
+            <p class="text-xs text-gray-500 font-medium mb-1">Alamat Lengkap</p>
+            <p class="text-sm font-semibold text-gray-800 leading-relaxed">${booking.alamatLengkap}</p>
+          </div>
+
+          <!-- Deskripsi -->
+          <div class="bg-gray-50 rounded-xl p-4">
+            <p class="text-xs text-gray-500 font-medium mb-2">Deskripsi</p>
+            <p class="text-sm text-gray-700 leading-relaxed">${booking.deskripsi}</p>
+          </div>
+
+          ${booking.poinDidapat ? `
+          <div class="bg-gradient-to-br from-yellow-50 to-amber-50 rounded-xl p-4 text-center">
+            <svg class="w-12 h-12 text-yellow-500 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            <p class="text-2xl font-bold text-yellow-700">+${booking.poinDidapat} Poin</p>
+            <p class="text-xs text-gray-600 mt-1">Poin yang Anda dapatkan</p>
+          </div>
+          ` : ''}
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="flex gap-3">
+          ${booking.status === 'menunggu' || booking.status === 'diproses' ? `
+            <button onclick="contactOwner('${booking.telepon}')" class="flex-1 py-3 bg-gradient-to-r from-emerald-500 to-green-600 text-white font-bold rounded-xl hover:from-emerald-600 hover:to-green-700 transition shadow-lg">
+              Hubungi Pemilik
+            </button>
+          ` : ''}
+          <button onclick="closeDetailModal()" class="flex-1 py-3 bg-gray-100 text-gray-700 font-bold rounded-xl hover:bg-gray-200 transition">
+            Tutup
+          </button>
+        </div>
+      </div>
+    `;
+
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeDetailModal() {
+    const modal = document.getElementById('detailModal');
+    modal.classList.add('hidden');
+    document.body.style.overflow = 'auto';
+  }
+
+  function cancelBooking(bookingId) {
+    if (confirm('Apakah Anda yakin ingin membatalkan booking ini?')) {
+      const card = document.querySelector(`[data-id="${bookingId}"]`);
+      const statusBadge = card.querySelector('.status-badge');
+      const actionButtons = card.querySelector('.action-buttons');
+      const cancelBtn = card.querySelector('.cancel-btn');
+      
+      // Update status di data
+      if (bookingData[bookingId]) {
+        bookingData[bookingId].status = 'dibatalkan';
+      }
+      
+      // Update status badge
+      statusBadge.className = 'status-badge px-3 py-1 bg-red-100 text-red-700 text-xs font-semibold rounded-full';
+      statusBadge.textContent = 'Dibatalkan';
+      
+      // Update data-status attribute
+      card.setAttribute('data-status', 'dibatalkan');
+      
+      // Hapus tombol batalkan
+      if (cancelBtn) {
+        cancelBtn.remove();
+      }
+      
+      // Tambahkan notifikasi dibatalkan
+      const contentDiv = card.querySelector('.flex-1');
+      const existingNotif = contentDiv.querySelector('.bg-red-50');
+      if (!existingNotif) {
+        const cancelNotif = document.createElement('div');
+        cancelNotif.className = 'bg-red-50 border-l-4 border-red-500 rounded-lg p-3 mb-3';
+        cancelNotif.innerHTML = '<p class="text-xs text-red-700"><strong>Dibatalkan:</strong> Booking ini telah dibatalkan</p>';
+        actionButtons.parentNode.insertBefore(cancelNotif, actionButtons);
+      }
+      
+      // Update statistics
+      updateStatistics();
+      
+      // Show notification
+      showNotification('Booking berhasil dibatalkan', 'error');
+    }
+  }
+
+  function updateStatistics() {
+    const allCards = document.querySelectorAll('[data-status]');
+    let total = allCards.length;
+    let menunggu = 0;
+    let selesai = 0;
+    let dibatalkan = 0;
+
+    allCards.forEach(card => {
+      const status = card.getAttribute('data-status');
+      if (status === 'menunggu') menunggu++;
+      else if (status === 'selesai') selesai++;
+      else if (status === 'dibatalkan') dibatalkan++;
+    });
+
+    document.getElementById('totalBooking').textContent = total;
+    document.getElementById('totalMenunggu').textContent = menunggu;
+    document.getElementById('totalSelesai').textContent = selesai;
+    document.getElementById('totalDibatalkan').textContent = dibatalkan;
+  }
+
+  function showNotification(message, type = 'success') {
+    const notification = document.createElement('div');
+    notification.className = `fixed top-4 right-4 z-50 px-6 py-4 rounded-xl shadow-lg transform transition-all duration-300 ${
+      type === 'success' ? 'bg-emerald-500' : 'bg-red-500'
+    } text-white font-medium`;
+    notification.textContent = message;
+    
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+      notification.style.opacity = '0';
+      setTimeout(() => notification.remove(), 300);
+    }, 3000);
+  }
+
+  // Close modal when clicking outside
+  document.getElementById('detailModal').addEventListener('click', function(e) {
+    if (e.target === this) {
+      closeDetailModal();
+    }
+  });
+</script>
 
 </body>
 
