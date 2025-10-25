@@ -260,3 +260,33 @@
         .step-icon {
             transition: transform 0.3s ease;
         }
+
+      .step-card {
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(6px);
+      border-radius: 1.5rem;
+      padding: 2rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      transition: all 0.4s ease;
+    }
+
+    .step-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+    }
+
+    /* Animasi parallax halus */
+    section[style*="background-image"] {
+      background-attachment: fixed;
+      background-position: center;
+      background-size: cover;
+    }
+
+    @media (max-width: 768px) {
+      section[style*="background-image"] {
+        background-attachment: scroll;
+        /* biar aman di HP */
+      }
+    }
+
+
