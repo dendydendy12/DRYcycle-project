@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pusat Bantuan - DRYcycle</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-50">
+    <!-- Navigasi -->
+    <nav class="bg-white sticky top-0 z-50 flex items-center justify-between px-4 py-3 shadow-md">
+        <div class="flex items-center space-x-3">
+            <button onclick="window.history.back()"
+                class="text-gray-700 hover:text-emerald-600 transition transform hover:scale-110">
+                <i class="fa-solid fa-arrow-left text-xl"></i>
+            </button>
+            <div>
+                <h1 class="text-lg font-semibold text-gray-800 leading-tight">Pusat Bantuan</h1>
+                <p class="text-xs text-gray-500">Temukan jawaban Anda di sini</p>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto px-4 py-6 max-w-4xl">
+        <!-- Search Box -->
+        <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+            <div class="relative">
+                <i class="fas fa-search absolute left-4 top-4 text-gray-400"></i>
+                <input type="text" id="searchInput" placeholder="Cari topik bantuan..."
+                    class="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none">
+            </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+            <a href="#getting-started" class="bg-white rounded-lg shadow-sm p-4 hover:shadow-md transition text-center">
+                <div class="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <i class="fas fa-rocket text-emerald-600 text-xl"></i>
+                </div>
+                <p class="text-sm font-semibold text-gray-800">Memulai</p>
+            </a>
+
+            <a href="#waste-report" class="bg-white rounded-lg shadow-sm p-4 hover:shadow-md transition text-center">
+                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <i class="fas fa-camera text-blue-600 text-xl"></i>
+                </div>
+                <p class="text-sm font-semibold text-gray-800">Lapor Sampah</p>
+            </a>
+
+            <a href="#leaderboard" class="bg-white rounded-lg shadow-sm p-4 hover:shadow-md transition text-center">
+                <div class="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <i class="fas fa-trophy text-yellow-600 text-xl"></i>
+                </div>
+                <p class="text-sm font-semibold text-gray-800">Leaderboard</p>
+            </a>
+
+            <a href="#contact" class="bg-white rounded-lg shadow-sm p-4 hover:shadow-md transition text-center">
+                <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <i class="fas fa-headset text-purple-600 text-xl"></i>
+                </div>
+                <p class="text-sm font-semibold text-gray-800">Kontak</p>
+            </a>
+        </div>
+
+        <!-- FAQ Section - Getting Started -->
+        <div id="getting-started" class="bg-white rounded-lg shadow-sm mb-4 overflow-hidden">
+            <div class="px-6 py-4 border-b bg-emerald-50">
+                <h2 class="text-lg font-bold text-gray-800 flex items-center">
+                    <i class="fas fa-rocket text-emerald-600 mr-3"></i>
+                    Memulai dengan DRYcycle
+                </h2>
+            </div>
+            <div class="divide-y">
+                <div class="faq-item">
+                    <button class="faq-question w-full flex items-center justify-between px-6 py-4 text-left hover:bg-gray-50 transition">
+                        <span class="font-medium text-gray-800">Apa itu DRYcycle?</span>
+                        <i class="fas fa-chevron-down text-gray-400 transition-transform"></i>
+                    </button>
+                    <div class="faq-answer hidden px-6 pb-4">
+                        <p class="text-gray-600 text-sm leading-relaxed">
+                            DRYcycle adalah aplikasi web berbasis komunitas yang menghadirkan solusi cerdas dan berkelanjutan untuk pengelolaan sampah layak di masyarakat. Nama "DRYcycle" berasal dari konsep "Don't let Resources rot — Reuse, Yield, and Recycle", yang menggambarkan semangat untuk mengubah sampah menjadi sumber daya bernilai sebelum terbuang sia-sia.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question w-full flex items-center justify-between px-6 py-4 text-left hover:bg-gray-50 transition">
+                        <span class="font-medium text-gray-800">Bagaimana cara mendaftar?</span>
+                        <i class="fas fa-chevron-down text-gray-400 transition-transform"></i>
+                    </button>
+                    <div class="faq-answer hidden px-6 pb-4">
+                        <p class="text-gray-600 text-sm leading-relaxed mb-3">
+                            Untuk mendaftar di DRYcycle, ikuti langkah berikut:
+                        </p>
+                        <ol class="list-decimal list-inside space-y-2 text-gray-600 text-sm">
+                            <li>Klik tombol "Daftar" di halaman utama</li>
+                            <li>Isi formulir dengan nama lengkap, email, dan password</li>
+                            <li>Verifikasi email Anda melalui link yang dikirimkan</li>
+                            <li>Lengkapi profil Anda dan mulai berkontribusi!</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question w-full flex items-center justify-between px-6 py-4 text-left hover:bg-gray-50 transition">
+                        <span class="font-medium text-gray-800">Apakah DRYcycle gratis?</span>
+                        <i class="fas fa-chevron-down text-gray-400 transition-transform"></i>
+                    </button>
+                    <div class="faq-answer hidden px-6 pb-4">
+                        <p class="text-gray-600 text-sm leading-relaxed">
+                            Ya! DRYcycle sepenuhnya gratis untuk semua pengguna. Kami percaya bahwa pengelolaan sampah yang berkelanjutan adalah tanggung jawab bersama dan harus dapat diakses oleh semua orang.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ Section - Waste Report -->
+        <div id="waste-report" class="bg-white rounded-lg shadow-sm mb-4 overflow-hidden">
+            <div class="px-6 py-4 border-b bg-blue-50">
+                <h2 class="text-lg font-bold text-gray-800 flex items-center">
+                    <i class="fas fa-camera text-blue-600 mr-3"></i>
+                    Melaporkan Sampah
+                </h2>
+            </div>
+            <div class="divide-y">
+                <div class="faq-item">
+                    <button class="faq-question w-full flex items-center justify-between px-6 py-4 text-left hover:bg-gray-50 transition">
+                        <span class="font-medium text-gray-800">Bagaimana cara melaporkan sampah?</span>
+                        <i class="fas fa-chevron-down text-gray-400 transition-transform"></i>
+                    </button>
+                    <div class="faq-answer hidden px-6 pb-4">
+                        <ol class="list-decimal list-inside space-y-2 text-gray-600 text-sm">
+                            <li>Klik tombol "Lapor Sampah" di menu utama</li>
+                            <li>Ambil foto sampah yang ingin dilaporkan</li>
+                            <li>Pilih kategori sampah (Organik, Plastik, Makanan, dll)</li>
+                            <li>Isi deskripsi singkat dan jumlah/berat sampah</li>
+                            <li>Pastikan lokasi sudah benar atau atur manual</li>
+                            <li>Klik "Submit" dan tunggu konfirmasi</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question w-full flex items-center justify-between px-6 py-4 text-left hover:bg-gray-50 transition">
+                        <span class="font-medium text-gray-800">Jenis sampah apa saja yang bisa dilaporkan?</span>
+                        <i class="fas fa-chevron-down text-gray-400 transition-transform"></i>
+                    </button>
+                    <div class="faq-answer hidden px-6 pb-4">
+                        <p class="text-gray-600 text-sm leading-relaxed mb-3">DRYcycle menerima berbagai jenis sampah layak kelola:</p>
+                        <ul class="list-disc list-inside space-y-2 text-gray-600 text-sm">
+                            <li><strong>Sampah Organik:</strong> Sisa sayuran, buah, dan bahan organik untuk kompos atau pakan ternak</li>
+                            <li><strong>Plastik:</strong> Botol, kemasan plastik bersih yang bisa didaur ulang</li>
+                            <li><strong>Makanan Surplus:</strong> Makanan layak konsumsi yang masih fresh untuk disalurkan</li>
+                            <li><strong>Kertas & Kardus:</strong> Kertas bekas, kardus, dan kemasan kertas</li>
+                            <li><strong>Logam:</strong> Kaleng, aluminium, dan logam lainnya</li>
+                            <li><strong>Elektronik:</strong> E-waste yang perlu pengolahan khusus</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question w-full flex items-center justify-between px-6 py-4 text-left hover:bg-gray-50 transition">
+                        <span class="font-medium text-gray-800">Berapa lama sampah akan diambil?</span>
+                        <i class="fas fa-chevron-down text-gray-400 transition-transform"></i>
+                    </button>
+                    <div class="faq-answer hidden px-6 pb-4">
+                        <p class="text-gray-600 text-sm leading-relaxed">
+                            Waktu pengambilan tergantung jenis sampah. Makanan surplus akan diprioritaskan (biasanya dalam 1-2 jam) untuk mencegah pembusukan. Sampah plastik dan organik biasanya diambil dalam 1-3 hari. Anda akan mendapat notifikasi saat ada yang booking atau petugas akan datang.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question w-full flex items-center justify-between px-6 py-4 text-left hover:bg-gray-50 transition">
+                        <span class="font-medium text-gray-800">Apakah ada poin reward untuk melaporkan sampah?</span>
+                        <i class="fas fa-chevron-down text-gray-400 transition-transform"></i>
+                    </button>
+                    <div class="faq-answer hidden px-6 pb-4">
+                        <p class="text-gray-600 text-sm leading-relaxed">
+                            Ya! Setiap laporan sampah yang berhasil diambil akan memberikan poin kontribusi yang akan muncul di leaderboard. Semakin banyak kontribusi, semakin tinggi peringkat Anda dan semakin banyak badge yang bisa didapatkan.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ Section - Leaderboard -->
+        <div id="leaderboard" class="bg-white rounded-lg shadow-sm mb-4 overflow-hidden">
+            <div class="px-6 py-4 border-b bg-yellow-50">
+                <h2 class="text-lg font-bold text-gray-800 flex items-center">
+                    <i class="fas fa-trophy text-yellow-600 mr-3"></i>
+                    Leaderboard & Pencapaian
+                </h2>
+            </div>
+            <div class="divide-y">
+                <div class="faq-item">
+                    <button class="faq-question w-full flex items-center justify-between px-6 py-4 text-left hover:bg-gray-50 transition">
+                        <span class="font-medium text-gray-800">Bagaimana sistem leaderboard bekerja?</span>
+                        <i class="fas fa-chevron-down text-gray-400 transition-transform"></i>
+                    </button>
+                    <div class="faq-answer hidden px-6 pb-4">
+                        <p class="text-gray-600 text-sm leading-relaxed">
+                            Leaderboard menampilkan peringkat kontributor berdasarkan total berat sampah yang dilaporkan dan dikelola. Poin dihitung dari jumlah laporan, berat sampah, dan dampak lingkungan yang dihasilkan. Leaderboard diperbarui secara real-time setiap ada kontribusi baru.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question w-full flex items-center justify-between px-6 py-4 text-left hover:bg-gray-50 transition">
+                        <span class="font-medium text-gray-800">Apa saja badge yang bisa didapatkan?</span>
+                        <i class="fas fa-chevron-down text-gray-400 transition-transform"></i>
+                    </button>
+                    <div class="faq-answer hidden px-6 pb-4">
+                        <ul class="list-disc list-inside space-y-2 text-gray-600 text-sm">
+                            <li><strong>Eco Warrior:</strong> Laporkan 50+ kg sampah</li>
+                            <li><strong>Recycler Pro:</strong> 100+ laporan sampah plastik</li>
+                            <li><strong>Food Savior:</strong> Selamatkan 25+ kg makanan surplus</li>
+                            <li><strong>Community Star:</strong> Aktif di komunitas dengan 100+ interaksi</li>
+                            <li><strong>Green Champion:</strong> Top 10 leaderboard selama 3 bulan</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ Section - Community -->
+        <div class="bg-white rounded-lg shadow-sm mb-4 overflow-hidden">
+            <div class="px-6 py-4 border-b bg-purple-50">
+                <h2 class="text-lg font-bold text-gray-800 flex items-center">
+                    <i class="fas fa-users text-purple-600 mr-3"></i>
+                    Komunitas
+                </h2>
+            </div>
+            <div class="divide-y">
+                <div class="faq-item">
+                    <button class="faq-question w-full flex items-center justify-between px-6 py-4 text-left hover:bg-gray-50 transition">
+                        <span class="font-medium text-gray-800">Bagaimana cara bergabung dengan komunitas?</span>
+                        <i class="fas fa-chevron-down text-gray-400 transition-transform"></i>
+                    </button>
+                    <div class="faq-answer hidden px-6 pb-4">
+                        <p class="text-gray-600 text-sm leading-relaxed">
+                            Setelah mendaftar, Anda otomatis menjadi bagian dari komunitas DRYcycle. Anda bisa berinteraksi melalui fitur forum, berbagi tips, dan berkolaborasi dalam kegiatan lingkungan. Akses menu "Komunitas" untuk melihat aktivitas terbaru.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question w-full flex items-center justify-between px-6 py-4 text-left hover:bg-gray-50 transition">
+                        <span class="font-medium text-gray-800">Apakah bisa booking sampah orang lain?</span>
+                        <i class="fas fa-chevron-down text-gray-400 transition-transform"></i>
+                    </button>
+                    <div class="faq-answer hidden px-6 pb-4">
+                        <p class="text-gray-600 text-sm leading-relaxed">
+                            Ya! Anda bisa melihat laporan sampah dari pengguna lain dan klik "Booking" untuk mengambilnya langsung ke lokasi pemilik. Ini sangat cocok untuk Anda yang memiliki usaha daur ulang atau ingin membantu pengelolaan sampah di sekitar.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Support -->
+        <div id="contact" class="bg-gradient-to-r from-emerald-500 to-teal-600 rounded-lg shadow-lg p-8 text-white text-center mb-6">
+            <i class="fas fa-headset text-5xl mb-4 opacity-90"></i>
+            <h3 class="text-2xl font-bold mb-2">Masih Butuh Bantuan?</h3>
+            <p class="mb-6 opacity-90">Tim support kami siap membantu Anda</p>
+            <div class="space-y-3">
+                <a href="mailto:support@drycycle.id" class="block bg-white text-emerald-600 font-semibold py-3 px-6 rounded-lg hover:bg-gray-100 transition">
+                    <i class="fas fa-envelope mr-2"></i>
+                    support@drycycle.id
+                </a>
+                <a href="https://wa.me/6281234567890" target="_blank" class="block bg-white text-emerald-600 font-semibold py-3 px-6 rounded-lg hover:bg-gray-100 transition">
+                    <i class="fab fa-whatsapp mr-2"></i>
+                    WhatsApp Support
+                </a>
+            </div>
+        </div>
+
+        <!-- Video Tutorial -->
+        <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+            <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
+                <i class="fas fa-video text-red-500 mr-3"></i>
+                Tutorial Video
+            </h3>
+            <div class="grid md:grid-cols-2 gap-4">
+                <div class="border rounded-lg overflow-hidden hover:shadow-md transition">
+                    <div class="bg-gray-200 h-40 flex items-center justify-center">
+                        <i class="fas fa-play-circle text-5xl text-gray-400"></i>
+                    </div>
+                    <div class="p-4">
+                        <h4 class="font-semibold text-gray-800 mb-1">Cara Melaporkan Sampah</h4>
+                        <p class="text-xs text-gray-500">Durasi: 3 menit</p>
+                    </div>
+                </div>
+                <div class="border rounded-lg overflow-hidden hover:shadow-md transition">
+                    <div class="bg-gray-200 h-40 flex items-center justify-center">
+                        <i class="fas fa-play-circle text-5xl text-gray-400"></i>
+                    </div>
+                    <div class="p-4">
+                        <h4 class="font-semibold text-gray-800 mb-1">Memaksimalkan Poin Kontribusi</h4>
+                        <p class="text-xs text-gray-500">Durasi: 5 menit</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // FAQ Toggle
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const faqItem = button.closest('.faq-item');
+                const answer = faqItem.querySelector('.faq-answer');
+                const icon = button.querySelector('i');
+                
+                // Toggle current item
+                answer.classList.toggle('hidden');
+                icon.classList.toggle('rotate-180');
+            });
+        });
+
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question span').textContent.toLowerCase();
+                const answer = item.querySelector('.faq-answer').textContent.toLowerCase();
+                
+                if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+                    item.style.display = 'block';
+                    if (searchTerm.length > 2) {
+                        item.querySelector('.faq-answer').classList.remove('hidden');
+                        item.querySelector('.faq-question i').classList.add('rotate-180');
+                    }
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+
+        // Smooth scroll for quick links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
