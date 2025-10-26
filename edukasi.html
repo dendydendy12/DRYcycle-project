@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,11 +9,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap');
-        
+
         body {
             font-family: 'Poppins', sans-serif;
         }
-        
+
         .video-background {
             position: fixed;
             top: 0;
@@ -23,57 +24,83 @@
             z-index: -1;
             opacity: 0.2;
         }
-        
+
         .content-overlay {
             position: relative;
             z-index: 1;
         }
-        
+
         .page {
             display: none;
         }
-        
+
         .page.active {
             display: block;
             animation: fadeIn 0.5s;
         }
-        
+
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        
+
         @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
         }
-        
+
         .float-animation {
             animation: float 3s ease-in-out infinite;
         }
-        
+
         .lesson-card {
             transition: all 0.3s ease;
             cursor: pointer;
         }
-        
+
         .lesson-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 20px 40px rgba(34, 197, 94, 0.3);
         }
-        
+
         .cloud {
             animation: moveClouds 30s linear infinite;
         }
-        
+
         @keyframes moveClouds {
-            from { transform: translateX(-100%); }
-            to { transform: translateX(100vw); }
+            from {
+                transform: translateX(-100%);
+            }
+
+            to {
+                transform: translateX(100vw);
+            }
         }
 
         @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
         }
 
         .music-playing {
@@ -131,303 +158,333 @@
         }
     </style>
 </head>
+
 <body class="bg-gradient-to-b from-green-50 via-emerald-50 to-teal-50 min-h-screen overflow-x-hidden">
-    
+
     <!-- Video Background Area -->
     <video class="video-background" autoplay loop muted playsinline>
         <source src="assets/video/bg.mp4" type="video/mp4">
     </video>
-    
+
     <div class="content-overlay">
-    
-    <!-- Background Elements -->
-    <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
-        <div class="cloud absolute top-10 w-32 h-16 bg-white rounded-full opacity-50" style="animation-delay: 0s;"></div>
-        <div class="cloud absolute top-32 w-40 h-20 bg-white rounded-full opacity-40" style="animation-delay: 5s;"></div>
-        <div class="cloud absolute top-20 w-36 h-18 bg-white rounded-full opacity-30" style="animation-delay: 10s;"></div>
-    </div>
 
-    <!-- Music Control Panel -->
-    <div class="fixed top-4 right-4 z-50 flex items-center gap-3">
-        <div id="musicStatus" class="bg-white/90 backdrop-blur-sm rounded-full px-4 py-2 shadow-lg hidden">
-            <span class="text-sm font-semibold text-gray-700">
-                <i class="fas fa-music mr-2 text-green-500"></i>
-                <span id="musicStatusText">Musik: Mati</span>
-            </span>
-        </div>
-        
-        <button id="musicBtn" class="bg-white hover:bg-green-50 text-green-600 rounded-full p-4 shadow-lg transition-all border-2 border-green-200">
-            <i id="musicIcon" class="fas fa-volume-mute text-xl"></i>
-        </button>
-    </div>
-
-    <!-- Background Music -->
-    <audio id="bgMusic" loop>
-        <source src="assets/audio/bg-game.m4a" type="audio/mpeg">
-    </audio>
-
-    <!-- Simple White Header -->
-    <header class="bg-white/90 backdrop-blur-sm text-gray-800 shadow-lg sticky top-0 z-40">
-        <div class="container mx-auto px-4 py-4">
-            <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-3">
-                    <i class="fas fa-seedling text-3xl text-green-600 float-animation"></i>
-                    <h1 class="text-2xl font-bold">Eco Kids</h1>
-                </div>
-                <div class="flex items-center space-x-4">
-                    <button onclick="showPage('home')" class="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-full transition font-semibold">
-                        <i class="fas fa-home mr-2"></i>Beranda
-                    </button>
-                </div>
+        <!-- Background Elements -->
+        <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
+            <div class="cloud absolute top-10 w-32 h-16 bg-white rounded-full opacity-50" style="animation-delay: 0s;">
+            </div>
+            <div class="cloud absolute top-32 w-40 h-20 bg-white rounded-full opacity-40" style="animation-delay: 5s;">
+            </div>
+            <div class="cloud absolute top-20 w-36 h-18 bg-white rounded-full opacity-30" style="animation-delay: 10s;">
             </div>
         </div>
-    </header>
 
-    <!-- Home Page -->
-    <div id="homePage" class="page active">
-        <div class="container mx-auto px-4 py-8 relative z-10">
-            <!-- Welcome Section with Background Image -->
-            <div class="welcome-bg rounded-3xl overflow-hidden mb-8 shadow-2xl">
-                <div class="welcome-overlay p-8 md:p-12">
-                    <div class="flex flex-col md:flex-row items-center justify-between">
-                        <div class="mb-6 md:mb-0 text-center md:text-left">
-                            <h2 class="text-4xl md:text-5xl font-bold text-white mb-3">Selamat Datang, Sahabat Bumi! <i class="fas fa-globe-americas"></i></h2>
-                            <p class="text-white text-lg md:text-xl opacity-90">Belajar menjaga lingkungan dengan cara yang seru dan interaktif!</p>
-                            <div class="mt-6 flex flex-wrap gap-3 justify-center md:justify-start">
-                                <div class="bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 text-white">
-                                    <i class="fas fa-book-open mr-2"></i>9 Materi
-                                </div>
-                                <div class="bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 text-white">
-                                    <i class="fas fa-gamepad mr-2"></i>3 Kuis
-                                </div>
-                                <div class="bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 text-white">
-                                    <i class="fas fa-trophy mr-2"></i>100% Gratis
+        <!-- Music Control Panel -->
+        <div class="fixed top-4 right-4 z-50 flex items-center gap-3">
+            <div id="musicStatus" class="bg-white/90 backdrop-blur-sm rounded-full px-4 py-2 shadow-lg hidden">
+                <span class="text-sm font-semibold text-gray-700">
+                    <i class="fas fa-music mr-2 text-green-500"></i>
+                    <span id="musicStatusText">Musik: Mati</span>
+                </span>
+            </div>
+
+            <button id="musicBtn"
+                class="bg-white hover:bg-green-50 text-green-600 rounded-full p-4 shadow-lg transition-all border-2 border-green-200">
+                <i id="musicIcon" class="fas fa-volume-mute text-xl"></i>
+            </button>
+        </div>
+
+        <!-- Background Music -->
+        <audio id="bgMusic" loop>
+            <source src="assets/audio/bg-game.m4a" type="audio/mpeg">
+        </audio>
+
+        <!-- Simple White Header -->
+        <header class="bg-white/90 backdrop-blur-sm text-gray-800 shadow-lg sticky top-0 z-40">
+            <div class="container mx-auto px-4 py-4">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-3">
+                        <i class="fas fa-seedling text-3xl text-green-600 float-animation"></i>
+                        <h1 class="text-2xl font-bold">Eco Kids</h1>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <button onclick="showPage('home')"
+                            class="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-full transition font-semibold">
+                            <i class="fas fa-home mr-2"></i>Beranda
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Home Page -->
+        <div id="homePage" class="page active">
+            <div class="container mx-auto px-4 py-8 relative z-10">
+                <!-- Welcome Section with Background Image -->
+                <div class="welcome-bg rounded-3xl overflow-hidden mb-8 shadow-2xl">
+                    <div class="welcome-overlay p-8 md:p-12">
+                        <div class="flex flex-col md:flex-row items-center justify-between">
+                            <div class="mb-6 md:mb-0 text-center md:text-left">
+                                <h2 class="text-4xl md:text-5xl font-bold text-white mb-3">Selamat Datang, Sahabat Bumi!
+                                    <i class="fas fa-globe-americas"></i></h2>
+                                <p class="text-white text-lg md:text-xl opacity-90">Belajar menjaga lingkungan dengan
+                                    cara yang seru dan interaktif!</p>
+                                <div class="mt-6 flex flex-wrap gap-3 justify-center md:justify-start">
+                                    <div class="bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 text-white">
+                                        <i class="fas fa-book-open mr-2"></i>9 Materi
+                                    </div>
+                                    <div class="bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 text-white">
+                                        <i class="fas fa-gamepad mr-2"></i>3 Kuis
+                                    </div>
+                                    <div class="bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 text-white">
+                                        <i class="fas fa-trophy mr-2"></i>100% Gratis
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <i class="fas fa-leaf text-8xl md:text-9xl float-animation text-white opacity-80"></i>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Topic Cards -->
-            <div class="mb-8 text-center">
-                <h3 class="text-3xl font-bold text-gray-800 mb-2"><i class="fas fa-graduation-cap mr-2 text-green-600"></i>Pilih Topik Pembelajaran</h3>
-                <p class="text-gray-600">Klik pada materi untuk mulai belajar!</p>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Topic 1: Pengenalan Lingkungan -->
-                <div class="bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition">
-                    <div class="bg-gradient-to-br from-green-400 to-emerald-500 p-8 text-center">
-                        <i class="fas fa-earth-americas text-white text-7xl mb-4"></i>
-                        <h3 class="text-2xl font-bold text-white">Pengenalan Lingkungan</h3>
-                    </div>
-                    <div class="p-6">
-                        <p class="text-gray-600 mb-6 text-center">Kenali lingkungan di sekitar kita</p>
-                        
-                        <div class="space-y-3">
-                            <button onclick="showLesson('pengenalan', 1)" class="lesson-card w-full bg-green-50 hover:bg-green-100 p-4 rounded-xl flex items-center justify-between transition border-2 border-green-200">
-                                <div class="flex items-center space-x-3">
-                                    <div class="bg-green-500 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center">
-                                        <i class="fas fa-book"></i>
-                                    </div>
-                                    <span class="font-semibold text-gray-700">Apa itu Lingkungan?</span>
-                                </div>
-                                <i class="fas fa-chevron-right text-green-600"></i>
-                            </button>
-                            
-                            <button onclick="showLesson('pengenalan', 2)" class="lesson-card w-full bg-green-50 hover:bg-green-100 p-4 rounded-xl flex items-center justify-between transition border-2 border-green-200">
-                                <div class="flex items-center space-x-3">
-                                    <div class="bg-green-500 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center">
-                                        <i class="fas fa-heart"></i>
-                                    </div>
-                                    <span class="font-semibold text-gray-700">Pentingnya Lingkungan</span>
-                                </div>
-                                <i class="fas fa-chevron-right text-green-600"></i>
-                            </button>
-                            
-                            <button onclick="showLesson('pengenalan', 3)" class="lesson-card w-full bg-yellow-50 hover:bg-yellow-100 p-4 rounded-xl flex items-center justify-between transition border-2 border-yellow-300">
-                                <div class="flex items-center space-x-3">
-                                    <div class="bg-yellow-500 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center">
-                                        <i class="fas fa-star"></i>
-                                    </div>
-                                    <span class="font-semibold text-gray-700">Kuis Lingkungan</span>
-                                </div>
-                                <i class="fas fa-gamepad text-yellow-600"></i>
-                            </button>
+                            <i class="fas fa-leaf text-8xl md:text-9xl float-animation text-white opacity-80"></i>
                         </div>
                     </div>
                 </div>
 
-                <!-- Topic 2: Mengenal Sampah -->
-                <div class="bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition">
-                    <div class="bg-gradient-to-br from-emerald-400 to-teal-500 p-8 text-center">
-                        <i class="fas fa-recycle text-white text-7xl mb-4"></i>
-                        <h3 class="text-2xl font-bold text-white">Mengenal Sampah</h3>
-                    </div>
-                    <div class="p-6">
-                        <p class="text-gray-600 mb-6 text-center">Belajar tentang jenis-jenis sampah</p>
-                        
-                        <div class="space-y-3">
-                            <button onclick="showLesson('sampah', 1)" class="lesson-card w-full bg-emerald-50 hover:bg-emerald-100 p-4 rounded-xl flex items-center justify-between transition border-2 border-emerald-200">
-                                <div class="flex items-center space-x-3">
-                                    <div class="bg-emerald-500 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center">
-                                        <i class="fas fa-trash"></i>
-                                    </div>
-                                    <span class="font-semibold text-gray-700">Jenis-Jenis Sampah</span>
-                                </div>
-                                <i class="fas fa-chevron-right text-emerald-600"></i>
-                            </button>
-                            
-                            <button onclick="showLesson('sampah', 2)" class="lesson-card w-full bg-emerald-50 hover:bg-emerald-100 p-4 rounded-xl flex items-center justify-between transition border-2 border-emerald-200">
-                                <div class="flex items-center space-x-3">
-                                    <div class="bg-emerald-500 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center">
-                                        <i class="fas fa-exclamation-triangle"></i>
-                                    </div>
-                                    <span class="font-semibold text-gray-700">Dampak Sampah</span>
-                                </div>
-                                <i class="fas fa-chevron-right text-emerald-600"></i>
-                            </button>
-                            
-                            <button onclick="showLesson('sampah', 3)" class="lesson-card w-full bg-yellow-50 hover:bg-yellow-100 p-4 rounded-xl flex items-center justify-between transition border-2 border-yellow-300">
-                                <div class="flex items-center space-x-3">
-                                    <div class="bg-yellow-500 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center">
-                                        <i class="fas fa-star"></i>
-                                    </div>
-                                    <span class="font-semibold text-gray-700">Kuis Pilah Sampah</span>
-                                </div>
-                                <i class="fas fa-gamepad text-yellow-600"></i>
-                            </button>
-                        </div>
-                    </div>
+                <!-- Topic Cards -->
+                <div class="mb-8 text-center">
+                    <h3 class="text-3xl font-bold text-gray-800 mb-2"><i
+                            class="fas fa-graduation-cap mr-2 text-green-600"></i>Pilih Topik Pembelajaran</h3>
+                    <p class="text-gray-600">Klik pada materi untuk mulai belajar!</p>
                 </div>
 
-                <!-- Topic 3: Pengelolaan Sampah -->
-                <div class="bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition">
-                    <div class="bg-gradient-to-br from-teal-400 to-green-600 p-8 text-center">
-                        <i class="fas fa-hands-helping text-white text-7xl mb-4"></i>
-                        <h3 class="text-2xl font-bold text-white">Pengelolaan Sampah</h3>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Topic 1: Pengenalan Lingkungan -->
+                    <div class="bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition">
+                        <div class="bg-gradient-to-br from-green-400 to-emerald-500 p-8 text-center">
+                            <i class="fas fa-earth-americas text-white text-7xl mb-4"></i>
+                            <h3 class="text-2xl font-bold text-white">Pengenalan Lingkungan</h3>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-gray-600 mb-6 text-center">Kenali lingkungan di sekitar kita</p>
+
+                            <div class="space-y-3">
+                                <button onclick="showLesson('pengenalan', 1)"
+                                    class="lesson-card w-full bg-green-50 hover:bg-green-100 p-4 rounded-xl flex items-center justify-between transition border-2 border-green-200">
+                                    <div class="flex items-center space-x-3">
+                                        <div
+                                            class="bg-green-500 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center">
+                                            <i class="fas fa-book"></i>
+                                        </div>
+                                        <span class="font-semibold text-gray-700">Apa itu Lingkungan?</span>
+                                    </div>
+                                    <i class="fas fa-chevron-right text-green-600"></i>
+                                </button>
+
+                                <button onclick="showLesson('pengenalan', 2)"
+                                    class="lesson-card w-full bg-green-50 hover:bg-green-100 p-4 rounded-xl flex items-center justify-between transition border-2 border-green-200">
+                                    <div class="flex items-center space-x-3">
+                                        <div
+                                            class="bg-green-500 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center">
+                                            <i class="fas fa-heart"></i>
+                                        </div>
+                                        <span class="font-semibold text-gray-700">Pentingnya Lingkungan</span>
+                                    </div>
+                                    <i class="fas fa-chevron-right text-green-600"></i>
+                                </button>
+
+                                <button onclick="showLesson('pengenalan', 3)"
+                                    class="lesson-card w-full bg-yellow-50 hover:bg-yellow-100 p-4 rounded-xl flex items-center justify-between transition border-2 border-yellow-300">
+                                    <div class="flex items-center space-x-3">
+                                        <div
+                                            class="bg-yellow-500 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center">
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                        <span class="font-semibold text-gray-700">Kuis Lingkungan</span>
+                                    </div>
+                                    <i class="fas fa-gamepad text-yellow-600"></i>
+                                </button>
+                            </div>
+                        </div>
                     </div>
-                    <div class="p-6">
-                        <p class="text-gray-600 mb-6 text-center">Cara mengelola sampah dengan benar</p>
-                        
-                        <div class="space-y-3">
-                            <button onclick="showLesson('pengelolaan', 1)" class="lesson-card w-full bg-teal-50 hover:bg-teal-100 p-4 rounded-xl flex items-center justify-between transition border-2 border-teal-200">
-                                <div class="flex items-center space-x-3">
-                                    <div class="bg-teal-500 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center">
-                                        <i class="fas fa-sort"></i>
+
+                    <!-- Topic 2: Mengenal Sampah -->
+                    <div class="bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition">
+                        <div class="bg-gradient-to-br from-emerald-400 to-teal-500 p-8 text-center">
+                            <i class="fas fa-recycle text-white text-7xl mb-4"></i>
+                            <h3 class="text-2xl font-bold text-white">Mengenal Sampah</h3>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-gray-600 mb-6 text-center">Belajar tentang jenis-jenis sampah</p>
+
+                            <div class="space-y-3">
+                                <button onclick="showLesson('sampah', 1)"
+                                    class="lesson-card w-full bg-emerald-50 hover:bg-emerald-100 p-4 rounded-xl flex items-center justify-between transition border-2 border-emerald-200">
+                                    <div class="flex items-center space-x-3">
+                                        <div
+                                            class="bg-emerald-500 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center">
+                                            <i class="fas fa-trash"></i>
+                                        </div>
+                                        <span class="font-semibold text-gray-700">Jenis-Jenis Sampah</span>
                                     </div>
-                                    <span class="font-semibold text-gray-700">Cara Memilah Sampah</span>
-                                </div>
-                                <i class="fas fa-chevron-right text-teal-600"></i>
-                            </button>
-                            
-                            <button onclick="showLesson('pengelolaan', 2)" class="lesson-card w-full bg-teal-50 hover:bg-teal-100 p-4 rounded-xl flex items-center justify-between transition border-2 border-teal-200">
-                                <div class="flex items-center space-x-3">
-                                    <div class="bg-teal-500 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center">
-                                        <i class="fas fa-sync-alt"></i>
+                                    <i class="fas fa-chevron-right text-emerald-600"></i>
+                                </button>
+
+                                <button onclick="showLesson('sampah', 2)"
+                                    class="lesson-card w-full bg-emerald-50 hover:bg-emerald-100 p-4 rounded-xl flex items-center justify-between transition border-2 border-emerald-200">
+                                    <div class="flex items-center space-x-3">
+                                        <div
+                                            class="bg-emerald-500 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center">
+                                            <i class="fas fa-exclamation-triangle"></i>
+                                        </div>
+                                        <span class="font-semibold text-gray-700">Dampak Sampah</span>
                                     </div>
-                                    <span class="font-semibold text-gray-700">3R: Reduce, Reuse, Recycle</span>
-                                </div>
-                                <i class="fas fa-chevron-right text-teal-600"></i>
-                            </button>
-                            
-                            <button onclick="showLesson('pengelolaan', 3)" class="lesson-card w-full bg-yellow-50 hover:bg-yellow-100 p-4 rounded-xl flex items-center justify-between transition border-2 border-yellow-300">
-                                <div class="flex items-center space-x-3">
-                                    <div class="bg-yellow-500 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center">
-                                        <i class="fas fa-star"></i>
+                                    <i class="fas fa-chevron-right text-emerald-600"></i>
+                                </button>
+
+                                <button onclick="showLesson('sampah', 3)"
+                                    class="lesson-card w-full bg-yellow-50 hover:bg-yellow-100 p-4 rounded-xl flex items-center justify-between transition border-2 border-yellow-300">
+                                    <div class="flex items-center space-x-3">
+                                        <div
+                                            class="bg-yellow-500 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center">
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                        <span class="font-semibold text-gray-700">Kuis Pilah Sampah</span>
                                     </div>
-                                    <span class="font-semibold text-gray-700">Kuis Pengelolaan</span>
-                                </div>
-                                <i class="fas fa-gamepad text-yellow-600"></i>
-                            </button>
+                                    <i class="fas fa-gamepad text-yellow-600"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic 3: Pengelolaan Sampah -->
+                    <div class="bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition">
+                        <div class="bg-gradient-to-br from-teal-400 to-green-600 p-8 text-center">
+                            <i class="fas fa-hands-helping text-white text-7xl mb-4"></i>
+                            <h3 class="text-2xl font-bold text-white">Pengelolaan Sampah</h3>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-gray-600 mb-6 text-center">Cara mengelola sampah dengan benar</p>
+
+                            <div class="space-y-3">
+                                <button onclick="showLesson('pengelolaan', 1)"
+                                    class="lesson-card w-full bg-teal-50 hover:bg-teal-100 p-4 rounded-xl flex items-center justify-between transition border-2 border-teal-200">
+                                    <div class="flex items-center space-x-3">
+                                        <div
+                                            class="bg-teal-500 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center">
+                                            <i class="fas fa-sort"></i>
+                                        </div>
+                                        <span class="font-semibold text-gray-700">Cara Memilah Sampah</span>
+                                    </div>
+                                    <i class="fas fa-chevron-right text-teal-600"></i>
+                                </button>
+
+                                <button onclick="showLesson('pengelolaan', 2)"
+                                    class="lesson-card w-full bg-teal-50 hover:bg-teal-100 p-4 rounded-xl flex items-center justify-between transition border-2 border-teal-200">
+                                    <div class="flex items-center space-x-3">
+                                        <div
+                                            class="bg-teal-500 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center">
+                                            <i class="fas fa-sync-alt"></i>
+                                        </div>
+                                        <span class="font-semibold text-gray-700">3R: Reduce, Reuse, Recycle</span>
+                                    </div>
+                                    <i class="fas fa-chevron-right text-teal-600"></i>
+                                </button>
+
+                                <button onclick="showLesson('pengelolaan', 3)"
+                                    class="lesson-card w-full bg-yellow-50 hover:bg-yellow-100 p-4 rounded-xl flex items-center justify-between transition border-2 border-yellow-300">
+                                    <div class="flex items-center space-x-3">
+                                        <div
+                                            class="bg-yellow-500 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center">
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                        <span class="font-semibold text-gray-700">Kuis Pengelolaan</span>
+                                    </div>
+                                    <i class="fas fa-gamepad text-yellow-600"></i>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Lesson Page -->
-    <div id="lessonPage" class="page">
-        <div class="container mx-auto px-4 py-8 relative z-10">
-            <!-- Back Button -->
-            <div class="flex items-center justify-between mb-6">
-                <button onclick="showPage('home')" class="bg-white hover:bg-green-50 px-6 py-3 rounded-full shadow-lg transition flex items-center space-x-2 border-2 border-green-200">
-                    <i class="fas fa-arrow-left text-green-600"></i>
-                    <span class="text-green-600 font-semibold">Kembali ke Beranda</span>
-                </button>
-                
-                <!-- Lesson Navigation -->
-                <div class="flex items-center space-x-2">
-                    <button id="prevLesson" onclick="navigateLesson(-1)" class="bg-white hover:bg-green-50 text-green-600 px-4 py-2 rounded-lg transition border-2 border-green-200 hidden">
-                        <i class="fas fa-chevron-left mr-2"></i>Sebelumnya
+        <!-- Lesson Page -->
+        <div id="lessonPage" class="page">
+            <div class="container mx-auto px-4 py-8 relative z-10">
+                <!-- Back Button -->
+                <div class="flex items-center justify-between mb-6">
+                    <button onclick="showPage('home')"
+                        class="bg-white hover:bg-green-50 px-6 py-3 rounded-full shadow-lg transition flex items-center space-x-2 border-2 border-green-200">
+                        <i class="fas fa-arrow-left text-green-600"></i>
+                        <span class="text-green-600 font-semibold">Kembali ke Beranda</span>
                     </button>
-                    <button id="nextLesson" onclick="navigateLesson(1)" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg transition font-semibold hidden">
-                        Selanjutnya <i class="fas fa-chevron-right ml-2"></i>
-                    </button>
+
+                    <!-- Lesson Navigation -->
+                    <div class="flex items-center space-x-2">
+                        <button id="prevLesson" onclick="navigateLesson(-1)"
+                            class="bg-white hover:bg-green-50 text-green-600 px-4 py-2 rounded-lg transition border-2 border-green-200 hidden">
+                            <i class="fas fa-chevron-left mr-2"></i>Sebelumnya
+                        </button>
+                        <button id="nextLesson" onclick="navigateLesson(1)"
+                            class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg transition font-semibold hidden">
+                            Selanjutnya <i class="fas fa-chevron-right ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="lessonContent" class="bg-white rounded-3xl shadow-2xl overflow-hidden">
+                    <!-- Content will be loaded here -->
                 </div>
             </div>
-
-            <div id="lessonContent" class="bg-white rounded-3xl shadow-2xl overflow-hidden">
-                <!-- Content will be loaded here -->
-            </div>
         </div>
-    </div>
 
-    <script>
-        let musicPlaying = false;
-        const bgMusic = document.getElementById('bgMusic');
-        const musicBtn = document.getElementById('musicBtn');
-        const musicIcon = document.getElementById('musicIcon');
-        const musicStatus = document.getElementById('musicStatus');
-        const musicStatusText = document.getElementById('musicStatusText');
-        
-        // Current lesson tracking
-        let currentTopic = '';
-        let currentLessonNumber = 0;
+        <script>
+            let musicPlaying = false;
+            const bgMusic = document.getElementById('bgMusic');
+            const musicBtn = document.getElementById('musicBtn');
+            const musicIcon = document.getElementById('musicIcon');
+            const musicStatus = document.getElementById('musicStatus');
+            const musicStatusText = document.getElementById('musicStatusText');
 
-        // Music Toggle
-        musicBtn.addEventListener('click', () => {
-            musicPlaying = !musicPlaying;
-            
-            if (musicPlaying) {
-                bgMusic.play().catch(e => {
-                    console.log('Audio play failed:', e);
-                });
-                musicIcon.className = 'fas fa-volume-up text-xl music-playing';
-                musicBtn.classList.remove('bg-white');
-                musicBtn.classList.add('bg-green-500', 'text-white');
-                musicStatusText.textContent = 'Musik: Hidup';
-                musicStatus.classList.remove('hidden');
-            } else {
-                bgMusic.pause();
-                musicIcon.className = 'fas fa-volume-mute text-xl';
-                musicBtn.classList.remove('bg-green-500', 'text-white');
-                musicBtn.classList.add('bg-white', 'text-green-600');
-                musicStatusText.textContent = 'Musik: Mati';
-                setTimeout(() => {
-                    musicStatus.classList.add('hidden');
-                }, 2000);
-            }
-        });
+            // Current lesson tracking
+            let currentTopic = '';
+            let currentLessonNumber = 0;
 
-        // Page Navigation
-        function showPage(pageName) {
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
+            // Music Toggle
+            musicBtn.addEventListener('click', () => {
+                musicPlaying = !musicPlaying;
+
+                if (musicPlaying) {
+                    bgMusic.play().catch(e => {
+                        console.log('Audio play failed:', e);
+                    });
+                    musicIcon.className = 'fas fa-volume-up text-xl music-playing';
+                    musicBtn.classList.remove('bg-white');
+                    musicBtn.classList.add('bg-green-500', 'text-white');
+                    musicStatusText.textContent = 'Musik: Hidup';
+                    musicStatus.classList.remove('hidden');
+                } else {
+                    bgMusic.pause();
+                    musicIcon.className = 'fas fa-volume-mute text-xl';
+                    musicBtn.classList.remove('bg-green-500', 'text-white');
+                    musicBtn.classList.add('bg-white', 'text-green-600');
+                    musicStatusText.textContent = 'Musik: Mati';
+                    setTimeout(() => {
+                        musicStatus.classList.add('hidden');
+                    }, 2000);
+                }
             });
-            document.getElementById(pageName + 'Page').classList.add('active');
-            window.scrollTo(0, 0);
-        }
 
-        // Lesson Content - All lessons defined
-        const lessons = {
-            'pengenalan-1': {
-                title: 'Apa itu Lingkungan?',
-                type: 'article',
-                content: `
+            // Page Navigation
+            function showPage(pageName) {
+                document.querySelectorAll('.page').forEach(page => {
+                    page.classList.remove('active');
+                });
+                document.getElementById(pageName + 'Page').classList.add('active');
+                window.scrollTo(0, 0);
+            }
+
+            // Lesson Content - All lessons defined
+            const lessons = {
+                'pengenalan-1': {
+                    title: 'Apa itu Lingkungan?',
+                    type: 'article',
+                    content: `
                     <div class="p-8 md:p-12">
                         <div class="mb-6">
                             <span class="badge bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-semibold">
@@ -474,11 +531,11 @@
                         </div>
                     </div>
                 `
-            },
-            'pengenalan-2': {
-                title: 'Pentingnya Lingkungan',
-                type: 'article',
-                content: `
+                },
+                'pengenalan-2': {
+                    title: 'Pentingnya Lingkungan',
+                    type: 'article',
+                    content: `
                     <div class="p-8 md:p-12">
                         <div class="mb-6">
                             <span class="badge bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-semibold">
@@ -529,11 +586,11 @@
                         </div>
                     </div>
                 `
-            },
-            'pengenalan-3': {
-                title: 'Kuis Lingkungan',
-                type: 'quiz',
-                content: `
+                },
+                'pengenalan-3': {
+                    title: 'Kuis Lingkungan',
+                    type: 'quiz',
+                    content: `
                     <div class="p-8 md:p-12">
                         <div class="mb-6">
                             <span class="badge bg-yellow-100 text-yellow-700 px-4 py-2 rounded-full text-sm font-semibold">
@@ -648,11 +705,11 @@
                         </div>
                     </div>
                 `
-            },
-            'sampah-1': {
-                title: 'Jenis-Jenis Sampah',
-                type: 'article',
-                content: `
+                },
+                'sampah-1': {
+                    title: 'Jenis-Jenis Sampah',
+                    type: 'article',
+                    content: `
                     <div class="p-8 md:p-12">
                         <div class="mb-6">
                             <span class="badge bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-semibold">
@@ -705,11 +762,11 @@
                         </div>
                     </div>
                 `
-            },
-            'sampah-2': {
-                title: 'Dampak Sampah',
-                type: 'article',
-                content: `
+                },
+                'sampah-2': {
+                    title: 'Dampak Sampah',
+                    type: 'article',
+                    content: `
                     <div class="p-8 md:p-12">
                         <div class="mb-6">
                             <span class="badge bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-semibold">
@@ -763,11 +820,11 @@
                         </div>
                     </div>
                 `
-            },
-            'sampah-3': {
-                title: 'Kuis Pilah Sampah',
-                type: 'quiz',
-                content: `
+                },
+                'sampah-3': {
+                    title: 'Kuis Pilah Sampah',
+                    type: 'quiz',
+                    content: `
                     <div class="p-8 md:p-12">
                         <div class="mb-6">
                             <span class="badge bg-yellow-100 text-yellow-700 px-4 py-2 rounded-full text-sm font-semibold">
@@ -882,11 +939,11 @@
                         </div>
                     </div>
                 `
-            },
-            'pengelolaan-1': {
-                title: 'Cara Memilah Sampah',
-                type: 'article',
-                content: `
+                },
+                'pengelolaan-1': {
+                    title: 'Cara Memilah Sampah',
+                    type: 'article',
+                    content: `
                     <div class="p-8 md:p-12">
                         <div class="mb-6">
                             <span class="badge bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-semibold">
@@ -943,11 +1000,11 @@
                         </div>
                     </div>
                 `
-            },
-            'pengelolaan-2': {
-                title: '3R: Reduce, Reuse, Recycle',
-                type: 'article',
-                content: `
+                },
+                'pengelolaan-2': {
+                    title: '3R: Reduce, Reuse, Recycle',
+                    type: 'article',
+                    content: `
                     <div class="p-8 md:p-12">
                         <div class="mb-6">
                             <span class="badge bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-semibold">
@@ -1010,11 +1067,11 @@
                         </div>
                     </div>
                 `
-            },
-            'pengelolaan-3': {
-                title: 'Kuis Pengelolaan',
-                type: 'quiz',
-                content: `
+                },
+                'pengelolaan-3': {
+                    title: 'Kuis Pengelolaan',
+                    type: 'quiz',
+                    content: `
                     <div class="p-8 md:p-12">
                         <div class="mb-6">
                             <span class="badge bg-yellow-100 text-yellow-700 px-4 py-2 rounded-full text-sm font-semibold">
@@ -1129,92 +1186,92 @@
                         </div>
                     </div>
                 `
-            }
-        };
+                }
+            };
 
-        // Show Lesson
-        function showLesson(topic, lessonNumber) {
-            currentTopic = topic;
-            currentLessonNumber = lessonNumber;
-            const lessonKey = `${topic}-${lessonNumber}`;
-            const lesson = lessons[lessonKey];
-            
-            if (lesson) {
-                document.getElementById('lessonContent').innerHTML = lesson.content;
-                showPage('lesson');
-                
-                // Update navigation buttons
-                updateLessonNavigation();
-                
-                // Initialize quiz if it's a quiz lesson
-                if (lesson.type === 'quiz') {
-                    initializeQuiz();
+            // Show Lesson
+            function showLesson(topic, lessonNumber) {
+                currentTopic = topic;
+                currentLessonNumber = lessonNumber;
+                const lessonKey = `${topic}-${lessonNumber}`;
+                const lesson = lessons[lessonKey];
+
+                if (lesson) {
+                    document.getElementById('lessonContent').innerHTML = lesson.content;
+                    showPage('lesson');
+
+                    // Update navigation buttons
+                    updateLessonNavigation();
+
+                    // Initialize quiz if it's a quiz lesson
+                    if (lesson.type === 'quiz') {
+                        initializeQuiz();
+                    }
                 }
             }
-        }
 
-        // Update Lesson Navigation
-        function updateLessonNavigation() {
-            const prevBtn = document.getElementById('prevLesson');
-            const nextBtn = document.getElementById('nextLesson');
-            
-            // Hide both buttons initially
-            prevBtn.classList.add('hidden');
-            nextBtn.classList.add('hidden');
-            
-            // Check if previous lesson exists
-            const prevLessonKey = `${currentTopic}-${currentLessonNumber - 1}`;
-            if (lessons[prevLessonKey]) {
-                prevBtn.classList.remove('hidden');
+            // Update Lesson Navigation
+            function updateLessonNavigation() {
+                const prevBtn = document.getElementById('prevLesson');
+                const nextBtn = document.getElementById('nextLesson');
+
+                // Hide both buttons initially
+                prevBtn.classList.add('hidden');
+                nextBtn.classList.add('hidden');
+
+                // Check if previous lesson exists
+                const prevLessonKey = `${currentTopic}-${currentLessonNumber - 1}`;
+                if (lessons[prevLessonKey]) {
+                    prevBtn.classList.remove('hidden');
+                }
+
+                // Check if next lesson exists
+                const nextLessonKey = `${currentTopic}-${currentLessonNumber + 1}`;
+                if (lessons[nextLessonKey]) {
+                    nextBtn.classList.remove('hidden');
+                }
             }
-            
-            // Check if next lesson exists
-            const nextLessonKey = `${currentTopic}-${currentLessonNumber + 1}`;
-            if (lessons[nextLessonKey]) {
-                nextBtn.classList.remove('hidden');
+
+            // Navigate between lessons
+            function navigateLesson(direction) {
+                const newLessonNumber = currentLessonNumber + direction;
+                showLesson(currentTopic, newLessonNumber);
             }
-        }
 
-        // Navigate between lessons
-        function navigateLesson(direction) {
-            const newLessonNumber = currentLessonNumber + direction;
-            showLesson(currentTopic, newLessonNumber);
-        }
+            // Initialize Quiz
+            function initializeQuiz() {
+                const quizOptions = document.querySelectorAll('.quiz-option');
+                const submitBtn = document.getElementById('submitQuiz');
+                const quizResult = document.getElementById('quizResult');
 
-        // Initialize Quiz
-        function initializeQuiz() {
-            const quizOptions = document.querySelectorAll('.quiz-option');
-            const submitBtn = document.getElementById('submitQuiz');
-            const quizResult = document.getElementById('quizResult');
-            
-            let selectedAnswers = [];
-            
-            quizOptions.forEach(option => {
-                option.addEventListener('click', function() {
-                    // Remove selection from other options in the same question
-                    const question = this.closest('.quiz-question');
-                    question.querySelectorAll('.quiz-option').forEach(opt => {
-                        opt.classList.remove('bg-green-100', 'border-green-500');
+                let selectedAnswers = [];
+
+                quizOptions.forEach(option => {
+                    option.addEventListener('click', function () {
+                        // Remove selection from other options in the same question
+                        const question = this.closest('.quiz-question');
+                        question.querySelectorAll('.quiz-option').forEach(opt => {
+                            opt.classList.remove('bg-green-100', 'border-green-500');
+                        });
+
+                        // Select this option
+                        this.classList.add('bg-green-100', 'border-green-500');
+
+                        // Store the answer
+                        const questionIndex = Array.from(document.querySelectorAll('.quiz-question')).indexOf(question);
+                        selectedAnswers[questionIndex] = this.getAttribute('data-correct') === 'true';
                     });
-                    
-                    // Select this option
-                    this.classList.add('bg-green-100', 'border-green-500');
-                    
-                    // Store the answer
-                    const questionIndex = Array.from(document.querySelectorAll('.quiz-question')).indexOf(question);
-                    selectedAnswers[questionIndex] = this.getAttribute('data-correct') === 'true';
                 });
-            });
-            
-            submitBtn.addEventListener('click', function() {
-                const totalQuestions = document.querySelectorAll('.quiz-question').length;
-                const correctAnswers = selectedAnswers.filter(answer => answer === true).length;
-                const score = Math.round((correctAnswers / totalQuestions) * 100);
-                
-                let resultHTML = '';
-                
-                if (score === 100) {
-                    resultHTML = `
+
+                submitBtn.addEventListener('click', function () {
+                    const totalQuestions = document.querySelectorAll('.quiz-question').length;
+                    const correctAnswers = selectedAnswers.filter(answer => answer === true).length;
+                    const score = Math.round((correctAnswers / totalQuestions) * 100);
+
+                    let resultHTML = '';
+
+                    if (score === 100) {
+                        resultHTML = `
                         <div class="bg-gradient-to-r from-green-500 to-emerald-600 text-white p-8 rounded-2xl">
                             <i class="fas fa-trophy text-7xl mb-4"></i>
                             <h3 class="text-3xl font-bold mb-4">Luar Biasa!</h3>
@@ -1222,8 +1279,8 @@
                             <p class="text-2xl font-bold">Skor: ${score}%</p>
                         </div>
                     `;
-                } else if (score >= 70) {
-                    resultHTML = `
+                    } else if (score >= 70) {
+                        resultHTML = `
                         <div class="bg-gradient-to-r from-yellow-500 to-amber-600 text-white p-8 rounded-2xl">
                             <i class="fas fa-star text-7xl mb-4"></i>
                             <h3 class="text-3xl font-bold mb-4">Bagus Sekali!</h3>
@@ -1231,8 +1288,8 @@
                             <p class="text-2xl font-bold">Skor: ${score}%</p>
                         </div>
                     `;
-                } else {
-                    resultHTML = `
+                    } else {
+                        resultHTML = `
                         <div class="bg-gradient-to-r from-red-500 to-pink-600 text-white p-8 rounded-2xl">
                             <i class="fas fa-redo text-7xl mb-4"></i>
                             <h3 class="text-3xl font-bold mb-4">Ayo Coba Lagi!</h3>
@@ -1243,32 +1300,33 @@
                             </button>
                         </div>
                     `;
-                }
-                
-                quizResult.innerHTML = resultHTML;
-                quizResult.classList.add('active');
-                
-                // Show correct answers
-                document.querySelectorAll('.quiz-option').forEach(option => {
-                    if (option.getAttribute('data-correct') === 'true') {
-                        option.classList.add('correct-answer');
-                    } else {
-                        option.classList.add('wrong-answer');
                     }
-                    option.disabled = true;
-                });
-                
-                submitBtn.disabled = true;
-            });
-        }
 
-        // Auto-play background video with user interaction
-        document.addEventListener('click', function() {
-            const video = document.querySelector('.video-background');
-            if (video.paused) {
-                video.play().catch(e => console.log('Video play failed:', e));
+                    quizResult.innerHTML = resultHTML;
+                    quizResult.classList.add('active');
+
+                    // Show correct answers
+                    document.querySelectorAll('.quiz-option').forEach(option => {
+                        if (option.getAttribute('data-correct') === 'true') {
+                            option.classList.add('correct-answer');
+                        } else {
+                            option.classList.add('wrong-answer');
+                        }
+                        option.disabled = true;
+                    });
+
+                    submitBtn.disabled = true;
+                });
             }
-        }, { once: true });
-    </script>
+
+            // Auto-play background video with user interaction
+            document.addEventListener('click', function () {
+                const video = document.querySelector('.video-background');
+                if (video.paused) {
+                    video.play().catch(e => console.log('Video play failed:', e));
+                }
+            }, { once: true });
+        </script>
 </body>
+
 </html>

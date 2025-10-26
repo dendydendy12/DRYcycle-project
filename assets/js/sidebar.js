@@ -147,7 +147,7 @@ if (logoutModal) {
 // === PAGE TITLE UPDATE (Optional) ===
 const pageTitles = {
     'dashboard': 'Dashboard',
-    'sampahtersedia': 'Sampah Tersedia',
+    'sampahtersedia': 'Item Tersedia',
     'upload': 'Upload Sampah',
     'booking': 'Booking Saya',
     'leaderboard': 'Leaderboard',
