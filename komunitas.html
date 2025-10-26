@@ -4,10 +4,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DRYcycle </title>
+  <title>DRYcycle</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="assets/css/main.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
@@ -29,232 +30,82 @@
       transform: translateY(0);
     }
 
-    .scrollbar-hide::-webkit-scrollbar {
-      display: none;
-    }
-    
-    .scrollbar-hide {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
-    
-    .story-gradient {
-      background: linear-gradient(45deg, #059669, #10b981);
-    }
-    
-    .hover-scale {
-      transition: transform 0.2s ease;
-    }
-    
-    .hover-scale:hover {
-      transform: scale(1.05);
-    }
-    
-    .post-card {
-      transition: all 0.3s ease;
-    }
-    
-    .post-card:hover {
-      box-shadow: 0 10px 30px rgba(5, 150, 105, 0.1);
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
     }
 
-    /* Preloader Styles */
-    #preloader {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
-    .loader-content {
-      text-align: center;
+    @keyframes scaleUp {
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
     }
 
-    .logo-container {
-      position: relative;
-      margin-bottom: 20px;
+    @keyframes heartBeat {
+
+      0%,
+      100% {
+        transform: scale(1);
+      }
+
+      25% {
+        transform: scale(1.3);
+      }
+
+      50% {
+        transform: scale(1.1);
+      }
     }
 
-    .recycle-particles {
-      position: absolute;
-      width: 120px;
-      height: 120px;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+    .animate-fade-in {
+      animation: fadeIn 0.5s ease-out;
     }
 
-    .particle {
-      position: absolute;
-      width: 8px;
-      height: 8px;
-      background: #059669;
-      border-radius: 50%;
-      animation: float 2s infinite ease-in-out;
+    .animate-slide-up {
+      animation: slideUp 0.6s ease-out;
     }
 
-    .particle:nth-child(1) { top: 10%; left: 50%; animation-delay: 0s; }
-    .particle:nth-child(2) { top: 20%; right: 20%; animation-delay: 0.2s; }
-    .particle:nth-child(3) { bottom: 20%; right: 20%; animation-delay: 0.4s; }
-    .particle:nth-child(4) { bottom: 10%; left: 50%; animation-delay: 0.6s; }
-    .particle:nth-child(5) { bottom: 20%; left: 20%; animation-delay: 0.8s; }
-    .particle:nth-child(6) { top: 20%; left: 20%; animation-delay: 1s; }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
+    .animate-scale-up {
+      animation: scaleUp 0.3s ease-out;
     }
 
-    .logo-circle {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      background: #ecfdf5;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: 0 auto;
-      border: 3px solid #059669;
+    .animate-heart {
+      animation: heartBeat 0.5s ease-out;
     }
 
-    .logo-icon {
-      width: 60px;
-      height: 60px;
-    }
-
-    .loader-text {
-      font-size: 2.5rem;
-      font-weight: 800;
-      color: #059669;
-      margin-bottom: 8px;
-    }
-
-    .loader-subtitle {
-      color: #6b7280;
-      margin-bottom: 30px;
-    }
-
-    .progress-bar {
-      width: 200px;
-      height: 6px;
-      background: #e5e7eb;
-      border-radius: 3px;
-      margin: 0 auto;
-      overflow: hidden;
-    }
-
-    .progress-fill {
-      height: 100%;
-      background: #059669;
-      width: 0%;
-      animation: loadProgress 2s ease-in-out forwards;
-    }
-
-    @keyframes loadProgress {
-      0% { width: 0%; }
-      100% { width: 100%; }
-    }
-
-    /* Hidden class for preloader */
-    .hidden {
-      display: none !important;
-    }
-
-    /* Modal styles */
-    .modal-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0, 0, 0, 0.5);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 1000;
-    }
-
-    .modal-content {
-      background: white;
-      border-radius: 16px;
-      max-width: 500px;
-      width: 90%;
-      max-height: 90vh;
-      overflow-y: auto;
-    }
-
-    /* Story viewer */
-    .story-viewer {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: black;
-      z-index: 1000;
-      display: none;
-    }
-
-    .story-progress {
-      display: flex;
-      gap: 4px;
-      padding: 16px;
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-    }
-
-    .progress-item {
-      height: 3px;
-      flex: 1;
-      background: rgba(255, 255, 255, 0.3);
-      border-radius: 2px;
-      overflow: hidden;
-    }
-
-    .progress-fill {
-      height: 100%;
-      background: white;
-      width: 0%;
-      transition: width 0.1s linear;
-    }
-
-    .story-content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100%;
-      color: white;
-      text-align: center;
-      padding: 20px;
-    }
-
-    .story-caption {
-      margin-top: 20px;
-      font-size: 18px;
-      max-width: 80%;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-    }
-
-    .story-username {
-      font-weight: bold;
-      font-size: 16px;
-      margin-bottom: 10px;
+    .liked {
+      color: #10b981 !important;
     }
   </style>
 </head>
 
 <body class="bg-white">
 
- <!-- Preloader Animation -->
+  <!-- Preloader Animation -->
   <div id="preloader">
     <div class="loader-content">
       <div class="logo-container">
@@ -267,7 +118,8 @@
           <div class="particle"></div>
         </div>
         <div class="logo-circle">
-          <img src="assets/image/logo/logo.png" class="logo-icon">
+          <img src="assets/image/logo/logo.png" class="logo-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          </img>
         </div>
       </div>
       <h1 class="loader-text">DRYcycle</h1>
@@ -300,97 +152,96 @@
         </div>
       </div>
 
-<!-- Navigation Menu -->
-<nav class="flex-1 p-4 overflow-y-auto">
-  <div class="space-y-1">
+      <!-- Navigation Menu -->
+      <nav class="flex-1 p-4 overflow-y-auto">
+        <div class="space-y-1">
 
-    <!-- Dashboard -->
-    <a href="dashboard.html" data-page="dashboard"
-      class="nav-item flex items-center space-x-3 px-4 py-3 text-gray-600 rounded-xl font-medium transition-all hover:bg-gray-50 hover:text-gray-900">
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-          d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
-        </path>
-      </svg>
-      <span>Dashboard</span>
-    </a>
+          <!-- Dashboard -->
+          <a href="dashboard.html" data-page="dashboard"
+            class="nav-item flex items-center space-x-3 px-4 py-3 text-gray-600 rounded-xl font-medium transition-all hover:bg-gray-50 hover:text-gray-900">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
+              </path>
+            </svg>
+            <span>Dashboard</span>
+          </a>
 
-    <!-- Sampah Tersedia -->
-    <a href="sampahtersedia.html" data-page="sampahtersedia"
-      class="nav-item flex items-center space-x-3 px-4 py-3 text-gray-600 rounded-xl font-medium transition-all hover:bg-gray-50 hover:text-gray-900">
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-          d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10">
-        </path>
-      </svg>
-      <span>Tersedia</span>
-    </a>
+          <!-- Item Tersedia -->
+          <a href="sampahtersedia.html" data-page="Itemtersedia"
+            class="nav-item flex items-center space-x-3 px-4 py-3 text-gray-600 rounded-xl font-medium transition-all hover:bg-gray-50 hover:text-gray-900">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10">
+              </path>
+            </svg>
+            <span>Tersedia</span>
+          </a>
 
-    <!-- Upload Sampah -->
-    <a href="upload.html" data-page="upload"
-      class="nav-item flex items-center space-x-3 px-4 py-3 text-gray-600 rounded-xl font-medium transition-all hover:bg-gray-50 hover:text-gray-900">
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
-      </svg>
-      <span>Upload</span>
-    </a>
+          <!-- Upload Item -->
+          <a href="upload.html" data-page="upload"
+            class="nav-item flex items-center space-x-3 px-4 py-3 text-gray-600 rounded-xl font-medium transition-all hover:bg-gray-50 hover:text-gray-900">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+            </svg>
+            <span>Upload</span>
+          </a>
 
-    <!-- Status -->
-    <a href="booking.html" data-page="booking"
-      class="nav-item flex items-center space-x-3 px-4 py-3 text-gray-600 rounded-xl font-medium transition-all hover:bg-gray-50 hover:text-gray-900">
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-          d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-      </svg>
-      <span>Status</span>
-    </a>
+          <!-- Status -->
+          <a href="booking.html" data-page="booking"
+            class="nav-item flex items-center space-x-3 px-4 py-3 text-gray-600 rounded-xl font-medium transition-all hover:bg-gray-50 hover:text-gray-900">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+            </svg>
+            <span>Status</span>
+          </a>
 
-    <!-- Leaderboard -->
-    <a href="leaderboard.html" data-page="leaderboard"
-      class="nav-item flex items-center space-x-3 px-4 py-3 text-gray-600 rounded-xl font-medium transition-all hover:bg-gray-50 hover:text-gray-900">
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-          d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z">
-        </path>
-      </svg>
-      <span>Leaderboard</span>
-    </a>
+          <!-- Leaderboard -->
+          <a href="leaderboard.html" data-page="leaderboard"
+            class="nav-item flex items-center space-x-3 px-4 py-3 text-gray-600 rounded-xl font-medium transition-all hover:bg-gray-50 hover:text-gray-900">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z">
+              </path>
+            </svg>
+            <span>Leaderboard</span>
+          </a>
 
-    <!-- Komunitas -->
-    <a href="komunitas.html" data-page="komunitas"
-      class="nav-item flex items-center space-x-3 px-4 py-3 text-gray-600 rounded-xl font-medium transition-all hover:bg-gray-50 hover:text-gray-900 active:bg-emerald-50 active:text-emerald-700">
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-          d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z">
-        </path>
-      </svg>
-      <span>Komunitas</span>
-    </a>
+          <!-- Komunitas -->
+          <a href="komunitas.html" data-page="komunitas"
+            class="nav-item flex items-center space-x-3 px-4 py-3 text-gray-600 rounded-xl font-medium transition-all hover:bg-gray-50 hover:text-gray-900">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z">
+              </path>
+            </svg>
+            <span>Komunitas</span>
+          </a>
 
-    <!-- Edukasi -->
-    <a href="edukasi.html" data-page="edukasi"
-      class="nav-item flex items-center space-x-3 px-4 py-3 text-gray-600 rounded-xl font-medium transition-all hover:bg-gray-50 hover:text-gray-900">
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-          d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253">
-        </path>
-      </svg>
-      <span>Edukasi</span>
-    </a>
+          <!-- Edukasi -->
+          <a href="edukasi.html" data-page="edukasi"
+            class="nav-item flex items-center space-x-3 px-4 py-3 text-gray-600 rounded-xl font-medium transition-all hover:bg-gray-50 hover:text-gray-900">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253">
+              </path>
+            </svg>
+            <span>Edukasi</span>
+          </a>
 
-    <!-- Blog -->
-    <a href="blog.html" data-page="blog"
-      class="nav-item flex items-center space-x-3 px-4 py-3 text-gray-600 rounded-xl font-medium transition-all hover:bg-gray-50 hover:text-gray-900">
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-          d="M12 20h9M12 4h9M3 4h9v16H3V4zm6 4h.01M9 12h.01M6 16h.01"></path>
-      </svg>
-      <span>Blog</span>
-    </a>
+          <!-- Blog -->
+          <a href="blog.html" data-page="blog"
+            class="nav-item flex items-center space-x-3 px-4 py-3 text-gray-600 rounded-xl font-medium transition-all hover:bg-gray-50 hover:text-gray-900">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 20h9M12 4h9M3 4h9v16H3V4zm6 4h.01M9 12h.01M6 16h.01"></path>
+            </svg>
+            <span>Blog</span>
+          </a>
 
-  </div>
-</nav>
-
+        </div>
+      </nav>
 
       <!-- Logout Button -->
       <div class="p-4 border-t border-gray-100">
@@ -425,8 +276,8 @@
             </button>
 
             <div>
-              <h1 id="pageTitle" class="text-xl sm:text-2xl font-bold text-gray-900">Komunitas</h1>
-              <p class="text-xs sm:text-sm text-gray-500 mt-1">Berbagi inspirasi pengelolaan sampah</p>
+              <h1 id="pageTitle" class="text-xl sm:text-2xl font-bold text-gray-900">Dashboard</h1>
+              <p class="text-xs sm:text-sm text-gray-500 mt-1">Selamat datang kembali!</p>
             </div>
 
           </div>
@@ -446,7 +297,8 @@
             </div>
 
             <!-- Notification -->
-            <a href="notifikasi.html" class="relative p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-xl transition-all">
+            <a href="notifikasi.html"
+              class="relative p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-xl transition-all">
               <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                   d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9">
@@ -533,440 +385,409 @@
               </div>
             </div>
           </div>
-        </div>
       </header>
 
- <!-- Content Area -->
+      <!-- Content Area -->
+      <!-- Komunitas Section Content -->
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
 
- <!-- Content Area: Komunitas Interaktif -->
-  <div class="p-4 sm:p-6 lg:p-8">
-    
-    <!-- Header Section -->
-    <div class="mb-6">
-      <div class="flex items-center justify-between mb-4">
-        <div>
-          <h2 class="text-2xl font-bold text-gray-900">Komunitas DRYcycle</h2>
-          <p class="text-sm text-gray-500 mt-1">Berbagi inspirasi pengelolaan sampah</p>
-        </div>
-        <button id="createPostBtn" class="px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-semibold transition-all flex items-center gap-2 hover-scale">
-          <i class="fas fa-plus"></i>
-          <span class="hidden sm:inline">Buat Post</span>
-        </button>
-      </div>
-    </div>
-
-    <!-- Stories Section -->
-   <div class="bg-white rounded-2xl shadow-sm p-4 mb-6">
-  <div class="flex gap-4 overflow-x-auto scrollbar-hide">
-    <!-- Your Story -->
-    <div class="flex-shrink-0 text-center cursor-pointer hover-scale" id="yourStory">
-      <div class="story-gradient p-0.5 rounded-full mb-2">
-        <div class="bg-white p-0.5 rounded-full">
-          <div class="relative">
-            <img src="assets/image/userprofile/user3.png" class="w-16 h-16 rounded-full object-cover">
-            <div class="absolute -bottom-1 -right-1 w-6 h-6 bg-emerald-600 rounded-full flex items-center justify-center border-2 border-white">
-              <i class="fas fa-plus text-white text-xs"></i>
+        <!-- Create Post Card -->
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-4 sm:p-6 mb-6 animate-fade-in">
+          <div class="flex items-start space-x-3">
+            <img src="assets/image/userprofile/user1.png" alt="User"
+              class="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex-shrink-0">
+            <div class="flex-1">
+              <button onclick="openCreatePostModal()"
+                class="w-full bg-gray-50 rounded-2xl px-4 py-3 text-sm text-left text-gray-500 hover:bg-gray-100 transition-all">
+                Bagikan pengalamanmu tentang lingkungan...
+              </button>
+              <div class="flex items-center justify-between sm:justify-start sm:space-x-2 mt-4">
+                <button onclick="openCreatePostModal()"
+                  class="flex items-center space-x-2 px-3 sm:px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg transition-all">
+                  <i class="fas fa-image text-emerald-600 text-lg"></i>
+                  <span class="text-sm font-medium hidden sm:inline">Foto</span>
+                </button>
+                <button onclick="openCreatePostModal()"
+                  class="flex items-center space-x-2 px-3 sm:px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg transition-all">
+                  <i class="fas fa-video text-blue-600 text-lg"></i>
+                  <span class="text-sm font-medium hidden sm:inline">Video</span>
+                </button>
+                <button onclick="openCreatePostModal()"
+                  class="flex items-center space-x-2 px-3 sm:px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg transition-all">
+                  <i class="fas fa-smile text-yellow-500 text-lg"></i>
+                  <span class="text-sm font-medium hidden sm:inline">Perasaan</span>
+                </button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <p class="text-xs font-medium text-gray-700">Story Anda</p>
-    </div>
 
-    <!-- Other Stories -->
-    <div class="flex-shrink-0 text-center cursor-pointer hover-scale story-item" data-user="Andi R" data-image="assets/image/browse/botolplastik.jpg" data-caption="Hari ini berhasil mengumpulkan 5kg botol plastik untuk didaur ulang! 🌍">
-      <div class="story-gradient p-0.5 rounded-full mb-2">
-        <div class="bg-white p-0.5 rounded-full">
-          <img src="assets/image/userprofile/user1.png" class="w-16 h-16 rounded-full object-cover">
-        </div>
-      </div>
-      <p class="text-xs font-medium text-gray-700 truncate w-16">Andi R</p>
-    </div>
-
-    <div class="flex-shrink-0 text-center cursor-pointer hover-scale story-item" data-user="Siti M" data-image="assets/image/images/daun.png" data-caption="Kompos dari sampah dapur siap pakai untuk tanaman! 🌱">
-      <div class="story-gradient p-0.5 rounded-full mb-2">
-        <div class="bg-white p-0.5 rounded-full">
-          <img src="assets/image/userprofile/user2.png" class="w-16 h-16 rounded-full object-cover">
-        </div>
-      </div>
-      <p class="text-xs font-medium text-gray-700 truncate w-16">Siti M</p>
-    </div>
-
-    <div class="flex-shrink-0 text-center cursor-pointer hover-scale story-item" data-user="Dewi S" data-image="assets/image/browse/kardusbekas.jpg" data-caption="Kerajinan dari kardus bekas, hemat dan kreatif! ✨">
-      <div class="story-gradient p-0.5 rounded-full mb-2">
-        <div class="bg-white p-0.5 rounded-full">
-          <img src="assets/image/userprofile/user4.png" class="w-16 h-16 rounded-full object-cover">
-        </div>
-      </div>
-      <p class="text-xs font-medium text-gray-700 truncate w-16">Dewi S</p>
-    </div>
-
-    <div class="flex-shrink-0 text-center cursor-pointer hover-scale story-item" data-user="Rudi P" data-image="assets/image/browse/kaleng.jpg" data-caption="Kaleng bekas jadi pot tanaman yang cantik! 🌿">
-      <div class="story-gradient p-0.5 rounded-full mb-2">
-        <div class="bg-white p-0.5 rounded-full">
-          <img src="assets/image/userprofile/user5.png" class="w-16 h-16 rounded-full object-cover">
-        </div>
-      </div>
-      <p class="text-xs font-medium text-gray-700 truncate w-16">Rudi P</p>
-    </div>
-
-    <div class="flex-shrink-0 text-center cursor-pointer hover-scale story-item" data-user="Linda W" data-image="assets/image/browse/elektronik.jpg" data-caption="Elektronik bekas diserahkan ke drop point yang tepat! 🔌">
-      <div class="story-gradient p-0.5 rounded-full mb-2">
-        <div class="bg-white p-0.5 rounded-full">
-          <img src="assets/image/userprofile/user6.png" class="w-16 h-16 rounded-full object-cover">
-        </div>
-      </div>
-      <p class="text-xs font-medium text-gray-700 truncate w-16">Linda W</p>
-    </div>
-  </div>
-</div>
-    <!-- Feed Container -->
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-      
-      <!-- Main Feed -->
-      <div class="lg:col-span-2 space-y-6" id="feedContainer">
-        
-        <!-- Post 1 -->
-        <article class="bg-white rounded-2xl shadow-sm post-card overflow-hidden">
-          <!-- Post Header -->
-          <div class="flex items-center justify-between p-4">
-            <div class="flex items-center gap-3">
-              <img src="assets/image/userprofile/user16.png" class="w-10 h-10 rounded-full border-2 border-emerald-600">
-              <div>
-                <div class="flex items-center gap-2">
-                  <h4 class="font-semibold text-gray-900 text-sm">Sarah Green</h4>
-                  <i class="fas fa-check-circle text-emerald-600 text-xs"></i>
+        <!-- Posts Container -->
+        <div id="postsContainer">
+          <!-- Post 1 -->
+          <div class="bg-white rounded-2xl shadow-sm border border-gray-100 mb-6 overflow-hidden animate-slide-up"
+            data-post-id="1">
+            <!-- Post Header -->
+            <div class="p-4 sm:p-6 flex items-center justify-between">
+              <div class="flex items-center space-x-3">
+                <img src="assets/image/userprofile/user1.png" alt="User"
+                  class="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex-shrink-0">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <p class="text-sm sm:text-base font-bold text-gray-900">Rhianonn Mathews</p>
+                    <span
+                      class="px-2 py-0.5 bg-emerald-100 text-emerald-700 text-xs font-semibold rounded-full">Aktivis</span>
+                  </div>
+                  <p class="text-xs sm:text-sm text-gray-500">28 Mei 2025 • 14:30</p>
                 </div>
-                <p class="text-xs text-gray-500">2 jam yang lalu</p>
               </div>
-            </div>
-            <button class="follow-btn text-emerald-600 hover:text-emerald-700 font-semibold text-sm px-4 py-1.5 border border-emerald-600 rounded-lg transition-all">
-              Follow
-            </button>
-          </div>
-
-          <!-- Post Image -->
-          <div class="relative">
-            <img src="assets/image/browse/botolplastik.jpg" class="w-full aspect-square object-cover">
-            <div class="absolute top-3 right-3 bg-emerald-600 text-white px-3 py-1 rounded-full text-xs font-semibold">
-              <i class="fas fa-recycle mr-1"></i>Plastik
-            </div>
-          </div>
-
-          <!-- Post Content -->
-          <div class="p-4">
-            <!-- Actions -->
-            <div class="flex items-center justify-between mb-4">
-              <div class="flex items-center gap-4">
-                <button class="like-btn text-gray-600 hover:text-red-500 transition-colors">
-                  <i class="far fa-heart text-2xl"></i>
-                </button>
-                <button class="comment-btn text-gray-600 hover:text-emerald-600 transition-colors">
-                  <i class="far fa-comment text-2xl"></i>
-                </button>
-                <button class="share-btn text-gray-600 hover:text-emerald-600 transition-colors">
-                  <i class="far fa-paper-plane text-2xl"></i>
-                </button>
-              </div>
-              <button class="save-btn text-gray-600 hover:text-emerald-600 transition-colors">
-                <i class="far fa-bookmark text-2xl"></i>
+              <button class="text-gray-400 hover:text-gray-600 p-2">
+                <i class="fas fa-ellipsis-h text-lg"></i>
               </button>
             </div>
 
-            <!-- Likes -->
-            <p class="font-semibold text-sm text-gray-900 mb-2">
-              <span class="likes-count">342</span> suka
-            </p>
+            <!-- Post Content -->
+            <div class="px-4 sm:px-6 pb-4">
+              <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-2">Powering Tomorrow: How Solar Energy is Leading
+                the Charge</h3>
+              <p class="text-sm sm:text-base text-gray-600 leading-relaxed">Energi surya semakin menjadi solusi utama
+                dalam transisi menuju masa depan yang berkelanjutan. Dengan teknologi yang terus berkembang, panel surya
+                kini lebih efisien dan terjangkau. Mari kita bersama-sama mendukung energi terbarukan! 🌞♻️</p>
+            </div>
+
+            <!-- Post Image -->
+            <div class="relative cursor-pointer" onclick="openPostDetail(1)">
+              <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800" alt="Solar Energy"
+                class="w-full h-64 sm:h-96 object-cover hover:opacity-95 transition-opacity">
+            </div>
+
+            <!-- Post Stats -->
+            <div class="px-4 sm:px-6 py-3 border-b border-gray-100">
+              <div class="flex items-center justify-between text-sm text-gray-500">
+                <button onclick="showLikesModal(1)"
+                  class="flex items-center space-x-1 hover:text-emerald-600 transition-colors">
+                  <i class="fas fa-thumbs-up text-emerald-600 text-xs"></i>
+                  <span class="font-medium likes-count" data-post="1">124</span>
+                </button>
+                <div class="flex items-center space-x-4">
+                  <button onclick="openPostDetail(1)" class="font-medium hover:text-emerald-600 transition-colors">
+                    <span class="comments-count" data-post="1">12</span> komentar
+                  </button>
+                  <span class="font-medium shares-count" data-post="1">8 dibagikan</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Post Actions -->
+            <div class="px-2 sm:px-4 py-2 flex items-center justify-around">
+              <button onclick="toggleLike(this, 1)"
+                class="like-btn flex-1 flex items-center justify-center space-x-2 py-2.5 sm:py-3 text-gray-600 hover:bg-gray-50 rounded-lg transition-all">
+                <i class="far fa-thumbs-up text-lg sm:text-xl"></i>
+                <span class="text-sm sm:text-base font-semibold">Suka</span>
+              </button>
+              <button onclick="openPostDetail(1)"
+                class="flex-1 flex items-center justify-center space-x-2 py-2.5 sm:py-3 text-gray-600 hover:bg-gray-50 rounded-lg transition-all">
+                <i class="far fa-comment text-lg sm:text-xl"></i>
+                <span class="text-sm sm:text-base font-semibold">Komentar</span>
+              </button>
+              <button onclick="sharePost(1)"
+                class="flex-1 flex items-center justify-center space-x-2 py-2.5 sm:py-3 text-gray-600 hover:bg-gray-50 rounded-lg transition-all">
+                <i class="fas fa-share text-lg sm:text-xl"></i>
+                <span class="text-sm sm:text-base font-semibold">Bagikan</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Post 2 -->
+          <div class="bg-white rounded-2xl shadow-sm border border-gray-100 mb-6 overflow-hidden animate-slide-up"
+            data-post-id="2" style="animation-delay: 0.1s">
+            <div class="p-4 sm:p-6 flex items-center justify-between">
+              <div class="flex items-center space-x-3">
+                <img src="assets/image/userprofile/user1.png" alt="User"
+                  class="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex-shrink-0">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <p class="text-sm sm:text-base font-bold text-gray-900">Budi Santoso</p>
+                    <span class="px-2 py-0.5 bg-blue-100 text-blue-700 text-xs font-semibold rounded-full">Level
+                      5</span>
+                  </div>
+                  <p class="text-xs sm:text-sm text-gray-500">26 Mei 2025 • 09:15</p>
+                </div>
+              </div>
+              <button class="text-gray-400 hover:text-gray-600 p-2">
+                <i class="fas fa-ellipsis-h text-lg"></i>
+              </button>
+            </div>
+
+            <div class="px-4 sm:px-6 pb-4">
+              <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-2">Neighborhood Green Teams - Mari Hijau Bersama!
+              </h3>
+              <p class="text-sm sm:text-base text-gray-600 leading-relaxed">Bergabunglah dengan tetangga untuk membuat
+                lingkungan kita lebih hijau dan bersih! 🌱🤝</p>
+            </div>
+
+            <div class="px-4 sm:px-6 py-3 border-b border-gray-100">
+              <div class="flex items-center justify-between text-sm text-gray-500">
+                <button onclick="showLikesModal(2)"
+                  class="flex items-center space-x-1 hover:text-emerald-600 transition-colors">
+                  <i class="fas fa-thumbs-up text-emerald-600 text-xs"></i>
+                  <span class="font-medium likes-count" data-post="2">89</span>
+                </button>
+                <div class="flex items-center space-x-4">
+                  <button onclick="openPostDetail(2)" class="font-medium hover:text-emerald-600 transition-colors">
+                    <span class="comments-count" data-post="2">15</span> komentar
+                  </button>
+                  <span class="font-medium shares-count" data-post="2">5 dibagikan</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="px-2 sm:px-4 py-2 flex items-center justify-around">
+              <button onclick="toggleLike(this, 2)"
+                class="like-btn flex-1 flex items-center justify-center space-x-2 py-2.5 sm:py-3 text-gray-600 hover:bg-gray-50 rounded-lg transition-all">
+                <i class="far fa-thumbs-up text-lg sm:text-xl"></i>
+                <span class="text-sm sm:text-base font-semibold">Suka</span>
+              </button>
+              <button onclick="openPostDetail(2)"
+                class="flex-1 flex items-center justify-center space-x-2 py-2.5 sm:py-3 text-gray-600 hover:bg-gray-50 rounded-lg transition-all">
+                <i class="far fa-comment text-lg sm:text-xl"></i>
+                <span class="text-sm sm:text-base font-semibold">Komentar</span>
+              </button>
+              <button onclick="sharePost(2)"
+                class="flex-1 flex items-center justify-center space-x-2 py-2.5 sm:py-3 text-gray-600 hover:bg-gray-50 rounded-lg transition-all">
+                <i class="fas fa-share text-lg sm:text-xl"></i>
+                <span class="text-sm sm:text-base font-semibold">Bagikan</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Post 3 -->
+          <div class="bg-white rounded-2xl shadow-sm border border-gray-100 mb-6 overflow-hidden animate-slide-up"
+            data-post-id="3" style="animation-delay: 0.2s">
+            <div class="p-4 sm:p-6 flex items-center justify-between">
+              <div class="flex items-center space-x-3">
+                <img src="assets/image/userprofile/user1.png" alt="User"
+                  class="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex-shrink-0">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <p class="text-sm sm:text-base font-bold text-gray-900">Linda Wijaya</p>
+                    <span class="px-2 py-0.5 bg-yellow-100 text-yellow-700 text-xs font-semibold rounded-full">Level
+                      3</span>
+                  </div>
+                  <p class="text-xs sm:text-sm text-gray-500">25 Mei 2025 • 16:45</p>
+                </div>
+              </div>
+              <button class="text-gray-400 hover:text-gray-600 p-2">
+                <i class="fas fa-ellipsis-h text-lg"></i>
+              </button>
+            </div>
+
+            <div class="px-4 sm:px-6 pb-4">
+              <p class="text-sm sm:text-base text-gray-600 leading-relaxed">Hari ini berhasil mengumpulkan 15kg sampah
+                plastik dari pantai! 🌊🗑️✨</p>
+              <div class="flex flex-wrap gap-2 mt-3">
+                <span class="text-xs sm:text-sm text-emerald-600 font-semibold">#BeachCleanup</span>
+                <span class="text-xs sm:text-sm text-emerald-600 font-semibold">#SaveOcean</span>
+              </div>
+            </div>
+
+            <div class="relative cursor-pointer" onclick="openPostDetail(3)">
+              <img src="https://images.unsplash.com/photo-1621451537084-482c73073a0f?w=800" alt="Beach Cleanup"
+                class="w-full h-64 sm:h-96 object-cover hover:opacity-95 transition-opacity">
+            </div>
+
+            <div class="px-4 sm:px-6 py-3 border-b border-gray-100">
+              <div class="flex items-center justify-between text-sm text-gray-500">
+                <button onclick="showLikesModal(3)"
+                  class="flex items-center space-x-1 hover:text-emerald-600 transition-colors">
+                  <i class="fas fa-thumbs-up text-emerald-600 text-xs"></i>
+                  <span class="font-medium likes-count" data-post="3">156</span>
+                </button>
+                <div class="flex items-center space-x-4">
+                  <button onclick="openPostDetail(3)" class="font-medium hover:text-emerald-600 transition-colors">
+                    <span class="comments-count" data-post="3">23</span> komentar
+                  </button>
+                  <span class="font-medium shares-count" data-post="3">12 dibagikan</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="px-2 sm:px-4 py-2 flex items-center justify-around">
+              <button onclick="toggleLike(this, 3)"
+                class="like-btn flex-1 flex items-center justify-center space-x-2 py-2.5 sm:py-3 text-gray-600 hover:bg-gray-50 rounded-lg transition-all">
+                <i class="far fa-thumbs-up text-lg sm:text-xl"></i>
+                <span class="text-sm sm:text-base font-semibold">Suka</span>
+              </button>
+              <button onclick="openPostDetail(3)"
+                class="flex-1 flex items-center justify-center space-x-2 py-2.5 sm:py-3 text-gray-600 hover:bg-gray-50 rounded-lg transition-all">
+                <i class="far fa-comment text-lg sm:text-xl"></i>
+                <span class="text-sm sm:text-base font-semibold">Komentar</span>
+              </button>
+              <button onclick="sharePost(3)"
+                class="flex-1 flex items-center justify-center space-x-2 py-2.5 sm:py-3 text-gray-600 hover:bg-gray-50 rounded-lg transition-all">
+                <i class="fas fa-share text-lg sm:text-xl"></i>
+                <span class="text-sm sm:text-base font-semibold">Bagikan</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Modal Create Post -->
+      <div id="createPostModal"
+        class="hidden fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-hidden animate-scale-up">
+          <!-- Modal Header -->
+          <div class="flex items-center justify-between p-4 sm:p-6 border-b border-gray-100">
+            <h2 class="text-xl font-bold text-gray-900">Buat Postingan</h2>
+            <button onclick="closeCreatePostModal()" class="text-gray-400 hover:text-gray-600 p-2">
+              <i class="fas fa-times text-xl"></i>
+            </button>
+          </div>
+
+          <!-- Modal Body -->
+          <div class="p-4 sm:p-6 overflow-y-auto max-h-[calc(90vh-200px)]">
+            <!-- User Info -->
+            <div class="flex items-center space-x-3 mb-4">
+              <img src="assets/image/userprofile/user1.png" alt="User" class="w-12 h-12 rounded-full">
+              <div>
+                <p class="font-bold text-gray-900">Budi Santoso</p>
+                <div class="flex items-center space-x-2 mt-1">
+                  <button
+                    class="px-3 py-1 bg-gray-100 rounded-lg text-xs font-semibold text-gray-700 hover:bg-gray-200">
+                    <i class="fas fa-globe-asia mr-1"></i> Publik
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Text Area -->
+            <textarea id="postContent" rows="6" placeholder="Apa yang ingin kamu bagikan tentang lingkungan?"
+              class="w-full border-0 focus:outline-none focus:ring-0 text-gray-900 text-base resize-none"></textarea>
+
+            <!-- Image Preview -->
+            <div id="imagePreview" class="hidden mt-4 relative">
+              <img id="previewImg" src="" alt="Preview" class="w-full rounded-2xl max-h-96 object-cover">
+              <button onclick="removeImage()"
+                class="absolute top-2 right-2 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100">
+                <i class="fas fa-times text-gray-600"></i>
+              </button>
+            </div>
+
+            <!-- Add to Post -->
+            <div class="mt-4 p-4 border border-gray-200 rounded-2xl">
+              <p class="text-sm font-semibold text-gray-700 mb-3">Tambahkan ke postingan</p>
+              <div class="flex items-center space-x-2">
+                <label for="imageUpload" class="cursor-pointer p-2 hover:bg-gray-100 rounded-lg transition-all">
+                  <i class="fas fa-image text-emerald-600 text-xl"></i>
+                  <input type="file" id="imageUpload" accept="image/*" class="hidden" onchange="previewImage(event)">
+                </label>
+                <button class="p-2 hover:bg-gray-100 rounded-lg transition-all">
+                  <i class="fas fa-video text-blue-600 text-xl"></i>
+                </button>
+                <button class="p-2 hover:bg-gray-100 rounded-lg transition-all">
+                  <i class="fas fa-smile text-yellow-500 text-xl"></i>
+                </button>
+                <button class="p-2 hover:bg-gray-100 rounded-lg transition-all">
+                  <i class="fas fa-map-marker-alt text-red-600 text-xl"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Modal Footer -->
+          <div class="p-4 sm:p-6 border-t border-gray-100">
+            <button onclick="createPost()"
+              class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-xl transition-all">
+              Posting
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal Post Detail -->
+      <div id="postDetailModal"
+        class="hidden fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div
+          class="bg-white rounded-3xl shadow-2xl w-full max-w-5xl max-h-[90vh] overflow-hidden animate-scale-up flex flex-col lg:flex-row">
+          <!-- Left Side - Image -->
+          <div class="lg:w-3/5 bg-black flex items-center justify-center">
+            <img id="detailPostImage" src="" alt="Post" class="max-h-[90vh] w-full object-contain">
+          </div>
+
+          <!-- Right Side - Comments -->
+          <div class="lg:w-2/5 flex flex-col max-h-[90vh]">
+            <!-- Header -->
+            <div class="flex items-center justify-between p-4 border-b border-gray-100">
+              <div class="flex items-center space-x-3">
+                <img id="detailUserImage" src="" alt="User" class="w-10 h-10 rounded-full">
+                <div>
+                  <p id="detailUsername" class="font-bold text-gray-900 text-sm"></p>
+                  <p id="detailPostTime" class="text-xs text-gray-500"></p>
+                </div>
+              </div>
+              <button onclick="closePostDetail()" class="text-gray-400 hover:text-gray-600 p-2">
+                <i class="fas fa-times text-xl"></i>
+              </button>
+            </div>
 
             <!-- Caption -->
-            <div class="mb-3">
-              <span class="font-semibold text-sm text-gray-900">Sarah Green</span>
-              <span class="text-sm text-gray-700 ml-2">Berhasil kumpulkan 15kg botol plastik hari ini! 🌍♻️ Mari kita jaga bumi bersama-sama! <span class="text-emerald-600">#DRYcycle #SaveEarth #RecyclePlastic</span></span>
+            <div class="p-4 border-b border-gray-100">
+              <p id="detailCaption" class="text-sm text-gray-900"></p>
             </div>
 
-            <!-- Comments Preview -->
-            <button class="view-comments text-gray-500 text-sm hover:text-gray-700 mb-3">
-              Lihat semua <span class="comments-count">28</span> komentar
-            </button>
+            <!-- Comments List -->
+            <div id="commentsList" class="flex-1 overflow-y-auto p-4 space-y-4">
+              <!-- Comments will be loaded here -->
+            </div>
+
+            <!-- Stats -->
+            <div class="px-4 py-3 border-t border-gray-100">
+              <div class="flex items-center justify-between text-sm">
+                <button onclick="toggleDetailLike()" id="detailLikeBtn"
+                  class="flex items-center space-x-1 hover:text-emerald-600">
+                  <i class="far fa-thumbs-up text-lg"></i>
+                </button>
+                <span id="detailLikesCount" class="font-semibold text-gray-900">0 suka</span>
+              </div>
+            </div>
 
             <!-- Add Comment -->
-            <div class="flex items-center gap-3 border-t pt-3">
-              <input type="text" placeholder="Tambahkan komentar..." class="comment-input flex-1 text-sm outline-none text-gray-700 placeholder-gray-400">
-              <button class="post-comment-btn text-emerald-600 font-semibold text-sm hover:text-emerald-700 opacity-0 transition-opacity">
-                Post
-              </button>
-            </div>
-          </div>
-        </article>
-
-        <!-- Post 2 -->
-        <article class="bg-white rounded-2xl shadow-sm post-card overflow-hidden">
-          <div class="flex items-center justify-between p-4">
-            <div class="flex items-center gap-3">
-              <img src="assets/image/userprofile/user13.png" class="w-10 h-10 rounded-full border-2 border-emerald-600">
-              <div>
-                <div class="flex items-center gap-2">
-                  <h4 class="font-semibold text-gray-900 text-sm">Eco Warrior</h4>
-                  <i class="fas fa-check-circle text-emerald-600 text-xs"></i>
-                </div>
-                <p class="text-xs text-gray-500">5 jam yang lalu</p>
-              </div>
-            </div>
-            <button class="follow-btn text-emerald-600 hover:text-emerald-700 font-semibold text-sm px-4 py-1.5 border border-emerald-600 rounded-lg transition-all">
-              Follow
-            </button>
-          </div>
-
-          <div class="relative">
-            <img src="assets/image/images/daun.png" class="w-full aspect-square object-cover">
-            <div class="absolute top-3 right-3 bg-emerald-600 text-white px-3 py-1 rounded-full text-xs font-semibold">
-              <i class="fas fa-recycle mr-1"></i> Organik
-            </div>
-          </div>
-
-          <div class="p-4">
-            <div class="flex items-center justify-between mb-4">
-              <div class="flex items-center gap-4">
-                <button class="like-btn text-gray-600 hover:text-red-500 transition-colors">
-                  <i class="far fa-heart text-2xl"></i>
-                </button>
-                <button class="comment-btn text-gray-600 hover:text-emerald-600 transition-colors">
-                  <i class="far fa-comment text-2xl"></i>
-                </button>
-                <button class="share-btn text-gray-600 hover:text-emerald-600 transition-colors">
-                  <i class="far fa-paper-plane text-2xl"></i>
+            <div class="p-4 border-t border-gray-100">
+              <div class="flex items-center space-x-3">
+                <img src="assets/image/userprofile/user1.png" alt="User" class="w-8 h-8 rounded-full flex-shrink-0">
+                <input type="text" id="commentInput" placeholder="Tulis komentar..."
+                  class="flex-1 bg-gray-50 rounded-full px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                <button onclick="addComment()" class="text-emerald-600 hover:text-emerald-700 font-semibold text-sm">
+                  Kirim
                 </button>
               </div>
-              <button class="save-btn text-gray-600 hover:text-emerald-600 transition-colors">
-                <i class="far fa-bookmark text-2xl"></i>
-              </button>
-            </div>
-
-            <p class="font-semibold text-sm text-gray-900 mb-2">
-              <span class="likes-count">528</span> suka
-            </p>
-
-            <div class="mb-3">
-              <span class="font-semibold text-sm text-gray-900">Eco Warrior</span>
-              <span class="text-sm text-gray-700 ml-2">Kompos dari sampah organik siap digunakan! 🌱 Yuk mulai composting di rumah! <span class="text-emerald-600">#Composting #OrganicWaste #ZeroWaste</span></span>
-            </div>
-
-            <button class="view-comments text-gray-500 text-sm hover:text-gray-700 mb-3">
-              Lihat semua <span class="comments-count">45</span> komentar
-            </button>
-
-            <div class="flex items-center gap-3 border-t pt-3">
-              <input type="text" placeholder="Tambahkan komentar..." class="comment-input flex-1 text-sm outline-none text-gray-700 placeholder-gray-400">
-              <button class="post-comment-btn text-emerald-600 font-semibold text-sm hover:text-emerald-700 opacity-0 transition-opacity">
-                Post
-              </button>
             </div>
           </div>
-        </article>
-
-        <!-- Post 3 -->
-        <article class="bg-white rounded-2xl shadow-sm post-card overflow-hidden">
-          <div class="flex items-center justify-between p-4">
-            <div class="flex items-center gap-3">
-              <img src="assets/image/userprofile/user19.png" class="w-10 h-10 rounded-full border-2 border-emerald-600">
-              <div>
-                <div class="flex items-center gap-2">
-                  <h4 class="font-semibold text-gray-900 text-sm">Green Hero</h4>
-                </div>
-                <p class="text-xs text-gray-500">1 hari yang lalu</p>
-              </div>
-            </div>
-            <button class="follow-btn text-white bg-emerald-600 hover:bg-emerald-700 font-semibold text-sm px-4 py-1.5 rounded-lg transition-all">
-              Following
-            </button>
-          </div>
-
-          <div class="relative">
-            <img src="assets/image/browse/kardusbekas.jpg" class="w-full aspect-square object-cover">
-            <div class="absolute top-3 right-3 bg-emerald-600 text-white px-3 py-1 rounded-full text-xs font-semibold">
-              <i class="fas fa-recycle mr-1"></i> Kertas
-            </div>
-          </div>
-
-          <div class="p-4">
-            <div class="flex items-center justify-between mb-4">
-              <div class="flex items-center gap-4">
-                <button class="like-btn text-red-500 transition-colors">
-                  <i class="fas fa-heart text-2xl"></i>
-                </button>
-                <button class="comment-btn text-gray-600 hover:text-emerald-600 transition-colors">
-                  <i class="far fa-comment text-2xl"></i>
-                </button>
-                <button class="share-btn text-gray-600 hover:text-emerald-600 transition-colors">
-                  <i class="far fa-paper-plane text-2xl"></i>
-                </button>
-              </div>
-              <button class="save-btn text-emerald-600 transition-colors">
-                <i class="fas fa-bookmark text-2xl"></i>
-              </button>
-            </div>
-
-            <p class="font-semibold text-sm text-gray-900 mb-2">
-              <span class="likes-count">789</span> suka
-            </p>
-
-            <div class="mb-3">
-              <span class="font-semibold text-sm text-gray-900">Green Hero</span>
-              <span class="text-sm text-gray-700 ml-2">DIY kerajinan dari kardus bekas! 📦✨ Kreativitas tanpa batas! <span class="text-emerald-600">#Upcycle #DIYcraft #PaperRecycle</span></span>
-            </div>
-
-            <button class="view-comments text-gray-500 text-sm hover:text-gray-700 mb-3">
-              Lihat semua <span class="comments-count">67</span> komentar
-            </button>
-
-            <div class="flex items-center gap-3 border-t pt-3">
-              <input type="text" placeholder="Tambahkan komentar..." class="comment-input flex-1 text-sm outline-none text-gray-700 placeholder-gray-400">
-              <button class="post-comment-btn text-emerald-600 font-semibold text-sm hover:text-emerald-700 opacity-0 transition-opacity">
-                Post
-              </button>
-            </div>
-          </div>
-        </article>
-
+        </div>
       </div>
 
-      <!-- Sidebar -->
-      <div class="lg:col-span-1 space-y-6">
-        
-        <!-- Trending Tags -->
-        <div class="bg-white rounded-2xl shadow-sm p-5">
-          <h3 class="font-bold text-gray-900 mb-4 flex items-center gap-2">
-            <i class="fas fa-fire text-orange-500"></i>
-            Trending Tags
-          </h3>
-          <div class="space-y-3">
-            <div class="flex items-center justify-between cursor-pointer hover:bg-gray-50 p-2 rounded-lg transition-all trending-tag" data-tag="SaveEarth">
-              <div>
-                <p class="font-semibold text-sm text-emerald-600">#SaveEarth</p>
-                <p class="text-xs text-gray-500">2.5k post</p>
-              </div>
-              <i class="fas fa-chevron-right text-gray-400 text-xs"></i>
-            </div>
-            <div class="flex items-center justify-between cursor-pointer hover:bg-gray-50 p-2 rounded-lg transition-all trending-tag" data-tag="RecyclePlastic">
-              <div>
-                <p class="font-semibold text-sm text-emerald-600">#RecyclePlastic</p>
-                <p class="text-xs text-gray-500">1.8k post</p>
-              </div>
-              <i class="fas fa-chevron-right text-gray-400 text-xs"></i>
-            </div>
-            <div class="flex items-center justify-between cursor-pointer hover:bg-gray-50 p-2 rounded-lg transition-all trending-tag" data-tag="ZeroWaste">
-              <div>
-                <p class="font-semibold text-sm text-emerald-600">#ZeroWaste</p>
-                <p class="text-xs text-gray-500">1.3k post</p>
-              </div>
-              <i class="fas fa-chevron-right text-gray-400 text-xs"></i>
-            </div>
-            <div class="flex items-center justify-between cursor-pointer hover:bg-gray-50 p-2 rounded-lg transition-all trending-tag" data-tag="EcoFriendly">
-              <div>
-                <p class="font-semibold text-sm text-emerald-600">#EcoFriendly</p>
-                <p class="text-xs text-gray-500">945 post</p>
-              </div>
-              <i class="fas fa-chevron-right text-gray-400 text-xs"></i>
-            </div>
+      <!-- Modal Likes List -->
+      <div id="likesModal"
+        class="hidden fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl shadow-2xl w-full max-w-md max-h-[70vh] overflow-hidden animate-scale-up">
+          <div class="flex items-center justify-between p-4 border-b border-gray-100">
+            <h3 class="text-lg font-bold text-gray-900">Disukai oleh</h3>
+            <button onclick="closeLikesModal()" class="text-gray-400 hover:text-gray-600 p-2">
+              <i class="fas fa-times text-xl"></i>
+            </button>
+          </div>
+          <div id="likesList" class="p-4 space-y-3 overflow-y-auto max-h-[calc(70vh-80px)]">
+            <!-- Likes list will be loaded here -->
           </div>
         </div>
-
-        <!-- Suggested Users -->
-        <div class="bg-white rounded-2xl shadow-sm p-5">
-          <h3 class="font-bold text-gray-900 mb-4 flex items-center gap-2">
-            <i class="fas fa-user-plus text-emerald-600"></i>
-            Saran Untuk Anda
-          </h3>
-          <div class="space-y-4">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center gap-3">
-                <img src="https://ui-avatars.com/api/?name=Recycler+Pro&background=059669&color=fff" class="w-10 h-10 rounded-full">
-                <div>
-                  <p class="font-semibold text-sm text-gray-900">Recycler Pro</p>
-                  <p class="text-xs text-gray-500">1.2k followers</p>
-                </div>
-              </div>
-              <button class="suggest-follow-btn text-emerald-600 hover:text-emerald-700 font-semibold text-xs">
-                Follow
-              </button>
-            </div>
-            <div class="flex items-center justify-between">
-              <div class="flex items-center gap-3">
-                <img src="https://ui-avatars.com/api/?name=Earth+Saver&background=059669&color=fff" class="w-10 h-10 rounded-full">
-                <div>
-                  <p class="font-semibold text-sm text-gray-900">Earth Saver</p>
-                  <p class="text-xs text-gray-500">890 followers</p>
-                </div>
-              </div>
-              <button class="suggest-follow-btn text-emerald-600 hover:text-emerald-700 font-semibold text-xs">
-                Follow
-              </button>
-            </div>
-            <div class="flex items-center justify-between">
-              <div class="flex items-center gap-3">
-                <img src="https://ui-avatars.com/api/?name=Waste+Fighter&background=059669&color=fff" class="w-10 h-10 rounded-full">
-                <div>
-                  <p class="font-semibold text-sm text-gray-900">Waste Fighter</p>
-                  <p class="text-xs text-gray-500">654 followers</p>
-                </div>
-              </div>
-              <button class="suggest-follow-btn text-emerald-600 hover:text-emerald-700 font-semibold text-xs">
-                Follow
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Leaderboard Mini -->
-        <div class="bg-gradient-to-br from-emerald-600 to-emerald-700 rounded-2xl shadow-sm p-5 text-white">
-          <h3 class="font-bold mb-4 flex items-center gap-2">
-            <i class="fas fa-trophy text-yellow-300"></i>
-            Top Contributors
-          </h3>
-          <div class="space-y-3">
-            <div class="flex items-center gap-3 bg-white bg-opacity-10 backdrop-blur-sm p-3 rounded-xl">
-              <div class="flex items-center gap-2 flex-1">
-                <span class="font-bold text-yellow-300">1</span>
-                <img src="https://ui-avatars.com/api/?name=Top+User&background=FCD34D&color=000" class="w-8 h-8 rounded-full">
-                <div class="flex-1">
-                  <p class="font-semibold text-sm">Top User</p>
-                  <p class="text-xs opacity-90">5.2k poin</p>
-                </div>
-              </div>
-            </div>
-            <div class="flex items-center gap-3 bg-white bg-opacity-10 backdrop-blur-sm p-3 rounded-xl">
-              <div class="flex items-center gap-2 flex-1">
-                <span class="font-bold text-gray-300">2</span>
-                <img src="https://ui-avatars.com/api/?name=Second+Place&background=C0C0C0&color=000" class="w-8 h-8 rounded-full">
-                <div class="flex-1">
-                  <p class="font-semibold text-sm">Second Place</p>
-                  <p class="text-xs opacity-90">4.8k poin</p>
-                </div>
-              </div>
-            </div>
-            <div class="flex items-center gap-3 bg-white bg-opacity-10 backdrop-blur-sm p-3 rounded-xl">
-              <div class="flex items-center gap-2 flex-1">
-                <span class="font-bold text-orange-300">3</span>
-                <img src="https://ui-avatars.com/api/?name=Third+User&background=CD7F32&color=fff" class="w-8 h-8 rounded-full">
-                <div class="flex-1">
-                  <p class="font-semibold text-sm">Third User</p>
-                  <p class="text-xs opacity-90">4.2k poin</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
       </div>
-    </div>
-
-  </div>
 
 
 
 
-
- <!-- End Content Area -->
+      <!-- End Content Area -->
 
     </main>
   </div>
@@ -998,761 +819,453 @@
     </div>
   </div>
 
-<<<<<<< HEAD
   <!-- Floating Scan Button -->
-<a href="scan.html"
-  class="fixed bottom-6 right-6 bg-emerald-600 hover:bg-emerald-700 text-white p-4 rounded-full shadow-lg transition transform hover:scale-105 active:scale-95 z-50"
-  aria-label="Scan sekarang">
-  <!-- Ikon kamera -->
-  <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-    stroke-width="2">
-    <path stroke-linecap="round" stroke-linejoin="round"
-      d="M3 7h4l2-3h6l2 3h4a1 1 0 011 1v11a1 1 0 01-1 1H3a1 1 0 01-1-1V8a1 1 0 011-1z" />
-    <path stroke-linecap="round" stroke-linejoin="round" d="M12 11a3 3 0 100 6 3 3 0 000-6z" />
-  </svg>
-</a>
+  <a href="scan.html"
+    class="fixed bottom-6 right-6 bg-emerald-600 hover:bg-emerald-700 text-white p-4 rounded-full shadow-lg transition transform hover:scale-105 active:scale-95 z-50"
+    aria-label="Scan sekarang">
+    <!-- Ikon kamera -->
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+      stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round"
+        d="M3 7h4l2-3h6l2 3h4a1 1 0 011 1v11a1 1 0 01-1 1H3a1 1 0 01-1-1V8a1 1 0 011-1z" />
+      <path stroke-linecap="round" stroke-linejoin="round" d="M12 11a3 3 0 100 6 3 3 0 000-6z" />
+    </svg>
+  </a>
 
+
+  <script>
+    // Data posts
+    const postsData = {
+      1: {
+        username: "Rhianonn Mathews",
+        userImage: "assets/image/userprofile/user1.png",
+        time: "28 Mei 2025 • 14:30",
+        caption: "Energi surya semakin menjadi solusi utama dalam transisi menuju masa depan yang berkelanjutan. Dengan teknologi yang terus berkembang, panel surya kini lebih efisien dan terjangkau. Mari kita bersama-sama mendukung energi terbarukan! 🌞♻️",
+        image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800",
+        likes: 124,
+        comments: [
+          { user: "Sarah Martinez", avatar: "assets/image/userprofile/user1.png", text: "Sangat informatif! Saya tertarik untuk memasang panel surya di rumah. Ada rekomendasi vendor yang bagus? 🏡☀️", time: "2 jam yang lalu" },
+          { user: "Ahmad Rizki", avatar: "assets/image/userprofile/user1.png", text: "Setuju banget! Di kampung saya sudah mulai banyak yang pasang solar panel. Tagihan listrik turun drastis 👍", time: "4 jam yang lalu" }
+        ]
+      },
+      2: {
+        username: "Budi Santoso",
+        userImage: "assets/image/userprofile/user1.png",
+        time: "26 Mei 2025 • 09:15",
+        caption: "Bergabunglah dengan tetangga untuk membuat lingkungan kita lebih hijau dan bersih! Baik itu memulai program kompos, mengorganisir pembersihan taman, atau berbagi ide untuk hidup berkelanjutan. 🌱🤝",
+        image: "",
+        likes: 89,
+        comments: [
+          { user: "Dewi Lestari", avatar: "assets/image/userprofile/user1.png", text: "Ide bagus! Di kompleks saya sudah jalan program bank sampah. Hasilnya luar biasa! 💚", time: "1 hari yang lalu" }
+        ]
+      },
+      3: {
+        username: "Linda Wijaya",
+        userImage: "assets/image/userprofile/user1.png",
+        time: "25 Mei 2025 • 16:45",
+        caption: "Hari ini saya berhasil mengumpulkan 15kg sampah plastik dari pantai! Senang sekali bisa berkontribusi untuk lingkungan. #BeachCleanup #SaveOcean 🌊🗑️✨",
+        image: "https://images.unsplash.com/photo-1621451537084-482c73073a0f?w=800",
+        likes: 156,
+        comments: [
+          { user: "Andi Pratama", avatar: "assets/image/userprofile/user1.png", text: "Keren banget kak! Boleh tau pantai mana? Pengen ikutan kegiatan cleanup juga nih 🙌", time: "3 jam yang lalu" }
+        ]
+      }
+    };
+
+    // Likes data
+    const likesData = {
+      1: [
+        { name: "Sarah Martinez", avatar: "assets/image/userprofile/user1.png", badge: "Level 4" },
+        { name: "Ahmad Rizki", avatar: "assets/image/userprofile/user1.png", badge: "Level 3" },
+        { name: "Dewi Lestari", avatar: "assets/image/userprofile/user1.png", badge: "Aktivis" },
+        { name: "Andi Pratama", avatar: "assets/image/userprofile/user1.png", badge: "Level 2" }
+      ],
+      2: [
+        { name: "Linda Wijaya", avatar: "assets/image/userprofile/user1.png", badge: "Level 3" },
+        { name: "Budi Santoso", avatar: "assets/image/userprofile/user1.png", badge: "Level 5" }
+      ],
+      3: [
+        { name: "Rhianonn Mathews", avatar: "assets/image/userprofile/user1.png", badge: "Aktivis" },
+        { name: "Sarah Martinez", avatar: "assets/image/userprofile/user1.png", badge: "Level 4" },
+        { name: "Ahmad Rizki", avatar: "assets/image/userprofile/user1.png", badge: "Level 3" }
+      ]
+    };
+
+    let currentPostId = null;
+
+    // Toggle like on post
+    function toggleLike(btn, postId) {
+      const icon = btn.querySelector('i');
+      const likesCountEl = document.querySelector(`.likes-count[data-post="${postId}"]`);
+      let count = parseInt(likesCountEl.textContent);
+
+      if (icon.classList.contains('far')) {
+        icon.classList.remove('far');
+        icon.classList.add('fas', 'text-emerald-600');
+        icon.classList.add('animate-heart');
+        btn.classList.add('text-emerald-600');
+        likesCountEl.textContent = count + 1;
+
+        setTimeout(() => icon.classList.remove('animate-heart'), 500);
+      } else {
+        icon.classList.remove('fas', 'text-emerald-600');
+        icon.classList.add('far');
+        btn.classList.remove('text-emerald-600');
+        likesCountEl.textContent = count - 1;
+      }
+    }
+
+    // Share post
+    function sharePost(postId) {
+      const shareData = {
+        title: 'DRYcycle Post',
+        text: 'Lihat postingan menarik ini di DRYcycle!',
+        url: window.location.href
+      };
+
+      if (navigator.share) {
+        navigator.share(shareData);
+      } else {
+        // Fallback: copy to clipboard
+        navigator.clipboard.writeText(window.location.href);
+        alert('Link berhasil disalin!');
+      }
+
+      // Update shares count
+      const sharesCountEl = document.querySelector(`.shares-count[data-post="${postId}"]`);
+      let count = parseInt(sharesCountEl.textContent.split(' ')[0]);
+      sharesCountEl.textContent = `${count + 1} dibagikan`;
+    }
+
+    // Open create post modal
+    function openCreatePostModal() {
+      document.getElementById('createPostModal').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    // Close create post modal
+    function closeCreatePostModal() {
+      document.getElementById('createPostModal').classList.add('hidden');
+      document.body.style.overflow = 'auto';
+      document.getElementById('postContent').value = '';
+      removeImage();
+    }
+
+    // Preview image
+    function previewImage(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          document.getElementById('previewImg').src = e.target.result;
+          document.getElementById('imagePreview').classList.remove('hidden');
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    // Remove image
+    function removeImage() {
+      document.getElementById('imagePreview').classList.add('hidden');
+      document.getElementById('imageUpload').value = '';
+    }
+
+    // Create post
+    function createPost() {
+      const content = document.getElementById('postContent').value;
+      const imagePreview = document.getElementById('imagePreview');
+      const hasImage = !imagePreview.classList.contains('hidden');
+
+      if (!content && !hasImage) {
+        alert('Mohon isi konten postingan atau tambahkan gambar!');
+        return;
+      }
+
+      // Create new post element
+      const newPost = document.createElement('div');
+      newPost.className = 'bg-white rounded-2xl shadow-sm border border-gray-100 mb-6 overflow-hidden animate-slide-up';
+
+      const imageSrc = hasImage ? document.getElementById('previewImg').src : '';
+      const imageHTML = hasImage ? `
+    <div class="relative cursor-pointer">
+      <img src="${imageSrc}" alt="Post" class="w-full h-64 sm:h-96 object-cover hover:opacity-95 transition-opacity">
+    </div>
+  ` : '';
+
+      newPost.innerHTML = `
+    <div class="p-4 sm:p-6 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <img src="assets/image/userprofile/user1.png" alt="User" class="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex-shrink-0">
+        <div>
+          <div class="flex items-center space-x-2">
+            <p class="text-sm sm:text-base font-bold text-gray-900">Budi Santoso</p>
+            <span class="px-2 py-0.5 bg-emerald-100 text-emerald-700 text-xs font-semibold rounded-full">Level 5</span>
+          </div>
+          <p class="text-xs sm:text-sm text-gray-500">Baru saja</p>
+        </div>
+      </div>
+      <button class="text-gray-400 hover:text-gray-600 p-2">
+        <i class="fas fa-ellipsis-h text-lg"></i>
+      </button>
+    </div>
+    <div class="px-4 sm:px-6 pb-4">
+      <p class="text-sm sm:text-base text-gray-600 leading-relaxed">${content}</p>
+    </div>
+    ${imageHTML}
+    <div class="px-4 sm:px-6 py-3 border-b border-gray-100">
+      <div class="flex items-center justify-between text-sm text-gray-500">
+        <button class="flex items-center space-x-1 hover:text-emerald-600 transition-colors">
+          <i class="fas fa-thumbs-up text-emerald-600 text-xs"></i>
+          <span class="font-medium likes-count">0</span>
+        </button>
+        <div class="flex items-center space-x-4">
+          <button class="font-medium hover:text-emerald-600 transition-colors">
+            <span class="comments-count">0</span> komentar
+          </button>
+          <span class="font-medium shares-count">0 dibagikan</span>
+        </div>
+      </div>
+    </div>
+    <div class="px-2 sm:px-4 py-2 flex items-center justify-around">
+      <button onclick="toggleLike(this)" class="like-btn flex-1 flex items-center justify-center space-x-2 py-2.5 sm:py-3 text-gray-600 hover:bg-gray-50 rounded-lg transition-all">
+        <i class="far fa-thumbs-up text-lg sm:text-xl"></i>
+        <span class="text-sm sm:text-base font-semibold">Suka</span>
+      </button>
+      <button class="flex-1 flex items-center justify-center space-x-2 py-2.5 sm:py-3 text-gray-600 hover:bg-gray-50 rounded-lg transition-all">
+        <i class="far fa-comment text-lg sm:text-xl"></i>
+        <span class="text-sm sm:text-base font-semibold">Komentar</span>
+      </button>
+      <button onclick="sharePost()" class="flex-1 flex items-center justify-center space-x-2 py-2.5 sm:py-3 text-gray-600 hover:bg-gray-50 rounded-lg transition-all">
+        <i class="fas fa-share text-lg sm:text-xl"></i>
+        <span class="text-sm sm:text-base font-semibold">Bagikan</span>
+      </button>
+    </div>
+  `;
+
+      // Insert at the beginning of posts container
+      const postsContainer = document.getElementById('postsContainer');
+      postsContainer.insertBefore(newPost, postsContainer.firstChild);
+
+      // Close modal
+      closeCreatePostModal();
+
+      // Show success notification
+      showNotification('Postingan berhasil dipublikasikan! 🎉');
+    }
+
+    // Show notification
+    function showNotification(message) {
+      const notification = document.createElement('div');
+      notification.className = 'fixed top-24 right-6 bg-emerald-600 text-white px-6 py-3 rounded-xl shadow-lg z-50 animate-slide-up';
+      notification.innerHTML = `
+    <div class="flex items-center space-x-2">
+      <i class="fas fa-check-circle"></i>
+      <span>${message}</span>
+    </div>
+  `;
+      document.body.appendChild(notification);
+
+      setTimeout(() => {
+        notification.classList.add('animate-fade-out');
+        setTimeout(() => notification.remove(), 300);
+      }, 3000);
+    }
+
+    // Open post detail
+    function openPostDetail(postId) {
+      currentPostId = postId;
+      const post = postsData[postId];
+
+      document.getElementById('detailUserImage').src = post.userImage;
+      document.getElementById('detailUsername').textContent = post.username;
+      document.getElementById('detailPostTime').textContent = post.time;
+      document.getElementById('detailCaption').textContent = post.caption;
+      document.getElementById('detailLikesCount').textContent = `${post.likes} suka`;
+
+      if (post.image) {
+        document.getElementById('detailPostImage').src = post.image;
+      }
+
+      // Load comments
+      loadComments(post.comments);
+
+      document.getElementById('postDetailModal').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    // Close post detail
+    function closePostDetail() {
+      document.getElementById('postDetailModal').classList.add('hidden');
+      document.body.style.overflow = 'auto';
+      currentPostId = null;
+    }
+
+    // Load comments
+    function loadComments(comments) {
+      const commentsList = document.getElementById('commentsList');
+      commentsList.innerHTML = '';
+
+      comments.forEach(comment => {
+        const commentEl = document.createElement('div');
+        commentEl.className = 'flex space-x-3 animate-fade-in';
+        commentEl.innerHTML = `
+      <img src="${comment.avatar}" alt="User" class="w-8 h-8 rounded-full flex-shrink-0">
+      <div class="flex-1">
+        <div class="bg-gray-50 rounded-2xl px-4 py-2.5">
+          <p class="text-sm font-bold text-gray-900">${comment.user}</p>
+          <p class="text-sm text-gray-700 mt-1">${comment.text}</p>
+        </div>
+        <div class="flex items-center space-x-4 mt-2 px-2">
+          <button onclick="likeComment(this)" class="text-xs text-gray-500 hover:text-emerald-600 font-semibold">
+            <i class="far fa-thumbs-up mr-1"></i>Suka
+          </button>
+          <button class="text-xs text-gray-500 hover:text-emerald-600 font-semibold">Balas</button>
+          <span class="text-xs text-gray-400">${comment.time}</span>
+        </div>
+      </div>
+    `;
+        commentsList.appendChild(commentEl);
+      });
+    }
+
+    // Add comment
+    function addComment() {
+      const input = document.getElementById('commentInput');
+      const commentText = input.value.trim();
+
+      if (!commentText) return;
+
+      const newComment = {
+        user: "Budi Santoso",
+        avatar: "assets/image/userprofile/user1.png",
+        text: commentText,
+        time: "Baru saja"
+      };
+
+      // Add to data
+      postsData[currentPostId].comments.push(newComment);
+
+      // Create comment element
+      const commentEl = document.createElement('div');
+      commentEl.className = 'flex space-x-3 animate-slide-up';
+      commentEl.innerHTML = `
+    <img src="${newComment.avatar}" alt="User" class="w-8 h-8 rounded-full flex-shrink-0">
+    <div class="flex-1">
+      <div class="bg-gray-50 rounded-2xl px-4 py-2.5">
+        <p class="text-sm font-bold text-gray-900">${newComment.user}</p>
+        <p class="text-sm text-gray-700 mt-1">${newComment.text}</p>
+      </div>
+      <div class="flex items-center space-x-4 mt-2 px-2">
+        <button onclick="likeComment(this)" class="text-xs text-gray-500 hover:text-emerald-600 font-semibold">
+          <i class="far fa-thumbs-up mr-1"></i>Suka
+        </button>
+        <button class="text-xs text-gray-500 hover:text-emerald-600 font-semibold">Balas</button>
+        <span class="text-xs text-gray-400">${newComment.time}</span>
+      </div>
+    </div>
+  `;
+
+      document.getElementById('commentsList').appendChild(commentEl);
+
+      // Update comments count
+      const commentsCountEl = document.querySelector(`.comments-count[data-post="${currentPostId}"]`);
+      commentsCountEl.textContent = parseInt(commentsCountEl.textContent) + 1;
+
+      // Clear input
+      input.value = '';
+
+      // Scroll to bottom
+      const commentsList = document.getElementById('commentsList');
+      commentsList.scrollTop = commentsList.scrollHeight;
+    }
+
+    // Like comment
+    function likeComment(btn) {
+      const icon = btn.querySelector('i');
+      if (icon.classList.contains('far')) {
+        icon.classList.remove('far');
+        icon.classList.add('fas');
+        btn.classList.remove('text-gray-500');
+        btn.classList.add('text-emerald-600');
+      } else {
+        icon.classList.remove('fas');
+        icon.classList.add('far');
+        btn.classList.remove('text-emerald-600');
+        btn.classList.add('text-gray-500');
+      }
+    }
+
+    // Toggle detail like
+    function toggleDetailLike() {
+      const btn = document.getElementById('detailLikeBtn');
+      const icon = btn.querySelector('i');
+      const likesCountEl = document.getElementById('detailLikesCount');
+      let count = parseInt(likesCountEl.textContent.split(' ')[0]);
+
+      if (icon.classList.contains('far')) {
+        icon.classList.remove('far');
+        icon.classList.add('fas', 'text-emerald-600');
+        icon.classList.add('animate-heart');
+        likesCountEl.textContent = `${count + 1} suka`;
+
+        setTimeout(() => icon.classList.remove('animate-heart'), 500);
+      } else {
+        icon.classList.remove('fas', 'text-emerald-600');
+        icon.classList.add('far');
+        likesCountEl.textContent = `${count - 1} suka`;
+      }
+    }
+
+    // Show likes modal
+    function showLikesModal(postId) {
+      const likes = likesData[postId] || [];
+      const likesList = document.getElementById('likesList');
+      likesList.innerHTML = '';
+
+      likes.forEach(like => {
+        const likeEl = document.createElement('div');
+        likeEl.className = 'flex items-center justify-between animate-fade-in';
+        likeEl.innerHTML = `
+      <div class="flex items-center space-x-3">
+        <img src="${like.avatar}" alt="${like.name}" class="w-10 h-10 rounded-full">
+        <div>
+          <p class="text-sm font-bold text-gray-900">${like.name}</p>
+          <span class="text-xs px-2 py-0.5 bg-emerald-100 text-emerald-700 rounded-full font-semibold">${like.badge}</span>
+        </div>
+      </div>
+      <button class="px-4 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold rounded-lg transition-all">
+        Ikuti
+      </button>
+    `;
+        likesList.appendChild(likeEl);
+      });
+
+      document.getElementById('likesModal').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    // Close likes modal
+    function closeLikesModal() {
+      document.getElementById('likesModal').classList.add('hidden');
+      document.body.style.overflow = 'auto';
+    }
+
+    // Enter key to send comment
+    document.addEventListener('DOMContentLoaded', function () {
+      const commentInput = document.getElementById('commentInput');
+      if (commentInput) {
+        commentInput.addEventListener('keypress', function (e) {
+          if (e.key === 'Enter') {
+            addComment();
+          }
+        });
+      }
+    });
+  </script>
 
   <!-- Link to external JavaScript file -->
   <script src="assets/js/sidebar.js"></script>
   <script src="assets/js/script.js"></script>
-  <script src="assets/js/post.js"></script>
-=======
-  <!-- Story Viewer -->
-  <div id="storyViewer" class="story-viewer">
-    <div class="story-progress" id="storyProgress"></div>
-    <div class="story-content">
-      <div class="story-username" id="storyUsername"></div>
-      <img id="storyImage" class="max-w-full max-h-96 object-contain rounded-lg">
-      <div class="story-caption" id="storyCaption"></div>
-    </div>
-    <button id="closeStory" class="absolute top-4 left-4 text-white text-2xl">
-      <i class="fas fa-times"></i>
-    </button>
-  </div>
-
-  <script>
-    // Data untuk postingan dan story
-    let userPosts = JSON.parse(localStorage.getItem('userPosts')) || [];
-    let userStories = JSON.parse(localStorage.getItem('userStories')) || [];
-
-    // Preloader
-    window.addEventListener('load', function() {
-      setTimeout(() => {
-        document.getElementById('preloader').classList.add('hidden');
-      }, 2000);
-    });
-
-    // Profile Dropdown
-    document.getElementById('profileBtn').addEventListener('click', function() {
-      const dropdown = document.getElementById('profileDropdown');
-      dropdown.classList.toggle('show');
-    });
-
-    // Close dropdown when clicking outside
-    document.addEventListener('click', function(event) {
-      const dropdown = document.getElementById('profileDropdown');
-      const profileBtn = document.getElementById('profileBtn');
-      
-      if (!profileBtn.contains(event.target) && !dropdown.contains(event.target)) {
-        dropdown.classList.remove('show');
-      }
-    });
-
-    // Logout functionality
-    document.getElementById('logoutBtnSidebar').addEventListener('click', showLogoutModal);
-    document.getElementById('logoutBtnDropdown').addEventListener('click', showLogoutModal);
-    
-    function showLogoutModal() {
-      document.getElementById('logoutModal').classList.remove('hidden');
-    }
-    
-    document.getElementById('cancelLogout').addEventListener('click', function() {
-      document.getElementById('logoutModal').classList.add('hidden');
-    });
-    
-    document.getElementById('confirmLogout').addEventListener('click', function() {
-      // Redirect to login page or perform logout
-      window.location.href = 'login.html';
-    });
-
-    // Sidebar functionality
-    document.getElementById('openSidebar').addEventListener('click', function() {
-      document.getElementById('sidebar').classList.remove('-translate-x-full');
-      document.getElementById('sidebarOverlay').classList.remove('hidden');
-    });
-
-    document.getElementById('closeSidebar').addEventListener('click', function() {
-      document.getElementById('sidebar').classList.add('-translate-x-full');
-      document.getElementById('sidebarOverlay').classList.add('hidden');
-    });
-
-    document.getElementById('sidebarOverlay').addEventListener('click', function() {
-      document.getElementById('sidebar').classList.add('-translate-x-full');
-      this.classList.add('hidden');
-    });
-
-    // Story functionality - Fixed
-    document.querySelectorAll('.story-item').forEach(story => {
-      story.addEventListener('click', function() {
-        const userName = this.getAttribute('data-user');
-        const userImage = this.getAttribute('data-image');
-        const caption = this.getAttribute('data-caption');
-        showStory(userName, userImage, caption);
-      });
-    });
-
-    document.getElementById('yourStory').addEventListener('click', function() {
-      showCreateStoryModal();
-    });
-
-    function showStory(userName, userImage, caption) {
-      const storyViewer = document.getElementById('storyViewer');
-      const storyImage = document.getElementById('storyImage');
-      const storyUsername = document.getElementById('storyUsername');
-      const storyCaption = document.getElementById('storyCaption');
-      const storyProgress = document.getElementById('storyProgress');
-      
-      storyImage.src = userImage;
-      storyUsername.textContent = userName;
-      storyCaption.textContent = caption;
-      storyProgress.innerHTML = `
-        <div class="progress-item">
-          <div class="progress-fill" id="storyProgressFill"></div>
-        </div>
-      `;
-      
-      storyViewer.style.display = 'block';
-      
-      // Animate progress bar
-      const progressFill = document.getElementById('storyProgressFill');
-      let width = 0;
-      const interval = setInterval(() => {
-        if (width >= 100) {
-          clearInterval(interval);
-          storyViewer.style.display = 'none';
-        } else {
-          width++;
-          progressFill.style.width = width + '%';
-        }
-      }, 50); // 5 seconds total
-      
-      // Store interval to clear if user closes early
-      storyViewer.currentInterval = interval;
-    }
-
-    function showCreateStoryModal() {
-      const modal = document.createElement('div');
-      modal.className = 'modal-overlay';
-      modal.innerHTML = `
-        <div class="modal-content">
-          <div class="flex items-center justify-between p-5 border-b border-gray-200">
-            <h3 class="text-xl font-bold text-gray-900">Buat Story Baru</h3>
-            <button class="close-modal text-gray-400 hover:text-gray-600 transition-colors">
-              <i class="fas fa-times text-xl"></i>
-            </button>
-          </div>
-          
-          <div class="p-5">
-            <div class="mb-4">
-              <label class="block text-sm font-semibold text-gray-700 mb-2">Upload Foto</label>
-              <div class="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center hover:border-emerald-500 transition-colors cursor-pointer" id="storyUploadArea">
-                <i class="fas fa-cloud-upload-alt text-4xl text-gray-400 mb-2"></i>
-                <p class="text-sm text-gray-600">Klik untuk upload foto</p>
-                <p class="text-xs text-gray-400 mt-1">PNG, JPG hingga 5MB</p>
-              </div>
-            </div>
-            
-            <div class="mb-4">
-              <label class="block text-sm font-semibold text-gray-700 mb-2">Caption Story</label>
-              <textarea 
-                class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent resize-none" 
-                rows="3" 
-                placeholder="Ceritakan tentang aktivitas daur ulang Anda..." id="storyCaptionInput"></textarea>
-            </div>
-            
-            <div class="flex gap-3">
-              <button class="close-modal flex-1 px-6 py-3 bg-gray-200 text-gray-800 rounded-xl hover:bg-gray-300 transition-all font-semibold">
-                Batal
-              </button>
-              <button class="create-story-btn flex-1 px-6 py-3 bg-emerald-600 text-white rounded-xl hover:bg-emerald-700 transition-all font-semibold">
-                Posting Story
-              </button>
-            </div>
-          </div>
-        </div>
-      `;
-      
-      document.body.appendChild(modal);
-      
-      let uploadedImage = null;
-      
-      // Upload area functionality
-      const uploadArea = modal.querySelector('#storyUploadArea');
-      uploadArea.addEventListener('click', function() {
-        const input = document.createElement('input');
-        input.type = 'file';
-        input.accept = 'image/*';
-        input.onchange = function(e) {
-          const file = e.target.files[0];
-          if (file) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-              uploadedImage = e.target.result;
-              uploadArea.innerHTML = `
-                <img src="${e.target.result}" class="w-full h-32 object-cover rounded-lg">
-                <p class="text-sm text-gray-600 mt-2">Foto berhasil diupload</p>
-              `;
-            };
-            reader.readAsDataURL(file);
-          }
-        };
-        input.click();
-      });
-      
-      // Create story functionality - FIXED
-      modal.querySelector('.create-story-btn').addEventListener('click', function() {
-        const caption = modal.querySelector('#storyCaptionInput').value.trim();
-        
-        if (!uploadedImage) {
-          showNotification('Silakan upload foto terlebih dahulu!', 'error');
-          return;
-        }
-        
-        if (!caption) {
-          showNotification('Silakan tambahkan caption untuk story!', 'error');
-          return;
-        }
-        
-        // Save story to localStorage
-        const newStory = {
-          id: Date.now(),
-          image: uploadedImage,
-          caption: caption,
-          timestamp: new Date().toISOString(),
-          user: 'Budi Santoso'
-        };
-        
-        userStories.unshift(newStory);
-        localStorage.setItem('userStories', JSON.stringify(userStories));
-        
-        showNotification('Story berhasil diposting!', 'success');
-        modal.remove();
-        
-        // Show the newly created story
-        setTimeout(() => {
-          showStory('Budi Santoso', uploadedImage, caption);
-        }, 1000);
-      });
-      
-      // Close modal functionality
-      modal.querySelector('.close-modal').addEventListener('click', () => modal.remove());
-      
-      modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-          modal.remove();
-        }
-      });
-    }
-
-    document.getElementById('closeStory').addEventListener('click', function() {
-      const storyViewer = document.getElementById('storyViewer');
-      if (storyViewer.currentInterval) {
-        clearInterval(storyViewer.currentInterval);
-      }
-      storyViewer.style.display = 'none';
-    });
-
-    // Notification function - ADD THIS
-    function showNotification(message, type = 'info') {
-      const notification = document.createElement('div');
-      const bgColor = type === 'success' ? 'bg-emerald-600' : 
-                     type === 'error' ? 'bg-red-600' : 'bg-blue-600';
-      
-      notification.className = `fixed top-4 right-4 ${bgColor} text-white px-6 py-4 rounded-lg shadow-lg z-50 flex items-center gap-3 transform translate-x-full transition-transform duration-300`;
-      notification.innerHTML = `
-        <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
-        <span>${message}</span>
-      `;
-      
-      document.body.appendChild(notification);
-      
-      // Animate in
-      setTimeout(() => {
-        notification.classList.remove('translate-x-full');
-      }, 100);
-      
-      // Remove after 3 seconds
-      setTimeout(() => {
-        notification.classList.add('translate-x-full');
-        setTimeout(() => {
-          notification.remove();
-        }, 300);
-      }, 3000);
-    }
-
-    // Create Post Button
-    document.getElementById('createPostBtn').addEventListener('click', function() {
-      const modal = document.createElement('div');
-      modal.className = 'modal-overlay';
-      modal.innerHTML = `
-        <div class="modal-content">
-          <div class="flex items-center justify-between p-5 border-b border-gray-200">
-            <h3 class="text-xl font-bold text-gray-900">Buat Postingan Baru</h3>
-            <button class="close-modal text-gray-400 hover:text-gray-600 transition-colors">
-              <i class="fas fa-times text-xl"></i>
-            </button>
-          </div>
-          
-          <div class="p-5">
-            <div class="mb-4">
-              <label class="block text-sm font-semibold text-gray-700 mb-2">Kategori Sampah</label>
-              <select class="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent" id="postCategory">
-                <option value="Plastik">Plastik</option>
-                <option value="Organik">Organik</option>
-                <option value="Kertas">Kertas</option>
-                <option value="Logam">Logam</option>
-                <option value="Kaca">Kaca</option>
-                <option value="Elektronik">Elektronik</option>
-              </select>
-            </div>
-            
-            <div class="mb-4">
-              <label class="block text-sm font-semibold text-gray-700 mb-2">Upload Foto</label>
-              <div class="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center hover:border-emerald-500 transition-colors cursor-pointer" id="uploadArea">
-                <i class="fas fa-cloud-upload-alt text-4xl text-gray-400 mb-2"></i>
-                <p class="text-sm text-gray-600">Klik untuk upload foto</p>
-                <p class="text-xs text-gray-400 mt-1">PNG, JPG hingga 5MB</p>
-              </div>
-            </div>
-            
-            <div class="mb-4">
-              <label class="block text-sm font-semibold text-gray-700 mb-2">Caption</label>
-              <textarea 
-                class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent resize-none" 
-                rows="4" 
-                placeholder="Ceritakan tentang aktivitas daur ulang Anda..." id="postCaption"></textarea>
-            </div>
-            
-            <div class="mb-5">
-              <label class="block text-sm font-semibold text-gray-700 mb-2">Hashtags</label>
-              <input 
-                type="text" 
-                class="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent" 
-                placeholder="#DRYcycle #SaveEarth #Recycle" id="postHashtags">
-            </div>
-            
-            <div class="flex gap-3">
-              <button class="close-modal flex-1 px-6 py-3 bg-gray-200 text-gray-800 rounded-xl hover:bg-gray-300 transition-all font-semibold">
-                Batal
-              </button>
-              <button class="create-post-btn flex-1 px-6 py-3 bg-emerald-600 text-white rounded-xl hover:bg-emerald-700 transition-all font-semibold">
-                Posting
-              </button>
-            </div>
-          </div>
-        </div>
-      `;
-      
-      document.body.appendChild(modal);
-      
-      let uploadedImage = null;
-      
-      // Upload area functionality
-      const uploadArea = modal.querySelector('#uploadArea');
-      uploadArea.addEventListener('click', function() {
-        const input = document.createElement('input');
-        input.type = 'file';
-        input.accept = 'image/*';
-        input.onchange = function(e) {
-          const file = e.target.files[0];
-          if (file) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-              uploadedImage = e.target.result;
-              uploadArea.innerHTML = `
-                <img src="${e.target.result}" class="w-full h-32 object-cover rounded-lg">
-                <p class="text-sm text-gray-600 mt-2">Foto berhasil diupload</p>
-              `;
-            };
-            reader.readAsDataURL(file);
-          }
-        };
-        input.click();
-      });
-      
-      // Create post functionality
-      modal.querySelector('.create-post-btn').addEventListener('click', function() {
-        const category = modal.querySelector('#postCategory').value;
-        const caption = modal.querySelector('#postCaption').value.trim();
-        const hashtags = modal.querySelector('#postHashtags').value.trim();
-        
-        if (!uploadedImage) {
-          showNotification('Silakan upload foto terlebih dahulu!', 'error');
-          return;
-        }
-        
-        if (!caption) {
-          showNotification('Silakan tambahkan caption untuk postingan!', 'error');
-          return;
-        }
-        
-        // Create new post object
-        const newPost = {
-          id: Date.now(),
-          user: {
-            name: 'Budi Santoso',
-            avatar: 'assets/image/userprofile/user1.png',
-            verified: true
-          },
-          image: uploadedImage,
-          category: category,
-          caption: caption,
-          hashtags: hashtags,
-          likes: 0,
-          comments: 0,
-          timestamp: new Date().toISOString(),
-          liked: false,
-          saved: false
-        };
-        
-        // Save to localStorage
-        userPosts.unshift(newPost);
-        localStorage.setItem('userPosts', JSON.stringify(userPosts));
-        
-        showNotification('Postingan berhasil dibuat!', 'success');
-        modal.remove();
-        
-        // Add new post to feed
-        addPostToFeed(newPost);
-      });
-      
-      // Close modal functionality
-      modal.querySelector('.close-modal').addEventListener('click', () => modal.remove());
-      
-      modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-          modal.remove();
-        }
-      });
-    });
-
-    // Function to add new post to feed
-    function addPostToFeed(post) {
-      const feedContainer = document.getElementById('feedContainer');
-      
-      const postElement = document.createElement('article');
-      postElement.className = 'bg-white rounded-2xl shadow-sm post-card overflow-hidden';
-      postElement.innerHTML = `
-        <div class="flex items-center justify-between p-4">
-          <div class="flex items-center gap-3">
-            <img src="${post.user.avatar}" class="w-10 h-10 rounded-full border-2 border-emerald-600">
-            <div>
-              <div class="flex items-center gap-2">
-                <h4 class="font-semibold text-gray-900 text-sm">${post.user.name}</h4>
-                ${post.user.verified ? '<i class="fas fa-check-circle text-emerald-600 text-xs"></i>' : ''}
-              </div>
-              <p class="text-xs text-gray-500">Baru saja</p>
-            </div>
-          </div>
-          <button class="follow-btn text-emerald-600 hover:text-emerald-700 font-semibold text-sm px-4 py-1.5 border border-emerald-600 rounded-lg transition-all">
-            Follow
-          </button>
-        </div>
-
-        <div class="relative">
-          <img src="${post.image}" class="w-full aspect-square object-cover">
-          <div class="absolute top-3 right-3 bg-emerald-600 text-white px-3 py-1 rounded-full text-xs font-semibold">
-            <i class="fas fa-recycle mr-1"></i>${post.category}
-          </div>
-        </div>
-
-        <div class="p-4">
-          <div class="flex items-center justify-between mb-4">
-            <div class="flex items-center gap-4">
-              <button class="like-btn text-gray-600 hover:text-red-500 transition-colors">
-                <i class="far fa-heart text-2xl"></i>
-              </button>
-              <button class="comment-btn text-gray-600 hover:text-emerald-600 transition-colors">
-                <i class="far fa-comment text-2xl"></i>
-              </button>
-              <button class="share-btn text-gray-600 hover:text-emerald-600 transition-colors">
-                <i class="far fa-paper-plane text-2xl"></i>
-              </button>
-            </div>
-            <button class="save-btn text-gray-600 hover:text-emerald-600 transition-colors">
-              <i class="far fa-bookmark text-2xl"></i>
-            </button>
-          </div>
-
-          <p class="font-semibold text-sm text-gray-900 mb-2">
-            <span class="likes-count">${post.likes}</span> suka
-          </p>
-
-          <div class="mb-3">
-            <span class="font-semibold text-sm text-gray-900">${post.user.name}</span>
-            <span class="text-sm text-gray-700 ml-2">${post.caption} <span class="text-emerald-600">${post.hashtags}</span></span>
-          </div>
-
-          <button class="view-comments text-gray-500 text-sm hover:text-gray-700 mb-3">
-            Lihat semua <span class="comments-count">${post.comments}</span> komentar
-          </button>
-
-          <div class="flex items-center gap-3 border-t pt-3">
-            <input type="text" placeholder="Tambahkan komentar..." class="comment-input flex-1 text-sm outline-none text-gray-700 placeholder-gray-400">
-            <button class="post-comment-btn text-emerald-600 font-semibold text-sm hover:text-emerald-700 opacity-0 transition-opacity">
-              Post
-            </button>
-          </div>
-        </div>
-      `;
-      
-      // Insert at the top of feed
-      feedContainer.insertBefore(postElement, feedContainer.firstChild);
-      
-      // Add event listeners to new post
-      initializePostInteractions(postElement);
-    }
-
-    // Initialize post interactions
-    function initializePostInteractions(postElement) {
-      // Like button
-      const likeBtn = postElement.querySelector('.like-btn');
-      const likesCount = postElement.querySelector('.likes-count');
-      
-      likeBtn.addEventListener('click', function() {
-        const icon = this.querySelector('i');
-        let count = parseInt(likesCount.textContent);
-        
-        if (icon.classList.contains('far')) {
-          icon.classList.remove('far');
-          icon.classList.add('fas');
-          this.classList.add('text-red-500');
-          this.classList.remove('text-gray-600');
-          likesCount.textContent = count + 1;
-        } else {
-          icon.classList.remove('fas');
-          icon.classList.add('far');
-          this.classList.remove('text-red-500');
-          this.classList.add('text-gray-600');
-          likesCount.textContent = count - 1;
-        }
-      });
-
-      // Save button
-      const saveBtn = postElement.querySelector('.save-btn');
-      saveBtn.addEventListener('click', function() {
-        const icon = this.querySelector('i');
-        
-        if (icon.classList.contains('far')) {
-          icon.classList.remove('far');
-          icon.classList.add('fas');
-          this.classList.add('text-emerald-600');
-          this.classList.remove('text-gray-600');
-        } else {
-          icon.classList.remove('fas');
-          icon.classList.add('far');
-          this.classList.remove('text-emerald-600');
-          this.classList.add('text-gray-600');
-        }
-      });
-
-      // Follow button
-      const followBtn = postElement.querySelector('.follow-btn');
-      followBtn.addEventListener('click', function() {
-        if (this.textContent.trim() === 'Follow') {
-          this.textContent = 'Following';
-          this.classList.remove('text-emerald-600', 'border-emerald-600');
-          this.classList.add('bg-emerald-600', 'text-white');
-        } else {
-          this.textContent = 'Follow';
-          this.classList.remove('bg-emerald-600', 'text-white');
-          this.classList.add('text-emerald-600', 'border-emerald-600');
-        }
-      });
-
-      // Comment functionality
-      const commentInput = postElement.querySelector('.comment-input');
-      const postCommentBtn = postElement.querySelector('.post-comment-btn');
-      const commentsCount = postElement.querySelector('.comments-count');
-      
-      if (commentInput && postCommentBtn) {
-        commentInput.addEventListener('input', function() {
-          if (this.value.trim() !== '') {
-            postCommentBtn.classList.remove('opacity-0');
-            postCommentBtn.classList.add('opacity-100');
-          } else {
-            postCommentBtn.classList.remove('opacity-100');
-            postCommentBtn.classList.add('opacity-0');
-          }
-        });
-
-        postCommentBtn.addEventListener('click', function() {
-          if (commentInput.value.trim() !== '') {
-            let count = parseInt(commentsCount.textContent);
-            commentsCount.textContent = count + 1;
-            commentInput.value = '';
-            postCommentBtn.classList.remove('opacity-100');
-            postCommentBtn.classList.add('opacity-0');
-            
-            showNotification('Komentar berhasil ditambahkan!', 'success');
-          }
-        });
-
-        commentInput.addEventListener('keypress', function(e) {
-          if (e.key === 'Enter' && this.value.trim() !== '') {
-            postCommentBtn.click();
-          }
-        });
-      }
-
-      // View comments
-      const viewComments = postElement.querySelector('.view-comments');
-      viewComments.addEventListener('click', showCommentsModal);
-
-      // Share button
-      const shareBtn = postElement.querySelector('.share-btn');
-      shareBtn.addEventListener('click', showShareModal);
-    }
-
-    // Show comments modal function
-    function showCommentsModal() {
-      const modal = document.createElement('div');
-      modal.className = 'modal-overlay';
-      modal.innerHTML = `
-        <div class="modal-content">
-          <div class="flex items-center justify-between p-5 border-b border-gray-200">
-            <h3 class="text-xl font-bold text-gray-900">Komentar</h3>
-            <button class="close-modal text-gray-400 hover:text-gray-600 transition-colors">
-              <i class="fas fa-times text-xl"></i>
-            </button>
-          </div>
-          <div class="p-5 max-h-96 overflow-y-auto">
-            <div class="space-y-4">
-              <div class="flex gap-3">
-                <img src="assets/image/userprofile/user1.png" class="w-8 h-8 rounded-full">
-                <div class="flex-1">
-                  <p class="font-semibold text-sm">Budi Santoso</p>
-                  <p class="text-sm text-gray-700">Inspiratif sekali! Saya juga mau ikut berkontribusi.</p>
-                  <p class="text-xs text-gray-500 mt-1">1 jam yang lalu</p>
-                </div>
-              </div>
-              <div class="flex gap-3">
-                <img src="assets/image/userprofile/user2.png" class="w-8 h-8 rounded-full">
-                <div class="flex-1">
-                  <p class="font-semibold text-sm">Siti M</p>
-                  <p class="text-sm text-gray-700">Bagus banget! Bisa share tipsnya?</p>
-                  <p class="text-xs text-gray-500 mt-1">30 menit yang lalu</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="p-5 border-t border-gray-200">
-            <div class="flex gap-3">
-              <input type="text" placeholder="Tambahkan komentar..." class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500">
-              <button class="px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-all">
-                Kirim
-              </button>
-            </div>
-          </div>
-        </div>
-      `;
-      
-      document.body.appendChild(modal);
-      
-      modal.querySelector('.close-modal').addEventListener('click', () => modal.remove());
-      modal.addEventListener('click', (e) => {
-        if (e.target === modal) modal.remove();
-      });
-    }
-
-    // Show share modal function
-    function showShareModal() {
-      const shareModal = document.createElement('div');
-      shareModal.className = 'modal-overlay';
-      shareModal.innerHTML = `
-        <div class="modal-content">
-          <div class="flex items-center justify-between p-5 border-b border-gray-200">
-            <h3 class="text-lg font-bold text-gray-900">Bagikan ke</h3>
-            <button class="close-share text-gray-400 hover:text-gray-600 transition-colors">
-              <i class="fas fa-times text-xl"></i>
-            </button>
-          </div>
-          
-          <div class="p-5">
-            <div class="grid grid-cols-4 gap-4 mb-5">
-              <button class="flex flex-col items-center gap-2 p-3 hover:bg-gray-50 rounded-xl transition-all">
-                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-                  <i class="fab fa-facebook-f text-blue-600 text-xl"></i>
-                </div>
-                <span class="text-xs text-gray-700 font-medium">Facebook</span>
-              </button>
-              
-              <button class="flex flex-col items-center gap-2 p-3 hover:bg-gray-50 rounded-xl transition-all">
-                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-                  <i class="fab fa-twitter text-blue-400 text-xl"></i>
-                </div>
-                <span class="text-xs text-gray-700 font-medium">Twitter</span>
-              </button>
-              
-              <button class="flex flex-col items-center gap-2 p-3 hover:bg-gray-50 rounded-xl transition-all">
-                <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
-                  <i class="fab fa-whatsapp text-green-600 text-xl"></i>
-                </div>
-                <span class="text-xs text-gray-700 font-medium">WhatsApp</span>
-              </button>
-              
-              <button class="flex flex-col items-center gap-2 p-3 hover:bg-gray-50 rounded-xl transition-all">
-                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-                  <i class="fab fa-telegram text-blue-500 text-xl"></i>
-                </div>
-                <span class="text-xs text-gray-700 font-medium">Telegram</span>
-              </button>
-            </div>
-            
-            <div class="flex items-center gap-2 p-3 bg-gray-50 rounded-xl">
-              <input type="text" value="https://drycycle.com/post/12345" readonly class="flex-1 bg-transparent text-sm text-gray-600 outline-none">
-              <button class="copy-link px-4 py-2 bg-emerald-600 text-white rounded-lg text-sm font-semibold hover:bg-emerald-700 transition-all">
-                Salin
-              </button>
-            </div>
-          </div>
-        </div>
-      `;
-      
-      document.body.appendChild(shareModal);
-      
-      shareModal.querySelector('.close-share').addEventListener('click', () => shareModal.remove());
-      shareModal.addEventListener('click', (e) => {
-        if (e.target === shareModal) shareModal.remove();
-      });
-      
-      shareModal.querySelector('.copy-link').addEventListener('click', function() {
-        const input = shareModal.querySelector('input');
-        input.select();
-        document.execCommand('copy');
-        this.textContent = 'Tersalin!';
-        setTimeout(() => {
-          this.textContent = 'Salin';
-        }, 2000);
-      });
-    }
-
-    // Initialize existing posts
-    document.querySelectorAll('article').forEach(article => {
-      initializePostInteractions(article);
-    });
-
-    // Load user posts from localStorage on page load
-    window.addEventListener('load', function() {
-      userPosts.forEach(post => {
-        addPostToFeed(post);
-      });
-    });
-
-    console.log('DRYcycle Community - Loaded Successfully! 🌍♻️');
-  </script>
->>>>>>> e57a4b7ccdfea624924c95f679dbce7f59fe9697
 
 </body>
 
