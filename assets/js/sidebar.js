@@ -155,7 +155,8 @@ const pageTitles = {
     'edukasi': 'Edukasi',
     'profile': 'Profil Saya',
     'settings': 'Pengaturan',
-    'help': 'Bantuan'
+    'help': 'Bantuan',
+    'blog' : 'Blog',
 };
 
 function updatePageTitle() {
