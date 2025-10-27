@@ -12,6 +12,7 @@
         transform: translateY(100px);
         opacity: 0;
       }
+
       to {
         transform: translateY(0);
         opacity: 1;
@@ -22,6 +23,7 @@
       from {
         opacity: 0;
       }
+
       to {
         opacity: 1;
       }
@@ -32,6 +34,7 @@
         transform: scale(0.8);
         opacity: 0;
       }
+
       to {
         transform: scale(1);
         opacity: 1;
@@ -42,15 +45,19 @@
       0% {
         stroke-dashoffset: 100;
       }
+
       100% {
         stroke-dashoffset: 0;
       }
     }
 
     @keyframes pulse {
-      0%, 100% {
+
+      0%,
+      100% {
         transform: scale(1);
       }
+
       50% {
         transform: scale(1.05);
       }
@@ -84,7 +91,8 @@
       <div class="p-8 md:p-12 flex flex-col justify-center">
         <div class="mb-8">
           <div class="flex items-center gap-3 mb-4">
-            <img src="assets/image/logo/logo.png" class="w-10 h-10" alt="Logo DRYcycle" onerror="this.style.display='none';">
+            <img src="assets/image/logo/logo.png" class="w-10 h-10" alt="Logo DRYcycle"
+              onerror="this.style.display='none';">
             <h1 class="text-3xl font-bold text-gray-900">DRYcycle</h1>
           </div>
           <h2 class="text-4xl font-bold text-gray-900 mb-3">Welcome back!</h2>
@@ -180,12 +188,8 @@
 
       <!-- Right Side - Image Illustration -->
       <div class="hidden md:flex items-center justify-center bg-white">
-        <img 
-          src="assets/image/images/ear.png" 
-          alt="Register Illustration"
-          class="max-w-full h-auto object-contain" 
-          onerror="this.style.display='none';" 
-        />
+        <img src="assets/image/images/ear.png" alt="Register Illustration" class="max-w-full h-auto object-contain"
+          onerror="this.style.display='none';" />
       </div>
 
     </div>
@@ -195,7 +199,7 @@
   <div id="successModal" class="fixed inset-0 z-50 hidden">
     <!-- Overlay -->
     <div class="modal-overlay absolute inset-0 bg-black bg-opacity-50 backdrop-blur-sm"></div>
-    
+
     <!-- Modal Content -->
     <div class="relative min-h-screen flex items-center justify-center p-4">
       <div class="modal-content bg-white rounded-3xl shadow-2xl max-w-md w-full p-8 relative">
@@ -211,8 +215,10 @@
           <div class="relative">
             <div class="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center pulse-animation">
               <svg class="w-16 h-16" viewBox="0 0 52 52">
-                <circle class="text-green-500" cx="26" cy="26" r="25" fill="none" stroke="currentColor" stroke-width="2"/>
-                <path class="success-checkmark text-green-500" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" d="M14 27l7 7 16-16"/>
+                <circle class="text-green-500" cx="26" cy="26" r="25" fill="none" stroke="currentColor"
+                  stroke-width="2" />
+                <path class="success-checkmark text-green-500" fill="none" stroke="currentColor" stroke-width="3"
+                  stroke-linecap="round" d="M14 27l7 7 16-16" />
               </svg>
             </div>
           </div>
@@ -227,15 +233,18 @@
 
           <!-- Progress Bar -->
           <div class="w-full bg-gray-200 rounded-full h-2 mb-6 overflow-hidden">
-            <div id="progressBar" class="bg-green-500 h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
+            <div id="progressBar" class="bg-green-500 h-2 rounded-full transition-all duration-300" style="width: 0%">
+            </div>
           </div>
 
           <!-- Action Buttons -->
           <div class="flex gap-3">
-            <button onclick="closeModal()" class="flex-1 px-6 py-3 border-2 border-gray-300 text-gray-700 rounded-full hover:bg-gray-50 transition font-semibold">
+            <button onclick="closeModal()"
+              class="flex-1 px-6 py-3 border-2 border-gray-300 text-gray-700 rounded-full hover:bg-gray-50 transition font-semibold">
               Tutup
             </button>
-            <button onclick="redirectToDashboard()" class="flex-1 px-6 py-3 bg-green-600 text-white rounded-full hover:bg-green-700 transition font-semibold">
+            <button onclick="redirectToDashboard()"
+              class="flex-1 px-6 py-3 bg-green-600 text-white rounded-full hover:bg-green-700 transition font-semibold">
               Lanjutkan
             </button>
           </div>
@@ -255,15 +264,15 @@
     function showSuccessModal() {
       const modal = document.getElementById('successModal');
       modal.classList.remove('hidden');
-      
+
       // Start progress bar animation
       let progress = 0;
       const progressBar = document.getElementById('progressBar');
-      
+
       progressInterval = setInterval(() => {
         progress += 2;
         progressBar.style.width = progress + '%';
-        
+
         if (progress >= 100) {
           clearInterval(progressInterval);
           setTimeout(() => {
@@ -291,7 +300,7 @@
     }
 
     // Close modal when clicking outside
-    document.getElementById('successModal')?.addEventListener('click', function(e) {
+    document.getElementById('successModal')?.addEventListener('click', function (e) {
       if (e.target === this) {
         closeModal();
       }

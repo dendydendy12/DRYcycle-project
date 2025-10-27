@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,29 +12,33 @@
             background-color: #f0fdf4;
             border-left: 4px solid #059669;
         }
+
         .notification-read {
             background-color: #f9fafb;
             border-left: 4px solid #d1d5db;
         }
+
         .modal-overlay {
             backdrop-filter: blur(8px);
             background-color: rgba(0, 0, 0, 0.5);
         }
+
         .notification-item {
             transition: all 0.3s ease;
         }
+
         .notification-item:hover {
             transform: translateY(-2px);
         }
+
         .line-clamp-2 {
             display: -webkit-box;
-            -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
+
         .line-clamp-1 {
             display: -webkit-box;
-            -webkit-line-clamp: 1;
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
@@ -56,7 +61,8 @@
 
         <!-- Kanan: Icon Aksi -->
         <div class="flex items-center space-x-4">
-            <button id="markAllReadBtn" class="text-emerald-500 hover:text-emerald-600 font-medium text-sm transition-colors">
+            <button id="markAllReadBtn"
+                class="text-emerald-500 hover:text-emerald-600 font-medium text-sm transition-colors">
                 Tandai Semua Dibaca
             </button>
         </div>
@@ -67,13 +73,16 @@
         <div class="bg-white rounded-xl shadow-sm overflow-hidden">
             <!-- Filter Tabs -->
             <div class="flex border-b border-gray-200">
-                <button id="tabAll" class="tab-button flex-1 py-4 text-center font-medium text-emerald-600 border-b-2 border-emerald-500 transition-colors">
+                <button id="tabAll"
+                    class="tab-button flex-1 py-4 text-center font-medium text-emerald-600 border-b-2 border-emerald-500 transition-colors">
                     Semua
                 </button>
-                <button id="tabUnread" class="tab-button flex-1 py-4 text-center font-medium text-gray-500 hover:text-emerald-600 transition-colors">
+                <button id="tabUnread"
+                    class="tab-button flex-1 py-4 text-center font-medium text-gray-500 hover:text-emerald-600 transition-colors">
                     Belum Dibaca
                 </button>
-                <button id="tabRead" class="tab-button flex-1 py-4 text-center font-medium text-gray-500 hover:text-emerald-600 transition-colors">
+                <button id="tabRead"
+                    class="tab-button flex-1 py-4 text-center font-medium text-gray-500 hover:text-emerald-600 transition-colors">
                     Sudah Dibaca
                 </button>
             </div>
@@ -84,9 +93,10 @@
                     <i class="fas fa-calendar-day text-emerald-500 mr-2"></i>
                     Hari Ini
                 </h2>
-                
+
                 <!-- Notifikasi 1 - POIN -->
-                <div class="notification-item notification-unread mb-4 p-4 rounded-lg transition-all duration-300 hover:shadow-md" data-id="1">
+                <div class="notification-item notification-unread mb-4 p-4 rounded-lg transition-all duration-300 hover:shadow-md"
+                    data-id="1">
                     <div class="flex justify-between items-start mb-2">
                         <h3 class="font-semibold text-gray-800 flex items-center">
                             <i class="fas fa-coins text-emerald-500 mr-2"></i>
@@ -103,16 +113,20 @@
                         +50 poin untuk sampah plastik 5kg yang berhasil didaur ulang. Total poin: 2.550
                     </p>
                     <div class="flex justify-between items-center mt-3">
-                        <span class="inline-block bg-emerald-500 text-white text-xs px-3 py-1 rounded-full font-medium">Poin & Reward</span>
-                        <button class="view-detail-btn text-emerald-500 hover:text-emerald-600 text-sm font-medium flex items-center transition-colors">
+                        <span
+                            class="inline-block bg-emerald-500 text-white text-xs px-3 py-1 rounded-full font-medium">Poin
+                            & Reward</span>
+                        <button
+                            class="view-detail-btn text-emerald-500 hover:text-emerald-600 text-sm font-medium flex items-center transition-colors">
                             Selengkapnya
                             <i class="fas fa-chevron-right ml-1 text-xs"></i>
                         </button>
                     </div>
                 </div>
-                
+
                 <!-- Notifikasi 2 - BOOKING -->
-                <div class="notification-item notification-unread mb-4 p-4 rounded-lg transition-all duration-300 hover:shadow-md" data-id="2">
+                <div class="notification-item notification-unread mb-4 p-4 rounded-lg transition-all duration-300 hover:shadow-md"
+                    data-id="2">
                     <div class="flex justify-between items-start mb-2">
                         <h3 class="font-semibold text-gray-800 flex items-center">
                             <i class="fas fa-calendar-check text-emerald-500 mr-2"></i>
@@ -129,16 +143,19 @@
                         Booking sampah organik 10kg dikonfirmasi. Petugas akan datang besok jam 10:00-12:00
                     </p>
                     <div class="flex justify-between items-center mt-3">
-                        <span class="inline-block bg-emerald-500 text-white text-xs px-3 py-1 rounded-full font-medium">Booking</span>
-                        <button class="view-detail-btn text-emerald-500 hover:text-emerald-600 text-sm font-medium flex items-center transition-colors">
+                        <span
+                            class="inline-block bg-emerald-500 text-white text-xs px-3 py-1 rounded-full font-medium">Booking</span>
+                        <button
+                            class="view-detail-btn text-emerald-500 hover:text-emerald-600 text-sm font-medium flex items-center transition-colors">
                             Selengkapnya
                             <i class="fas fa-chevron-right ml-1 text-xs"></i>
                         </button>
                     </div>
                 </div>
-                
+
                 <!-- Notifikasi 3 - STATUS SAMPAH -->
-                <div class="notification-item notification-unread mb-4 p-4 rounded-lg transition-all duration-300 hover:shadow-md" data-id="3">
+                <div class="notification-item notification-unread mb-4 p-4 rounded-lg transition-all duration-300 hover:shadow-md"
+                    data-id="3">
                     <div class="flex justify-between items-start mb-2">
                         <h3 class="font-semibold text-gray-800 flex items-center">
                             <i class="fas fa-recycle text-emerald-500 mr-2"></i>
@@ -155,24 +172,28 @@
                         Sampah kertas 8kg telah diproses menjadi produk daur ulang. Terima kasih!
                     </p>
                     <div class="flex justify-between items-center mt-3">
-                        <span class="inline-block bg-emerald-500 text-white text-xs px-3 py-1 rounded-full font-medium">Daur Ulang</span>
-                        <button class="view-detail-btn text-emerald-500 hover:text-emerald-600 text-sm font-medium flex items-center transition-colors">
+                        <span
+                            class="inline-block bg-emerald-500 text-white text-xs px-3 py-1 rounded-full font-medium">Daur
+                            Ulang</span>
+                        <button
+                            class="view-detail-btn text-emerald-500 hover:text-emerald-600 text-sm font-medium flex items-center transition-colors">
                             Selengkapnya
                             <i class="fas fa-chevron-right ml-1 text-xs"></i>
                         </button>
                     </div>
                 </div>
             </div>
-            
+
             <!-- Notifikasi Kemarin -->
             <div class="p-4 border-b border-gray-100">
                 <h2 class="text-lg font-bold text-gray-800 mb-3 flex items-center">
                     <i class="fas fa-calendar-minus text-emerald-500 mr-2"></i>
                     Kemarin
                 </h2>
-                
+
                 <!-- Notifikasi 4 - KOMUNITAS -->
-                <div class="notification-item notification-read mb-4 p-4 rounded-lg transition-all duration-300 hover:shadow-md" data-id="4">
+                <div class="notification-item notification-read mb-4 p-4 rounded-lg transition-all duration-300 hover:shadow-md"
+                    data-id="4">
                     <div class="flex justify-between items-start mb-2">
                         <h3 class="font-semibold text-gray-800 flex items-center">
                             <i class="fas fa-users text-emerald-500 mr-2"></i>
@@ -189,16 +210,19 @@
                         "Clean Up Day" di Taman Merdeka Minggu depan. Daftar sekarang dapat 100 poin!
                     </p>
                     <div class="flex justify-between items-center mt-3">
-                        <span class="inline-block bg-emerald-500 text-white text-xs px-3 py-1 rounded-full font-medium">Komunitas</span>
-                        <button class="view-detail-btn text-emerald-500 hover:text-emerald-600 text-sm font-medium flex items-center transition-colors">
+                        <span
+                            class="inline-block bg-emerald-500 text-white text-xs px-3 py-1 rounded-full font-medium">Komunitas</span>
+                        <button
+                            class="view-detail-btn text-emerald-500 hover:text-emerald-600 text-sm font-medium flex items-center transition-colors">
                             Selengkapnya
                             <i class="fas fa-chevron-right ml-1 text-xs"></i>
                         </button>
                     </div>
                 </div>
-                
+
                 <!-- Notifikasi 5 - REWARD -->
-                <div class="notification-item notification-read mb-4 p-4 rounded-lg transition-all duration-300 hover:shadow-md" data-id="5">
+                <div class="notification-item notification-read mb-4 p-4 rounded-lg transition-all duration-300 hover:shadow-md"
+                    data-id="5">
                     <div class="flex justify-between items-start mb-2">
                         <h3 class="font-semibold text-gray-800 flex items-center">
                             <i class="fas fa-gift text-emerald-500 mr-2"></i>
@@ -215,24 +239,27 @@
                         Tukar 500 poin dengan voucher belanja Rp 50.000. Berlaku hingga 30 November 2023
                     </p>
                     <div class="flex justify-between items-center mt-3">
-                        <span class="inline-block bg-emerald-500 text-white text-xs px-3 py-1 rounded-full font-medium">Reward</span>
-                        <button class="view-detail-btn text-emerald-500 hover:text-emerald-600 text-sm font-medium flex items-center transition-colors">
+                        <span
+                            class="inline-block bg-emerald-500 text-white text-xs px-3 py-1 rounded-full font-medium">Reward</span>
+                        <button
+                            class="view-detail-btn text-emerald-500 hover:text-emerald-600 text-sm font-medium flex items-center transition-colors">
                             Selengkapnya
                             <i class="fas fa-chevron-right ml-1 text-xs"></i>
                         </button>
                     </div>
                 </div>
             </div>
-            
+
             <!-- Notifikasi Minggu Lalu -->
             <div class="p-4">
                 <h2 class="text-lg font-bold text-gray-800 mb-3 flex items-center">
                     <i class="fas fa-calendar-week text-emerald-500 mr-2"></i>
                     Minggu Lalu
                 </h2>
-                
+
                 <!-- Notifikasi 6 - LEVEL UP -->
-                <div class="notification-item notification-read mb-4 p-4 rounded-lg transition-all duration-300 hover:shadow-md" data-id="6">
+                <div class="notification-item notification-read mb-4 p-4 rounded-lg transition-all duration-300 hover:shadow-md"
+                    data-id="6">
                     <div class="flex justify-between items-start mb-2">
                         <h3 class="font-semibold text-gray-800 flex items-center">
                             <i class="fas fa-trophy text-emerald-500 mr-2"></i>
@@ -249,8 +276,10 @@
                         Selamat! Anda sekarang Eco Warrior Level 6. Akses fitur premium terbuka!
                     </p>
                     <div class="flex justify-between items-center mt-3">
-                        <span class="inline-block bg-emerald-500 text-white text-xs px-3 py-1 rounded-full font-medium">Pencapaian</span>
-                        <button class="view-detail-btn text-emerald-500 hover:text-emerald-600 text-sm font-medium flex items-center transition-colors">
+                        <span
+                            class="inline-block bg-emerald-500 text-white text-xs px-3 py-1 rounded-full font-medium">Pencapaian</span>
+                        <button
+                            class="view-detail-btn text-emerald-500 hover:text-emerald-600 text-sm font-medium flex items-center transition-colors">
                             Selengkapnya
                             <i class="fas fa-chevron-right ml-1 text-xs"></i>
                         </button>
@@ -258,7 +287,8 @@
                 </div>
 
                 <!-- Notifikasi 7 - EDUKASI -->
-                <div class="notification-item notification-read mb-4 p-4 rounded-lg transition-all duration-300 hover:shadow-md" data-id="7">
+                <div class="notification-item notification-read mb-4 p-4 rounded-lg transition-all duration-300 hover:shadow-md"
+                    data-id="7">
                     <div class="flex justify-between items-start mb-2">
                         <h3 class="font-semibold text-gray-800 flex items-center">
                             <i class="fas fa-graduation-cap text-emerald-500 mr-2"></i>
@@ -275,8 +305,10 @@
                         Cara memilah sampah elektronik dengan benar. Baca dan dapatkan 25 poin!
                     </p>
                     <div class="flex justify-between items-center mt-3">
-                        <span class="inline-block bg-emerald-500 text-white text-xs px-3 py-1 rounded-full font-medium">Edukasi</span>
-                        <button class="view-detail-btn text-emerald-500 hover:text-emerald-600 text-sm font-medium flex items-center transition-colors">
+                        <span
+                            class="inline-block bg-emerald-500 text-white text-xs px-3 py-1 rounded-full font-medium">Edukasi</span>
+                        <button
+                            class="view-detail-btn text-emerald-500 hover:text-emerald-600 text-sm font-medium flex items-center transition-colors">
                             Selengkapnya
                             <i class="fas fa-chevron-right ml-1 text-xs"></i>
                         </button>
@@ -284,10 +316,11 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Tombol Lihat Semua Notifikasi -->
         <div class="mt-6 text-center">
-            <button class="bg-emerald-500 hover:bg-emerald-600 text-white font-medium py-3 px-6 rounded-full transition-all duration-300 transform hover:scale-105 shadow-md">
+            <button
+                class="bg-emerald-500 hover:bg-emerald-600 text-white font-medium py-3 px-6 rounded-full transition-all duration-300 transform hover:scale-105 shadow-md">
                 Lihat Semua Notifikasi
             </button>
         </div>
@@ -296,9 +329,11 @@
     <!-- Modal Detail Notifikasi -->
     <div id="notificationModal" class="fixed inset-0 z-50 hidden">
         <div class="modal-overlay absolute inset-0 flex items-center justify-center p-4">
-            <div class="bg-white rounded-xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto transform transition-all duration-300 scale-95 opacity-0">
+            <div
+                class="bg-white rounded-xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto transform transition-all duration-300 scale-95 opacity-0">
                 <!-- Modal Header -->
-                <div class="sticky top-0 bg-white border-b border-gray-200 p-6 rounded-t-xl flex justify-between items-center">
+                <div
+                    class="sticky top-0 bg-white border-b border-gray-200 p-6 rounded-t-xl flex justify-between items-center">
                     <div>
                         <h3 id="modalTitle" class="text-xl font-bold text-gray-800"></h3>
                         <p id="modalTime" class="text-sm text-gray-500 mt-1"></p>
@@ -307,24 +342,27 @@
                         <i class="fas fa-times text-2xl"></i>
                     </button>
                 </div>
-                
+
                 <!-- Modal Body -->
                 <div class="p-6">
                     <div class="flex items-center justify-between mb-4">
-                        <span id="modalCategory" class="inline-block bg-emerald-500 text-white text-sm px-3 py-1 rounded-full font-medium"></span>
+                        <span id="modalCategory"
+                            class="inline-block bg-emerald-500 text-white text-sm px-3 py-1 rounded-full font-medium"></span>
                         <span id="modalStatus" class="text-sm font-medium text-emerald-500"></span>
                     </div>
-                    
+
                     <div id="modalContent" class="text-gray-700 leading-relaxed space-y-4">
                         <!-- Content will be populated by JavaScript -->
                     </div>
-                    
+
                     <!-- Action Buttons -->
                     <div class="flex justify-end space-x-3 mt-6 pt-4 border-t border-gray-200">
-                        <button id="modalMarkReadBtn" class="px-4 py-2 text-gray-600 hover:text-gray-800 font-medium transition-colors border border-gray-300 rounded-lg hover:bg-gray-50">
+                        <button id="modalMarkReadBtn"
+                            class="px-4 py-2 text-gray-600 hover:text-gray-800 font-medium transition-colors border border-gray-300 rounded-lg hover:bg-gray-50">
                             Tandai sebagai Dibaca
                         </button>
-                        <button id="modalActionBtn" class="px-6 py-2 bg-emerald-500 hover:bg-emerald-600 text-white font-medium rounded-lg transition-colors">
+                        <button id="modalActionBtn"
+                            class="px-6 py-2 bg-emerald-500 hover:bg-emerald-600 text-white font-medium rounded-lg transition-colors">
                             Tindak Lanjuti
                         </button>
                     </div>
@@ -546,7 +584,7 @@
                 'dashboard.html',
                 'sampahtersedia.html',
                 'upload.html',
-                'booking.html', 
+                'booking.html',
                 'leaderboard.html',
                 'komunitas.html',
                 'edukasi.html',
@@ -561,18 +599,18 @@
 
             // Cek referrer (halaman sebelumnya)
             const referrer = document.referrer;
-            
+
             console.log('Referrer:', referrer);
-            
+
             // Jika ada referrer dan berasal dari domain yang sama
             if (referrer && referrer.includes(window.location.origin)) {
                 // Ekstrak nama file dari URL referrer
                 try {
                     const referrerPath = new URL(referrer).pathname;
                     const referrerPage = referrerPath.split('/').pop();
-                    
+
                     console.log('Referrer page:', referrerPage);
-                    
+
                     // Jika halaman sebelumnya valid dan bukan halaman saat ini
                     if (validPages.includes(referrerPage) && referrerPage !== window.location.pathname.split('/').pop()) {
                         console.log('Going back to:', referrerPage);
@@ -583,14 +621,14 @@
                     console.log('Error parsing referrer:', error);
                 }
             }
-            
+
             // Fallback: Redirect ke dashboard
             console.log('Fallback to dashboard');
             window.location.href = 'dashboard.html';
         }
-        
+
         // Inisialisasi setelah DOM dimuat
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const modal = document.getElementById('notificationModal');
             const modalTitle = document.getElementById('modalTitle');
             const modalTime = document.getElementById('modalTime');
@@ -599,13 +637,13 @@
             const modalContent = document.getElementById('modalContent');
             const modalMarkReadBtn = document.getElementById('modalMarkReadBtn');
             const modalActionBtn = document.getElementById('modalActionBtn');
-            
+
             // Tab functionality
             const tabButtons = document.querySelectorAll('.tab-button');
             const notificationItems = document.querySelectorAll('.notification-item');
-            
+
             tabButtons.forEach(button => {
-                button.addEventListener('click', function() {
+                button.addEventListener('click', function () {
                     // Update active tab
                     tabButtons.forEach(btn => {
                         btn.classList.remove('text-emerald-600', 'border-b-2', 'border-emerald-500');
@@ -613,7 +651,7 @@
                     });
                     this.classList.add('text-emerald-600', 'border-b-2', 'border-emerald-500');
                     this.classList.remove('text-gray-500');
-                    
+
                     // Filter notifications based on tab
                     const tabId = this.id;
                     notificationItems.forEach(item => {
@@ -635,41 +673,41 @@
                     });
                 });
             });
-            
+
             // Mark as read functionality
             const markReadButtons = document.querySelectorAll('.mark-read-btn');
             markReadButtons.forEach(button => {
-                button.addEventListener('click', function() {
+                button.addEventListener('click', function () {
                     const notification = this.closest('.notification-item');
                     if (notification.classList.contains('notification-unread')) {
                         markNotificationAsRead(notification);
                     }
                 });
             });
-            
+
             // Mark all as read functionality
             const markAllReadBtn = document.getElementById('markAllReadBtn');
-            markAllReadBtn.addEventListener('click', function() {
+            markAllReadBtn.addEventListener('click', function () {
                 const unreadNotifications = document.querySelectorAll('.notification-unread');
                 unreadNotifications.forEach(notification => {
                     markNotificationAsRead(notification);
                 });
-                
+
                 // Show confirmation message
                 showToast('Semua notifikasi ditandai sebagai sudah dibaca');
             });
-            
+
             // View detail functionality
             const viewDetailButtons = document.querySelectorAll('.view-detail-btn');
             viewDetailButtons.forEach(button => {
-                button.addEventListener('click', function() {
+                button.addEventListener('click', function () {
                     const notificationItem = this.closest('.notification-item');
                     const notificationId = notificationItem.getAttribute('data-id');
-                    
+
                     if (notificationData[notificationId]) {
                         currentNotificationId = notificationId;
                         const data = notificationData[notificationId];
-                        
+
                         // Populate modal with data
                         modalTitle.textContent = data.title;
                         modalTime.textContent = data.time;
@@ -677,7 +715,7 @@
                         modalStatus.textContent = data.status;
                         modalContent.innerHTML = data.content;
                         modalActionBtn.textContent = data.actionText;
-                        
+
                         // Update modal mark as read button state
                         if (data.isRead) {
                             modalMarkReadBtn.innerHTML = '<i class="fas fa-check-circle mr-2"></i>Sudah Dibaca';
@@ -688,7 +726,7 @@
                             modalMarkReadBtn.classList.remove('text-emerald-600');
                             modalMarkReadBtn.disabled = false;
                         }
-                        
+
                         // Show modal with animation
                         modal.classList.remove('hidden');
                         setTimeout(() => {
@@ -698,64 +736,64 @@
                     }
                 });
             });
-            
+
             // Modal mark as read functionality
-            modalMarkReadBtn.addEventListener('click', function() {
+            modalMarkReadBtn.addEventListener('click', function () {
                 if (currentNotificationId && !notificationData[currentNotificationId].isRead) {
                     const notificationItem = document.querySelector(`.notification-item[data-id="${currentNotificationId}"]`);
                     if (notificationItem) {
                         markNotificationAsRead(notificationItem);
                         notificationData[currentNotificationId].isRead = true;
-                        
+
                         // Update modal button
                         this.innerHTML = '<i class="fas fa-check-circle mr-2"></i>Sudah Dibaca';
                         this.classList.add('text-emerald-600');
                         this.disabled = true;
-                        
+
                         showToast('Notifikasi ditandai sebagai sudah dibaca');
                     }
                 }
             });
-            
+
             // Modal action button functionality
-            modalActionBtn.addEventListener('click', function() {
+            modalActionBtn.addEventListener('click', function () {
                 if (currentNotificationId) {
                     const data = notificationData[currentNotificationId];
                     showToast(`Tindakan "${data.actionText}" berhasil dilakukan`);
-                    
+
                     // Close modal after action
                     setTimeout(() => {
                         closeModal();
                     }, 1500);
                 }
             });
-            
+
             // Close modal functionality
             document.getElementById('closeModal').addEventListener('click', closeModal);
-            
+
             // Close modal when clicking outside
-            modal.addEventListener('click', function(e) {
+            modal.addEventListener('click', function (e) {
                 if (e.target === modal) {
                     closeModal();
                 }
             });
-            
+
             // Function to mark notification as read
             function markNotificationAsRead(notification) {
                 notification.classList.remove('notification-unread');
                 notification.classList.add('notification-read');
-                
+
                 const markBtn = notification.querySelector('.mark-read-btn');
                 markBtn.innerHTML = '<i class="fas fa-check-circle"></i>';
                 markBtn.classList.add('text-emerald-500');
-                
+
                 // Update data
                 const notificationId = notification.getAttribute('data-id');
                 if (notificationData[notificationId]) {
                     notificationData[notificationId].isRead = true;
                 }
             }
-            
+
             // Function to close modal
             function closeModal() {
                 modal.querySelector('.modal-overlay > div').classList.remove('scale-100', 'opacity-100');
@@ -765,7 +803,7 @@
                     currentNotificationId = null;
                 }, 300);
             }
-            
+
             // Toast notification function
             function showToast(message) {
                 // Create toast element
@@ -775,15 +813,15 @@
                     <i class="fas fa-check-circle mr-2"></i>
                     <span>${message}</span>
                 `;
-                
+
                 // Add to body
                 document.body.appendChild(toast);
-                
+
                 // Animate in
                 setTimeout(() => {
                     toast.classList.remove('translate-y-16');
                 }, 10);
-                
+
                 // Remove after 3 seconds
                 setTimeout(() => {
                     toast.classList.add('translate-y-16');
@@ -795,4 +833,5 @@
         });
     </script>
 </body>
+
 </html>
