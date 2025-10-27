@@ -4,9 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DRYcycle - Sidebar Template</title>
+    <title>DRYcycle</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/sidebar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
     <style>
@@ -143,9 +144,6 @@
                         <span>Status Upload</span>
                     </a>
 
-
-
-
                     <!-- Status Booking -->
                     <a href="booking.html" data-page="booking"
                         class="nav-item flex items-center space-x-3 px-4 py-3 text-gray-600 rounded-xl font-medium transition-all hover:bg-gray-50 hover:text-gray-900">
@@ -259,7 +257,7 @@
                         </div>
 
                         <!-- Notification -->
-                        <button
+                        <a href="notifikasi.html"
                             class="relative p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-xl transition-all">
                             <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -267,7 +265,7 @@
                                 </path>
                             </svg>
                             <span class="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
-                        </button>
+                        </a>
 
                         <!-- User Profile Dropdown -->
                         <div class="relative">
@@ -777,9 +775,6 @@
         </div>
     </div>
 
-    <!-- Link to external JavaScript file -->
-    <script src="assets/js/sidebar.js"></script>
-    <script src="assets/js/script.js"></script>
 
     <!-- Floating Scan Button -->
     <a href="scan.html"
@@ -1721,6 +1716,10 @@
             updateStatistics();
         });
     </script>
+        <!-- Link to external JavaScript file -->
+    <script src="assets/js/sidebar.js"></script>
+    <script src="assets/js/script.js"></script>
+
 
 </body>
 

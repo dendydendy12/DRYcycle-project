@@ -6,32 +6,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eco Kids - Belajar Lingkungan</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="assets/css/edukasi.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap');
 
+        /* ======== Base ======== */
         body {
             font-family: 'Poppins', sans-serif;
+            background: transparent !important;
+            /* Hilangkan background putih dari body */
+            overflow-x: hidden;
         }
 
-        .video-background {
+        /* ======== Video Background ======== */
+        .image-background {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
-            z-index: -1;
-            opacity: 0.2;
+            z-index: -10;
         }
 
+
+        /* ======== Overlay (Konten) ======== */
         .content-overlay {
             position: relative;
-            z-index: 1;
+            z-index: 10;
+            /* Pastikan di atas video */
+            background: transparent !important;
+            /* Jangan ada warna putih */
         }
 
+        /* ======== Halaman (transisi) ======== */
         .page {
             display: none;
+            background: transparent !important;
         }
 
         .page.active {
@@ -51,6 +63,7 @@
             }
         }
 
+        /* ======== Animasi & efek ======== */
         @keyframes float {
 
             0%,
@@ -70,6 +83,11 @@
         .lesson-card {
             transition: all 0.3s ease;
             cursor: pointer;
+            background: rgba(255, 255, 255, 0.15);
+            /* transparan lembut di atas video */
+            backdrop-filter: blur(5px);
+            /* efek kaca */
+            border-radius: 1rem;
         }
 
         .lesson-card:hover {
@@ -77,8 +95,11 @@
             box-shadow: 0 20px 40px rgba(34, 197, 94, 0.3);
         }
 
+        /* ======== Awan (hapus warna putih padat) ======== */
         .cloud {
             animation: moveClouds 30s linear infinite;
+            background: rgba(255, 255, 255, 0.2);
+            /* jadi transparan tipis */
         }
 
         @keyframes moveClouds {
@@ -91,6 +112,7 @@
             }
         }
 
+        /* ======== Efek musik ======== */
         @keyframes pulse {
 
             0%,
@@ -107,64 +129,66 @@
             animation: pulse 1s infinite;
         }
 
-        .quiz-option:disabled {
-            cursor: not-allowed;
-        }
-
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        /* Welcome section with background image */
-        .welcome-bg {
-            background-image: url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            position: relative;
-        }
-
-        .welcome-overlay {
-            background: linear-gradient(135deg, rgba(34, 197, 94, 0.85) 0%, rgba(16, 185, 129, 0.85) 100%);
-        }
-
-        /* Quiz styles */
+        /* ======== Quiz ======== */
         .quiz-option {
             transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(4px);
         }
 
         .quiz-option:hover {
             transform: translateY(-5px);
         }
 
+        .quiz-option:disabled {
+            cursor: not-allowed;
+        }
+
         .correct-answer {
-            background-color: #d1fae5 !important;
+            background-color: rgba(16, 185, 129, 0.2) !important;
             border-color: #10b981 !important;
         }
 
         .wrong-answer {
-            background-color: #fee2e2 !important;
+            background-color: rgba(239, 68, 68, 0.2) !important;
             border-color: #ef4444 !important;
         }
 
         .quiz-result {
             display: none;
+            background: transparent !important;
         }
 
         .quiz-result.active {
             display: block;
         }
+
+        /* ======== Welcome section (hapus layer warna) ======== */
+        .welcome-bg {
+            background: transparent !important;
+        }
+
+        .welcome-overlay {
+            background: transparent !important;
+        }
+
+        /* ======== Badge ======== */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 9999px;
+            padding: 0.25rem 0.75rem;
+        }
     </style>
+
 </head>
 
-<body class="bg-gradient-to-b from-green-50 via-emerald-50 to-teal-50 min-h-screen overflow-x-hidden">
+<body class="min-h-screen overflow-x-hidden">
 
-    <!-- Video Background Area -->
-    <video class="video-background" autoplay loop muted playsinline>
-        <source src="assets/video/bg.mp4" type="video/mp4">
-    </video>
+    <!-- Background Image ) -->
+    <img src="assets/image/images/bg.png" alt="bg" class="image-background " />
 
     <div class="content-overlay">
 
@@ -199,17 +223,38 @@
         </audio>
 
         <!-- Simple White Header -->
-        <header class="bg-white/90 backdrop-blur-sm text-gray-800 shadow-lg sticky top-0 z-40">
-            <div class="container mx-auto px-4 py-4">
+        <header
+            class="bg-white/95 backdrop-blur-md text-gray-800 shadow-xl sticky top-0 z-40 border-b-4 border-green-400">
+            <div class="container mx-auto px-4 py-3 md:py-4">
                 <div class="flex items-center justify-between">
-                    <div class="flex items-center space-x-3">
-                        <i class="fas fa-seedling text-3xl text-green-600 float-animation"></i>
-                        <h1 class="text-2xl font-bold">Eco Kids</h1>
+                    <!-- Logo & Brand -->
+                    <div class="flex items-center space-x-2 md:space-x-3">
+                        <img src="assets/image/logo/maskot.png" alt="Bumiku Mascot"
+                            class="w-12 h-12 md:w-16 md:h-16 object-contain float-animation">
+                        <div>
+                            <h1 class="text-2xl md:text-3xl lg:text-4xl font-extrabold font-bakso text-green-700"
+                                style="text-shadow: 2px 2px 0px rgba(34, 197, 94, 0.2);">
+                                Bumiku
+                            </h1>
+                            <p class="text-xs md:text-sm font-bakso text-green-600 -mt-1">DRYcycle Edukasi</p>
+                        </div>
                     </div>
-                    <div class="flex items-center space-x-4">
+
+                    <!-- Navigation Buttons -->
+                    <div class="flex items-center space-x-2 md:space-x-3">
+                        <!-- Back Button (always visible) -->
+                        <a href="dashboard.html"
+                            class="bg-white hover:bg-gray-50 text-green-600 px-3 py-2 md:px-4 md:py-2 rounded-xl transition-all transform hover:scale-105 font-bold font-bakso shadow-md border-2 border-green-400">
+                            <i class="fas fa-arrow-left mr-1 md:mr-2"></i>
+                            <span class="hidden sm:inline">Kembali</span>
+                        </a>
+
+                        <!-- Home Button -->
                         <button onclick="showPage('home')"
-                            class="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-full transition font-semibold">
-                            <i class="fas fa-home mr-2"></i>Beranda
+                            class="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white px-4 py-2 md:px-6 md:py-2 rounded-xl transition-all transform hover:scale-105 font-bold font-bakso shadow-lg">
+                            <i class="fas fa-home mr-1 md:mr-2"></i>
+                            <span class="hidden sm:inline">Beranda</span>
+                            <span class="sm:hidden">Home</span>
                         </button>
                     </div>
                 </div>
@@ -217,191 +262,299 @@
         </header>
 
         <!-- Home Page -->
-        <div id="homePage" class="page active">
-            <div class="container mx-auto px-4 py-8 relative z-10">
-                <!-- Welcome Section with Background Image -->
-                <div class="welcome-bg rounded-3xl overflow-hidden mb-8 shadow-2xl">
-                    <div class="welcome-overlay p-8 md:p-12">
-                        <div class="flex flex-col md:flex-row items-center justify-between">
-                            <div class="mb-6 md:mb-0 text-center md:text-left">
-                                <h2 class="text-4xl md:text-5xl font-bold text-white mb-3">Selamat Datang, Sahabat Bumi!
-                                    <i class="fas fa-globe-americas"></i>
+        <div id="homePage"
+            class="page active relative overflow-hidden bg-gradient-to-b from-green-200 via-emerald-300 to-green-400">
+            <!-- Awan Bergerak di Latar -->
+            <div class="absolute inset-0 overflow-hidden pointer-events-none z-0">
+                <div
+                    class="absolute top-10 left-0 w-32 h-16 bg-white/40 rounded-full blur-2xl animate-[moveClouds_30s_linear_infinite]">
+                </div>
+                <div
+                    class="absolute top-24 left-1/2 w-40 h-20 bg-white/30 rounded-full blur-3xl animate-[moveClouds_40s_linear_infinite]">
+                </div>
+                <div
+                    class="absolute top-48 right-10 w-52 h-24 bg-white/35 rounded-full blur-2xl animate-[moveClouds_50s_linear_infinite]">
+                </div>
+            </div>
+
+            <div class="container mx-auto px-4 py-12 relative z-10">
+                <!-- Welcome Section -->
+                <div
+                    class="rounded-3xl overflow-hidden mb-12 shadow-2xl bg-green-800/95 backdrop-blur-sm border-4 border-white relative">
+                    <!-- Decorative food icons -->
+                    <div class="absolute top-2 left-2 md:top-4 md:left-4 text-2xl md:text-4xl animate-bounce">🥕</div>
+                    <div class="absolute top-4 right-4 md:top-8 md:right-8 text-2xl md:text-4xl animate-pulse">🥗</div>
+                    <div class="absolute bottom-4 left-8 md:bottom-6 md:left-12 text-2xl md:text-4xl"
+                        style="animation: bounce 2s infinite;">🍤</div>
+                    <div class="absolute bottom-6 right-10 md:bottom-10 md:right-16 text-2xl md:text-4xl animate-pulse">
+                        🥬</div>
+                    <div class="absolute top-1/2 left-2 text-xl md:text-3xl animate-bounce"
+                        style="animation-delay: 0.5s;">🌿</div>
+                    <div class="absolute top-1/3 right-2 text-xl md:text-3xl animate-pulse"
+                        style="animation-delay: 0.3s;">🌾</div>
+
+                    <div class="p-6 md:p-12 relative z-10">
+                        <div class="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8">
+                            <div class="flex-1 text-center md:text-left w-full">
+                                <!-- Judul utama dengan style playful -->
+                                <h2
+                                    class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold font-bakso mb-4 md:mb-6 leading-tight transform hover:scale-105 transition-transform">
+                                    <span class="text-yellow-300"
+                                        style="text-shadow: 3px 3px 0px #f97316, 5px 5px 0px rgba(0,0,0,0.2);">
+                                        Selamat Datang,
+                                    </span>
+                                    <br>
+                                    <span class="text-white"
+                                        style="text-shadow: 3px 3px 0px #15803d, 5px 5px 0px rgba(0,0,0,0.2);">
+                                        Sahabat Bumi!
+                                    </span>
+                                    <span class="inline-block animate-bounce ml-2">🌎</span>
                                 </h2>
-                                <p class="text-white text-lg md:text-xl opacity-90">Belajar menjaga lingkungan dengan
-                                    cara yang seru dan interaktif!</p>
-                                <div class="mt-6 flex flex-wrap gap-3 justify-center md:justify-start">
-                                    <div class="bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 text-white">
-                                        <i class="fas fa-book-open mr-2"></i>9 Materi
+
+                                <!-- Subjudul dengan warna kontras -->
+                                <p class="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bakso mb-6 md:mb-8 text-yellow-100"
+                                    style="text-shadow: 2px 2px 0px rgba(0,0,0,0.3);">
+                                    Belajar menjaga lingkungan dengan cara yang seru dan interaktif!
+                                </p>
+
+                                <!-- Info Chips dengan style modern -->
+                                <div class="flex flex-wrap gap-2 md:gap-3 justify-center md:justify-start">
+                                    <div
+                                        class="bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-full px-4 py-2 md:px-6 md:py-3 shadow-lg border-2 md:border-3 border-white font-bakso transform hover:scale-110 transition-all hover:shadow-xl text-sm md:text-base">
+                                        <i class="fas fa-book-open mr-1 md:mr-2"></i>9 Materi
                                     </div>
-                                    <div class="bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 text-white">
-                                        <i class="fas fa-gamepad mr-2"></i>3 Kuis
+                                    <div
+                                        class="bg-gradient-to-r from-blue-500 to-cyan-600 text-white rounded-full px-4 py-2 md:px-6 md:py-3 shadow-lg border-2 md:border-3 border-white font-bakso transform hover:scale-110 transition-all hover:shadow-xl text-sm md:text-base">
+                                        <i class="fas fa-gamepad mr-1 md:mr-2"></i>3 Kuis
                                     </div>
-                                    <div class="bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 text-white">
-                                        <i class="fas fa-trophy mr-2"></i>100% Gratis
+                                    <div
+                                        class="bg-gradient-to-r from-purple-500 to-pink-600 text-white rounded-full px-4 py-2 md:px-6 md:py-3 shadow-lg border-2 md:border-3 border-white font-bakso transform hover:scale-110 transition-all hover:shadow-xl text-sm md:text-base">
+                                        <i class="fas fa-trophy mr-1 md:mr-2"></i>100% Gratis
                                     </div>
                                 </div>
                             </div>
-                            <i class="fas fa-leaf text-8xl md:text-9xl float-animation text-white opacity-80"></i>
+
+                            <!-- Ikon daun dengan efek lebih playful -->
+                            <div class="relative mt-4 md:mt-0">
+                                <i class="fas fa-leaf text-6xl sm:text-7xl md:text-8xl lg:text-9xl text-yellow-300 transform hover:rotate-12 transition-transform"
+                                    style="text-shadow: 4px 4px 0px #f97316, 6px 6px 0px rgba(0,0,0,0.2); animation: float 3s ease-in-out infinite;"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Topic Cards -->
-                <div class="mb-8 text-center">
-                    <h3 class="text-3xl font-bold text-gray-800 mb-2"><i
-                            class="fas fa-graduation-cap mr-2 text-green-600"></i>Pilih Topik Pembelajaran</h3>
-                    <p class="text-gray-600">Klik pada materi untuk mulai belajar!</p>
+                <!-- Topic Cards Header -->
+                <div class="mb-8 md:mb-12 text-center px-4">
+                    <h3
+                        class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold font-bakso mb-3 md:mb-4 leading-tight">
+                        <span class="animate-bounce inline-block text-2xl md:text-4xl">🌱</span>
+                        <br class="md:hidden">
+                        <span class="text-yellow-300"
+                            style="text-shadow: 3px 3px 0px #15803d, 5px 5px 0px rgba(0,0,0,0.15);">
+                            Pilih Topik
+                        </span>
+                        <br>
+                        <span class="text-white"
+                            style="text-shadow: 3px 3px 0px #15803d, 5px 5px 0px rgba(0,0,0,0.15);">
+                            Pembelajaran
+                        </span>
+                    </h3>
+                    <p class="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bakso mt-3 md:mt-4 text-green-800"
+                        style="text-shadow: 2px 2px 0px #ffffff, 3px 3px 0px rgba(0,0,0,0.05);">
+                        Klik pada materi untuk mulai belajar!
+                    </p>
                 </div>
 
-                <div class="grid md:grid-cols-3 gap-8">
-                    <!-- Topic 1: Pengenalan Lingkungan -->
-                    <div class="bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition">
-                        <div class="bg-gradient-to-br from-green-400 to-emerald-500 p-8 text-center">
-                            <i class="fas fa-earth-americas text-white text-7xl mb-4"></i>
-                            <h3 class="text-2xl font-bold text-white">Pengenalan Lingkungan</h3>
-                        </div>
-                        <div class="p-6">
-                            <p class="text-gray-600 mb-6 text-center">Kenali lingkungan di sekitar kita</p>
 
-                            <div class="space-y-3">
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 px-4">
+                    <!-- Topic 1 -->
+                    <div
+                        class="bg-white/95 backdrop-blur-sm rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-2 border-4 border-white">
+                        <div
+                            class="bg-gradient-to-br from-green-500 to-emerald-600 p-6 md:p-8 text-center relative overflow-hidden">
+                            <div class="absolute top-0 right-0 text-6xl opacity-10">🌍</div>
+                            <i
+                                class="fas fa-earth-americas text-white text-6xl md:text-7xl mb-3 md:mb-4 drop-shadow-lg animate-bounce"></i>
+                            <h3 class="text-xl md:text-2xl font-extrabold font-bakso text-white"
+                                style="text-shadow: 3px 3px 0px rgba(0,0,0,0.2);">
+                                Pengenalan<br>Lingkungan
+                            </h3>
+                        </div>
+                        <div class="p-4 md:p-6">
+                            <p
+                                class="text-green-800 mb-4 md:mb-6 text-center font-bold font-bakso text-base md:text-lg">
+                                🌱 Kenali lingkungan di sekitar kita
+                            </p>
+                            <div class="space-y-2 md:space-y-3">
                                 <button onclick="showLesson('pengenalan', 1)"
-                                    class="lesson-card w-full bg-green-50 hover:bg-green-100 p-4 rounded-xl flex items-center justify-between transition border-2 border-green-200">
-                                    <div class="flex items-center space-x-3">
+                                    class="lesson-card w-full bg-gradient-to-r from-green-50 to-emerald-50 hover:from-green-100 hover:to-emerald-100 p-3 md:p-4 rounded-2xl flex items-center justify-between transition-all transform hover:scale-105 border-3 border-green-400 shadow-md hover:shadow-lg">
+                                    <div class="flex items-center space-x-2 md:space-x-3">
                                         <div
-                                            class="bg-green-500 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center">
-                                            <i class="fas fa-book"></i>
+                                            class="bg-gradient-to-br from-green-500 to-green-700 text-white rounded-full p-2 w-8 h-8 md:w-10 md:h-10 flex items-center justify-center shadow-lg">
+                                            <i class="fas fa-book text-sm md:text-base"></i>
                                         </div>
-                                        <span class="font-semibold text-gray-700">Apa itu Lingkungan?</span>
+                                        <span class="font-bold font-bakso text-green-900 text-sm md:text-base">Apa itu
+                                            Lingkungan?</span>
                                     </div>
-                                    <i class="fas fa-chevron-right text-green-600"></i>
+                                    <i class="fas fa-chevron-right text-green-600 text-sm md:text-base"></i>
                                 </button>
 
                                 <button onclick="showLesson('pengenalan', 2)"
-                                    class="lesson-card w-full bg-green-50 hover:bg-green-100 p-4 rounded-xl flex items-center justify-between transition border-2 border-green-200">
-                                    <div class="flex items-center space-x-3">
+                                    class="lesson-card w-full bg-gradient-to-r from-green-50 to-emerald-50 hover:from-green-100 hover:to-emerald-100 p-3 md:p-4 rounded-2xl flex items-center justify-between transition-all transform hover:scale-105 border-3 border-green-400 shadow-md hover:shadow-lg">
+                                    <div class="flex items-center space-x-2 md:space-x-3">
                                         <div
-                                            class="bg-green-500 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center">
-                                            <i class="fas fa-heart"></i>
+                                            class="bg-gradient-to-br from-green-500 to-green-700 text-white rounded-full p-2 w-8 h-8 md:w-10 md:h-10 flex items-center justify-center shadow-lg">
+                                            <i class="fas fa-heart text-sm md:text-base"></i>
                                         </div>
-                                        <span class="font-semibold text-gray-700">Pentingnya Lingkungan</span>
+                                        <span
+                                            class="font-bold font-bakso text-green-900 text-sm md:text-base">Pentingnya
+                                            Lingkungan</span>
                                     </div>
-                                    <i class="fas fa-chevron-right text-green-600"></i>
+                                    <i class="fas fa-chevron-right text-green-600 text-sm md:text-base"></i>
                                 </button>
 
                                 <button onclick="showLesson('pengenalan', 3)"
-                                    class="lesson-card w-full bg-yellow-50 hover:bg-yellow-100 p-4 rounded-xl flex items-center justify-between transition border-2 border-yellow-300">
-                                    <div class="flex items-center space-x-3">
+                                    class="lesson-card w-full bg-gradient-to-r from-yellow-100 to-amber-100 hover:from-yellow-200 hover:to-amber-200 p-3 md:p-4 rounded-2xl flex items-center justify-between transition-all transform hover:scale-105 border-3 border-yellow-400 shadow-md hover:shadow-lg">
+                                    <div class="flex items-center space-x-2 md:space-x-3">
                                         <div
-                                            class="bg-yellow-500 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center">
-                                            <i class="fas fa-star"></i>
+                                            class="bg-gradient-to-br from-yellow-500 to-orange-600 text-white rounded-full p-2 w-8 h-8 md:w-10 md:h-10 flex items-center justify-center shadow-lg animate-pulse">
+                                            <i class="fas fa-star text-sm md:text-base"></i>
                                         </div>
-                                        <span class="font-semibold text-gray-700">Kuis Lingkungan</span>
+                                        <span class="font-bold font-bakso text-green-900 text-sm md:text-base">Kuis
+                                            Lingkungan ⭐</span>
                                     </div>
-                                    <i class="fas fa-gamepad text-yellow-600"></i>
+                                    <i class="fas fa-gamepad text-yellow-600 text-sm md:text-base"></i>
                                 </button>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Topic 2: Mengenal Sampah -->
-                    <div class="bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition">
-                        <div class="bg-gradient-to-br from-emerald-400 to-teal-500 p-8 text-center">
-                            <i class="fas fa-recycle text-white text-7xl mb-4"></i>
-                            <h3 class="text-2xl font-bold text-white">Mengenal Sampah</h3>
+                    <!-- Topic 2 -->
+                    <div
+                        class="bg-white/95 backdrop-blur-sm rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-2 border-4 border-white">
+                        <div
+                            class="bg-gradient-to-br from-emerald-500 to-teal-600 p-6 md:p-8 text-center relative overflow-hidden">
+                            <div class="absolute top-0 right-0 text-6xl opacity-10">♻️</div>
+                            <i class="fas fa-recycle text-white text-6xl md:text-7xl mb-3 md:mb-4 drop-shadow-lg"
+                                style="animation: spin 3s linear infinite;"></i>
+                            <h3 class="text-xl md:text-2xl font-extrabold font-bakso text-white"
+                                style="text-shadow: 3px 3px 0px rgba(0,0,0,0.2);">
+                                Mengenal<br>Sampah
+                            </h3>
                         </div>
-                        <div class="p-6">
-                            <p class="text-gray-600 mb-6 text-center">Belajar tentang jenis-jenis sampah</p>
-
-                            <div class="space-y-3">
+                        <div class="p-4 md:p-6">
+                            <p
+                                class="text-green-800 mb-4 md:mb-6 text-center font-bold font-bakso text-base md:text-lg">
+                                🗑️ Belajar tentang jenis-jenis sampah
+                            </p>
+                            <div class="space-y-2 md:space-y-3">
                                 <button onclick="showLesson('sampah', 1)"
-                                    class="lesson-card w-full bg-emerald-50 hover:bg-emerald-100 p-4 rounded-xl flex items-center justify-between transition border-2 border-emerald-200">
-                                    <div class="flex items-center space-x-3">
+                                    class="lesson-card w-full bg-gradient-to-r from-emerald-50 to-teal-50 hover:from-emerald-100 hover:to-teal-100 p-3 md:p-4 rounded-2xl flex items-center justify-between transition-all transform hover:scale-105 border-3 border-emerald-400 shadow-md hover:shadow-lg">
+                                    <div class="flex items-center space-x-2 md:space-x-3">
                                         <div
-                                            class="bg-emerald-500 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center">
-                                            <i class="fas fa-trash"></i>
+                                            class="bg-gradient-to-br from-emerald-500 to-emerald-700 text-white rounded-full p-2 w-8 h-8 md:w-10 md:h-10 flex items-center justify-center shadow-lg">
+                                            <i class="fas fa-trash text-sm md:text-base"></i>
                                         </div>
-                                        <span class="font-semibold text-gray-700">Jenis-Jenis Sampah</span>
+                                        <span
+                                            class="font-bold font-bakso text-green-900 text-sm md:text-base">Jenis-Jenis
+                                            Sampah</span>
                                     </div>
-                                    <i class="fas fa-chevron-right text-emerald-600"></i>
+                                    <i class="fas fa-chevron-right text-emerald-600 text-sm md:text-base"></i>
                                 </button>
 
                                 <button onclick="showLesson('sampah', 2)"
-                                    class="lesson-card w-full bg-emerald-50 hover:bg-emerald-100 p-4 rounded-xl flex items-center justify-between transition border-2 border-emerald-200">
-                                    <div class="flex items-center space-x-3">
+                                    class="lesson-card w-full bg-gradient-to-r from-emerald-50 to-teal-50 hover:from-emerald-100 hover:to-teal-100 p-3 md:p-4 rounded-2xl flex items-center justify-between transition-all transform hover:scale-105 border-3 border-emerald-400 shadow-md hover:shadow-lg">
+                                    <div class="flex items-center space-x-2 md:space-x-3">
                                         <div
-                                            class="bg-emerald-500 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center">
-                                            <i class="fas fa-exclamation-triangle"></i>
+                                            class="bg-gradient-to-br from-emerald-500 to-emerald-700 text-white rounded-full p-2 w-8 h-8 md:w-10 md:h-10 flex items-center justify-center shadow-lg">
+                                            <i class="fas fa-exclamation-triangle text-sm md:text-base"></i>
                                         </div>
-                                        <span class="font-semibold text-gray-700">Dampak Sampah</span>
+                                        <span class="font-bold font-bakso text-green-900 text-sm md:text-base">Dampak
+                                            Sampah</span>
                                     </div>
-                                    <i class="fas fa-chevron-right text-emerald-600"></i>
+                                    <i class="fas fa-chevron-right text-emerald-600 text-sm md:text-base"></i>
                                 </button>
 
                                 <button onclick="showLesson('sampah', 3)"
-                                    class="lesson-card w-full bg-yellow-50 hover:bg-yellow-100 p-4 rounded-xl flex items-center justify-between transition border-2 border-yellow-300">
-                                    <div class="flex items-center space-x-3">
+                                    class="lesson-card w-full bg-gradient-to-r from-yellow-100 to-amber-100 hover:from-yellow-200 hover:to-amber-200 p-3 md:p-4 rounded-2xl flex items-center justify-between transition-all transform hover:scale-105 border-3 border-yellow-400 shadow-md hover:shadow-lg">
+                                    <div class="flex items-center space-x-2 md:space-x-3">
                                         <div
-                                            class="bg-yellow-500 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center">
-                                            <i class="fas fa-star"></i>
+                                            class="bg-gradient-to-br from-yellow-500 to-orange-600 text-white rounded-full p-2 w-8 h-8 md:w-10 md:h-10 flex items-center justify-center shadow-lg animate-pulse">
+                                            <i class="fas fa-star text-sm md:text-base"></i>
                                         </div>
-                                        <span class="font-semibold text-gray-700">Kuis Pilah Sampah</span>
+                                        <span class="font-bold font-bakso text-green-900 text-sm md:text-base">Kuis
+                                            Pilah Sampah ⭐</span>
                                     </div>
-                                    <i class="fas fa-gamepad text-yellow-600"></i>
+                                    <i class="fas fa-gamepad text-yellow-600 text-sm md:text-base"></i>
                                 </button>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Topic 3: Pengelolaan Sampah -->
-                    <div class="bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition">
-                        <div class="bg-gradient-to-br from-teal-400 to-green-600 p-8 text-center">
-                            <i class="fas fa-hands-helping text-white text-7xl mb-4"></i>
-                            <h3 class="text-2xl font-bold text-white">Pengelolaan Sampah</h3>
+                    <!-- Topic 3 -->
+                    <div
+                        class="bg-white/95 backdrop-blur-sm rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-2 border-4 border-white">
+                        <div
+                            class="bg-gradient-to-br from-lime-500 to-green-700 p-6 md:p-8 text-center relative overflow-hidden">
+                            <div class="absolute top-0 right-0 text-6xl opacity-10">🤝</div>
+                            <i
+                                class="fas fa-hands-helping text-white text-6xl md:text-7xl mb-3 md:mb-4 drop-shadow-lg animate-bounce"></i>
+                            <h3 class="text-xl md:text-2xl font-extrabold font-bakso text-white"
+                                style="text-shadow: 3px 3px 0px rgba(0,0,0,0.2);">
+                                Pengelolaan<br>Sampah
+                            </h3>
                         </div>
-                        <div class="p-6">
-                            <p class="text-gray-600 mb-6 text-center">Cara mengelola sampah dengan benar</p>
-
-                            <div class="space-y-3">
+                        <div class="p-4 md:p-6">
+                            <p
+                                class="text-green-800 mb-4 md:mb-6 text-center font-bold font-bakso text-base md:text-lg">
+                                ♻️ Cara mengelola sampah dengan benar
+                            </p>
+                            <div class="space-y-2 md:space-y-3">
                                 <button onclick="showLesson('pengelolaan', 1)"
-                                    class="lesson-card w-full bg-teal-50 hover:bg-teal-100 p-4 rounded-xl flex items-center justify-between transition border-2 border-teal-200">
-                                    <div class="flex items-center space-x-3">
+                                    class="lesson-card w-full bg-gradient-to-r from-lime-50 to-green-50 hover:from-lime-100 hover:to-green-100 p-3 md:p-4 rounded-2xl flex items-center justify-between transition-all transform hover:scale-105 border-3 border-lime-400 shadow-md hover:shadow-lg">
+                                    <div class="flex items-center space-x-2 md:space-x-3">
                                         <div
-                                            class="bg-teal-500 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center">
-                                            <i class="fas fa-sort"></i>
+                                            class="bg-gradient-to-br from-lime-500 to-green-700 text-white rounded-full p-2 w-8 h-8 md:w-10 md:h-10 flex items-center justify-center shadow-lg">
+                                            <i class="fas fa-sort text-sm md:text-base"></i>
                                         </div>
-                                        <span class="font-semibold text-gray-700">Cara Memilah Sampah</span>
+                                        <span class="font-bold font-bakso text-green-900 text-sm md:text-base">Cara
+                                            Memilah Sampah</span>
                                     </div>
-                                    <i class="fas fa-chevron-right text-teal-600"></i>
+                                    <i class="fas fa-chevron-right text-lime-600 text-sm md:text-base"></i>
                                 </button>
 
                                 <button onclick="showLesson('pengelolaan', 2)"
-                                    class="lesson-card w-full bg-teal-50 hover:bg-teal-100 p-4 rounded-xl flex items-center justify-between transition border-2 border-teal-200">
-                                    <div class="flex items-center space-x-3">
+                                    class="lesson-card w-full bg-gradient-to-r from-lime-50 to-green-50 hover:from-lime-100 hover:to-green-100 p-3 md:p-4 rounded-2xl flex items-center justify-between transition-all transform hover:scale-105 border-3 border-lime-400 shadow-md hover:shadow-lg">
+                                    <div class="flex items-center space-x-2 md:space-x-3">
                                         <div
-                                            class="bg-teal-500 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center">
-                                            <i class="fas fa-sync-alt"></i>
+                                            class="bg-gradient-to-br from-lime-500 to-green-700 text-white rounded-full p-2 w-8 h-8 md:w-10 md:h-10 flex items-center justify-center shadow-lg">
+                                            <i class="fas fa-sync-alt text-sm md:text-base"></i>
                                         </div>
-                                        <span class="font-semibold text-gray-700">3R: Reduce, Reuse, Recycle</span>
+                                        <span class="font-bold font-bakso text-green-900 text-sm md:text-base">3R:
+                                            Reduce, Reuse, Recycle</span>
                                     </div>
-                                    <i class="fas fa-chevron-right text-teal-600"></i>
+                                    <i class="fas fa-chevron-right text-lime-600 text-sm md:text-base"></i>
                                 </button>
 
                                 <button onclick="showLesson('pengelolaan', 3)"
-                                    class="lesson-card w-full bg-yellow-50 hover:bg-yellow-100 p-4 rounded-xl flex items-center justify-between transition border-2 border-yellow-300">
-                                    <div class="flex items-center space-x-3">
+                                    class="lesson-card w-full bg-gradient-to-r from-yellow-100 to-amber-100 hover:from-yellow-200 hover:to-amber-200 p-3 md:p-4 rounded-2xl flex items-center justify-between transition-all transform hover:scale-105 border-3 border-yellow-400 shadow-md hover:shadow-lg">
+                                    <div class="flex items-center space-x-2 md:space-x-3">
                                         <div
-                                            class="bg-yellow-500 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center">
-                                            <i class="fas fa-star"></i>
+                                            class="bg-gradient-to-br from-yellow-500 to-orange-600 text-white rounded-full p-2 w-8 h-8 md:w-10 md:h-10 flex items-center justify-center shadow-lg animate-pulse">
+                                            <i class="fas fa-star text-sm md:text-base"></i>
                                         </div>
-                                        <span class="font-semibold text-gray-700">Kuis Pengelolaan</span>
+                                        <span class="font-bold font-bakso text-green-900 text-sm md:text-base">Kuis
+                                            Pengelolaan ⭐</span>
                                     </div>
-                                    <i class="fas fa-gamepad text-yellow-600"></i>
+                                    <i class="fas fa-gamepad text-yellow-600 text-sm md:text-base"></i>
                                 </button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
 
         <!-- Lesson Page -->

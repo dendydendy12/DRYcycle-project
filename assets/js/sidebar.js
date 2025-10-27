@@ -159,6 +159,7 @@ const pageTitles = {
     'sampahtersedia': 'Item Tersedia',
     'upload': 'Upload Sampah',
     'booking': 'Booking Saya',
+     'statusupload': 'Status Upload',
     'leaderboard': 'Leaderboard',
     'komunitas': 'Komunitas',
     'edukasi': 'Edukasi',
@@ -167,7 +168,7 @@ const pageTitles = {
     'help': 'Bantuan',
     'blog': 'Blog',
     'notifikasi': 'Notifikasi',
-    'status-upload': 'Status Upload',
+   
 };
 
 function updatePageTitle() {
