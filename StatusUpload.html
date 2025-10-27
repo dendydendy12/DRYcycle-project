@@ -133,22 +133,25 @@
                     </a>
 
                     <!-- Status Upload -->
-                    <a href="StatusUpload.html" data-page="booking"
+                    <a href="StatusUpload.html" data-page="status-upload"
                         class="nav-item flex items-center space-x-3 px-4 py-3 text-gray-600 rounded-xl font-medium transition-all hover:bg-gray-50 hover:text-gray-900">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
+                                d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12">
                             </path>
                         </svg>
                         <span>Status Upload</span>
                     </a>
 
-                    <!-- Status booking -->
+
+
+
+                    <!-- Status Booking -->
                     <a href="booking.html" data-page="booking"
                         class="nav-item flex items-center space-x-3 px-4 py-3 text-gray-600 rounded-xl font-medium transition-all hover:bg-gray-50 hover:text-gray-900">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
+                                d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4">
                             </path>
                         </svg>
                         <span>Status Booking</span>
@@ -470,11 +473,11 @@
                                     <div class="action-buttons flex flex-wrap gap-2">
                                         <button onclick="viewUploadDetail('UPL001')"
                                             class="flex-1 sm:flex-none px-4 py-2 bg-emerald-600 text-white rounded-xl hover:bg-emerald-700 transition-all text-sm font-medium">
-                                            <i class="fa-solid fa-eye mr-1"></i> Lihat Detail
+                                             Lihat Detail
                                         </button>
                                         <button onclick="deleteUpload('UPL001')"
                                             class="flex-1 sm:flex-none px-4 py-2 bg-red-100 text-red-700 rounded-xl hover:bg-red-200 transition-all text-sm font-medium">
-                                            <i class="fa-solid fa-trash mr-1"></i> Hapus
+                                             Hapus
                                         </button>
                                     </div>
                                 </div>
@@ -499,7 +502,7 @@
                                             <p class="text-sm text-gray-500">ID Upload: #UPL002</p>
                                         </div>
                                         <span
-                                            class="status-badge px-3 py-1 bg-yellow-100 text-yellow-700 text-xs font-semibold rounded-full">
+                                            class="status-badge px-3 py-1 bg-green-100 text-green-700 text-xs font-semibold rounded-full">
                                             <i class="fa-solid fa-clock mr-1"></i> Menunggu Konfirmasi
                                         </span>
                                     </div>
@@ -541,8 +544,8 @@
                                         </div>
                                     </div>
 
-                                    <div class="bg-yellow-50 border-l-4 border-yellow-500 rounded-lg p-3 mb-3">
-                                        <p class="text-xs text-yellow-700"><i class="fa-solid fa-bell mr-1"></i>
+                                    <div class="bg-green-50 border-l-4 border-green-500 rounded-lg p-3 mb-3">
+                                        <p class="text-xs text-green-700"><i class="fa-solid fa-bell mr-1"></i>
                                             <strong>Ada Permintaan Booking!</strong> Segera konfirmasi atau tolak
                                             permintaan ini
                                         </p>
@@ -551,15 +554,15 @@
                                     <div class="action-buttons flex flex-wrap gap-2">
                                         <button onclick="confirmBookingRequest('UPL002')"
                                             class="flex-1 sm:flex-none px-4 py-2 bg-emerald-600 text-white rounded-xl hover:bg-emerald-700 transition-all text-sm font-medium">
-                                            <i class="fa-solid fa-check mr-1"></i> Konfirmasi Booking
+                                             Konfirmasi Booking
                                         </button>
                                         <button onclick="rejectBookingRequest('UPL002')"
                                             class="flex-1 sm:flex-none px-4 py-2 bg-red-600 text-white rounded-xl hover:bg-red-700 transition-all text-sm font-medium">
-                                            <i class="fa-solid fa-times mr-1"></i> Tolak Booking
+                                             Tolak Booking
                                         </button>
                                         <button onclick="viewUploadDetail('UPL002')"
                                             class="flex-1 sm:flex-none px-4 py-2 bg-gray-100 text-gray-700 rounded-xl hover:bg-gray-200 transition-all text-sm font-medium">
-                                            <i class="fa-solid fa-eye mr-1"></i> Lihat Detail
+                                             Lihat Detail
                                         </button>
                                     </div>
                                 </div>
@@ -584,7 +587,7 @@
                                             <p class="text-sm text-gray-500">ID Upload: #UPL003</p>
                                         </div>
                                         <span
-                                            class="status-badge px-3 py-1 bg-blue-100 text-blue-700 text-xs font-semibold rounded-full">
+                                            class="status-badge px-3 py-1 bg-green-100 text-green-700 text-xs font-semibold rounded-full">
                                             <i class="fa-solid fa-handshake mr-1"></i> Terkonfirmasi
                                         </span>
                                     </div>
@@ -626,8 +629,8 @@
                                         </div>
                                     </div>
 
-                                    <div class="bg-blue-50 border-l-4 border-blue-500 rounded-lg p-3 mb-3">
-                                        <p class="text-xs text-blue-700"><i class="fa-solid fa-box-open mr-1"></i>
+                                    <div class="bg-green-50 border-l-4 border-green-500 rounded-lg p-3 mb-3">
+                                        <p class="text-xs text-green-700"><i class="fa-solid fa-box-open mr-1"></i>
                                             <strong>Booking Dikonfirmasi:</strong> Siapkan sampah untuk diambil sesuai
                                             jadwal
                                         </p>
@@ -636,11 +639,11 @@
                                     <div class="action-buttons flex flex-wrap gap-2">
                                         <button onclick="markAsCompleted('UPL003')"
                                             class="flex-1 sm:flex-none px-4 py-2 bg-emerald-600 text-white rounded-xl hover:bg-emerald-700 transition-all text-sm font-medium">
-                                            <i class="fa-solid fa-check-double mr-1"></i> Tandai Selesai
+                                             Tandai Selesai
                                         </button>
                                         <button onclick="viewUploadDetail('UPL003')"
                                             class="flex-1 sm:flex-none px-4 py-2 bg-gray-100 text-gray-700 rounded-xl hover:bg-gray-200 transition-all text-sm font-medium">
-                                            <i class="fa-solid fa-eye mr-1"></i> Lihat Detail
+                                             Lihat Detail
                                         </button>
                                     </div>
                                 </div>
@@ -654,7 +657,7 @@
                         <div class="p-5">
                             <div class="flex flex-col lg:flex-row gap-4">
                                 <div class="lg:w-48 h-48 lg:h-auto flex-shrink-0">
-                                    <img src="assets/image/browse/nasiboxsisaevent.jpg" alt="Sayuran"
+                                    <img src="assets/image/browse/sayursegar.jpg" alt="Sayuran"
                                         class="w-full h-full object-cover rounded-xl">
                                 </div>
 
@@ -716,7 +719,7 @@
                                     <div class="action-buttons flex flex-wrap gap-2">
                                         <button onclick="viewUploadDetail('UPL004')"
                                             class="flex-1 sm:flex-none px-4 py-2 bg-gray-100 text-gray-700 rounded-xl hover:bg-gray-200 transition-all text-sm font-medium">
-                                            <i class="fa-solid fa-eye mr-1"></i> Lihat Detail
+                                             Lihat Detail
                                         </button>
                                     </div>
                                 </div>
@@ -789,635 +792,946 @@
     <script src="assets/js/sidebar.js"></script>
     <script src="assets/js/script.js"></script>
 
+      <!-- Floating Scan Button -->
+  <a href="scan.html"
+    class="fixed bottom-6 right-6 bg-emerald-600 hover:bg-emerald-700 text-white p-4 rounded-full shadow-lg transition transform hover:scale-105 active:scale-95 z-50"
+    aria-label="Scan sekarang">
+    <!-- Ikon kamera -->
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+      stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round"
+        d="M3 7h4l2-3h6l2 3h4a1 1 0 011 1v11a1 1 0 01-1 1H3a1 1 0 01-1-1V8a1 1 0 011-1z" />
+      <path stroke-linecap="round" stroke-linejoin="round" d="M12 11a3 3 0 100 6 3 3 0 000-6z" />
+    </svg>
+  </a>
 
-    <script>
-        // Data upload detail - POV Pengirim/Pemilik Sampah
-        const uploadData = {
-            'UPL001': {
-                id: 'UPL001',
-                nama: 'Nasi Box Surplus',
-                kategori: 'Makanan Surplus',
-                berat: '10 porsi',
-                lokasi: 'Jl. Merdeka No. 45, Bogor',
-                alamatLengkap: 'Jl. Merdeka No. 45, RT 03/RW 05, Kelurahan Ciwaringin, Kecamatan Bogor Tengah, Bogor',
-                tanggalUpload: '23 Oktober 2025',
-                status: 'tersedia',
-                deskripsi: 'Nasi box sisa acara kantor dalam kondisi baik dan masih layak konsumsi. Sudah dikemas rapi dalam kotak tertutup.',
-                gambar: 'assets/image/browse/nasiboxsisaevent.jpg'
-            },
-            'UPL002': {
-                id: 'UPL002',
-                nama: 'Botol Plastik Bekas',
-                kategori: 'Plastik',
-                berat: '15 kg',
-                lokasi: 'Jl. Gatot Subroto No. 56, Tangerang',
-                alamatLengkap: 'Jl. Gatot Subroto No. 56, RT 02/RW 08, Kelurahan Bintaro, Kecamatan Pesanggrahan, Tangerang Selatan',
-                tanggalUpload: '22 Oktober 2025',
-                tanggalBooking: '23 Oktober 2025',
-                status: 'dibooking',
-                deskripsi: 'Botol plastik bekas minuman dalam kondisi bersih. Sudah dicuci dan dikeringkan untuk memudahkan daur ulang.',
-                gambar: 'assets/image/browse/botolplastik.jpg'
-            },
-            'UPL003': {
-                id: 'UPL003',
-                nama: 'Kardus Bekas',
-                kategori: 'Kertas',
-                berat: '15 kg',
-                lokasi: 'Jl. Ahmad Yani No. 34, Bekasi',
-                alamatLengkap: 'Jl. Ahmad Yani No. 34, RT 05/RW 03, Kelurahan Kayuringin Jaya, Kecamatan Bekasi Selatan, Bekasi',
-                tanggalUpload: '18 Oktober 2025',
-                tanggalKonfirmasi: '20 Oktober 2025',
-                tanggalPengambilan: '25 Oktober 2025',
-                status: 'dikonfirmasi',
-                deskripsi: 'Kardus bekas dalam kondisi kering dan tidak rusak. Sudah dipotong dan dilipat rapi untuk memudahkan pengangkutan.',
-                gambar: 'assets/image/browse/kardusbekas.jpg'
-            },
-            'UPL004': {
-                id: 'UPL004',
-                nama: 'Sayuran Sisa Pasar',
-                kategori: 'Organik',
-                berat: '12 kg',
-                lokasi: 'Jl. Raya Serpong No. 22, BSD',
-                alamatLengkap: 'Jl. Raya Serpong No. 22, RT 07/RW 06, Kelurahan Lengkong Gudang, Kecamatan Serpong, Tangerang Selatan',
-                tanggalUpload: '17 Oktober 2025',
-                tanggalSelesai: '19 Oktober 2025',
-                status: 'selesai',
-                deskripsi: 'Sayuran sisa pasar yang masih layak untuk kompos. Dalam kondisi segar dan belum membusuk.',
-                gambar: 'assets/image/browse/nasiboxsisaevent.jpg'
+<script>
+    // Upload ulang item yang dibatalkan
+function republishUpload(uploadId) {
+    showConfirmDialog(
+        'Upload Ulang?',
+        'Apakah Anda yakin ingin mengupload ulang item ini? Item akan kembali tersedia untuk dibooking.',
+        'Upload Ulang',
+        'Batal',
+        () => {
+            // Tutup dialog konfirmasi terlebih dahulu
+            closeConfirmDialog();
+            
+            const card = document.querySelector(`[data-id="${uploadId}"]`);
+            if (!card) return;
+
+            const statusBadge = card.querySelector('.status-badge');
+            const actionButtons = card.querySelector('.action-buttons');
+            const notifDiv = card.querySelector('.bg-orange-50');
+
+            if (uploadData[uploadId]) {
+                uploadData[uploadId].status = 'tersedia';
+                uploadData[uploadId].tanggalUpload = new Date().toLocaleDateString('id-ID', {
+                    day: 'numeric',
+                    month: 'long',
+                    year: 'numeric'
+                });
+                delete uploadData[uploadId].tanggalBooking;
+                delete uploadData[uploadId].tanggalKonfirmasi;
+                delete uploadData[uploadId].tanggalPengambilan;
+                delete uploadData[uploadId].tanggalDibatalkan;
+                delete uploadData[uploadId].alasanBatal;
             }
-        };
 
-        // Filter upload berdasarkan status
-        function filterUpload(status) {
-            document.querySelectorAll('.filter-tab').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            event.target.classList.add('active');
-
-            const uploadCards = document.querySelectorAll('[data-status]');
-            const emptyState = document.getElementById('emptyState');
-            let visibleCount = 0;
-
-            uploadCards.forEach(card => {
-                if (status === 'semua' || card.dataset.status === status) {
-                    card.style.display = 'block';
-                    visibleCount++;
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-
-            if (visibleCount === 0) {
-                emptyState.classList.remove('hidden');
-                document.getElementById('uploadList').classList.add('hidden');
-            } else {
-                emptyState.classList.add('hidden');
-                document.getElementById('uploadList').classList.remove('hidden');
+            if (statusBadge) {
+                statusBadge.className = 'status-badge px-3 py-1 bg-emerald-100 text-emerald-700 text-xs font-semibold rounded-full';
+                statusBadge.innerHTML = '<i class="fa-solid fa-circle-check mr-1"></i> Tersedia';
             }
+
+            card.setAttribute('data-status', 'tersedia');
+
+            if (notifDiv) {
+                notifDiv.className = 'bg-emerald-50 border-l-4 border-emerald-500 rounded-lg p-3 mb-3';
+                notifDiv.innerHTML = '<p class="text-xs text-emerald-700"><i class="fa-solid fa-info-circle mr-1"></i> <strong>Status:</strong> Sampah tersedia dan siap untuk dibooking</p>';
+            }
+
+            if (actionButtons) {
+                actionButtons.innerHTML = `
+        <button onclick="viewUploadDetail('${uploadId}')"
+          class="flex-1 sm:flex-none px-4 py-2 bg-emerald-600 text-white rounded-xl hover:bg-emerald-700 transition-all text-sm font-medium">
+           Lihat Detail
+        </button>
+        <button onclick="deleteUpload('${uploadId}')"
+          class="flex-1 sm:flex-none px-4 py-2 bg-red-100 text-red-700 rounded-xl hover:bg-red-200 transition-all text-sm font-medium">
+           Hapus
+        </button>
+      `;
+            }
+
+            updateStatistics();
+            showNotification('Item berhasil diupload ulang dan tersedia', 'success');
         }
+    );
+}// Data upload detail - POV Pengirim/Pemilik Sampah
+const uploadData = {
+    'UPL001': {
+        id: 'UPL001',
+        nama: 'Nasi Box Surplus',
+        kategori: 'Makanan Surplus',
+        berat: '10 porsi',
+        lokasi: 'Jl. Merdeka No. 45, Bogor',
+        alamatLengkap: 'Jl. Merdeka No. 45, RT 03/RW 05, Kelurahan Ciwaringin, Kecamatan Bogor Tengah, Bogor',
+        tanggalUpload: '23 Oktober 2025',
+        status: 'tersedia',
+        deskripsi: 'Nasi box sisa acara kantor dalam kondisi baik dan masih layak konsumsi. Sudah dikemas rapi dalam kotak tertutup.',
+        gambar: 'assets/image/browse/nasiboxsisaevent.jpg'
+    },
+    'UPL002': {
+        id: 'UPL002',
+        nama: 'Botol Plastik Bekas',
+        kategori: 'Plastik',
+        berat: '15 kg',
+        lokasi: 'Jl. Gatot Subroto No. 56, Tangerang',
+        alamatLengkap: 'Jl. Gatot Subroto No. 56, RT 02/RW 08, Kelurahan Bintaro, Kecamatan Pesanggrahan, Tangerang Selatan',
+        tanggalUpload: '22 Oktober 2025',
+        tanggalBooking: '23 Oktober 2025',
+        status: 'dibooking',
+        deskripsi: 'Botol plastik bekas minuman dalam kondisi bersih. Sudah dicuci dan dikeringkan untuk memudahkan daur ulang.',
+        gambar: 'assets/image/browse/botolplastik.jpg'
+    },
+    'UPL003': {
+        id: 'UPL003',
+        nama: 'Kardus Bekas',
+        kategori: 'Kertas',
+        berat: '15 kg',
+        lokasi: 'Jl. Ahmad Yani No. 34, Bekasi',
+        alamatLengkap: 'Jl. Ahmad Yani No. 34, RT 05/RW 03, Kelurahan Kayuringin Jaya, Kecamatan Bekasi Selatan, Bekasi',
+        tanggalUpload: '18 Oktober 2025',
+        tanggalKonfirmasi: '20 Oktober 2025',
+        tanggalPengambilan: '25 Oktober 2025',
+        status: 'dikonfirmasi',
+        deskripsi: 'Kardus bekas dalam kondisi kering dan tidak rusak. Sudah dipotong dan dilipat rapi untuk memudahkan pengangkutan.',
+        gambar: 'assets/image/browse/kardusbekas.jpg'
+    },
+    'UPL004': {
+        id: 'UPL004',
+        nama: 'Sayuran Sisa Pasar',
+        kategori: 'Organik',
+        berat: '12 kg',
+        lokasi: 'Jl. Raya Serpong No. 22, BSD',
+        alamatLengkap: 'Jl. Raya Serpong No. 22, RT 07/RW 06, Kelurahan Lengkong Gudang, Kecamatan Serpong, Tangerang Selatan',
+        tanggalUpload: '17 Oktober 2025',
+        tanggalSelesai: '19 Oktober 2025',
+        status: 'selesai',
+        deskripsi: 'Sayuran sisa pasar yang masih layak untuk kompos. Dalam kondisi segar dan belum membusuk.',
+        gambar: 'assets/image/browse/sayursegar.jpg'
+    },
+    'UPL005': {
+        id: 'UPL005',
+        nama: 'Kaleng Bekas',
+        kategori: 'Logam',
+        berat: '8 kg',
+        lokasi: 'Jl. Sudirman No. 78, Jakarta',
+        alamatLengkap: 'Jl. Sudirman No. 78, RT 04/RW 02, Kelurahan Karet Tengsin, Kecamatan Tanah Abang, Jakarta Pusat',
+        tanggalUpload: '20 Oktober 2025',
+        tanggalBooking: '21 Oktober 2025',
+        tanggalDibatalkan: '24 Oktober 2025',
+        status: 'dibatalkan',
+        alasanBatal: 'Pembooking tidak bisa datang sesuai jadwal yang dijanjikan',
+        deskripsi: 'Kaleng bekas minuman dalam kondisi bersih dan sudah dikeringkan.',
+        gambar: 'assets/image/browse/botolplastik.jpg'
+    }
+};
 
-        // Lihat detail upload
-        function viewUploadDetail(uploadId) {
-            const upload = uploadData[uploadId];
-            if (!upload) {
-                console.error('Upload not found:', uploadId);
-                showNotification('Data upload tidak ditemukan', 'error');
-                return;
+// Filter upload berdasarkan status
+function filterUpload(status) {
+    document.querySelectorAll('.filter-tab').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    event.target.classList.add('active');
+
+    const uploadCards = document.querySelectorAll('[data-status]');
+    const emptyState = document.getElementById('emptyState');
+    let visibleCount = 0;
+
+    uploadCards.forEach(card => {
+        if (status === 'semua' || card.dataset.status === status) {
+            card.style.display = 'block';
+            visibleCount++;
+        } else {
+            card.style.display = 'none';
+        }
+    });
+
+    if (visibleCount === 0) {
+        emptyState.classList.remove('hidden');
+        document.getElementById('uploadList').classList.add('hidden');
+    } else {
+        emptyState.classList.add('hidden');
+        document.getElementById('uploadList').classList.remove('hidden');
+    }
+}
+
+// Lihat detail upload
+function viewUploadDetail(uploadId) {
+    const upload = uploadData[uploadId];
+    if (!upload) {
+        console.error('Upload not found:', uploadId);
+        showNotification('Data upload tidak ditemukan', 'error');
+        return;
+    }
+
+    let modal = document.getElementById('detailModal');
+    
+    // Jika modal belum ada, buat modal baru
+    if (!modal) {
+        modal = document.createElement('div');
+        modal.id = 'detailModal';
+        modal.className = 'hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4';
+        modal.innerHTML = '<div id="detailModalContent" class="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto my-8 shadow-2xl transform transition-all"></div>';
+        document.body.appendChild(modal);
+        
+        // Close modal when clicking outside
+        modal.addEventListener('click', function (e) {
+            if (e.target === modal) {
+                closeDetailModal();
             }
+        });
+    }
+    
+    const content = document.getElementById('detailModalContent');
 
-            const modal = document.getElementById('detailModal');
-            const content = document.getElementById('detailModalContent');
+    let statusBadge = '';
+    let statusInfo = '';
+    let actionButtons = '';
 
-            let statusBadge = '';
-            let statusInfo = '';
-            let actionButtons = '';
-
-            if (upload.status === 'tersedia') {
-                statusBadge = '<span class="px-3 py-1 bg-emerald-100 text-emerald-700 text-xs font-semibold rounded-full"><i class="fa-solid fa-circle-check mr-1"></i> Tersedia</span>';
-                statusInfo = `
-        <div class="bg-emerald-50 border-l-4 border-emerald-500 rounded-lg p-4 mb-4">
-          <div class="flex items-start gap-3">
-            <svg class="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-            </svg>
-            <div>
-              <p class="text-sm font-semibold text-emerald-800 mb-1">Sampah Tersedia</p>
-              <p class="text-xs text-emerald-700">Sampah Anda tersedia dan siap untuk dibooking oleh pengguna lain.</p>
-            </div>
-          </div>
-        </div>
-      `;
-                actionButtons = `
-        <button onclick="editUpload('${upload.id}')" class="flex-1 py-3 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition shadow-lg">
-          <i class="fa-solid fa-pen-to-square mr-2"></i> Edit Detail
-        </button>
-        <button onclick="deleteUpload('${upload.id}')" class="flex-1 py-3 bg-red-600 text-white font-bold rounded-xl hover:bg-red-700 transition shadow-lg">
-          <i class="fa-solid fa-trash mr-2"></i> Hapus
-        </button>
-      `;
-            } else if (upload.status === 'dibooking') {
-                statusBadge = '<span class="px-3 py-1 bg-yellow-100 text-yellow-700 text-xs font-semibold rounded-full"><i class="fa-solid fa-clock mr-1"></i> Menunggu Konfirmasi</span>';
-                statusInfo = `
-        <div class="bg-yellow-50 border-l-4 border-yellow-500 rounded-lg p-4 mb-4">
-          <div class="flex items-start gap-3">
-            <svg class="w-5 h-5 text-yellow-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-            </svg>
-            <div>
-              <p class="text-sm font-semibold text-yellow-800 mb-1">Ada Permintaan Booking!</p>
-              <p class="text-xs text-yellow-700">Seseorang ingin membooking sampah ini. Segera konfirmasi atau tolak permintaan.</p>
-            </div>
-          </div>
-        </div>
-      `;
-                actionButtons = `
-        <button onclick="confirmBookingRequest('${upload.id}')" class="flex-1 py-3 bg-gradient-to-r from-emerald-500 to-green-600 text-white font-bold rounded-xl hover:from-emerald-600 hover:to-green-700 transition shadow-lg">
-          <i class="fa-solid fa-check mr-2"></i> Konfirmasi Booking
-        </button>
-        <button onclick="rejectBookingRequest('${upload.id}')" class="flex-1 py-3 bg-red-600 text-white font-bold rounded-xl hover:bg-red-700 transition shadow-lg">
-          <i class="fa-solid fa-times mr-2"></i> Tolak Booking
-        </button>
-      `;
-            } else if (upload.status === 'dikonfirmasi') {
-                statusBadge = '<span class="px-3 py-1 bg-blue-100 text-blue-700 text-xs font-semibold rounded-full"><i class="fa-solid fa-handshake mr-1"></i> Terkonfirmasi</span>';
-                statusInfo = `
-        <div class="bg-blue-50 border-l-4 border-blue-500 rounded-lg p-4 mb-4">
-          <div class="flex items-start gap-3">
-            <svg class="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-            </svg>
-            <div>
-              <p class="text-sm font-semibold text-blue-800 mb-1">Booking Dikonfirmasi</p>
-              <p class="text-xs text-blue-700">Booking sudah dikonfirmasi. Siapkan sampah untuk diambil sesuai jadwal.</p>
-            </div>
-          </div>
-        </div>
-      `;
-                actionButtons = `
-        <button onclick="markAsCompleted('${upload.id}')" class="flex-1 py-3 bg-gradient-to-r from-emerald-500 to-green-600 text-white font-bold rounded-xl hover:from-emerald-600 hover:to-green-700 transition shadow-lg">
-          <i class="fa-solid fa-check-double mr-2"></i> Tandai Selesai
-        </button>
-        <button onclick="cancelConfirmedBooking('${upload.id}')" class="flex-1 py-3 bg-red-100 text-red-700 font-bold rounded-xl hover:bg-red-200 transition">
-          <i class="fa-solid fa-ban mr-2"></i> Batalkan
-        </button>
-      `;
-            } else if (upload.status === 'selesai') {
-                statusBadge = '<span class="px-3 py-1 bg-gray-100 text-gray-700 text-xs font-semibold rounded-full"><i class="fa-solid fa-circle-check mr-1"></i> Selesai</span>';
-                statusInfo = `
-        <div class="bg-gray-50 border-l-4 border-gray-400 rounded-lg p-4 mb-4">
-          <div class="flex items-start gap-3">
-            <svg class="w-5 h-5 text-gray-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
-            </svg>
-            <div>
-              <p class="text-sm font-semibold text-gray-800 mb-1">Transaksi Selesai!</p>
-              <p class="text-xs text-gray-700">Sampah sudah berhasil diambil. Terima kasih telah berkontribusi untuk lingkungan.</p>
-            </div>
-          </div>
-        </div>
-      `;
-                actionButtons = '';
-            }
-
-            content.innerHTML = `
-      <!-- Header -->
-      <div class="bg-gradient-to-r from-emerald-500 to-green-600 p-6 rounded-t-3xl">
-        <div class="flex items-center justify-between">
-          <h2 class="text-2xl font-bold text-white">Detail Upload Sampah</h2>
-          <button onclick="closeDetailModal()" class="bg-white bg-opacity-20 hover:bg-opacity-30 rounded-full p-2 transition">
-            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-            </svg>
-          </button>
-        </div>
-        <p class="text-emerald-50 mt-2">ID Upload: #${upload.id}</p>
-      </div>
-
-      <!-- Content -->
-      <div class="p-6">
-        <!-- Image -->
-        <img src="${upload.gambar}" alt="${upload.nama}" class="w-full h-64 object-cover rounded-2xl mb-6 shadow-lg">
-
-        <!-- Status Badge -->
-        <div class="flex items-center justify-between mb-4">
-          <h3 class="text-2xl font-bold text-gray-900">${upload.nama}</h3>
-          ${statusBadge}
-        </div>
-
-        <!-- Status Info -->
-        ${statusInfo}
-
-        <!-- Info Grid -->
-        <div class="space-y-4 mb-6">
-          <!-- Kategori & Berat -->
-          <div class="grid grid-cols-2 gap-4">
-            <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl p-4">
-              <p class="text-xs text-gray-500 font-medium mb-1">Kategori</p>
-              <p class="text-sm font-bold text-gray-800">${upload.kategori}</p>
-            </div>
-            <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-4">
-              <p class="text-xs text-gray-500 font-medium mb-1">Berat/Jumlah</p>
-              <p class="text-sm font-bold text-gray-800">${upload.berat}</p>
-            </div>
-          </div>
-
-          <!-- Tanggal Upload -->
-          <div class="bg-gradient-to-br from-orange-50 to-amber-50 rounded-xl p-4">
-            <p class="text-xs text-gray-500 font-medium mb-1">Tanggal Upload</p>
-            <p class="text-sm font-bold text-gray-800">${upload.tanggalUpload}</p>
-          </div>
-
-          ${upload.tanggalBooking ? `
-          <div class="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-xl p-4">
-            <p class="text-xs text-gray-500 font-medium mb-1">Tanggal Booking</p>
-            <p class="text-sm font-bold text-gray-800">${upload.tanggalBooking}</p>
-          </div>
-          ` : ''}
-
-          ${upload.tanggalKonfirmasi ? `
-          <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-4">
-            <p class="text-xs text-gray-500 font-medium mb-1">Tanggal Konfirmasi</p>
-            <p class="text-sm font-bold text-gray-800">${upload.tanggalKonfirmasi}</p>
-          </div>
-          ` : ''}
-
-          ${upload.tanggalPengambilan ? `
-          <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-4">
-            <p class="text-xs text-gray-500 font-medium mb-1">Rencana Pengambilan</p>
-            <p class="text-sm font-bold text-gray-800">${upload.tanggalPengambilan}</p>
-          </div>
-          ` : ''}
-
-          ${upload.tanggalSelesai ? `
-          <div class="bg-gradient-to-br from-gray-50 to-slate-50 rounded-xl p-4">
-            <p class="text-xs text-gray-500 font-medium mb-1">Tanggal Selesai</p>
-            <p class="text-sm font-bold text-gray-800">${upload.tanggalSelesai}</p>
-          </div>
-          ` : ''}
-
-          <!-- Alamat -->
-          <div class="bg-gradient-to-br from-red-50 to-pink-50 rounded-xl p-4">
-            <p class="text-xs text-gray-500 font-medium mb-1">Alamat Lengkap</p>
-            <p class="text-sm font-semibold text-gray-800 leading-relaxed">${upload.alamatLengkap}</p>
-          </div>
-
-          <!-- Deskripsi -->
-          <div class="bg-gray-50 rounded-xl p-4">
-            <p class="text-xs text-gray-500 font-medium mb-2">Deskripsi</p>
-            <p class="text-sm text-gray-700 leading-relaxed">${upload.deskripsi}</p>
-          </div>
-        </div>
-
-        <!-- Action Buttons -->
-        <div class="flex gap-3">
-          ${actionButtons}
-          <button onclick="closeDetailModal()" class="flex-1 py-3 bg-gray-100 text-gray-700 font-bold rounded-xl hover:bg-gray-200 transition">
-            Tutup
-          </button>
+    if (upload.status === 'tersedia') {
+        statusBadge = '<span class="px-3 py-1 bg-emerald-100 text-emerald-700 text-xs font-semibold rounded-full"><i class="fa-solid fa-circle-check mr-1"></i> Tersedia</span>';
+        statusInfo = `
+    <div class="bg-emerald-50 border-l-4 border-emerald-500 rounded-lg p-4 mb-4">
+      <div class="flex items-start gap-3">
+        <svg class="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+        <div>
+          <p class="text-sm font-semibold text-emerald-800 mb-1">Sampah Tersedia</p>
+          <p class="text-xs text-emerald-700">Sampah Anda tersedia dan siap untuk dibooking oleh pengguna lain.</p>
         </div>
       </div>
-    `;
-
-            modal.classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-        }
-
-        // Tutup modal detail
-        function closeDetailModal() {
-            const modal = document.getElementById('detailModal');
-            modal.classList.add('hidden');
-            document.body.style.overflow = 'auto';
-        }
-
-        // Konfirmasi permintaan booking
-        function confirmBookingRequest(uploadId) {
-            showConfirmDialog(
-                'Konfirmasi Booking?',
-                'Apakah Anda yakin ingin mengkonfirmasi permintaan booking ini? Pastikan sampah sudah siap untuk diambil.',
-                'Konfirmasi',
-                'Batal',
-                () => {
-                    const card = document.querySelector(`[data-id="${uploadId}"]`);
-                    if (!card) return;
-
-                    const statusBadge = card.querySelector('.status-badge');
-                    const actionButtons = card.querySelector('.action-buttons');
-                    const notifDiv = card.querySelector('.bg-yellow-50');
-
-                    if (uploadData[uploadId]) {
-                        uploadData[uploadId].status = 'dikonfirmasi';
-                        uploadData[uploadId].tanggalKonfirmasi = new Date().toLocaleDateString('id-ID', {
-                            day: 'numeric',
-                            month: 'long',
-                            year: 'numeric'
-                        });
-                        uploadData[uploadId].tanggalPengambilan = '25 Oktober 2025';
-                    }
-
-                    if (statusBadge) {
-                        statusBadge.className = 'status-badge px-3 py-1 bg-blue-100 text-blue-700 text-xs font-semibold rounded-full';
-                        statusBadge.innerHTML = '<i class="fa-solid fa-handshake mr-1"></i> Terkonfirmasi';
-                    }
-
-                    card.setAttribute('data-status', 'dikonfirmasi');
-
-                    if (notifDiv) {
-                        notifDiv.className = 'bg-blue-50 border-l-4 border-blue-500 rounded-lg p-3 mb-3';
-                        notifDiv.innerHTML = '<p class="text-xs text-blue-700"><i class="fa-solid fa-box-open mr-1"></i> <strong>Booking Dikonfirmasi:</strong> Siapkan sampah untuk diambil sesuai jadwal</p>';
-                    }
-
-                    if (actionButtons) {
-                        actionButtons.innerHTML = `
-            <button onclick="markAsCompleted('${uploadId}')"
-              class="flex-1 sm:flex-none px-4 py-2 bg-emerald-600 text-white rounded-xl hover:bg-emerald-700 transition-all text-sm font-medium">
-              <i class="fa-solid fa-check-double mr-1"></i> Tandai Selesai
-            </button>
-            <button onclick="cancelConfirmedBooking('${uploadId}')"
-              class="flex-1 sm:flex-none px-4 py-2 bg-red-100 text-red-700 rounded-xl hover:bg-red-200 transition-all text-sm font-medium">
-              <i class="fa-solid fa-ban mr-1"></i> Batalkan
-            </button>
-            <button onclick="viewUploadDetail('${uploadId}')"
-              class="flex-1 sm:flex-none px-4 py-2 bg-gray-100 text-gray-700 rounded-xl hover:bg-gray-200 transition-all text-sm font-medium">
-              <i class="fa-solid fa-eye mr-1"></i> Lihat Detail
-            </button>
-          `;
-                    }
-
-                    updateStatistics();
-                    closeDetailModal();
-                    showNotification('Booking berhasil dikonfirmasi!', 'success');
-                }
-            );
-        }
-
-        // Tolak permintaan booking
-        function rejectBookingRequest(uploadId) {
-            showConfirmDialog(
-                'Tolak Booking?',
-                'Apakah Anda yakin ingin menolak permintaan booking ini? Sampah akan kembali tersedia untuk dibooking.',
-                'Tolak',
-                'Batal',
-                () => {
-                    const card = document.querySelector(`[data-id="${uploadId}"]`);
-                    if (!card) return;
-
-                    const statusBadge = card.querySelector('.status-badge');
-                    const actionButtons = card.querySelector('.action-buttons');
-                    const notifDiv = card.querySelector('.bg-yellow-50');
-
-                    if (uploadData[uploadId]) {
-                        uploadData[uploadId].status = 'tersedia';
-                        delete uploadData[uploadId].tanggalBooking;
-                    }
-
-                    if (statusBadge) {
-                        statusBadge.className = 'status-badge px-3 py-1 bg-emerald-100 text-emerald-700 text-xs font-semibold rounded-full';
-                        statusBadge.innerHTML = '<i class="fa-solid fa-circle-check mr-1"></i> Tersedia';
-                    }
-
-                    card.setAttribute('data-status', 'tersedia');
-
-                    if (notifDiv) {
-                        notifDiv.className = 'bg-emerald-50 border-l-4 border-emerald-500 rounded-lg p-3 mb-3';
-                        notifDiv.innerHTML = '<p class="text-xs text-emerald-700"><i class="fa-solid fa-info-circle mr-1"></i> <strong>Status:</strong> Sampah tersedia dan siap untuk dibooking</p>';
-                    }
-
-                    if (actionButtons) {
-                        actionButtons.innerHTML = `
-            <button onclick="viewUploadDetail('${uploadId}')"
-              class="flex-1 sm:flex-none px-4 py-2 bg-emerald-600 text-white rounded-xl hover:bg-emerald-700 transition-all text-sm font-medium">
-              <i class="fa-solid fa-eye mr-1"></i> Lihat Detail
-            </button>
-            <button onclick="editUpload('${uploadId}')"
-              class="flex-1 sm:flex-none px-4 py-2 bg-blue-100 text-blue-700 rounded-xl hover:bg-blue-200 transition-all text-sm font-medium">
-              <i class="fa-solid fa-pen-to-square mr-1"></i> Edit
-            </button>
-            <button onclick="deleteUpload('${uploadId}')"
-              class="flex-1 sm:flex-none px-4 py-2 bg-red-100 text-red-700 rounded-xl hover:bg-red-200 transition-all text-sm font-medium">
-              <i class="fa-solid fa-trash mr-1"></i> Hapus
-            </button>
-          `;
-                    }
-
-                    updateStatistics();
-                    closeDetailModal();
-                    showNotification('Booking berhasil dibatalkan', 'info');
-                }
-            );
-        }
-
-        // Edit upload
-        function editUpload(uploadId) {
-            // Redirect ke halaman edit atau buka form edit
-            showNotification('Fitur edit akan segera hadir', 'info');
-            // window.location.href = `edit-upload.html?id=${uploadId}`;
-        }
-
-        // Hapus upload
-        function deleteUpload(uploadId) {
-            showConfirmDialog(
-                'Hapus Upload?',
-                'Apakah Anda yakin ingin menghapus upload ini? Data yang sudah dihapus tidak dapat dikembalikan.',
-                'Hapus',
-                'Batal',
-                () => {
-                    const card = document.querySelector(`[data-id="${uploadId}"]`);
-                    if (card) {
-                        card.style.opacity = '0';
-                        card.style.transform = 'scale(0.95)';
-
-                        setTimeout(() => {
-                            card.remove();
-                            delete uploadData[uploadId];
-                            updateStatistics();
-
-                            // Check if no more cards visible
-                            const remainingCards = document.querySelectorAll('[data-status]');
-                            if (remainingCards.length === 0) {
-                                document.getElementById('emptyState').classList.remove('hidden');
-                                document.getElementById('uploadList').classList.add('hidden');
-                            }
-
-                            showNotification('Upload berhasil dihapus', 'success');
-                        }, 300);
-                    }
-                }
-            );
-        }
-
-        // Update statistik
-        function updateStatistics() {
-            const allCards = document.querySelectorAll('[data-status]');
-            let total = allCards.length;
-            let tersedia = 0;
-            let dibooking = 0;
-            let dikonfirmasi = 0;
-            let selesai = 0;
-
-            allCards.forEach(card => {
-                const status = card.getAttribute('data-status');
-                if (status === 'tersedia') tersedia++;
-                else if (status === 'dibooking') dibooking++;
-                else if (status === 'dikonfirmasi') dikonfirmasi++;
-                else if (status === 'selesai') selesai++;
-            });
-
-            // Update jika ada elemen statistik di halaman
-            const totalUploadEl = document.getElementById('totalUpload');
-            const totalTersediaEl = document.getElementById('totalTersedia');
-            const totalDibookingEl = document.getElementById('totalDibooking');
-            const totalSelesaiEl = document.getElementById('totalSelesai');
-
-            if (totalUploadEl) totalUploadEl.textContent = total;
-            if (totalTersediaEl) totalTersediaEl.textContent = tersedia;
-            if (totalDibookingEl) totalDibookingEl.textContent = dibooking;
-            if (totalSelesaiEl) totalSelesaiEl.textContent = selesai;
-        }
-
-        // Show notification dengan animasi
-        function showNotification(message, type = 'success') {
-            const notification = document.createElement('div');
-
-            let bgColor = 'bg-emerald-500';
-            let icon = '<i class="fa-solid fa-check-circle"></i>';
-
-            if (type === 'error') {
-                bgColor = 'bg-red-500';
-                icon = '<i class="fa-solid fa-exclamation-circle"></i>';
-            } else if (type === 'info') {
-                bgColor = 'bg-blue-500';
-                icon = '<i class="fa-solid fa-info-circle"></i>';
-            } else if (type === 'warning') {
-                bgColor = 'bg-yellow-500';
-                icon = '<i class="fa-solid fa-exclamation-triangle"></i>';
-            }
-
-            notification.className = `fixed top-4 right-4 z-50 px-6 py-4 rounded-xl shadow-lg transform transition-all duration-300 ${bgColor} text-white font-medium flex items-center gap-3 max-w-md`;
-            notification.style.opacity = '0';
-            notification.style.transform = 'translateY(-20px)';
-            notification.innerHTML = `
-      ${icon}
-      <span>${message}</span>
-    `;
-
-            document.body.appendChild(notification);
-
-            // Animate in
-            setTimeout(() => {
-                notification.style.opacity = '1';
-                notification.style.transform = 'translateY(0)';
-            }, 10);
-
-            // Animate out
-            setTimeout(() => {
-                notification.style.opacity = '0';
-                notification.style.transform = 'translateY(-20px)';
-                setTimeout(() => notification.remove(), 300);
-            }, 3000);
-        }
-
-        // Show confirm dialog dengan custom modal
-        function showConfirmDialog(title, message, confirmText, cancelText, onConfirm) {
-            const dialog = document.createElement('div');
-            dialog.className = 'fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4';
-            dialog.style.opacity = '0';
-
-            dialog.innerHTML = `
-      <div class="bg-white rounded-2xl max-w-md w-full shadow-2xl transform transition-all" style="opacity: 0; transform: scale(0.9);">
-        <div class="p-6">
-          <div class="flex items-center gap-4 mb-4">
-            <div class="w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0">
-              <i class="fa-solid fa-question text-emerald-600 text-xl"></i>
-            </div>
-            <h3 class="text-xl font-bold text-gray-900">${title}</h3>
-          </div>
-          
-          <p class="text-gray-600 mb-6 leading-relaxed">${message}</p>
-          
-          <div class="flex gap-3">
-            <button onclick="closeConfirmDialog()" class="flex-1 px-4 py-3 bg-gray-100 text-gray-700 rounded-xl hover:bg-gray-200 transition-all font-medium">
-              ${cancelText}
-            </button>
-            <button onclick="confirmDialogAction()" class="flex-1 px-4 py-3 bg-emerald-600 text-white rounded-xl hover:bg-emerald-700 transition-all font-medium">
-              ${confirmText}
-            </button>
-          </div>
+    </div>
+  `;
+        actionButtons = `
+    <button onclick="deleteUpload('${upload.id}')" class="flex-1 py-3 bg-red-600 text-white font-bold rounded-xl hover:bg-red-700 transition shadow-lg">
+       Hapus
+    </button>
+  `;
+    } else if (upload.status === 'dibooking') {
+        statusBadge = '<span class="px-3 py-1 bg-green-100 text-green-700 text-xs font-semibold rounded-full"><i class="fa-solid fa-clock mr-1"></i> Menunggu Konfirmasi</span>';
+        statusInfo = `
+    <div class="bg-green-50 border-l-4 border-green-500 rounded-lg p-4 mb-4">
+      <div class="flex items-start gap-3">
+        <svg class="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+        <div>
+          <p class="text-sm font-semibold text-green-800 mb-1">Ada Permintaan Booking!</p>
+          <p class="text-xs text-green-700">Seseorang ingin membooking sampah ini. Segera konfirmasi atau tolak permintaan.</p>
         </div>
       </div>
-    `;
+    </div>
+  `;
+        actionButtons = `
+    <button onclick="confirmBookingRequest('${upload.id}')" class="flex-1 py-3 bg-gradient-to-r from-emerald-500 to-green-600 text-white font-bold rounded-xl hover:from-emerald-600 hover:to-green-700 transition shadow-lg">
+       Konfirmasi Booking
+    </button>
+    <button onclick="rejectBookingRequest('${upload.id}')" class="flex-1 py-3 bg-red-600 text-white font-bold rounded-xl hover:bg-red-700 transition shadow-lg">
+       Tolak Booking
+    </button>
+  `;
+    } else if (upload.status === 'dikonfirmasi') {
+        statusBadge = '<span class="px-3 py-1 bg-green-100 text-green-700 text-xs font-semibold rounded-full"><i class="fa-solid fa-handshake mr-1"></i> Terkonfirmasi</span>';
+        statusInfo = `
+    <div class="bg-green-50 border-l-4 border-green-500 rounded-lg p-4 mb-4">
+      <div class="flex items-start gap-3">
+        <svg class="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+        <div>
+          <p class="text-sm font-semibold text-green-800 mb-1">Booking Dikonfirmasi</p>
+          <p class="text-xs text-green-700">Booking sudah dikonfirmasi. Siapkan sampah untuk diambil sesuai jadwal.</p>
+        </div>
+      </div>
+    </div>
+  `;
+        actionButtons = `
+    <button onclick="markAsCompleted('${upload.id}')" class="flex-1 py-3 bg-gradient-to-r from-emerald-500 to-green-600 text-white font-bold rounded-xl hover:from-emerald-600 hover:to-green-700 transition shadow-lg">
+      <i class="fa-solid fa-check-double mr-2"></i> Tandai Selesai
+    </button>
+    <button onclick="cancelConfirmedBooking('${upload.id}')" class="flex-1 py-3 bg-red-100 text-red-700 font-bold rounded-xl hover:bg-red-200 transition">
+       Batalkan
+    </button>
+  `;
+    } else if (upload.status === 'selesai') {
+        statusBadge = '<span class="px-3 py-1 bg-gray-100 text-gray-700 text-xs font-semibold rounded-full"><i class="fa-solid fa-circle-check mr-1"></i> Selesai</span>';
+        statusInfo = `
+    <div class="bg-gray-50 border-l-4 border-gray-400 rounded-lg p-4 mb-4">
+      <div class="flex items-start gap-3">
+        <svg class="w-5 h-5 text-gray-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+        </svg>
+        <div>
+          <p class="text-sm font-semibold text-gray-800 mb-1">Transaksi Selesai!</p>
+          <p class="text-xs text-gray-700">Sampah sudah berhasil diambil. Terima kasih telah berkontribusi untuk lingkungan.</p>
+        </div>
+      </div>
+    </div>
+  `;
+        actionButtons = '';
+    } else if (upload.status === 'dibatalkan') {
+        statusBadge = '<span class="px-3 py-1 bg-orange-100 text-orange-700 text-xs font-semibold rounded-full"> Dibatalkan</span>';
+        statusInfo = `
+    <div class="bg-orange-50 border-l-4 border-orange-500 rounded-lg p-4 mb-4">
+      <div class="flex items-start gap-3">
+        <svg class="w-5 h-5 text-orange-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+        </svg>
+        <div>
+          <p class="text-sm font-semibold text-orange-800 mb-1">Booking Dibatalkan</p>
+          <p class="text-xs text-orange-700">${upload.alasanBatal || 'Booking telah dibatalkan.'}</p>
+        </div>
+      </div>
+    </div>
+  `;
+        actionButtons = `
+    <button onclick="republishUpload('${upload.id}')" class="flex-1 py-3 bg-gradient-to-r from-emerald-500 to-green-600 text-white font-bold rounded-xl hover:from-emerald-600 hover:to-green-700 transition shadow-lg">
+      <i class="fa-solid fa-rotate mr-2"></i> Upload Ulang
+    </button>
+    <button onclick="deleteUpload('${upload.id}')" class="flex-1 py-3 bg-red-600 text-white font-bold rounded-xl hover:bg-red-700 transition shadow-lg">
+       Hapus
+    </button>
+  `;
+    }
 
-            document.body.appendChild(dialog);
-            document.body.style.overflow = 'hidden';
+    content.innerHTML = `
+  <!-- Header -->
+  <div class="bg-gradient-to-r from-emerald-500 to-green-600 p-6 rounded-t-3xl">
+    <div class="flex items-center justify-between">
+      <h2 class="text-2xl font-bold text-white">Detail Upload</h2>
+      <button onclick="closeDetailModal()" class="bg-white bg-opacity-20 hover:bg-opacity-30 rounded-full p-2 transition">
+        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+    <p class="text-emerald-50 mt-2">ID Upload: #${upload.id}</p>
+  </div>
 
-            // Animate in
-            setTimeout(() => {
-                dialog.style.opacity = '1';
-                const content = dialog.querySelector('div > div');
-                content.style.opacity = '1';
-                content.style.transform = 'scale(1)';
-            }, 10);
+  <!-- Content -->
+  <div class="p-6">
+    <!-- Image -->
+    <img src="${upload.gambar}" alt="${upload.nama}" class="w-full h-64 object-cover rounded-2xl mb-6 shadow-lg">
 
-            // Store callback
-            window.currentConfirmCallback = onConfirm;
+    <!-- Status Badge -->
+    <div class="flex items-center justify-between mb-4">
+      <h3 class="text-2xl font-bold text-gray-900">${upload.nama}</h3>
+      ${statusBadge}
+    </div>
 
-            // Click outside to close
-            dialog.addEventListener('click', (e) => {
-                if (e.target === dialog) {
-                    closeConfirmDialog();
-                }
-            });
+    <!-- Status Info -->
+    ${statusInfo}
+
+    <!-- Info Grid -->
+    <div class="space-y-4 mb-6">
+      <!-- Kategori & Berat -->
+      <div class="grid grid-cols-2 gap-4">
+        <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl p-4">
+          <p class="text-xs text-gray-500 font-medium mb-1">Kategori</p>
+          <p class="text-sm font-bold text-gray-800">${upload.kategori}</p>
+        </div>
+        <div class="bg-gradient-to-br from-green-50 to-cyan-50 rounded-xl p-4">
+          <p class="text-xs text-gray-500 font-medium mb-1">Berat/Jumlah</p>
+          <p class="text-sm font-bold text-gray-800">${upload.berat}</p>
+        </div>
+      </div>
+
+      <!-- Tanggal Upload -->
+      <div class="bg-gradient-to-br from-orange-50 to-amber-50 rounded-xl p-4">
+        <p class="text-xs text-gray-500 font-medium mb-1">Tanggal Upload</p>
+        <p class="text-sm font-bold text-gray-800">${upload.tanggalUpload}</p>
+      </div>
+
+      ${upload.tanggalBooking ? `
+      <div class="bg-gradient-to-br from-green-50 to-orange-50 rounded-xl p-4">
+        <p class="text-xs text-gray-500 font-medium mb-1">Tanggal Booking</p>
+        <p class="text-sm font-bold text-gray-800">${upload.tanggalBooking}</p>
+      </div>
+      ` : ''}
+
+      ${upload.tanggalKonfirmasi ? `
+      <div class="bg-gradient-to-br from-green-50 to-indigo-50 rounded-xl p-4">
+        <p class="text-xs text-gray-500 font-medium mb-1">Tanggal Konfirmasi</p>
+        <p class="text-sm font-bold text-gray-800">${upload.tanggalKonfirmasi}</p>
+      </div>
+      ` : ''}
+
+      ${upload.tanggalPengambilan ? `
+      <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-4">
+        <p class="text-xs text-gray-500 font-medium mb-1">Rencana Pengambilan</p>
+        <p class="text-sm font-bold text-gray-800">${upload.tanggalPengambilan}</p>
+      </div>
+      ` : ''}
+
+      ${upload.tanggalSelesai ? `
+      <div class="bg-gradient-to-br from-gray-50 to-slate-50 rounded-xl p-4">
+        <p class="text-xs text-gray-500 font-medium mb-1">Tanggal Selesai</p>
+        <p class="text-sm font-bold text-gray-800">${upload.tanggalSelesai}</p>
+      </div>
+      ` : ''}
+
+      ${upload.tanggalDibatalkan ? `
+      <div class="bg-gradient-to-br from-orange-50 to-red-50 rounded-xl p-4">
+        <p class="text-xs text-gray-500 font-medium mb-1">Tanggal Dibatalkan</p>
+        <p class="text-sm font-bold text-gray-800">${upload.tanggalDibatalkan}</p>
+      </div>
+      ` : ''}
+
+      ${upload.alasanBatal ? `
+      <div class="bg-orange-50 rounded-xl p-4">
+        <p class="text-xs text-gray-500 font-medium mb-2">Alasan Pembatalan</p>
+        <p class="text-sm text-gray-700 leading-relaxed">${upload.alasanBatal}</p>
+      </div>
+      ` : ''}
+
+      <!-- Alamat -->
+      <div class="bg-gradient-to-br from-red-50 to-pink-50 rounded-xl p-4">
+        <p class="text-xs text-gray-500 font-medium mb-1">Alamat Lengkap</p>
+        <p class="text-sm font-semibold text-gray-800 leading-relaxed">${upload.alamatLengkap}</p>
+      </div>
+
+      <!-- Deskripsi -->
+      <div class="bg-gray-50 rounded-xl p-4">
+        <p class="text-xs text-gray-500 font-medium mb-2">Deskripsi</p>
+        <p class="text-sm text-gray-700 leading-relaxed">${upload.deskripsi}</p>
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="flex gap-3">
+      ${actionButtons}
+      <button onclick="closeDetailModal()" class="flex-1 py-3 bg-gray-100 text-gray-700 font-bold rounded-xl hover:bg-gray-200 transition">
+        Tutup
+      </button>
+    </div>
+  </div>
+`;
+
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+}
+
+// Tutup modal detail
+function closeDetailModal() {
+    const modal = document.getElementById('detailModal');
+    if (modal) {
+        modal.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+    }
+}
+
+// Konfirmasi permintaan booking
+function confirmBookingRequest(uploadId) {
+    showConfirmDialog(
+        'Konfirmasi Booking?',
+        'Apakah Anda yakin ingin mengkonfirmasi permintaan booking ini? Pastikan sampah sudah siap untuk diambil.',
+        'Konfirmasi',
+        'Batal',
+        () => {
+            // Tutup dialog konfirmasi terlebih dahulu
+            closeConfirmDialog();
+            
+            const card = document.querySelector(`[data-id="${uploadId}"]`);
+            if (!card) return;
+
+            const statusBadge = card.querySelector('.status-badge');
+            const actionButtons = card.querySelector('.action-buttons');
+            const notifDiv = card.querySelector('.bg-green-50');
+
+            if (uploadData[uploadId]) {
+                uploadData[uploadId].status = 'dikonfirmasi';
+                uploadData[uploadId].tanggalKonfirmasi = new Date().toLocaleDateString('id-ID', {
+                    day: 'numeric',
+                    month: 'long',
+                    year: 'numeric'
+                });
+                uploadData[uploadId].tanggalPengambilan = '25 Oktober 2025';
+            }
+
+            if (statusBadge) {
+                statusBadge.className = 'status-badge px-3 py-1 bg-green-100 text-green-700 text-xs font-semibold rounded-full';
+                statusBadge.innerHTML = '<i class="fa-solid fa-handshake mr-1"></i> Terkonfirmasi';
+            }
+
+            card.setAttribute('data-status', 'dikonfirmasi');
+
+            if (notifDiv) {
+                notifDiv.className = 'bg-green-50 border-l-4 border-green-500 rounded-lg p-3 mb-3';
+                notifDiv.innerHTML = '<p class="text-xs text-green-700"><i class="fa-solid fa-box-open mr-1"></i> <strong>Booking Dikonfirmasi:</strong> Siapkan sampah untuk diambil sesuai jadwal</p>';
+            }
+
+            if (actionButtons) {
+                actionButtons.innerHTML = `
+        <button onclick="markAsCompleted('${uploadId}')"
+          class="flex-1 sm:flex-none px-4 py-2 bg-emerald-600 text-white rounded-xl hover:bg-emerald-700 transition-all text-sm font-medium">
+           Tandai Selesai
+        </button>
+        <button onclick="cancelConfirmedBooking('${uploadId}')"
+          class="flex-1 sm:flex-none px-4 py-2 bg-red-100 text-red-700 rounded-xl hover:bg-red-200 transition-all text-sm font-medium">
+          <i class="fa-solid fa-ban mr-1"></i> Batalkan
+        </button>
+        <button onclick="viewUploadDetail('${uploadId}')"
+          class="flex-1 sm:flex-none px-4 py-2 bg-gray-100 text-gray-700 rounded-xl hover:bg-gray-200 transition-all text-sm font-medium">
+           Lihat Detail
+        </button>
+      `;
+            }
+
+            updateStatistics();
+            closeDetailModal();
+            showNotification('Booking berhasil dikonfirmasi!', 'success');
         }
+    );
+}
 
-        // Close confirm dialog
-        function closeConfirmDialog() {
-            const dialog = document.querySelector('.fixed.inset-0.bg-black.bg-opacity-50');
-            if (dialog) {
-                dialog.style.opacity = '0';
-                const content = dialog.querySelector('div > div');
-                if (content) {
-                    content.style.opacity = '0';
-                    content.style.transform = 'scale(0.9)';
-                }
+// Tolak permintaan booking
+function rejectBookingRequest(uploadId) {
+    showConfirmDialog(
+        'Tolak Booking?',
+        'Apakah Anda yakin ingin menolak permintaan booking ini? Sampah akan kembali tersedia untuk dibooking.',
+        'Tolak',
+        'Batal',
+        () => {
+            // Tutup dialog konfirmasi terlebih dahulu
+            closeConfirmDialog();
+            
+            const card = document.querySelector(`[data-id="${uploadId}"]`);
+            if (!card) return;
+
+            const statusBadge = card.querySelector('.status-badge');
+            const actionButtons = card.querySelector('.action-buttons');
+            const notifDiv = card.querySelector('.bg-green-50');
+
+            if (uploadData[uploadId]) {
+                uploadData[uploadId].status = 'tersedia';
+                delete uploadData[uploadId].tanggalBooking;
+            }
+
+            if (statusBadge) {
+                statusBadge.className = 'status-badge px-3 py-1 bg-emerald-100 text-emerald-700 text-xs font-semibold rounded-full';
+                statusBadge.innerHTML = '<i class="fa-solid fa-circle-check mr-1"></i> Tersedia';
+            }
+
+            card.setAttribute('data-status', 'tersedia');
+
+            if (notifDiv) {
+                notifDiv.className = 'bg-emerald-50 border-l-4 border-emerald-500 rounded-lg p-3 mb-3';
+                notifDiv.innerHTML = '<p class="text-xs text-emerald-700"><i class="fa-solid fa-info-circle mr-1"></i> <strong>Status:</strong> Sampah tersedia dan siap untuk dibooking</p>';
+            }
+
+            if (actionButtons) {
+                actionButtons.innerHTML = `
+        <button onclick="viewUploadDetail('${uploadId}')"
+          class="flex-1 sm:flex-none px-4 py-2 bg-emerald-600 text-white rounded-xl hover:bg-emerald-700 transition-all text-sm font-medium">
+           Lihat Detail
+        </button>
+        <button onclick="deleteUpload('${uploadId}')"
+          class="flex-1 sm:flex-none px-4 py-2 bg-red-100 text-red-700 rounded-xl hover:bg-red-200 transition-all text-sm font-medium">
+           Hapus
+        </button>
+      `;
+            }
+
+            updateStatistics();
+            closeDetailModal();
+            showNotification('Booking ditolak, sampah kembali tersedia', 'info');
+        }
+    );
+}
+
+// Hapus upload
+function deleteUpload(uploadId) {
+    showConfirmDialog(
+        'Hapus Upload?',
+        'Apakah Anda yakin ingin menghapus upload ini? Data yang sudah dihapus tidak dapat dikembalikan.',
+        'Hapus',
+        'Batal',
+        () => {
+            // Tutup dialog konfirmasi terlebih dahulu
+            closeConfirmDialog();
+            
+            const card = document.querySelector(`[data-id="${uploadId}"]`);
+            if (card) {
+                card.style.opacity = '0';
+                card.style.transform = 'scale(0.95)';
 
                 setTimeout(() => {
-                    dialog.remove();
-                    document.body.style.overflow = 'auto';
-                    window.currentConfirmCallback = null;
+                    card.remove();
+                    delete uploadData[uploadId];
+                    updateStatistics();
+
+                    const remainingCards = document.querySelectorAll('[data-status]');
+                    if (remainingCards.length === 0) {
+                        document.getElementById('emptyState').classList.remove('hidden');
+                        document.getElementById('uploadList').classList.add('hidden');
+                    }
+
+                    showNotification('Upload berhasil dihapus', 'success');
                 }, 300);
             }
+            
+            // Tutup detail modal jika terbuka
+            closeDetailModal();
         }
+    );
+}
 
-        // Confirm dialog action
-        function confirmDialogAction() {
-            if (window.currentConfirmCallback) {
-                window.currentConfirmCallback();
-            }
+// Update statistik
+function updateStatistics() {
+    const allCards = document.querySelectorAll('[data-status]');
+    let total = allCards.length;
+    let tersedia = 0;
+    let dibooking = 0;
+    let dikonfirmasi = 0;
+    let selesai = 0;
+    let dibatalkan = 0;
+
+    allCards.forEach(card => {
+        const status = card.getAttribute('data-status');
+        if (status === 'tersedia') tersedia++;
+        else if (status === 'dibooking') dibooking++;
+        else if (status === 'dikonfirmasi') dikonfirmasi++;
+        else if (status === 'selesai') selesai++;
+        else if (status === 'dibatalkan') dibatalkan++;
+    });
+
+    const totalUploadEl = document.getElementById('totalUpload');
+    const totalTersediaEl = document.getElementById('totalTersedia');
+    const totalDibookingEl = document.getElementById('totalDibooking');
+    const totalSelesaiEl = document.getElementById('totalSelesai');
+    const totalDibatalkanEl = document.getElementById('totalDibatalkan');
+
+    if (totalUploadEl) totalUploadEl.textContent = total;
+    if (totalTersediaEl) totalTersediaEl.textContent = tersedia;
+    if (totalDibookingEl) totalDibookingEl.textContent = dibooking;
+    if (totalSelesaiEl) totalSelesaiEl.textContent = selesai;
+    if (totalDibatalkanEl) totalDibatalkanEl.textContent = dibatalkan;
+}
+
+// Show notification dengan animasi
+function showNotification(message, type = 'success') {
+    const notification = document.createElement('div');
+
+    let bgColor = 'bg-emerald-500';
+    let icon = '<i class="fa-solid fa-check-circle"></i>';
+
+    if (type === 'error') {
+        bgColor = 'bg-red-500';
+        icon = '<i class="fa-solid fa-exclamation-circle"></i>';
+    } else if (type === 'info') {
+        bgColor = 'bg-green-500';
+        icon = '<i class="fa-solid fa-info-circle"></i>';
+    } else if (type === 'warning') {
+        bgColor = 'bg-green-500';
+        icon = '<i class="fa-solid fa-exclamation-triangle"></i>';
+    }
+
+    notification.className = `fixed top-4 right-4 z-50 px-6 py-4 rounded-xl shadow-lg transform transition-all duration-300 ${bgColor} text-white font-medium flex items-center gap-3 max-w-md`;
+    notification.style.opacity = '0';
+    notification.style.transform = 'translateY(-20px)';
+    notification.innerHTML = `
+  ${icon}
+  <span>${message}</span>
+`;
+
+    document.body.appendChild(notification);
+
+    setTimeout(() => {
+        notification.style.opacity = '1';
+        notification.style.transform = 'translateY(0)';
+    }, 10);
+
+    setTimeout(() => {
+        notification.style.opacity = '0';
+        notification.style.transform = 'translateY(-20px)';
+        setTimeout(() => notification.remove(), 300);
+    }, 3000);
+}
+
+// Show confirm dialog dengan custom modal
+function showConfirmDialog(title, message, confirmText, cancelText, onConfirm) {
+    const dialog = document.createElement('div');
+    dialog.className = 'fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4';
+    dialog.style.opacity = '0';
+
+    dialog.innerHTML = `
+  <div class="bg-white rounded-2xl max-w-md w-full shadow-2xl transform transition-all" style="opacity: 0; transform: scale(0.9);">
+    <div class="p-6">
+      <div class="flex items-center gap-4 mb-4">
+        <div class="w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0">
+          <i class="fa-solid fa-question text-emerald-600 text-xl"></i>
+        </div>
+        <h3 class="text-xl font-bold text-gray-900">${title}</h3>
+      </div>
+      
+      <p class="text-gray-600 mb-6 leading-relaxed">${message}</p>
+      
+      <div class="flex gap-3">
+        <button onclick="closeConfirmDialog()" class="flex-1 px-4 py-3 bg-gray-100 text-gray-700 rounded-xl hover:bg-gray-200 transition-all font-medium">
+          ${cancelText}
+        </button>
+        <button onclick="confirmDialogAction()" class="flex-1 px-4 py-3 bg-emerald-600 text-white rounded-xl hover:bg-emerald-700 transition-all font-medium">
+          ${confirmText}
+        </button>
+      </div>
+    </div>
+  </div>
+`;
+
+    document.body.appendChild(dialog);
+    document.body.style.overflow = 'hidden';
+
+    setTimeout(() => {
+        dialog.style.opacity = '1';
+        const content = dialog.querySelector('div > div');
+        content.style.opacity = '1';
+        content.style.transform = 'scale(1)';
+    }, 10);
+
+    window.currentConfirmCallback = onConfirm;
+
+    dialog.addEventListener('click', (e) => {
+        if (e.target === dialog) {
             closeConfirmDialog();
         }
+    });
+}
 
-        // Close modal when clicking outside
-        document.addEventListener('DOMContentLoaded', function () {
-            const modal = document.getElementById('detailModal');
-            if (modal) {
-                modal.addEventListener('click', function (e) {
-                    if (e.target === this) {
-                        closeDetailModal();
-                    }
+// Close confirm dialog
+function closeConfirmDialog() {
+    const dialog = document.querySelector('.fixed.inset-0.bg-black.bg-opacity-50');
+    if (dialog) {
+        dialog.style.opacity = '0';
+        const content = dialog.querySelector('div > div');
+        if (content) {
+            content.style.opacity = '0';
+            content.style.transform = 'scale(0.9)';
+        }
+
+        setTimeout(() => {
+            dialog.remove();
+            document.body.style.overflow = 'auto';
+            window.currentConfirmCallback = null;
+        }, 300);
+    }
+}
+
+// Confirm dialog action
+function confirmDialogAction() {
+    if (window.currentConfirmCallback) {
+        window.currentConfirmCallback();
+        window.currentConfirmCallback = null;
+    }
+    // Dialog akan ditutup oleh fungsi callback jika diperlukan
+}
+
+// Tandai sebagai selesai
+function markAsCompleted(uploadId) {
+    showConfirmDialog(
+        'Tandai Selesai?',
+        'Apakah sampah sudah diambil dan transaksi selesai? Status akan berubah menjadi selesai.',
+        'Ya, Selesai',
+        'Batal',
+        () => {
+            // Tutup dialog konfirmasi terlebih dahulu
+            closeConfirmDialog();
+            
+            const card = document.querySelector(`[data-id="${uploadId}"]`);
+            if (!card) return;
+
+            const statusBadge = card.querySelector('.status-badge');
+            const actionButtons = card.querySelector('.action-buttons');
+            const notifDiv = card.querySelector('.bg-green-50');
+
+            if (uploadData[uploadId]) {
+                uploadData[uploadId].status = 'selesai';
+                uploadData[uploadId].tanggalSelesai = new Date().toLocaleDateString('id-ID', {
+                    day: 'numeric',
+                    month: 'long',
+                    year: 'numeric'
                 });
             }
 
-            // Add smooth transitions to cards
-            const cards = document.querySelectorAll('[data-status]');
-            cards.forEach(card => {
-                card.style.transition = 'all 0.3s ease';
-            });
-        });
+            if (statusBadge) {
+                statusBadge.className = 'status-badge px-3 py-1 bg-gray-100 text-gray-700 text-xs font-semibold rounded-full';
+                statusBadge.innerHTML = '<i class="fa-solid fa-circle-check mr-1"></i> Selesai';
+            }
 
-        // Initialize on page load
-        window.addEventListener('load', function () {
+            card.setAttribute('data-status', 'selesai');
+
+            if (notifDiv) {
+                notifDiv.className = 'bg-gray-50 border-l-4 border-gray-400 rounded-lg p-3 mb-3';
+                notifDiv.innerHTML = '<p class="text-xs text-gray-700"><i class="fa-solid fa-check-circle mr-1"></i> <strong>Transaksi Selesai:</strong> Terima kasih telah berkontribusi!</p>';
+            }
+
+            if (actionButtons) {
+                actionButtons.innerHTML = `
+        <button onclick="viewUploadDetail('${uploadId}')"
+          class="flex-1 sm:flex-none px-4 py-2 bg-gray-600 text-white rounded-xl hover:bg-gray-700 transition-all text-sm font-medium">
+           Lihat Detail
+        </button>
+      `;
+            }
+
             updateStatistics();
-        });
-    </script>
+            showNotification('Transaksi berhasil diselesaikan!', 'success');
+        }
+    );
+}
+
+// Batalkan booking yang sudah dikonfirmasi
+function cancelConfirmedBooking(uploadId) {
+    showConfirmDialog(
+        'Batalkan Booking?',
+        'Apakah Anda yakin ingin membatalkan booking yang sudah dikonfirmasi? Sampah akan dipindahkan ke daftar dibatalkan.',
+        'Batalkan',
+        'Tidak',
+        () => {
+            // Tutup dialog konfirmasi terlebih dahulu
+            closeConfirmDialog();
+            
+            const card = document.querySelector(`[data-id="${uploadId}"]`);
+            if (!card) return;
+
+            const statusBadge = card.querySelector('.status-badge');
+            const actionButtons = card.querySelector('.action-buttons');
+            const notifDiv = card.querySelector('.bg-green-50');
+
+            if (uploadData[uploadId]) {
+                uploadData[uploadId].status = 'dibatalkan';
+                uploadData[uploadId].tanggalDibatalkan = new Date().toLocaleDateString('id-ID', {
+                    day: 'numeric',
+                    month: 'long',
+                    year: 'numeric'
+                });
+                uploadData[uploadId].alasanBatal = 'Dibatalkan oleh pengirim';
+            }
+
+            if (statusBadge) {
+                statusBadge.className = 'status-badge px-3 py-1 bg-orange-100 text-orange-700 text-xs font-semibold rounded-full';
+                statusBadge.innerHTML = '<i class="fa-solid fa-ban mr-1"></i> Dibatalkan';
+            }
+
+            card.setAttribute('data-status', 'dibatalkan');
+
+            if (notifDiv) {
+                notifDiv.className = 'bg-orange-50 border-l-4 border-orange-500 rounded-lg p-3 mb-3';
+                notifDiv.innerHTML = '<p class="text-xs text-orange-700"><i class="fa-solid fa-ban mr-1"></i> <strong>Dibatalkan:</strong> Booking telah dibatalkan</p>';
+            }
+
+            if (actionButtons) {
+                actionButtons.innerHTML = `
+        <button onclick="viewUploadDetail('${uploadId}')"
+          class="flex-1 sm:flex-none px-4 py-2 bg-emerald-600 text-white rounded-xl hover:bg-emerald-700 transition-all text-sm font-medium">
+           Lihat Detail
+        </button>
+        <button onclick="republishUpload('${uploadId}')"
+          class="flex-1 sm:flex-none px-4 py-2 bg-green-600 text-white rounded-xl hover:bg-green-700 transition-all text-sm font-medium">
+          <i class="fa-solid fa-rotate mr-1"></i> Upload Ulang
+        </button>
+        <button onclick="deleteUpload('${uploadId}')"
+          class="flex-1 sm:flex-none px-4 py-2 bg-red-100 text-red-700 rounded-xl hover:bg-red-200 transition-all text-sm font-medium">
+           Hapus
+        </button>
+      `;
+            }
+
+            updateStatistics();
+            showNotification('Booking dibatalkan', 'warning');
+        }
+    );
+}
+
+// Upload ulang item yang dibatalkan
+function republishUpload(uploadId) {
+    showConfirmDialog(
+        'Upload Ulang?',
+        'Apakah Anda yakin ingin mengupload ulang item ini? Item akan kembali tersedia untuk dibooking.',
+        'Upload Ulang',
+        'Batal',
+        () => {
+            const card = document.querySelector(`[data-id="${uploadId}"]`);
+            if (!card) return;
+
+            const statusBadge = card.querySelector('.status-badge');
+            const actionButtons = card.querySelector('.action-buttons');
+            const notifDiv = card.querySelector('.bg-orange-50');
+
+            if (uploadData[uploadId]) {
+                uploadData[uploadId].status = 'tersedia';
+                uploadData[uploadId].tanggalUpload = new Date().toLocaleDateString('id-ID', {
+                    day: 'numeric',
+                    month: 'long',
+                    year: 'numeric'
+                });
+                delete uploadData[uploadId].tanggalBooking;
+                delete uploadData[uploadId].tanggalKonfirmasi;
+                delete uploadData[uploadId].tanggalPengambilan;
+                delete uploadData[uploadId].tanggalDibatalkan;
+                delete uploadData[uploadId].alasanBatal;
+            }
+
+            if (statusBadge) {
+                statusBadge.className = 'status-badge px-3 py-1 bg-emerald-100 text-emerald-700 text-xs font-semibold rounded-full';
+                statusBadge.innerHTML = '<i class="fa-solid fa-circle-check mr-1"></i> Tersedia';
+            }
+
+            card.setAttribute('data-status', 'tersedia');
+
+            if (notifDiv) {
+                notifDiv.className = 'bg-emerald-50 border-l-4 border-emerald-500 rounded-lg p-3 mb-3';
+                notifDiv.innerHTML = '<p class="text-xs text-emerald-700"><i class="fa-solid fa-info-circle mr-1"></i> <strong>Status:</strong> Sampah tersedia dan siap untuk dibooking</p>';
+            }
+
+            if (actionButtons) {
+                actionButtons.innerHTML = `
+        <button onclick="viewUploadDetail('${uploadId}')"
+          class="flex-1 sm:flex-none px-4 py-2 bg-emerald-600 text-white rounded-xl hover:bg-emerald-700 transition-all text-sm font-medium">
+           Lihat Detail
+        </button>
+        <button onclick="deleteUpload('${uploadId}')"
+          class="flex-1 sm:flex-none px-4 py-2 bg-red-100 text-red-700 rounded-xl hover:bg-red-200 transition-all text-sm font-medium">
+           Hapus
+        </button>
+      `;
+            }
+
+            updateStatistics();
+            showNotification('Item berhasil diupload ulang dan tersedia', 'success');
+        }
+    );
+}
+
+// Close modal when clicking outside
+document.addEventListener('DOMContentLoaded', function () {
+    // Transition untuk cards
+    const cards = document.querySelectorAll('[data-status]');
+    cards.forEach(card => {
+        card.style.transition = 'all 0.3s ease';
+    });
+    
+    // Update statistik awal
+    updateStatistics();
+});
+
+// Initialize on page load
+window.addEventListener('load', function () {
+    updateStatistics();
+});
+</script>
 
 </body>
 

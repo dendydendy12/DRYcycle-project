@@ -46,14 +46,14 @@ if (profileBtn && profileDropdown) {
         e.stopPropagation();
         profileDropdown.classList.toggle('show');
     });
-    
+
     // Close dropdown when clicking outside
     document.addEventListener('click', (e) => {
         if (!profileBtn.contains(e.target) && !profileDropdown.contains(e.target)) {
             profileDropdown.classList.remove('show');
         }
     });
-    
+
     // Prevent dropdown from closing when clicking inside it
     profileDropdown.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -62,19 +62,28 @@ if (profileBtn && profileDropdown) {
 
 // === ACTIVE NAVIGATION STATE ===
 function setActiveNav() {
-    // Get current page name from URL
-    const currentPage = window.location.pathname.split('/').pop().replace('.html', '') || 'dashboard';
+    // Ambil nama file saat ini, ubah ke huruf kecil agar cocok dengan data-page
+    const currentPage = window.location.pathname.split('/').pop().replace('.html', '').toLowerCase() || 'dashboard';
     const navItems = document.querySelectorAll('.nav-item');
-    
+
     navItems.forEach(item => {
-        const itemPage = item.getAttribute('data-page');
-        
-        // Add or remove active classes based on current page
+        const itemPage = item.getAttribute('data-page')?.toLowerCase();
+
+        // Cek kecocokan halaman
         if (itemPage === currentPage) {
             item.classList.remove('text-gray-600', 'hover:bg-gray-50', 'hover:text-gray-900');
             item.classList.add('bg-green-50', 'text-green-600');
+
+            // Efek hover saat aktif
+            item.addEventListener('mouseenter', () => {
+                item.classList.add('bg-green-100');
+            });
+            item.addEventListener('mouseleave', () => {
+                item.classList.remove('bg-green-100');
+            });
+
         } else {
-            item.classList.remove('bg-green-50', 'text-green-600');
+            item.classList.remove('bg-green-50', 'text-green-600', 'bg-green-100');
             item.classList.add('text-gray-600', 'hover:bg-gray-50', 'hover:text-gray-900');
         }
     });
@@ -122,7 +131,7 @@ if (confirmLogout) {
         localStorage.removeItem('user');
         localStorage.removeItem('token');
         sessionStorage.clear();
-        
+
         // Redirect to login page
         window.location.href = 'login.html';
     });
@@ -156,13 +165,15 @@ const pageTitles = {
     'profile': 'Profil Saya',
     'settings': 'Pengaturan',
     'help': 'Bantuan',
-    'blog' : 'Blog',
+    'blog': 'Blog',
+    'notifikasi': 'Notifikasi',
+    'status-upload': 'Status Upload',
 };
 
 function updatePageTitle() {
-    const currentPage = window.location.pathname.split('/').pop().replace('.html', '') || 'dashboard';
+    const currentPage = window.location.pathname.split('/').pop().replace('.html', '').toLowerCase() || 'dashboard';
     const pageTitle = document.getElementById('pageTitle');
-    
+
     if (pageTitle && pageTitles[currentPage]) {
         pageTitle.textContent = pageTitles[currentPage];
     }
@@ -239,17 +250,11 @@ function updateNotificationBadge(count) {
     }
 }
 
-// Example usage:
-// updateNotificationBadge(5); // Show badge with 5 notifications
-// updateNotificationBadge(0); // Hide badge
-
 // === USER INFO UPDATE (Optional) ===
-// Function to update user info from localStorage or API
 function updateUserInfo() {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
-    
+
     if (user.name) {
-        // Update user name in header
         const userNameElements = document.querySelectorAll('.text-sm.font-semibold.text-gray-900');
         userNameElements.forEach(el => {
             if (el.textContent.includes('Budi Santoso')) {
@@ -257,17 +262,15 @@ function updateUserInfo() {
             }
         });
     }
-    
+
     if (user.email) {
-        // Update email in dropdown
         const emailElement = document.querySelector('.text-xs.text-gray-500');
         if (emailElement && emailElement.textContent.includes('@')) {
             emailElement.textContent = user.email;
         }
     }
-    
+
     if (user.level) {
-        // Update level badge
         const levelBadges = document.querySelectorAll('.bg-green-100.text-green-700');
         levelBadges.forEach(badge => {
             if (badge.textContent.includes('Level')) {
@@ -275,9 +278,8 @@ function updateUserInfo() {
             }
         });
     }
-    
+
     if (user.points) {
-        // Update points badge
         const pointBadges = document.querySelectorAll('.bg-yellow-100.text-yellow-700');
         pointBadges.forEach(badge => {
             if (badge.textContent.includes('Poin')) {
@@ -287,7 +289,6 @@ function updateUserInfo() {
     }
 }
 
-// Update user info on page load
 document.addEventListener('DOMContentLoaded', updateUserInfo);
 
 // === CONSOLE INFO ===

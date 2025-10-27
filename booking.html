@@ -130,24 +130,25 @@
           </a>
 
           <!-- Status Upload -->
-          <a href="StatusUpload.html" data-page="booking"
+          <a href="StatusUpload.html" data-page="status-upload"
             class="nav-item flex items-center space-x-3 px-4 py-3 text-gray-600 rounded-xl font-medium transition-all hover:bg-gray-50 hover:text-gray-900">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
+                d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12">
               </path>
             </svg>
             <span>Status Upload</span>
           </a>
 
-          <!-- Status -->
+          <!-- Status Booking -->
           <a href="booking.html" data-page="booking"
             class="nav-item flex items-center space-x-3 px-4 py-3 text-gray-600 rounded-xl font-medium transition-all hover:bg-gray-50 hover:text-gray-900">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4">
+              </path>
             </svg>
-            <span>Status</span>
+            <span>Status Booking</span>
           </a>
 
           <!-- Leaderboard -->
@@ -680,402 +681,621 @@
   <script src="assets/js/script.js"></script>
 
   <script>
-    // Data booking detail - Sesuaikan dengan HTML
-    const bookingData = {
-      'BKG001': {
-        id: 'BKG001',
-        nama: 'Nasi Box Surplus',
-        kategori: 'Makanan Surplus',
-        berat: '10 porsi',
-        lokasi: 'Jl. Merdeka No. 45, Bogor',
-        alamatLengkap: 'Jl. Merdeka No. 45, RT 03/RW 05, Kelurahan Ciwaringin, Kecamatan Bogor Tengah, Bogor',
-        tanggalBooking: '23 Oktober 2025',
-        pemilik: 'Budi Santoso',
-        telepon: '081234567890',
-        status: 'menunggu',
-        deskripsi: 'Nasi box sisa acara kantor dalam kondisi baik dan masih layak konsumsi. Sudah dikemas rapi dalam kotak tertutup.',
-        gambar: 'assets/image/browse/nasiboxsisaevent.jpg'
-      },
-      'BKG002': {
-        id: 'BKG002',
-        nama: 'Botol Plastik Bekas',
-        kategori: 'Plastik',
-        berat: '15 kg',
-        lokasi: 'Jl. Gatot Subroto No. 56, Tangerang',
-        alamatLengkap: 'Jl. Gatot Subroto No. 56, RT 02/RW 08, Kelurahan Bintaro, Kecamatan Pesanggrahan, Tangerang Selatan',
-        tanggalBooking: '22 Oktober 2025',
-        pemilik: 'Rudi Hermawan',
-        telepon: '081678901234',
-        status: 'diproses',
-        updateInfo: 'Pemilik sedang mempersiapkan sampah untuk diambil',
-        deskripsi: 'Botol plastik bekas minuman dalam kondisi bersih. Sudah dicuci dan dikeringkan untuk memudahkan daur ulang.',
-        gambar: 'assets/image/browse/botolplastik.jpg'
-      },
-      'BKG003': {
-        id: 'BKG003',
-        nama: 'Kardus Bekas',
-        kategori: 'Kertas',
-        berat: '15 kg',
-        lokasi: 'Jl. Ahmad Yani No. 34, Bekasi',
-        alamatLengkap: 'Jl. Ahmad Yani No. 34, RT 05/RW 03, Kelurahan Kayuringin Jaya, Kecamatan Bekasi Selatan, Bekasi',
-        tanggalBooking: '18 Oktober 2025',
-        tanggalSelesai: '20 Oktober 2025',
-        pemilik: 'Siti Aminah',
-        telepon: '082345678901',
-        status: 'selesai',
-        deskripsi: 'Kardus bekas dalam kondisi kering dan tidak rusak. Sudah dipotong dan dilipat rapi untuk memudahkan pengangkutan.',
-        gambar: 'assets/image/browse/kardusbekas.jpg'
-      },
-      'BKG004': {
-        id: 'BKG004',
-        nama: 'Pakaian Bekas Layak Pakai',
-        kategori: 'Tekstil',
-        berat: '8 kg',
-        lokasi: 'Jl. Raya Serpong No. 22, BSD',
-        alamatLengkap: 'Jl. Raya Serpong No. 22, RT 07/RW 06, Kelurahan Lengkong Gudang, Kecamatan Serpong, Tangerang Selatan',
-        tanggalBooking: '19 Oktober 2025',
-        pemilik: 'Diana Putri',
-        telepon: '083456789012',
-        status: 'dibatalkan',
-        deskripsi: 'Pakaian bekas dalam kondisi masih bagus dan layak pakai. Sudah dicuci bersih dan siap untuk disumbangkan atau didaur ulang.',
-        gambar: 'assets/image/browse/kardusbekas.jpg'
-      }
-    };
+    // Data booking detail - POV Pembooking/Pengambil Sampah
+const bookingData = {
+  'BKG001': {
+    id: 'BKG001',
+    nama: 'Nasi Box Surplus',
+    kategori: 'Makanan Surplus',
+    berat: '10 porsi',
+    lokasi: 'Jl. Merdeka No. 45, Bogor',
+    alamatLengkap: 'Jl. Merdeka No. 45, RT 03/RW 05, Kelurahan Ciwaringin, Kecamatan Bogor Tengah, Bogor',
+    tanggalBooking: '23 Oktober 2025',
+    pemilik: 'Budi Santoso',
+    telepon: '081234567890',
+    status: 'menunggu',
+    deskripsi: 'Nasi box sisa acara kantor dalam kondisi baik dan masih layak konsumsi. Sudah dikemas rapi dalam kotak tertutup.',
+    gambar: 'assets/image/browse/nasiboxsisaevent.jpg'
+  },
+  'BKG002': {
+    id: 'BKG002',
+    nama: 'Botol Plastik Bekas',
+    kategori: 'Anorganik',
+    berat: '15 kg',
+    lokasi: 'Jl. Gatot Subroto No. 56, Tangerang',
+    alamatLengkap: 'Jl. Gatot Subroto No. 56, RT 02/RW 08, Kelurahan Bintaro, Kecamatan Pesanggrahan, Tangerang Selatan',
+    tanggalBooking: '22 Oktober 2025',
+    tanggalKonfirmasi: '23 Oktober 2025',
+    tanggalPengambilan: '25 Oktober 2025',
+    pemilik: 'Rudi Hermawan',
+    telepon: '081678901234',
+    status: 'dikonfirmasi',
+    deskripsi: 'Botol plastik bekas minuman dalam kondisi bersih. Sudah dicuci dan dikeringkan untuk memudahkan daur ulang.',
+    gambar: 'assets/image/browse/botolplastik.jpg'
+  },
+  'BKG003': {
+    id: 'BKG003',
+    nama: 'Kardus Bekas',
+    kategori: 'Anorganik',
+    berat: '15 kg',
+    lokasi: 'Jl. Ahmad Yani No. 34, Bekasi',
+    alamatLengkap: 'Jl. Ahmad Yani No. 34, RT 05/RW 03, Kelurahan Kayuringin Jaya, Kecamatan Bekasi Selatan, Bekasi',
+    tanggalBooking: '18 Oktober 2025',
+    tanggalKonfirmasi: '20 Oktober 2025',
+    tanggalSelesai: '22 Oktober 2025',
+    pemilik: 'Siti Aminah',
+    telepon: '082345678901',
+    status: 'selesai',
+    deskripsi: 'Kardus bekas dalam kondisi kering dan tidak rusak. Sudah dipotong dan dilipat rapi untuk memudahkan pengangkutan.',
+    gambar: 'assets/image/browse/kardusbekas.jpg'
+  },
+  'BKG004': {
+    id: 'BKG004',
+    nama: 'Pakaian Bekas Layak Pakai',
+    kategori: 'Tekstil',
+    berat: '8 kg',
+    lokasi: 'Jl. Raya Serpong No. 22, BSD',
+    alamatLengkap: 'Jl. Raya Serpong No. 22, RT 07/RW 06, Kelurahan Lengkong Gudang, Kecamatan Serpong, Tangerang Selatan',
+    tanggalBooking: '19 Oktober 2025',
+    tanggalDibatalkan: '21 Oktober 2025',
+    pemilik: 'Diana Putri',
+    telepon: '083456789012',
+    status: 'dibatalkan',
+    alasanBatal: 'Pemilik membatalkan booking karena item sudah diambil orang lain',
+    deskripsi: 'Pakaian bekas dalam kondisi masih bagus dan layak pakai. Sudah dicuci bersih dan siap untuk disumbangkan atau didaur ulang.',
+    gambar: 'assets/image/browse/kardusbekas.jpg'
+  }
+};
 
-    function filterBooking(status) {
-      // Update active tab
-      document.querySelectorAll('.filter-tab').forEach(btn => {
-        btn.classList.remove('active');
-      });
-      event.target.classList.add('active');
+// Filter booking berdasarkan status
+function filterBooking(status) {
+  document.querySelectorAll('.filter-tab').forEach(btn => {
+    btn.classList.remove('active');
+  });
+  event.target.classList.add('active');
 
-      // Filter booking cards
-      const bookingCards = document.querySelectorAll('[data-status]');
-      const emptyState = document.getElementById('emptyState');
-      let visibleCount = 0;
+  const bookingCards = document.querySelectorAll('[data-status]');
+  const emptyState = document.getElementById('emptyState');
+  let visibleCount = 0;
 
-      bookingCards.forEach(card => {
-        if (status === 'semua' || card.dataset.status === status) {
-          card.style.display = 'block';
-          visibleCount++;
-        } else {
-          card.style.display = 'none';
-        }
-      });
-
-      if (visibleCount === 0) {
-        emptyState.classList.remove('hidden');
-        document.getElementById('bookingList').classList.add('hidden');
-      } else {
-        emptyState.classList.add('hidden');
-        document.getElementById('bookingList').classList.remove('hidden');
-      }
+  bookingCards.forEach(card => {
+    if (status === 'semua' || card.dataset.status === status) {
+      card.style.display = 'block';
+      visibleCount++;
+    } else {
+      card.style.display = 'none';
     }
+  });
 
-    function contactOwner(phone) {
-      // Redirect to WhatsApp
-      const message = encodeURIComponent('Halo, saya ingin menanyakan tentang sampah yang saya booking.');
-      window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
-    }
+  if (visibleCount === 0) {
+    emptyState.classList.remove('hidden');
+    document.getElementById('bookingList').classList.add('hidden');
+  } else {
+    emptyState.classList.add('hidden');
+    document.getElementById('bookingList').classList.remove('hidden');
+  }
+}
 
-    function viewBookingDetail(bookingId) {
-      const booking = bookingData[bookingId];
-      if (!booking) {
-        console.error('Booking not found:', bookingId);
-        showNotification('Data booking tidak ditemukan', 'error');
-        return;
+// Lihat detail booking
+function viewBookingDetail(bookingId) {
+  const booking = bookingData[bookingId];
+  if (!booking) {
+    console.error('Booking not found:', bookingId);
+    showNotification('Data booking tidak ditemukan', 'error');
+    return;
+  }
+
+  let modal = document.getElementById('detailModal');
+  
+  // Jika modal belum ada, buat modal baru
+  if (!modal) {
+    modal = document.createElement('div');
+    modal.id = 'detailModal';
+    modal.className = 'hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4';
+    modal.innerHTML = '<div id="detailModalContent" class="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto my-8 shadow-2xl transform transition-all"></div>';
+    document.body.appendChild(modal);
+    
+    // Close modal when clicking outside
+    modal.addEventListener('click', function (e) {
+      if (e.target === modal) {
+        closeDetailModal();
       }
+    });
+  }
+  
+  const content = document.getElementById('detailModalContent');
 
-      const modal = document.getElementById('detailModal');
-      const content = document.getElementById('detailModalContent');
+  let statusBadge = '';
+  let statusInfo = '';
+  let actionButtons = '';
 
-      let statusBadge = '';
-      let statusInfo = '';
-      let actionButtons = '';
-
-      if (booking.status === 'menunggu') {
-        statusBadge = '<span class="px-3 py-1 bg-yellow-100 text-yellow-700 text-xs font-semibold rounded-full">Menunggu Konfirmasi</span>';
-        statusInfo = `
-        <div class="bg-yellow-50 border-l-4 border-yellow-500 rounded-lg p-4 mb-4">
-          <div class="flex items-start gap-3">
-            <svg class="w-5 h-5 text-yellow-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-            </svg>
-            <div>
-              <p class="text-sm font-semibold text-yellow-800 mb-1">Menunggu Konfirmasi</p>
-              <p class="text-xs text-yellow-700">Booking Anda sedang menunggu konfirmasi dari pemilik. Anda akan mendapat notifikasi setelah pemilik mengkonfirmasi.</p>
-            </div>
-          </div>
-        </div>
-      `;
-        actionButtons = `
-        <button onclick="contactOwner('${booking.telepon}')" class="flex-1 py-3 bg-gradient-to-r from-emerald-500 to-green-600 text-white font-bold rounded-xl hover:from-emerald-600 hover:to-green-700 transition shadow-lg">
-          <svg class="w-5 h-5 inline mr-2" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  if (booking.status === 'menunggu') {
+    statusBadge = '<span class="px-3 py-1 bg-green-100 text-green-700 text-xs font-semibold rounded-full"><i class="fa-solid fa-clock mr-1"></i> Menunggu Konfirmasi</span>';
+    statusInfo = `
+      <div class="bg-green-50 border-l-4 border-green-500 rounded-lg p-4 mb-4">
+        <div class="flex items-start gap-3">
+          <svg class="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
           </svg>
-          Hubungi Pemilik
-        </button>
-        <button onclick="cancelBooking('${booking.id}')" class="flex-1 py-3 bg-red-100 text-red-700 font-bold rounded-xl hover:bg-red-200 transition">
-          Batalkan Booking
-        </button>
-      `;
-      } else if (booking.status === 'diproses') {
-        statusBadge = '<span class="px-3 py-1 bg-blue-100 text-blue-700 text-xs font-semibold rounded-full">Sedang Diproses</span>';
-        statusInfo = `
-        <div class="bg-blue-50 border-l-4 border-blue-500 rounded-lg p-4 mb-4">
-          <div class="flex items-start gap-3">
-            <svg class="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-            </svg>
-            <div>
-              <p class="text-sm font-semibold text-blue-800 mb-1">Booking Diproses</p>
-              <p class="text-xs text-blue-700">${booking.updateInfo || 'Pemilik sudah mengkonfirmasi booking Anda dan sedang memproses.'}</p>
-            </div>
+          <div>
+            <p class="text-sm font-semibold text-green-800 mb-1">Menunggu Konfirmasi Pemilik</p>
+            <p class="text-xs text-green-700">Booking Anda sedang menunggu konfirmasi dari pemilik. Anda akan mendapat notifikasi setelah pemilik mengkonfirmasi.</p>
           </div>
-        </div>
-      `;
-        actionButtons = `
-        <button onclick="contactOwner('${booking.telepon}')" class="flex-1 py-3 bg-gradient-to-r from-emerald-500 to-green-600 text-white font-bold rounded-xl hover:from-emerald-600 hover:to-green-700 transition shadow-lg">
-          <svg class="w-5 h-5 inline mr-2" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-          </svg>
-          Hubungi Pemilik
-        </button>
-      `;
-      } else if (booking.status === 'selesai') {
-        statusBadge = '<span class="px-3 py-1 bg-emerald-100 text-emerald-700 text-xs font-semibold rounded-full">Selesai</span>';
-        statusInfo = `
-        <div class="bg-emerald-50 border-l-4 border-emerald-500 rounded-lg p-4 mb-4">
-          <div class="flex items-start gap-3">
-            <svg class="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
-            </svg>
-            <div>
-              <p class="text-sm font-semibold text-emerald-800 mb-1">Booking Selesai!</p>
-              <p class="text-xs text-emerald-700">Terima kasih telah berkontribusi untuk lingkungan yang lebih bersih dan sehat.</p>
-            </div>
-          </div>
-        </div>
-      `;
-        actionButtons = '';
-      } else if (booking.status === 'dibatalkan') {
-        statusBadge = '<span class="px-3 py-1 bg-red-100 text-red-700 text-xs font-semibold rounded-full">Dibatalkan</span>';
-        statusInfo = `
-        <div class="bg-red-50 border-l-4 border-red-500 rounded-lg p-4 mb-4">
-          <div class="flex items-start gap-3">
-            <svg class="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-            </svg>
-            <div>
-              <p class="text-sm font-semibold text-red-800 mb-1">Booking Dibatalkan</p>
-              <p class="text-xs text-red-700">Booking ini telah dibatalkan. Anda dapat melakukan booking lagi kapan saja.</p>
-            </div>
-          </div>
-        </div>
-      `;
-        actionButtons = '';
-      }
-
-      content.innerHTML = `
-      <!-- Header -->
-      <div class="bg-gradient-to-r from-emerald-500 to-green-600 p-6 rounded-t-3xl">
-        <div class="flex items-center justify-between">
-          <h2 class="text-2xl font-bold text-white">Detail Booking</h2>
-          <button onclick="closeDetailModal()" class="bg-white bg-opacity-20 hover:bg-opacity-30 rounded-full p-2 transition">
-            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-            </svg>
-          </button>
-        </div>
-        <p class="text-emerald-50 mt-2">ID Booking: #${booking.id}</p>
-      </div>
-
-      <!-- Content -->
-      <div class="p-6">
-        <!-- Image -->
-        <img src="${booking.gambar}" alt="${booking.nama}" class="w-full h-64 object-cover rounded-2xl mb-6 shadow-lg">
-
-        <!-- Status Badge -->
-        <div class="flex items-center justify-between mb-4">
-          <h3 class="text-2xl font-bold text-gray-900">${booking.nama}</h3>
-          ${statusBadge}
-        </div>
-
-        <!-- Status Info -->
-        ${statusInfo}
-
-        <!-- Info Grid -->
-        <div class="space-y-4 mb-6">
-          <!-- Kategori & Berat -->
-          <div class="grid grid-cols-2 gap-4">
-            <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl p-4">
-              <p class="text-xs text-gray-500 font-medium mb-1">Kategori</p>
-              <p class="text-sm font-bold text-gray-800">${booking.kategori}</p>
-            </div>
-            <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-4">
-              <p class="text-xs text-gray-500 font-medium mb-1">Berat</p>
-              <p class="text-sm font-bold text-gray-800">${booking.berat}</p>
-            </div>
-          </div>
-
-          <!-- Tanggal -->
-          <div class="bg-gradient-to-br from-orange-50 to-amber-50 rounded-xl p-4">
-            <p class="text-xs text-gray-500 font-medium mb-1">${booking.tanggalSelesai ? 'Tanggal Selesai' : 'Tanggal Booking'}</p>
-            <p class="text-sm font-bold text-gray-800">${booking.tanggalSelesai || booking.tanggalBooking}</p>
-          </div>
-
-          <!-- Pemilik -->
-          <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-4">
-            <div class="flex items-center justify-between">
-              <div class="flex-1">
-                <p class="text-xs text-gray-500 font-medium mb-1">Pemilik</p>
-                <p class="text-sm font-bold text-gray-800">${booking.pemilik}</p>
-                <a href="https://wa.me/${booking.telepon}" class="text-xs text-emerald-600 hover:text-emerald-700 font-medium mt-1 inline-block">
-                  <svg class="w-3 h-3 inline mr-1" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                  </svg>
-                  Hubungi via WhatsApp
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Alamat -->
-          <div class="bg-gradient-to-br from-red-50 to-pink-50 rounded-xl p-4">
-            <p class="text-xs text-gray-500 font-medium mb-1">Alamat Lengkap</p>
-            <p class="text-sm font-semibold text-gray-800 leading-relaxed">${booking.alamatLengkap}</p>
-          </div>
-
-          <!-- Deskripsi -->
-          <div class="bg-gray-50 rounded-xl p-4">
-            <p class="text-xs text-gray-500 font-medium mb-2">Deskripsi</p>
-            <p class="text-sm text-gray-700 leading-relaxed">${booking.deskripsi}</p>
-          </div>
-        </div>
-
-        <!-- Action Buttons -->
-        <div class="flex gap-3">
-          ${actionButtons}
-          <button onclick="closeDetailModal()" class="flex-1 py-3 bg-gray-100 text-gray-700 font-bold rounded-xl hover:bg-gray-200 transition">
-            Tutup
-          </button>
         </div>
       </div>
     `;
+    actionButtons = `
+      <button onclick="contactOwner('${booking.telepon}')" class="flex-1 py-3 bg-gradient-to-r from-emerald-500 to-green-600 text-white font-bold rounded-xl hover:from-emerald-600 hover:to-green-700 transition shadow-lg">
+        <i class="fa-brands fa-whatsapp mr-2"></i> Hubungi Pemilik
+      </button>
+      <button onclick="cancelBooking('${booking.id}')" class="flex-1 py-3 bg-red-100 text-red-700 font-bold rounded-xl hover:bg-red-200 transition">
+         Batalkan Booking
+      </button>
+    `;
+  } else if (booking.status === 'dikonfirmasi') {
+    statusBadge = '<span class="px-3 py-1 bg-green-100 text-green-700 text-xs font-semibold rounded-full"><i class="fa-solid fa-handshake mr-1"></i> Dikonfirmasi</span>';
+    statusInfo = `
+      <div class="bg-green-50 border-l-4 border-green-500 rounded-lg p-4 mb-4">
+        <div class="flex items-start gap-3">
+          <svg class="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          <div>
+            <p class="text-sm font-semibold text-green-800 mb-1">Booking Dikonfirmasi!</p>
+            <p class="text-xs text-green-700">Pemilik sudah mengkonfirmasi booking Anda. Silakan ambil sampah sesuai jadwal yang telah ditentukan.</p>
+          </div>
+        </div>
+      </div>
+    `;
+    actionButtons = `
+      <button onclick="contactOwner('${booking.telepon}')" class="flex-1 py-3 bg-green-600 text-white font-bold rounded-xl hover:bg-green-700 transition">
+        <i class="fa-brands fa-whatsapp mr-2"></i> Hubungi Pemilik
+      </button>
+      <button onclick="markAsPickedUp('${booking.id}')" class="flex-1 py-3 bg-gradient-to-r from-emerald-500 to-green-600 text-white font-bold rounded-xl hover:from-emerald-600 hover:to-green-700 transition shadow-lg">
+         Sudah Diambil
+      </button>
+    `;
+  } else if (booking.status === 'selesai') {
+    statusBadge = '<span class="px-3 py-1 bg-gray-100 text-gray-700 text-xs font-semibold rounded-full"><i class="fa-solid fa-circle-check mr-1"></i> Selesai</span>';
+    statusInfo = `
+      <div class="bg-gray-50 border-l-4 border-gray-400 rounded-lg p-4 mb-4">
+        <div class="flex items-start gap-3">
+          <svg class="w-5 h-5 text-gray-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+          </svg>
+          <div>
+            <p class="text-sm font-semibold text-gray-800 mb-1">Transaksi Selesai!</p>
+            <p class="text-xs text-gray-700">Sampah sudah berhasil diambil. Terima kasih telah berkontribusi untuk lingkungan yang lebih bersih.</p>
+          </div>
+        </div>
+      </div>
+    `;
+    actionButtons = '';
+  } else if (booking.status === 'dibatalkan') {
+    statusBadge = '<span class="px-3 py-1 bg-orange-100 text-orange-700 text-xs font-semibold rounded-full"><i class="fa-solid fa-ban mr-1"></i> Dibatalkan</span>';
+    statusInfo = `
+      <div class="bg-orange-50 border-l-4 border-orange-500 rounded-lg p-4 mb-4">
+        <div class="flex items-start gap-3">
+          <svg class="w-5 h-5 text-orange-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+          </svg>
+          <div>
+            <p class="text-sm font-semibold text-orange-800 mb-1">Booking Dibatalkan</p>
+            <p class="text-xs text-orange-700">${booking.alasanBatal || 'Booking ini telah dibatalkan. Anda dapat melakukan booking lagi kapan saja.'}</p>
+          </div>
+        </div>
+      </div>
+    `;
+    actionButtons = '';
+  }
 
-      modal.classList.remove('hidden');
-      document.body.style.overflow = 'hidden';
-    }
+  content.innerHTML = `
+    <!-- Header -->
+    <div class="bg-gradient-to-r from-emerald-500 to-green-600 p-6 rounded-t-3xl">
+      <div class="flex items-center justify-between">
+        <h2 class="text-2xl font-bold text-white">Detail Booking</h2>
+        <button onclick="closeDetailModal()" class="bg-white bg-opacity-20 hover:bg-opacity-30 rounded-full p-2 transition">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+      <p class="text-emerald-50 mt-2">ID Booking: #${booking.id}</p>
+    </div>
 
-    function closeDetailModal() {
-      const modal = document.getElementById('detailModal');
-      modal.classList.add('hidden');
-      document.body.style.overflow = 'auto';
-    }
+    <!-- Content -->
+    <div class="p-6">
+      <!-- Image -->
+      <img src="${booking.gambar}" alt="${booking.nama}" class="w-full h-64 object-cover rounded-2xl mb-6 shadow-lg">
 
-    function cancelBooking(bookingId) {
-      if (confirm('Apakah Anda yakin ingin membatalkan booking ini?')) {
-        const card = document.querySelector(`[data-id="${bookingId}"]`);
-        if (!card) return;
+      <!-- Status Badge -->
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-2xl font-bold text-gray-900">${booking.nama}</h3>
+        ${statusBadge}
+      </div>
 
-        const statusBadge = card.querySelector('.status-badge');
-        const actionButtons = card.querySelector('.action-buttons');
-        const cancelBtn = card.querySelector('.cancel-btn');
+      <!-- Status Info -->
+      ${statusInfo}
 
-        if (bookingData[bookingId]) {
-          bookingData[bookingId].status = 'dibatalkan';
-        }
+      <!-- Info Grid -->
+      <div class="space-y-4 mb-6">
+        <!-- Kategori & Berat -->
+        <div class="grid grid-cols-2 gap-4">
+          <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl p-4">
+            <p class="text-xs text-gray-500 font-medium mb-1">Kategori</p>
+            <p class="text-sm font-bold text-gray-800">${booking.kategori}</p>
+          </div>
+          <div class="bg-gradient-to-br from-green-50 to-cyan-50 rounded-xl p-4">
+            <p class="text-xs text-gray-500 font-medium mb-1">Berat/Jumlah</p>
+            <p class="text-sm font-bold text-gray-800">${booking.berat}</p>
+          </div>
+        </div>
 
-        if (statusBadge) {
-          statusBadge.className = 'status-badge px-3 py-1 bg-red-100 text-red-700 text-xs font-semibold rounded-full';
-          statusBadge.textContent = 'Dibatalkan';
-        }
+        <!-- Tanggal Booking -->
+        <div class="bg-gradient-to-br from-orange-50 to-amber-50 rounded-xl p-4">
+          <p class="text-xs text-gray-500 font-medium mb-1">Tanggal Booking</p>
+          <p class="text-sm font-bold text-gray-800">${booking.tanggalBooking}</p>
+        </div>
 
-        card.setAttribute('data-status', 'dibatalkan');
+        ${booking.tanggalKonfirmasi ? `
+        <div class="bg-gradient-to-br from-green-50 to-indigo-50 rounded-xl p-4">
+          <p class="text-xs text-gray-500 font-medium mb-1">Tanggal Konfirmasi</p>
+          <p class="text-sm font-bold text-gray-800">${booking.tanggalKonfirmasi}</p>
+        </div>
+        ` : ''}
 
-        if (cancelBtn) {
-          cancelBtn.remove();
-        }
+        ${booking.tanggalPengambilan ? `
+        <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-4">
+          <p class="text-xs text-gray-500 font-medium mb-1">Jadwal Pengambilan</p>
+          <p class="text-sm font-bold text-gray-800">${booking.tanggalPengambilan}</p>
+        </div>
+        ` : ''}
 
-        const contactBtn = actionButtons.querySelector('button[onclick^="contactOwner"]');
-        if (contactBtn) {
-          contactBtn.remove();
-        }
+        ${booking.tanggalSelesai ? `
+        <div class="bg-gradient-to-br from-gray-50 to-slate-50 rounded-xl p-4">
+          <p class="text-xs text-gray-500 font-medium mb-1">Tanggal Selesai</p>
+          <p class="text-sm font-bold text-gray-800">${booking.tanggalSelesai}</p>
+        </div>
+        ` : ''}
 
-        const contentDiv = card.querySelector('.flex-1');
-        if (contentDiv) {
-          const existingNotifs = contentDiv.querySelectorAll('.bg-yellow-50, .bg-blue-50, .bg-emerald-50');
-          existingNotifs.forEach(notif => notif.remove());
+        ${booking.tanggalDibatalkan ? `
+        <div class="bg-gradient-to-br from-orange-50 to-red-50 rounded-xl p-4">
+          <p class="text-xs text-gray-500 font-medium mb-1">Tanggal Dibatalkan</p>
+          <p class="text-sm font-bold text-gray-800">${booking.tanggalDibatalkan}</p>
+        </div>
+        ` : ''}
 
-          // Tambahkan notifikasi dibatalkan
-          const cancelNotif = document.createElement('div');
-          cancelNotif.className = 'bg-red-50 border-l-4 border-red-500 rounded-lg p-3 mb-3';
-          cancelNotif.innerHTML = '<p class="text-xs text-red-700"><strong>Dibatalkan:</strong> Booking ini telah dibatalkan</p>';
-          actionButtons.parentNode.insertBefore(cancelNotif, actionButtons);
-        }
+        ${booking.alasanBatal ? `
+        <div class="bg-orange-50 rounded-xl p-4">
+          <p class="text-xs text-gray-500 font-medium mb-2">Alasan Pembatalan</p>
+          <p class="text-sm text-gray-700 leading-relaxed">${booking.alasanBatal}</p>
+        </div>
+        ` : ''}
 
-        updateStatistics();
+        <!-- Pemilik -->
+        <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-4">
+          <p class="text-xs text-gray-500 font-medium mb-1">Pemilik Sampah</p>
+          <p class="text-sm font-bold text-gray-800 mb-2">${booking.pemilik}</p>
+          <button onclick="contactOwner('${booking.telepon}')" class="text-xs text-emerald-600 hover:text-emerald-700 font-medium inline-flex items-center">
+            <i class="fa-brands fa-whatsapp mr-1"></i> ${booking.telepon}
+          </button>
+        </div>
 
-        closeDetailModal();
+        <!-- Alamat -->
+        <div class="bg-gradient-to-br from-red-50 to-pink-50 rounded-xl p-4">
+          <p class="text-xs text-gray-500 font-medium mb-1">Alamat Lengkap</p>
+          <p class="text-sm font-semibold text-gray-800 leading-relaxed">${booking.alamatLengkap}</p>
+        </div>
 
-        showNotification('Booking berhasil dibatalkan', 'error');
+        <!-- Deskripsi -->
+        <div class="bg-gray-50 rounded-xl p-4">
+          <p class="text-xs text-gray-500 font-medium mb-2">Deskripsi</p>
+          <p class="text-sm text-gray-700 leading-relaxed">${booking.deskripsi}</p>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex gap-3">
+        ${actionButtons}
+        <button onclick="closeDetailModal()" class="flex-1 py-3 bg-gray-100 text-gray-700 font-bold rounded-xl hover:bg-gray-200 transition">
+          Tutup
+        </button>
+      </div>
+    </div>
+  `;
+
+  modal.classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+}
+
+// Tutup modal detail
+function closeDetailModal() {
+  const modal = document.getElementById('detailModal');
+  if (modal) {
+    modal.classList.add('hidden');
+    document.body.style.overflow = 'auto';
+  }
+}
+
+// Hubungi pemilik via WhatsApp
+function contactOwner(phone) {
+  const message = encodeURIComponent('Halo, saya ingin menanyakan tentang sampah yang saya booking.');
+  window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+}
+
+// Batalkan booking
+function cancelBooking(bookingId) {
+  showConfirmDialog(
+    'Batalkan Booking?',
+    'Apakah Anda yakin ingin membatalkan booking ini? Sampah akan tersedia kembali untuk pengguna lain.',
+    'Batalkan',
+    'Tidak',
+    () => {
+      // Tutup dialog konfirmasi terlebih dahulu
+      closeConfirmDialog();
+      
+      const card = document.querySelector(`[data-id="${bookingId}"]`);
+      if (!card) return;
+
+      const statusBadge = card.querySelector('.status-badge');
+      const actionButtons = card.querySelector('.action-buttons');
+      const notifDiv = card.querySelector('.bg-green-50, .bg-green-50');
+
+      if (bookingData[bookingId]) {
+        bookingData[bookingId].status = 'dibatalkan';
+        bookingData[bookingId].tanggalDibatalkan = new Date().toLocaleDateString('id-ID', {
+          day: 'numeric',
+          month: 'long',
+          year: 'numeric'
+        });
+        bookingData[bookingId].alasanBatal = 'Dibatalkan oleh pembooking';
       }
+
+      if (statusBadge) {
+        statusBadge.className = 'status-badge px-3 py-1 bg-orange-100 text-orange-700 text-xs font-semibold rounded-full';
+        statusBadge.innerHTML = '<i class="fa-solid fa-ban mr-1"></i> Dibatalkan';
+      }
+
+      card.setAttribute('data-status', 'dibatalkan');
+
+      if (notifDiv) {
+        notifDiv.className = 'bg-orange-50 border-l-4 border-orange-500 rounded-lg p-3 mb-3';
+        notifDiv.innerHTML = '<p class="text-xs text-orange-700"><i class="fa-solid fa-ban mr-1"></i> <strong>Dibatalkan:</strong> Booking telah dibatalkan</p>';
+      }
+
+      if (actionButtons) {
+        actionButtons.innerHTML = `
+          <button onclick="viewBookingDetail('${bookingId}')"
+            class="flex-1 sm:flex-none px-4 py-2 bg-gray-600 text-white rounded-xl hover:bg-gray-700 transition-all text-sm font-medium">
+            <i class="fa-solid fa-eye mr-1"></i> Lihat Detail
+          </button>
+        `;
+      }
+
+      updateStatistics();
+      closeDetailModal();
+      showNotification('Booking berhasil dibatalkan', 'warning');
     }
+  );
+}
 
-    function updateStatistics() {
-      const allCards = document.querySelectorAll('[data-status]');
-      let total = allCards.length;
-      let menunggu = 0;
-      let selesai = 0;
-      let dibatalkan = 0;
+// Tandai sebagai sudah diambil
+function markAsPickedUp(bookingId) {
+  showConfirmDialog(
+    'Konfirmasi Pengambilan?',
+    'Apakah Anda sudah mengambil sampah ini? Status booking akan berubah menjadi selesai.',
+    'Ya, Sudah Diambil',
+    'Belum',
+    () => {
+      // Tutup dialog konfirmasi terlebih dahulu
+      closeConfirmDialog();
+      
+      const card = document.querySelector(`[data-id="${bookingId}"]`);
+      if (!card) return;
 
-      allCards.forEach(card => {
-        const status = card.getAttribute('data-status');
-        if (status === 'menunggu') menunggu++;
-        else if (status === 'selesai') selesai++;
-        else if (status === 'dibatalkan') dibatalkan++;
-      });
+      const statusBadge = card.querySelector('.status-badge');
+      const actionButtons = card.querySelector('.action-buttons');
+      const notifDiv = card.querySelector('.bg-green-50');
 
-      const totalBookingEl = document.getElementById('totalBooking');
-      const totalMenungguEl = document.getElementById('totalMenunggu');
-      const totalSelesaiEl = document.getElementById('totalSelesai');
-      const totalDibatalkanEl = document.getElementById('totalDibatalkan');
-
-      if (totalBookingEl) totalBookingEl.textContent = total;
-      if (totalMenungguEl) totalMenungguEl.textContent = menunggu;
-      if (totalSelesaiEl) totalSelesaiEl.textContent = selesai;
-      if (totalDibatalkanEl) totalDibatalkanEl.textContent = dibatalkan;
-    }
-
-    function showNotification(message, type = 'success') {
-      const notification = document.createElement('div');
-      notification.className = `fixed top-4 right-4 z-50 px-6 py-4 rounded-xl shadow-lg transform transition-all duration-300 ${type === 'success' ? 'bg-emerald-500' : 'bg-red-500'
-        } text-white font-medium`;
-      notification.textContent = message;
-
-      document.body.appendChild(notification);
-
-      setTimeout(() => {
-        notification.style.opacity = '0';
-        setTimeout(() => notification.remove(), 300);
-      }, 3000);
-    }
-
-    // Close modal when clicking outside
-    document.addEventListener('DOMContentLoaded', function () {
-      const modal = document.getElementById('detailModal');
-      if (modal) {
-        modal.addEventListener('click', function (e) {
-          if (e.target === this) {
-            closeDetailModal();
-          }
+      if (bookingData[bookingId]) {
+        bookingData[bookingId].status = 'selesai';
+        bookingData[bookingId].tanggalSelesai = new Date().toLocaleDateString('id-ID', {
+          day: 'numeric',
+          month: 'long',
+          year: 'numeric'
         });
       }
-    });
 
-    window.addEventListener('load', function () {
+      if (statusBadge) {
+        statusBadge.className = 'status-badge px-3 py-1 bg-gray-100 text-gray-700 text-xs font-semibold rounded-full';
+        statusBadge.innerHTML = '<i class="fa-solid fa-circle-check mr-1"></i> Selesai';
+      }
+
+      card.setAttribute('data-status', 'selesai');
+
+      if (notifDiv) {
+        notifDiv.className = 'bg-gray-50 border-l-4 border-gray-400 rounded-lg p-3 mb-3';
+        notifDiv.innerHTML = '<p class="text-xs text-gray-700"><i class="fa-solid fa-check-circle mr-1"></i> <strong>Selesai:</strong> Terima kasih telah berkontribusi!</p>';
+      }
+
+      if (actionButtons) {
+        actionButtons.innerHTML = `
+          <button onclick="viewBookingDetail('${bookingId}')"
+            class="flex-1 sm:flex-none px-4 py-2 bg-gray-600 text-white rounded-xl hover:bg-gray-700 transition-all text-sm font-medium">
+            <i class="fa-solid fa-eye mr-1"></i> Lihat Detail
+          </button>
+        `;
+      }
+
       updateStatistics();
-    });
+      showNotification('Transaksi berhasil diselesaikan!', 'success');
+    }
+  );
+}
+
+// Update statistik
+function updateStatistics() {
+  const allCards = document.querySelectorAll('[data-status]');
+  let total = allCards.length;
+  let menunggu = 0;
+  let dikonfirmasi = 0;
+  let selesai = 0;
+  let dibatalkan = 0;
+
+  allCards.forEach(card => {
+    const status = card.getAttribute('data-status');
+    if (status === 'menunggu') menunggu++;
+    else if (status === 'dikonfirmasi') dikonfirmasi++;
+    else if (status === 'selesai') selesai++;
+    else if (status === 'dibatalkan') dibatalkan++;
+  });
+
+  const totalBookingEl = document.getElementById('totalBooking');
+  const totalMenungguEl = document.getElementById('totalMenunggu');
+  const totalDikonfirmasiEl = document.getElementById('totalDikonfirmasi');
+  const totalSelesaiEl = document.getElementById('totalSelesai');
+  const totalDibatalkanEl = document.getElementById('totalDibatalkan');
+
+  if (totalBookingEl) totalBookingEl.textContent = total;
+  if (totalMenungguEl) totalMenungguEl.textContent = menunggu;
+  if (totalDikonfirmasiEl) totalDikonfirmasiEl.textContent = dikonfirmasi;
+  if (totalSelesaiEl) totalSelesaiEl.textContent = selesai;
+  if (totalDibatalkanEl) totalDibatalkanEl.textContent = dibatalkan;
+}
+
+// Show notification dengan animasi
+function showNotification(message, type = 'success') {
+  const notification = document.createElement('div');
+
+  let bgColor = 'bg-emerald-500';
+  let icon = '<i class="fa-solid fa-check-circle"></i>';
+
+  if (type === 'error') {
+    bgColor = 'bg-red-500';
+    icon = '<i class="fa-solid fa-exclamation-circle"></i>';
+  } else if (type === 'info') {
+    bgColor = 'bg-green-500';
+    icon = '<i class="fa-solid fa-info-circle"></i>';
+  } else if (type === 'warning') {
+    bgColor = 'bg-orange-500';
+    icon = '<i class="fa-solid fa-exclamation-triangle"></i>';
+  }
+
+  notification.className = `fixed top-4 right-4 z-50 px-6 py-4 rounded-xl shadow-lg transform transition-all duration-300 ${bgColor} text-white font-medium flex items-center gap-3 max-w-md`;
+  notification.style.opacity = '0';
+  notification.style.transform = 'translateY(-20px)';
+  notification.innerHTML = `
+    ${icon}
+    <span>${message}</span>
+  `;
+
+  document.body.appendChild(notification);
+
+  setTimeout(() => {
+    notification.style.opacity = '1';
+    notification.style.transform = 'translateY(0)';
+  }, 10);
+
+  setTimeout(() => {
+    notification.style.opacity = '0';
+    notification.style.transform = 'translateY(-20px)';
+    setTimeout(() => notification.remove(), 300);
+  }, 3000);
+}
+
+// Show confirm dialog dengan custom modal
+function showConfirmDialog(title, message, confirmText, cancelText, onConfirm) {
+  const dialog = document.createElement('div');
+  dialog.className = 'fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4';
+  dialog.style.opacity = '0';
+
+  dialog.innerHTML = `
+    <div class="bg-white rounded-2xl max-w-md w-full shadow-2xl transform transition-all" style="opacity: 0; transform: scale(0.9);">
+      <div class="p-6">
+        <div class="flex items-center gap-4 mb-4">
+          <div class="w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0">
+            <i class="fa-solid fa-question text-emerald-600 text-xl"></i>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900">${title}</h3>
+        </div>
+        
+        <p class="text-gray-600 mb-6 leading-relaxed">${message}</p>
+        
+        <div class="flex gap-3">
+          <button onclick="closeConfirmDialog()" class="flex-1 px-4 py-3 bg-gray-100 text-gray-700 rounded-xl hover:bg-gray-200 transition-all font-medium">
+            ${cancelText}
+          </button>
+          <button onclick="confirmDialogAction()" class="flex-1 px-4 py-3 bg-emerald-600 text-white rounded-xl hover:bg-emerald-700 transition-all font-medium">
+            ${confirmText}
+          </button>
+        </div>
+      </div>
+    </div>
+  `;
+
+  document.body.appendChild(dialog);
+  document.body.style.overflow = 'hidden';
+
+  setTimeout(() => {
+    dialog.style.opacity = '1';
+    const content = dialog.querySelector('div > div');
+    content.style.opacity = '1';
+    content.style.transform = 'scale(1)';
+  }, 10);
+
+  window.currentConfirmCallback = onConfirm;
+
+  dialog.addEventListener('click', (e) => {
+    if (e.target === dialog) {
+      closeConfirmDialog();
+    }
+  });
+}
+
+// Close confirm dialog
+function closeConfirmDialog() {
+  const dialog = document.querySelector('.fixed.inset-0.bg-black.bg-opacity-50');
+  if (dialog) {
+    dialog.style.opacity = '0';
+    const content = dialog.querySelector('div > div');
+    if (content) {
+      content.style.opacity = '0';
+      content.style.transform = 'scale(0.9)';
+    }
+
+    setTimeout(() => {
+      dialog.remove();
+      document.body.style.overflow = 'auto';
+      window.currentConfirmCallback = null;
+    }, 300);
+  }
+}
+
+// Confirm dialog action
+function confirmDialogAction() {
+  if (window.currentConfirmCallback) {
+    window.currentConfirmCallback();
+    window.currentConfirmCallback = null;
+  }
+  // Dialog akan ditutup oleh fungsi callback jika diperlukan
+}
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', function () {
+  // Transition untuk cards
+  const cards = document.querySelectorAll('[data-status]');
+  cards.forEach(card => {
+    card.style.transition = 'all 0.3s ease';
+  });
+  
+  // Update statistik awal
+  updateStatistics();
+});
+
+// Initialize on page load
+window.addEventListener('load', function () {
+  updateStatistics();
+});
   </script>
 
 </body>
