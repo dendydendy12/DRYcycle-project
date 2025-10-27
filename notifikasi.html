@@ -45,7 +45,7 @@
     <nav class="bg-white sticky top-0 z-50 flex items-center justify-between px-4 py-3 shadow-md">
         <!-- Kiri: Tombol Back + Judul -->
         <div class="flex items-center space-x-3">
-            <button onclick="goBack()"
+            <button id="backBtn"
                 class="text-gray-700 hover:text-emerald-600 transition transform hover:scale-110">
                 <i class="fa-solid fa-arrow-left text-xl"></i>
             </button>
@@ -539,58 +539,13 @@
         // Variabel global untuk melacak notifikasi yang sedang dilihat
         let currentNotificationId = null;
 
-        // Fungsi kembali yang cerdas
-        function goBack() {
-            // Daftar semua halaman yang valid di aplikasi DRYcycle
-            const validPages = [
-                'dashboard.html',
-                'sampahtersedia.html',
-                'upload.html',
-                'booking.html', 
-                'leaderboard.html',
-                'komunitas.html',
-                'edukasi.html',
-                'blog.html',
-                'profile.html',
-                'settings.html',
-                'help.html',
-                'scan.html',
-                'notifikasi.html',
-                'editprofile.html'
-            ];
-
-            // Cek referrer (halaman sebelumnya)
-            const referrer = document.referrer;
-            
-            console.log('Referrer:', referrer);
-            
-            // Jika ada referrer dan berasal dari domain yang sama
-            if (referrer && referrer.includes(window.location.origin)) {
-                // Ekstrak nama file dari URL referrer
-                try {
-                    const referrerPath = new URL(referrer).pathname;
-                    const referrerPage = referrerPath.split('/').pop();
-                    
-                    console.log('Referrer page:', referrerPage);
-                    
-                    // Jika halaman sebelumnya valid dan bukan halaman saat ini
-                    if (validPages.includes(referrerPage) && referrerPage !== window.location.pathname.split('/').pop()) {
-                        console.log('Going back to:', referrerPage);
-                        window.history.back();
-                        return;
-                    }
-                } catch (error) {
-                    console.log('Error parsing referrer:', error);
-                }
-            }
-            
-            // Fallback: Redirect ke dashboard
-            console.log('Fallback to dashboard');
-            window.location.href = 'dashboard.html';
-        }
-        
         // Inisialisasi setelah DOM dimuat
         document.addEventListener('DOMContentLoaded', function() {
+            // Fungsi kembali yang sudah diperbaiki
+            document.getElementById('backBtn').addEventListener('click', () => {
+                window.history.back();
+            });
+
             const modal = document.getElementById('notificationModal');
             const modalTitle = document.getElementById('modalTitle');
             const modalTime = document.getElementById('modalTime');
