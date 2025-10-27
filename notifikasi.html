@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifikasi - DRYcycle</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .notification-unread {
+            background-color: #f0fdf4;
+            border-left: 4px solid #059669;
+        }
+        .notification-read {
+            background-color: #f9fafb;
+            border-left: 4px solid #d1d5db;
+        }
+        .modal-overlay {
+            backdrop-filter: blur(8px);
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        .notification-item {
+            transition: all 0.3s ease;
+        }
+        .notification-item:hover {
+            transform: translateY(-2px);
+        }
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .line-clamp-1 {
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+    <!-- Navigasi Notifikasi -->
+    <nav class="bg-white sticky top-0 z-50 flex items-center justify-between px-4 py-3 shadow-md">
+        <!-- Kiri: Tombol Back + Judul -->
+        <div class="flex items-center space-x-3">
+            <button onclick="goBack()"
+                class="text-gray-700 hover:text-emerald-600 transition transform hover:scale-110">
+                <i class="fa-solid fa-arrow-left text-xl"></i>
+            </button>
+            <div>
+                <h1 class="text-lg font-semibold text-gray-800 leading-tight">Notifikasi</h1>
+            </div>
+        </div>
+
+        <!-- Kanan: Icon Aksi -->
+        <div class="flex items-center space-x-4">
+            <button id="markAllReadBtn" class="text-emerald-500 hover:text-emerald-600 font-medium text-sm transition-colors">
+                Tandai Semua Dibaca
+            </button>
+        </div>
+    </nav>
+
+    <div class="container mx-auto px-4 py-6 max-w-3xl">
+        <!-- Container Notifikasi -->
+        <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+            <!-- Filter Tabs -->
+            <div class="flex border-b border-gray-200">
+                <button id="tabAll" class="tab-button flex-1 py-4 text-center font-medium text-emerald-600 border-b-2 border-emerald-500 transition-colors">
+                    Semua
+                </button>
+                <button id="tabUnread" class="tab-button flex-1 py-4 text-center font-medium text-gray-500 hover:text-emerald-600 transition-colors">
+                    Belum Dibaca
+                </button>
+                <button id="tabRead" class="tab-button flex-1 py-4 text-center font-medium text-gray-500 hover:text-emerald-600 transition-colors">
+                    Sudah Dibaca
+                </button>
+            </div>
+
+            <!-- Notifikasi Hari Ini -->
+            <div class="p-4 border-b border-gray-100">
+                <h2 class="text-lg font-bold text-gray-800 mb-3 flex items-center">
+                    <i class="fas fa-calendar-day text-emerald-500 mr-2"></i>
+                    Hari Ini
+                </h2>
+                
+                <!-- Notifikasi 1 - POIN -->
+                <div class="notification-item notification-unread mb-4 p-4 rounded-lg transition-all duration-300 hover:shadow-md" data-id="1">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="font-semibold text-gray-800 flex items-center">
+                            <i class="fas fa-coins text-emerald-500 mr-2"></i>
+                            Poin Bertambah!
+                        </h3>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-xs text-gray-500">2 jam lalu</span>
+                            <button class="mark-read-btn text-gray-400 hover:text-emerald-500 transition-colors">
+                                <i class="far fa-circle"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-2 line-clamp-1">
+                        +50 poin untuk sampah plastik 5kg yang berhasil didaur ulang. Total poin: 2.550
+                    </p>
+                    <div class="flex justify-between items-center mt-3">
+                        <span class="inline-block bg-emerald-500 text-white text-xs px-3 py-1 rounded-full font-medium">Poin & Reward</span>
+                        <button class="view-detail-btn text-emerald-500 hover:text-emerald-600 text-sm font-medium flex items-center transition-colors">
+                            Selengkapnya
+                            <i class="fas fa-chevron-right ml-1 text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Notifikasi 2 - BOOKING -->
+                <div class="notification-item notification-unread mb-4 p-4 rounded-lg transition-all duration-300 hover:shadow-md" data-id="2">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="font-semibold text-gray-800 flex items-center">
+                            <i class="fas fa-calendar-check text-emerald-500 mr-2"></i>
+                            Booking Dikonfirmasi
+                        </h3>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-xs text-gray-500">4 jam lalu</span>
+                            <button class="mark-read-btn text-gray-400 hover:text-emerald-500 transition-colors">
+                                <i class="far fa-circle"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-2 line-clamp-1">
+                        Booking sampah organik 10kg dikonfirmasi. Petugas akan datang besok jam 10:00-12:00
+                    </p>
+                    <div class="flex justify-between items-center mt-3">
+                        <span class="inline-block bg-emerald-500 text-white text-xs px-3 py-1 rounded-full font-medium">Booking</span>
+                        <button class="view-detail-btn text-emerald-500 hover:text-emerald-600 text-sm font-medium flex items-center transition-colors">
+                            Selengkapnya
+                            <i class="fas fa-chevron-right ml-1 text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Notifikasi 3 - STATUS SAMPAH -->
+                <div class="notification-item notification-unread mb-4 p-4 rounded-lg transition-all duration-300 hover:shadow-md" data-id="3">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="font-semibold text-gray-800 flex items-center">
+                            <i class="fas fa-recycle text-emerald-500 mr-2"></i>
+                            Status Daur Ulang
+                        </h3>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-xs text-gray-500">6 jam lalu</span>
+                            <button class="mark-read-btn text-gray-400 hover:text-emerald-500 transition-colors">
+                                <i class="far fa-circle"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-2 line-clamp-1">
+                        Sampah kertas 8kg telah diproses menjadi produk daur ulang. Terima kasih!
+                    </p>
+                    <div class="flex justify-between items-center mt-3">
+                        <span class="inline-block bg-emerald-500 text-white text-xs px-3 py-1 rounded-full font-medium">Daur Ulang</span>
+                        <button class="view-detail-btn text-emerald-500 hover:text-emerald-600 text-sm font-medium flex items-center transition-colors">
+                            Selengkapnya
+                            <i class="fas fa-chevron-right ml-1 text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Notifikasi Kemarin -->
+            <div class="p-4 border-b border-gray-100">
+                <h2 class="text-lg font-bold text-gray-800 mb-3 flex items-center">
+                    <i class="fas fa-calendar-minus text-emerald-500 mr-2"></i>
+                    Kemarin
+                </h2>
+                
+                <!-- Notifikasi 4 - KOMUNITAS -->
+                <div class="notification-item notification-read mb-4 p-4 rounded-lg transition-all duration-300 hover:shadow-md" data-id="4">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="font-semibold text-gray-800 flex items-center">
+                            <i class="fas fa-users text-emerald-500 mr-2"></i>
+                            Event Komunitas
+                        </h3>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-xs text-gray-500">1 hari lalu</span>
+                            <button class="mark-read-btn text-emerald-500">
+                                <i class="fas fa-check-circle"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-2 line-clamp-1">
+                        "Clean Up Day" di Taman Merdeka Minggu depan. Daftar sekarang dapat 100 poin!
+                    </p>
+                    <div class="flex justify-between items-center mt-3">
+                        <span class="inline-block bg-emerald-500 text-white text-xs px-3 py-1 rounded-full font-medium">Komunitas</span>
+                        <button class="view-detail-btn text-emerald-500 hover:text-emerald-600 text-sm font-medium flex items-center transition-colors">
+                            Selengkapnya
+                            <i class="fas fa-chevron-right ml-1 text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Notifikasi 5 - REWARD -->
+                <div class="notification-item notification-read mb-4 p-4 rounded-lg transition-all duration-300 hover:shadow-md" data-id="5">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="font-semibold text-gray-800 flex items-center">
+                            <i class="fas fa-gift text-emerald-500 mr-2"></i>
+                            Reward Tersedia
+                        </h3>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-xs text-gray-500">1 hari lalu</span>
+                            <button class="mark-read-btn text-emerald-500">
+                                <i class="fas fa-check-circle"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-2 line-clamp-1">
+                        Tukar 500 poin dengan voucher belanja Rp 50.000. Berlaku hingga 30 November 2023
+                    </p>
+                    <div class="flex justify-between items-center mt-3">
+                        <span class="inline-block bg-emerald-500 text-white text-xs px-3 py-1 rounded-full font-medium">Reward</span>
+                        <button class="view-detail-btn text-emerald-500 hover:text-emerald-600 text-sm font-medium flex items-center transition-colors">
+                            Selengkapnya
+                            <i class="fas fa-chevron-right ml-1 text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Notifikasi Minggu Lalu -->
+            <div class="p-4">
+                <h2 class="text-lg font-bold text-gray-800 mb-3 flex items-center">
+                    <i class="fas fa-calendar-week text-emerald-500 mr-2"></i>
+                    Minggu Lalu
+                </h2>
+                
+                <!-- Notifikasi 6 - LEVEL UP -->
+                <div class="notification-item notification-read mb-4 p-4 rounded-lg transition-all duration-300 hover:shadow-md" data-id="6">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="font-semibold text-gray-800 flex items-center">
+                            <i class="fas fa-trophy text-emerald-500 mr-2"></i>
+                            Level Up!
+                        </h3>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-xs text-gray-500">3 hari lalu</span>
+                            <button class="mark-read-btn text-emerald-500">
+                                <i class="fas fa-check-circle"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-2 line-clamp-1">
+                        Selamat! Anda sekarang Eco Warrior Level 6. Akses fitur premium terbuka!
+                    </p>
+                    <div class="flex justify-between items-center mt-3">
+                        <span class="inline-block bg-emerald-500 text-white text-xs px-3 py-1 rounded-full font-medium">Pencapaian</span>
+                        <button class="view-detail-btn text-emerald-500 hover:text-emerald-600 text-sm font-medium flex items-center transition-colors">
+                            Selengkapnya
+                            <i class="fas fa-chevron-right ml-1 text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Notifikasi 7 - EDUKASI -->
+                <div class="notification-item notification-read mb-4 p-4 rounded-lg transition-all duration-300 hover:shadow-md" data-id="7">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="font-semibold text-gray-800 flex items-center">
+                            <i class="fas fa-graduation-cap text-emerald-500 mr-2"></i>
+                            Tips Daur Ulang
+                        </h3>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-xs text-gray-500">5 hari lalu</span>
+                            <button class="mark-read-btn text-emerald-500">
+                                <i class="fas fa-check-circle"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-2 line-clamp-1">
+                        Cara memilah sampah elektronik dengan benar. Baca dan dapatkan 25 poin!
+                    </p>
+                    <div class="flex justify-between items-center mt-3">
+                        <span class="inline-block bg-emerald-500 text-white text-xs px-3 py-1 rounded-full font-medium">Edukasi</span>
+                        <button class="view-detail-btn text-emerald-500 hover:text-emerald-600 text-sm font-medium flex items-center transition-colors">
+                            Selengkapnya
+                            <i class="fas fa-chevron-right ml-1 text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Tombol Lihat Semua Notifikasi -->
+        <div class="mt-6 text-center">
+            <button class="bg-emerald-500 hover:bg-emerald-600 text-white font-medium py-3 px-6 rounded-full transition-all duration-300 transform hover:scale-105 shadow-md">
+                Lihat Semua Notifikasi
+            </button>
+        </div>
+    </div>
+
+    <!-- Modal Detail Notifikasi -->
+    <div id="notificationModal" class="fixed inset-0 z-50 hidden">
+        <div class="modal-overlay absolute inset-0 flex items-center justify-center p-4">
+            <div class="bg-white rounded-xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto transform transition-all duration-300 scale-95 opacity-0">
+                <!-- Modal Header -->
+                <div class="sticky top-0 bg-white border-b border-gray-200 p-6 rounded-t-xl flex justify-between items-center">
+                    <div>
+                        <h3 id="modalTitle" class="text-xl font-bold text-gray-800"></h3>
+                        <p id="modalTime" class="text-sm text-gray-500 mt-1"></p>
+                    </div>
+                    <button id="closeModal" class="text-gray-400 hover:text-gray-600 transition-colors">
+                        <i class="fas fa-times text-2xl"></i>
+                    </button>
+                </div>
+                
+                <!-- Modal Body -->
+                <div class="p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <span id="modalCategory" class="inline-block bg-emerald-500 text-white text-sm px-3 py-1 rounded-full font-medium"></span>
+                        <span id="modalStatus" class="text-sm font-medium text-emerald-500"></span>
+                    </div>
+                    
+                    <div id="modalContent" class="text-gray-700 leading-relaxed space-y-4">
+                        <!-- Content will be populated by JavaScript -->
+                    </div>
+                    
+                    <!-- Action Buttons -->
+                    <div class="flex justify-end space-x-3 mt-6 pt-4 border-t border-gray-200">
+                        <button id="modalMarkReadBtn" class="px-4 py-2 text-gray-600 hover:text-gray-800 font-medium transition-colors border border-gray-300 rounded-lg hover:bg-gray-50">
+                            Tandai sebagai Dibaca
+                        </button>
+                        <button id="modalActionBtn" class="px-6 py-2 bg-emerald-500 hover:bg-emerald-600 text-white font-medium rounded-lg transition-colors">
+                            Tindak Lanjuti
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Data notifikasi lengkap yang sesuai tema DRYcycle
+        const notificationData = {
+            1: {
+                title: "Poin Bertambah!",
+                time: "2 jam lalu",
+                category: "Poin & Reward",
+                status: "Berhasil",
+                isRead: false,
+                content: `
+                    <div class="space-y-4">
+                        <div class="bg-gradient-to-r from-emerald-400 to-green-500 p-4 rounded-lg text-white text-center">
+                            <i class="fas fa-coins text-3xl mb-2"></i>
+                            <h4 class="font-bold text-lg">+50 Poin</h4>
+                            <p class="text-sm">Untuk kontribusi daur ulang sampah plastik</p>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-semibold text-gray-800 mb-2">Detail Kontribusi</h4>
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <div class="grid grid-cols-2 gap-4 text-sm">
+                                    <div>
+                                        <span class="text-gray-600">Jenis Sampah:</span>
+                                        <p class="font-medium">Plastik PET</p>
+                                    </div>
+                                    <div>
+                                        <span class="text-gray-600">Berat:</span>
+                                        <p class="font-medium">5 kg</p>
+                                    </div>
+                                    <div>
+                                        <span class="text-gray-600">Poin Didapat:</span>
+                                        <p class="font-medium text-emerald-600">50 poin</p>
+                                    </div>
+                                    <div>
+                                        <span class="text-gray-600">Total Poin:</span>
+                                        <p class="font-medium">2.550 poin</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4">
+                            <div class="flex items-start">
+                                <i class="fas fa-lightbulb text-yellow-500 mt-1 mr-3"></i>
+                                <div>
+                                    <h5 class="font-semibold text-yellow-800 mb-1">Tips</h5>
+                                    <p class="text-yellow-700 text-sm">Kumpulkan 500 poin untuk menukar dengan voucher belanja senilai Rp 50.000</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `,
+                actionText: "Tukar Poin"
+            },
+            2: {
+                title: "Booking Dikonfirmasi",
+                time: "4 jam lalu",
+                category: "Booking",
+                status: "Dikonfirmasi",
+                isRead: false,
+                content: `
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="font-semibold text-gray-800 mb-2">Detail Booking</h4>
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <div class="grid grid-cols-2 gap-4 text-sm">
+                                    <div>
+                                        <span class="text-gray-600">Jenis Sampah:</span>
+                                        <p class="font-medium">Organik</p>
+                                    </div>
+                                    <div>
+                                        <span class="text-gray-600">Berat:</span>
+                                        <p class="font-medium">10 kg</p>
+                                    </div>
+                                    <div>
+                                        <span class="text-gray-600">Tanggal Penjemputan:</span>
+                                        <p class="font-medium">Besok, 25 Okt 2023</p>
+                                    </div>
+                                    <div>
+                                        <span class="text-gray-600">Waktu:</span>
+                                        <p class="font-medium">10:00 - 12:00</p>
+                                    </div>
+                                    <div class="col-span-2">
+                                        <span class="text-gray-600">Alamat:</span>
+                                        <p class="font-medium">Jl. Merdeka No. 123, Jakarta</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-emerald-50 border-l-4 border-emerald-500 p-4">
+                            <div class="flex items-start">
+                                <i class="fas fa-info-circle text-emerald-500 mt-1 mr-3"></i>
+                                <div>
+                                    <h5 class="font-semibold text-emerald-800 mb-1">Persiapan Penjemputan</h5>
+                                    <ul class="text-emerald-700 text-sm list-disc list-inside space-y-1">
+                                        <li>Sampah sudah dipilah sesuai jenis</li>
+                                        <li>Siapkan di tempat yang mudah dijangkau</li>
+                                        <li>Pastikan sampah dalam kondisi kering</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `,
+                actionText: "Lihat Detail Booking"
+            },
+            3: {
+                title: "Status Daur Ulang",
+                time: "6 jam lalu",
+                category: "Daur Ulang",
+                status: "Selesai",
+                isRead: false,
+                content: `
+                    <div class="space-y-4">
+                        <div class="bg-gradient-to-r from-green-400 to-emerald-500 p-4 rounded-lg text-white text-center">
+                            <i class="fas fa-recycle text-3xl mb-2"></i>
+                            <h4 class="font-bold text-lg">Daur Ulang Berhasil</h4>
+                            <p class="text-sm">Sampah kertas telah menjadi produk baru</p>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-semibold text-gray-800 mb-2">Detail Proses</h4>
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <div class="grid grid-cols-2 gap-4 text-sm">
+                                    <div>
+                                        <span class="text-gray-600">Jenis Sampah:</span>
+                                        <p class="font-medium">Kertas/Kardus</p>
+                                    </div>
+                                    <div>
+                                        <span class="text-gray-600">Berat:</span>
+                                        <p class="font-medium">8 kg</p>
+                                    </div>
+                                    <div>
+                                        <span class="text-gray-600">Tanggal Proses:</span>
+                                        <p class="font-medium">23 Oktober 2023</p>
+                                    </div>
+                                    <div>
+                                        <span class="text-gray-600">Hasil:</span>
+                                        <p class="font-medium">Produk Daur Ulang</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-blue-50 border-l-4 border-blue-500 p-4">
+                            <div class="flex items-start">
+                                <i class="fas fa-leaf text-blue-500 mt-1 mr-3"></i>
+                                <div>
+                                    <h5 class="font-semibold text-blue-800 mb-1">Dampak Lingkungan</h5>
+                                    <p class="text-blue-700 text-sm">Anda telah menyelamatkan 8kg sampah dari TPA dan mengurangi emisi karbon</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `,
+                actionText: "Lihat Laporan"
+            },
+            4: {
+                title: "Event Komunitas",
+                time: "1 hari lalu",
+                category: "Komunitas",
+                status: "Terbuka",
+                isRead: true,
+                content: `
+                    <div class="space-y-4">
+                        <div class="bg-gradient-to-r from-blue-400 to-cyan-500 p-4 rounded-lg text-white">
+                            <h4 class="font-bold text-lg mb-2">Clean Up Day</h4>
+                            <div class="flex items-center space-x-4 text-sm">
+                                <div class="flex items-center">
+                                    <i class="far fa-calendar mr-2"></i>
+                                    <span>Minggu, 29 Okt 2023</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="far fa-clock mr-2"></i>
+                                    <span>07:00 - 11:00</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-semibold text-gray-800 mb-2">Lokasi Acara</h4>
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <p class="text-sm font-medium">Taman Merdeka, Jakarta Pusat</p>
+                                <p class="text-xs text-gray-600 mt-1">Jl. Medan Merdeka Selatan, Gambir</p>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-semibold text-gray-800 mb-2">Benefit Mengikuti</h4>
+                            <ul class="list-disc list-inside text-gray-700 space-y-2 text-sm">
+                                <li>+100 poin untuk partisipasi</li>
+                                <li>Goodie bag ramah lingkungan</li>
+                                <li>Sertifikat partisipasi</li>
+                                <li>Networking dengan komunitas eco-friendly</li>
+                            </ul>
+                        </div>
+                    </div>
+                `,
+                actionText: "Daftar Sekarang"
+            }
+        };
+
+        // Variabel global untuk melacak notifikasi yang sedang dilihat
+        let currentNotificationId = null;
+
+        // Fungsi kembali yang cerdas
+        function goBack() {
+            // Daftar semua halaman yang valid di aplikasi DRYcycle
+            const validPages = [
+                'dashboard.html',
+                'sampahtersedia.html',
+                'upload.html',
+                'booking.html', 
+                'leaderboard.html',
+                'komunitas.html',
+                'edukasi.html',
+                'blog.html',
+                'profile.html',
+                'settings.html',
+                'help.html',
+                'scan.html',
+                'notifikasi.html',
+                'editprofile.html'
+            ];
+
+            // Cek referrer (halaman sebelumnya)
+            const referrer = document.referrer;
+            
+            console.log('Referrer:', referrer);
+            
+            // Jika ada referrer dan berasal dari domain yang sama
+            if (referrer && referrer.includes(window.location.origin)) {
+                // Ekstrak nama file dari URL referrer
+                try {
+                    const referrerPath = new URL(referrer).pathname;
+                    const referrerPage = referrerPath.split('/').pop();
+                    
+                    console.log('Referrer page:', referrerPage);
+                    
+                    // Jika halaman sebelumnya valid dan bukan halaman saat ini
+                    if (validPages.includes(referrerPage) && referrerPage !== window.location.pathname.split('/').pop()) {
+                        console.log('Going back to:', referrerPage);
+                        window.history.back();
+                        return;
+                    }
+                } catch (error) {
+                    console.log('Error parsing referrer:', error);
+                }
+            }
+            
+            // Fallback: Redirect ke dashboard
+            console.log('Fallback to dashboard');
+            window.location.href = 'dashboard.html';
+        }
+        
+        // Inisialisasi setelah DOM dimuat
+        document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById('notificationModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalTime = document.getElementById('modalTime');
+            const modalCategory = document.getElementById('modalCategory');
+            const modalStatus = document.getElementById('modalStatus');
+            const modalContent = document.getElementById('modalContent');
+            const modalMarkReadBtn = document.getElementById('modalMarkReadBtn');
+            const modalActionBtn = document.getElementById('modalActionBtn');
+            
+            // Tab functionality
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const notificationItems = document.querySelectorAll('.notification-item');
+            
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Update active tab
+                    tabButtons.forEach(btn => {
+                        btn.classList.remove('text-emerald-600', 'border-b-2', 'border-emerald-500');
+                        btn.classList.add('text-gray-500');
+                    });
+                    this.classList.add('text-emerald-600', 'border-b-2', 'border-emerald-500');
+                    this.classList.remove('text-gray-500');
+                    
+                    // Filter notifications based on tab
+                    const tabId = this.id;
+                    notificationItems.forEach(item => {
+                        if (tabId === 'tabAll') {
+                            item.style.display = 'block';
+                        } else if (tabId === 'tabUnread') {
+                            if (item.classList.contains('notification-unread')) {
+                                item.style.display = 'block';
+                            } else {
+                                item.style.display = 'none';
+                            }
+                        } else if (tabId === 'tabRead') {
+                            if (item.classList.contains('notification-read')) {
+                                item.style.display = 'block';
+                            } else {
+                                item.style.display = 'none';
+                            }
+                        }
+                    });
+                });
+            });
+            
+            // Mark as read functionality
+            const markReadButtons = document.querySelectorAll('.mark-read-btn');
+            markReadButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const notification = this.closest('.notification-item');
+                    if (notification.classList.contains('notification-unread')) {
+                        markNotificationAsRead(notification);
+                    }
+                });
+            });
+            
+            // Mark all as read functionality
+            const markAllReadBtn = document.getElementById('markAllReadBtn');
+            markAllReadBtn.addEventListener('click', function() {
+                const unreadNotifications = document.querySelectorAll('.notification-unread');
+                unreadNotifications.forEach(notification => {
+                    markNotificationAsRead(notification);
+                });
+                
+                // Show confirmation message
+                showToast('Semua notifikasi ditandai sebagai sudah dibaca');
+            });
+            
+            // View detail functionality
+            const viewDetailButtons = document.querySelectorAll('.view-detail-btn');
+            viewDetailButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const notificationItem = this.closest('.notification-item');
+                    const notificationId = notificationItem.getAttribute('data-id');
+                    
+                    if (notificationData[notificationId]) {
+                        currentNotificationId = notificationId;
+                        const data = notificationData[notificationId];
+                        
+                        // Populate modal with data
+                        modalTitle.textContent = data.title;
+                        modalTime.textContent = data.time;
+                        modalCategory.textContent = data.category;
+                        modalStatus.textContent = data.status;
+                        modalContent.innerHTML = data.content;
+                        modalActionBtn.textContent = data.actionText;
+                        
+                        // Update modal mark as read button state
+                        if (data.isRead) {
+                            modalMarkReadBtn.innerHTML = '<i class="fas fa-check-circle mr-2"></i>Sudah Dibaca';
+                            modalMarkReadBtn.classList.add('text-emerald-600');
+                            modalMarkReadBtn.disabled = true;
+                        } else {
+                            modalMarkReadBtn.innerHTML = 'Tandai sebagai Dibaca';
+                            modalMarkReadBtn.classList.remove('text-emerald-600');
+                            modalMarkReadBtn.disabled = false;
+                        }
+                        
+                        // Show modal with animation
+                        modal.classList.remove('hidden');
+                        setTimeout(() => {
+                            modal.querySelector('.modal-overlay > div').classList.remove('scale-95', 'opacity-0');
+                            modal.querySelector('.modal-overlay > div').classList.add('scale-100', 'opacity-100');
+                        }, 10);
+                    }
+                });
+            });
+            
+            // Modal mark as read functionality
+            modalMarkReadBtn.addEventListener('click', function() {
+                if (currentNotificationId && !notificationData[currentNotificationId].isRead) {
+                    const notificationItem = document.querySelector(`.notification-item[data-id="${currentNotificationId}"]`);
+                    if (notificationItem) {
+                        markNotificationAsRead(notificationItem);
+                        notificationData[currentNotificationId].isRead = true;
+                        
+                        // Update modal button
+                        this.innerHTML = '<i class="fas fa-check-circle mr-2"></i>Sudah Dibaca';
+                        this.classList.add('text-emerald-600');
+                        this.disabled = true;
+                        
+                        showToast('Notifikasi ditandai sebagai sudah dibaca');
+                    }
+                }
+            });
+            
+            // Modal action button functionality
+            modalActionBtn.addEventListener('click', function() {
+                if (currentNotificationId) {
+                    const data = notificationData[currentNotificationId];
+                    showToast(`Tindakan "${data.actionText}" berhasil dilakukan`);
+                    
+                    // Close modal after action
+                    setTimeout(() => {
+                        closeModal();
+                    }, 1500);
+                }
+            });
+            
+            // Close modal functionality
+            document.getElementById('closeModal').addEventListener('click', closeModal);
+            
+            // Close modal when clicking outside
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+            
+            // Function to mark notification as read
+            function markNotificationAsRead(notification) {
+                notification.classList.remove('notification-unread');
+                notification.classList.add('notification-read');
+                
+                const markBtn = notification.querySelector('.mark-read-btn');
+                markBtn.innerHTML = '<i class="fas fa-check-circle"></i>';
+                markBtn.classList.add('text-emerald-500');
+                
+                // Update data
+                const notificationId = notification.getAttribute('data-id');
+                if (notificationData[notificationId]) {
+                    notificationData[notificationId].isRead = true;
+                }
+            }
+            
+            // Function to close modal
+            function closeModal() {
+                modal.querySelector('.modal-overlay > div').classList.remove('scale-100', 'opacity-100');
+                modal.querySelector('.modal-overlay > div').classList.add('scale-95', 'opacity-0');
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                    currentNotificationId = null;
+                }, 300);
+            }
+            
+            // Toast notification function
+            function showToast(message) {
+                // Create toast element
+                const toast = document.createElement('div');
+                toast.className = 'fixed bottom-4 right-4 bg-emerald-500 text-white px-6 py-3 rounded-lg shadow-lg transform transition-transform duration-300 translate-y-16 z-50 flex items-center';
+                toast.innerHTML = `
+                    <i class="fas fa-check-circle mr-2"></i>
+                    <span>${message}</span>
+                `;
+                
+                // Add to body
+                document.body.appendChild(toast);
+                
+                // Animate in
+                setTimeout(() => {
+                    toast.classList.remove('translate-y-16');
+                }, 10);
+                
+                // Remove after 3 seconds
+                setTimeout(() => {
+                    toast.classList.add('translate-y-16');
+                    setTimeout(() => {
+                        document.body.removeChild(toast);
+                    }, 300);
+                }, 3000);
+            }
+        });
+    </script>
+</body>
+</html>
