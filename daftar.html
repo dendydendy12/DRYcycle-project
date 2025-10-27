@@ -12,6 +12,7 @@
         transform: translateY(100px);
         opacity: 0;
       }
+
       to {
         transform: translateY(0);
         opacity: 1;
@@ -22,6 +23,7 @@
       from {
         opacity: 0;
       }
+
       to {
         opacity: 1;
       }
@@ -32,6 +34,7 @@
         transform: scale(0.8);
         opacity: 0;
       }
+
       to {
         transform: scale(1);
         opacity: 1;
@@ -39,15 +42,33 @@
     }
 
     @keyframes shake {
-      0%, 100% { transform: translateX(0); }
-      10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
-      20%, 40%, 60%, 80% { transform: translateX(10px); }
+
+      0%,
+      100% {
+        transform: translateX(0);
+      }
+
+      10%,
+      30%,
+      50%,
+      70%,
+      90% {
+        transform: translateX(-10px);
+      }
+
+      20%,
+      40%,
+      60%,
+      80% {
+        transform: translateX(10px);
+      }
     }
 
     @keyframes checkmark {
       0% {
         stroke-dashoffset: 100;
       }
+
       100% {
         stroke-dashoffset: 0;
       }
@@ -57,24 +78,31 @@
       0% {
         stroke-dashoffset: 50;
       }
+
       100% {
         stroke-dashoffset: 0;
       }
     }
 
     @keyframes pulse {
-      0%, 100% {
+
+      0%,
+      100% {
         transform: scale(1);
       }
+
       50% {
         transform: scale(1.05);
       }
     }
 
     @keyframes bounce {
-      0%, 100% {
+
+      0%,
+      100% {
         transform: translateY(0);
       }
+
       50% {
         transform: translateY(-10px);
       }
@@ -121,7 +149,8 @@
       <div class="p-8 md:p-12 flex flex-col justify-center">
         <div class="mb-8">
           <div class="flex items-center gap-3 mb-4">
-            <img src="assets/image/logo/logo.png" class="w-10 h-10" alt="Logo DRYcycle" onerror="this.style.display='none';" />
+            <img src="assets/image/logo/logo.png" class="w-10 h-10" alt="Logo DRYcycle"
+              onerror="this.style.display='none';" />
             <h1 class="text-3xl font-bold text-gray-900">DRYcycle</h1>
           </div>
           <h2 class="text-4xl font-bold text-gray-900 mb-3">Create your account</h2>
@@ -242,12 +271,8 @@
 
       <!-- Right Side - Illustration -->
       <div class="hidden md:flex items-center justify-center bg-white">
-        <img 
-          src="assets/image/images/ear.png" 
-          alt="Register Illustration"
-          class="max-w-full h-auto object-contain" 
-          onerror="this.style.display='none';" 
-        />
+        <img src="assets/image/images/ear.png" alt="Register Illustration" class="max-w-full h-auto object-contain"
+          onerror="this.style.display='none';" />
       </div>
 
     </div>
@@ -256,10 +281,11 @@
   <!-- Success Modal -->
   <div id="successModal" class="fixed inset-0 z-50 hidden">
     <div class="modal-overlay absolute inset-0 bg-black bg-opacity-50 backdrop-blur-sm"></div>
-    
+
     <div class="relative min-h-screen flex items-center justify-center p-4">
       <div class="modal-content bg-white rounded-3xl shadow-2xl max-w-md w-full p-8 relative">
-        <button onclick="closeModal('successModal')" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition">
+        <button onclick="closeModal('successModal')"
+          class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
           </svg>
@@ -269,8 +295,10 @@
           <div class="relative">
             <div class="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center pulse-animation">
               <svg class="w-16 h-16" viewBox="0 0 52 52">
-                <circle class="text-green-500" cx="26" cy="26" r="25" fill="none" stroke="currentColor" stroke-width="2"/>
-                <path class="success-checkmark text-green-500" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" d="M14 27l7 7 16-16"/>
+                <circle class="text-green-500" cx="26" cy="26" r="25" fill="none" stroke="currentColor"
+                  stroke-width="2" />
+                <path class="success-checkmark text-green-500" fill="none" stroke="currentColor" stroke-width="3"
+                  stroke-linecap="round" d="M14 27l7 7 16-16" />
               </svg>
             </div>
           </div>
@@ -283,14 +311,17 @@
           </p>
 
           <div class="w-full bg-gray-200 rounded-full h-2 mb-6 overflow-hidden">
-            <div id="successProgressBar" class="bg-green-500 h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
+            <div id="successProgressBar" class="bg-green-500 h-2 rounded-full transition-all duration-300"
+              style="width: 0%"></div>
           </div>
 
           <div class="flex gap-3">
-            <button onclick="closeModal('successModal')" class="flex-1 px-6 py-3 border-2 border-gray-300 text-gray-700 rounded-full hover:bg-gray-50 transition font-semibold">
+            <button onclick="closeModal('successModal')"
+              class="flex-1 px-6 py-3 border-2 border-gray-300 text-gray-700 rounded-full hover:bg-gray-50 transition font-semibold">
               Tutup
             </button>
-            <button onclick="redirectToLogin()" class="flex-1 px-6 py-3 bg-green-600 text-white rounded-full hover:bg-green-700 transition font-semibold">
+            <button onclick="redirectToLogin()"
+              class="flex-1 px-6 py-3 bg-green-600 text-white rounded-full hover:bg-green-700 transition font-semibold">
               Login Sekarang
             </button>
           </div>
@@ -302,10 +333,11 @@
   <!-- Error Modal -->
   <div id="errorModal" class="fixed inset-0 z-50 hidden">
     <div class="modal-overlay absolute inset-0 bg-black bg-opacity-50 backdrop-blur-sm"></div>
-    
+
     <div class="relative min-h-screen flex items-center justify-center p-4">
       <div id="errorModalContent" class="modal-content bg-white rounded-3xl shadow-2xl max-w-md w-full p-8 relative">
-        <button onclick="closeModal('errorModal')" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition">
+        <button onclick="closeModal('errorModal')"
+          class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
           </svg>
@@ -315,8 +347,10 @@
           <div class="relative">
             <div class="w-24 h-24 bg-red-100 rounded-full flex items-center justify-center bounce-animation">
               <svg class="w-16 h-16" viewBox="0 0 52 52">
-                <circle class="text-red-500" cx="26" cy="26" r="25" fill="none" stroke="currentColor" stroke-width="2"/>
-                <path class="error-xmark text-red-500" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" d="M16 16l20 20M36 16l-20 20"/>
+                <circle class="text-red-500" cx="26" cy="26" r="25" fill="none" stroke="currentColor"
+                  stroke-width="2" />
+                <path class="error-xmark text-red-500" fill="none" stroke="currentColor" stroke-width="3"
+                  stroke-linecap="round" d="M16 16l20 20M36 16l-20 20" />
               </svg>
             </div>
           </div>
@@ -331,7 +365,9 @@
           <div class="bg-red-50 border-l-4 border-red-500 p-4 mb-6 rounded-lg">
             <div class="flex items-start">
               <svg class="w-5 h-5 text-red-500 mr-3 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                <path fill-rule="evenodd"
+                  d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
+                  clip-rule="evenodd" />
               </svg>
               <div class="text-left">
                 <p class="text-sm text-red-800 font-medium">Tips:</p>
@@ -343,7 +379,8 @@
             </div>
           </div>
 
-          <button onclick="closeModal('errorModal')" class="w-full px-6 py-3 bg-red-600 text-white rounded-full hover:bg-red-700 transition font-semibold">
+          <button onclick="closeModal('errorModal')"
+            class="w-full px-6 py-3 bg-red-600 text-white rounded-full hover:bg-red-700 transition font-semibold">
             Coba Lagi
           </button>
         </div>
@@ -376,14 +413,14 @@
     function showSuccessModal() {
       const modal = document.getElementById('successModal');
       modal.classList.remove('hidden');
-      
+
       let progress = 0;
       const progressBar = document.getElementById('successProgressBar');
-      
+
       progressInterval = setInterval(() => {
         progress += 2;
         progressBar.style.width = progress + '%';
-        
+
         if (progress >= 100) {
           clearInterval(progressInterval);
           setTimeout(() => {
@@ -397,10 +434,10 @@
       const modal = document.getElementById('errorModal');
       const modalContent = document.getElementById('errorModalContent');
       const errorMessage = document.getElementById('errorMessage');
-      
+
       errorMessage.textContent = message;
       modal.classList.remove('hidden');
-      
+
       // Add shake animation
       modalContent.classList.add('shake');
       setTimeout(() => {
@@ -428,13 +465,13 @@
     }
 
     // Close modal when clicking outside
-    document.getElementById('successModal')?.addEventListener('click', function(e) {
+    document.getElementById('successModal')?.addEventListener('click', function (e) {
       if (e.target === this) {
         closeModal('successModal');
       }
     });
 
-    document.getElementById('errorModal')?.addEventListener('click', function(e) {
+    document.getElementById('errorModal')?.addEventListener('click', function (e) {
       if (e.target === this) {
         closeModal('errorModal');
       }

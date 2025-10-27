@@ -147,7 +147,7 @@ if (logoutModal) {
 // === PAGE TITLE UPDATE (Optional) ===
 const pageTitles = {
     'dashboard': 'Dashboard',
-    'sampahtersedia': 'Sampah Tersedia',
+    'sampahtersedia': 'Item Tersedia',
     'upload': 'Upload Sampah',
     'booking': 'Booking Saya',
     'leaderboard': 'Leaderboard',
@@ -155,7 +155,8 @@ const pageTitles = {
     'edukasi': 'Edukasi',
     'profile': 'Profil Saya',
     'settings': 'Pengaturan',
-    'help': 'Bantuan'
+    'help': 'Bantuan',
+    'blog' : 'Blog',
 };
 
 function updatePageTitle() {

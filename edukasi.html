@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eco Kids - Belajar Lingkungan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            opacity: 0.2;
+        }
+
+        .content-overlay {
+            position: relative;
+            z-index: 1;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .lesson-card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .lesson-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(34, 197, 94, 0.3);
+        }
+
+        .cloud {
+            animation: moveClouds 30s linear infinite;
+        }
+
+        @keyframes moveClouds {
+            from {
+                transform: translateX(-100%);
+            }
+
+            to {
+                transform: translateX(100vw);
+            }
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        .music-playing {
+            animation: pulse 1s infinite;
+        }
+
+        .quiz-option:disabled {
+            cursor: not-allowed;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Welcome section with background image */
+        .welcome-bg {
+            background-image: url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+
+        .welcome-overlay {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.85) 0%, rgba(16, 185, 129, 0.85) 100%);
+        }
+
+        /* Quiz styles */
+        .quiz-option {
+            transition: all 0.3s ease;
+        }
+
+        .quiz-option:hover {
+            transform: translateY(-5px);
+        }
+
+        .correct-answer {
+            background-color: #d1fae5 !important;
+            border-color: #10b981 !important;
+        }
+
+        .wrong-answer {
+            background-color: #fee2e2 !important;
+            border-color: #ef4444 !important;
+        }
+
+        .quiz-result {
+            display: none;
+        }
+
+        .quiz-result.active {
+            display: block;
+        }
+    </style>
+</head>
+
+<body class="bg-gradient-to-b from-green-50 via-emerald-50 to-teal-50 min-h-screen overflow-x-hidden">
+
+    <!-- Video Background Area -->
+    <video class="video-background" autoplay loop muted playsinline>
+        <source src="assets/video/bg.mp4" type="video/mp4">
+    </video>
+
+    <div class="content-overlay">
+
+        <!-- Background Elements -->
+        <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
+            <div class="cloud absolute top-10 w-32 h-16 bg-white rounded-full opacity-50" style="animation-delay: 0s;">
+            </div>
+            <div class="cloud absolute top-32 w-40 h-20 bg-white rounded-full opacity-40" style="animation-delay: 5s;">
+            </div>
+            <div class="cloud absolute top-20 w-36 h-18 bg-white rounded-full opacity-30" style="animation-delay: 10s;">
+            </div>
+        </div>
+
+        <!-- Music Control Panel -->
+        <div class="fixed top-4 right-4 z-50 flex items-center gap-3">
+            <div id="musicStatus" class="bg-white/90 backdrop-blur-sm rounded-full px-4 py-2 shadow-lg hidden">
+                <span class="text-sm font-semibold text-gray-700">
+                    <i class="fas fa-music mr-2 text-green-500"></i>
+                    <span id="musicStatusText">Musik: Mati</span>
+                </span>
+            </div>
+
+            <button id="musicBtn"
+                class="bg-white hover:bg-green-50 text-green-600 rounded-full p-4 shadow-lg transition-all border-2 border-green-200">
+                <i id="musicIcon" class="fas fa-volume-mute text-xl"></i>
+            </button>
+        </div>
+
+        <!-- Background Music -->
+        <audio id="bgMusic" loop>
+            <source src="assets/audio/bg-game.m4a" type="audio/mpeg">
+        </audio>
+
+        <!-- Simple White Header -->
+        <header class="bg-white/90 backdrop-blur-sm text-gray-800 shadow-lg sticky top-0 z-40">
+            <div class="container mx-auto px-4 py-4">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-3">
+                        <i class="fas fa-seedling text-3xl text-green-600 float-animation"></i>
+                        <h1 class="text-2xl font-bold">Eco Kids</h1>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <button onclick="showPage('home')"
+                            class="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-full transition font-semibold">
+                            <i class="fas fa-home mr-2"></i>Beranda
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Home Page -->
+        <div id="homePage" class="page active">
+            <div class="container mx-auto px-4 py-8 relative z-10">
+                <!-- Welcome Section with Background Image -->
+                <div class="welcome-bg rounded-3xl overflow-hidden mb-8 shadow-2xl">
+                    <div class="welcome-overlay p-8 md:p-12">
+                        <div class="flex flex-col md:flex-row items-center justify-between">
+                            <div class="mb-6 md:mb-0 text-center md:text-left">
+                                <h2 class="text-4xl md:text-5xl font-bold text-white mb-3">Selamat Datang, Sahabat Bumi!
+                                    <i class="fas fa-globe-americas"></i></h2>
+                                <p class="text-white text-lg md:text-xl opacity-90">Belajar menjaga lingkungan dengan
+                                    cara yang seru dan interaktif!</p>
+                                <div class="mt-6 flex flex-wrap gap-3 justify-center md:justify-start">
+                                    <div class="bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 text-white">
+                                        <i class="fas fa-book-open mr-2"></i>9 Materi
+                                    </div>
+                                    <div class="bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 text-white">
+                                        <i class="fas fa-gamepad mr-2"></i>3 Kuis
+                                    </div>
+                                    <div class="bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 text-white">
+                                        <i class="fas fa-trophy mr-2"></i>100% Gratis
+                                    </div>
+                                </div>
+                            </div>
+                            <i class="fas fa-leaf text-8xl md:text-9xl float-animation text-white opacity-80"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Topic Cards -->
+                <div class="mb-8 text-center">
+                    <h3 class="text-3xl font-bold text-gray-800 mb-2"><i
+                            class="fas fa-graduation-cap mr-2 text-green-600"></i>Pilih Topik Pembelajaran</h3>
+                    <p class="text-gray-600">Klik pada materi untuk mulai belajar!</p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Topic 1: Pengenalan Lingkungan -->
+                    <div class="bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition">
+                        <div class="bg-gradient-to-br from-green-400 to-emerald-500 p-8 text-center">
+                            <i class="fas fa-earth-americas text-white text-7xl mb-4"></i>
+                            <h3 class="text-2xl font-bold text-white">Pengenalan Lingkungan</h3>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-gray-600 mb-6 text-center">Kenali lingkungan di sekitar kita</p>
+
+                            <div class="space-y-3">
+                                <button onclick="showLesson('pengenalan', 1)"
+                                    class="lesson-card w-full bg-green-50 hover:bg-green-100 p-4 rounded-xl flex items-center justify-between transition border-2 border-green-200">
+                                    <div class="flex items-center space-x-3">
+                                        <div
+                                            class="bg-green-500 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center">
+                                            <i class="fas fa-book"></i>
+                                        </div>
+                                        <span class="font-semibold text-gray-700">Apa itu Lingkungan?</span>
+                                    </div>
+                                    <i class="fas fa-chevron-right text-green-600"></i>
+                                </button>
+
+                                <button onclick="showLesson('pengenalan', 2)"
+                                    class="lesson-card w-full bg-green-50 hover:bg-green-100 p-4 rounded-xl flex items-center justify-between transition border-2 border-green-200">
+                                    <div class="flex items-center space-x-3">
+                                        <div
+                                            class="bg-green-500 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center">
+                                            <i class="fas fa-heart"></i>
+                                        </div>
+                                        <span class="font-semibold text-gray-700">Pentingnya Lingkungan</span>
+                                    </div>
+                                    <i class="fas fa-chevron-right text-green-600"></i>
+                                </button>
+
+                                <button onclick="showLesson('pengenalan', 3)"
+                                    class="lesson-card w-full bg-yellow-50 hover:bg-yellow-100 p-4 rounded-xl flex items-center justify-between transition border-2 border-yellow-300">
+                                    <div class="flex items-center space-x-3">
+                                        <div
+                                            class="bg-yellow-500 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center">
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                        <span class="font-semibold text-gray-700">Kuis Lingkungan</span>
+                                    </div>
+                                    <i class="fas fa-gamepad text-yellow-600"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic 2: Mengenal Sampah -->
+                    <div class="bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition">
+                        <div class="bg-gradient-to-br from-emerald-400 to-teal-500 p-8 text-center">
+                            <i class="fas fa-recycle text-white text-7xl mb-4"></i>
+                            <h3 class="text-2xl font-bold text-white">Mengenal Sampah</h3>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-gray-600 mb-6 text-center">Belajar tentang jenis-jenis sampah</p>
+
+                            <div class="space-y-3">
+                                <button onclick="showLesson('sampah', 1)"
+                                    class="lesson-card w-full bg-emerald-50 hover:bg-emerald-100 p-4 rounded-xl flex items-center justify-between transition border-2 border-emerald-200">
+                                    <div class="flex items-center space-x-3">
+                                        <div
+                                            class="bg-emerald-500 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center">
+                                            <i class="fas fa-trash"></i>
+                                        </div>
+                                        <span class="font-semibold text-gray-700">Jenis-Jenis Sampah</span>
+                                    </div>
+                                    <i class="fas fa-chevron-right text-emerald-600"></i>
+                                </button>
+
+                                <button onclick="showLesson('sampah', 2)"
+                                    class="lesson-card w-full bg-emerald-50 hover:bg-emerald-100 p-4 rounded-xl flex items-center justify-between transition border-2 border-emerald-200">
+                                    <div class="flex items-center space-x-3">
+                                        <div
+                                            class="bg-emerald-500 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center">
+                                            <i class="fas fa-exclamation-triangle"></i>
+                                        </div>
+                                        <span class="font-semibold text-gray-700">Dampak Sampah</span>
+                                    </div>
+                                    <i class="fas fa-chevron-right text-emerald-600"></i>
+                                </button>
+
+                                <button onclick="showLesson('sampah', 3)"
+                                    class="lesson-card w-full bg-yellow-50 hover:bg-yellow-100 p-4 rounded-xl flex items-center justify-between transition border-2 border-yellow-300">
+                                    <div class="flex items-center space-x-3">
+                                        <div
+                                            class="bg-yellow-500 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center">
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                        <span class="font-semibold text-gray-700">Kuis Pilah Sampah</span>
+                                    </div>
+                                    <i class="fas fa-gamepad text-yellow-600"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic 3: Pengelolaan Sampah -->
+                    <div class="bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition">
+                        <div class="bg-gradient-to-br from-teal-400 to-green-600 p-8 text-center">
+                            <i class="fas fa-hands-helping text-white text-7xl mb-4"></i>
+                            <h3 class="text-2xl font-bold text-white">Pengelolaan Sampah</h3>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-gray-600 mb-6 text-center">Cara mengelola sampah dengan benar</p>
+
+                            <div class="space-y-3">
+                                <button onclick="showLesson('pengelolaan', 1)"
+                                    class="lesson-card w-full bg-teal-50 hover:bg-teal-100 p-4 rounded-xl flex items-center justify-between transition border-2 border-teal-200">
+                                    <div class="flex items-center space-x-3">
+                                        <div
+                                            class="bg-teal-500 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center">
+                                            <i class="fas fa-sort"></i>
+                                        </div>
+                                        <span class="font-semibold text-gray-700">Cara Memilah Sampah</span>
+                                    </div>
+                                    <i class="fas fa-chevron-right text-teal-600"></i>
+                                </button>
+
+                                <button onclick="showLesson('pengelolaan', 2)"
+                                    class="lesson-card w-full bg-teal-50 hover:bg-teal-100 p-4 rounded-xl flex items-center justify-between transition border-2 border-teal-200">
+                                    <div class="flex items-center space-x-3">
+                                        <div
+                                            class="bg-teal-500 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center">
+                                            <i class="fas fa-sync-alt"></i>
+                                        </div>
+                                        <span class="font-semibold text-gray-700">3R: Reduce, Reuse, Recycle</span>
+                                    </div>
+                                    <i class="fas fa-chevron-right text-teal-600"></i>
+                                </button>
+
+                                <button onclick="showLesson('pengelolaan', 3)"
+                                    class="lesson-card w-full bg-yellow-50 hover:bg-yellow-100 p-4 rounded-xl flex items-center justify-between transition border-2 border-yellow-300">
+                                    <div class="flex items-center space-x-3">
+                                        <div
+                                            class="bg-yellow-500 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center">
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                        <span class="font-semibold text-gray-700">Kuis Pengelolaan</span>
+                                    </div>
+                                    <i class="fas fa-gamepad text-yellow-600"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Lesson Page -->
+        <div id="lessonPage" class="page">
+            <div class="container mx-auto px-4 py-8 relative z-10">
+                <!-- Back Button -->
+                <div class="flex items-center justify-between mb-6">
+                    <button onclick="showPage('home')"
+                        class="bg-white hover:bg-green-50 px-6 py-3 rounded-full shadow-lg transition flex items-center space-x-2 border-2 border-green-200">
+                        <i class="fas fa-arrow-left text-green-600"></i>
+                        <span class="text-green-600 font-semibold">Kembali ke Beranda</span>
+                    </button>
+
+                    <!-- Lesson Navigation -->
+                    <div class="flex items-center space-x-2">
+                        <button id="prevLesson" onclick="navigateLesson(-1)"
+                            class="bg-white hover:bg-green-50 text-green-600 px-4 py-2 rounded-lg transition border-2 border-green-200 hidden">
+                            <i class="fas fa-chevron-left mr-2"></i>Sebelumnya
+                        </button>
+                        <button id="nextLesson" onclick="navigateLesson(1)"
+                            class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg transition font-semibold hidden">
+                            Selanjutnya <i class="fas fa-chevron-right ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="lessonContent" class="bg-white rounded-3xl shadow-2xl overflow-hidden">
+                    <!-- Content will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <script>
+            let musicPlaying = false;
+            const bgMusic = document.getElementById('bgMusic');
+            const musicBtn = document.getElementById('musicBtn');
+            const musicIcon = document.getElementById('musicIcon');
+            const musicStatus = document.getElementById('musicStatus');
+            const musicStatusText = document.getElementById('musicStatusText');
+
+            // Current lesson tracking
+            let currentTopic = '';
+            let currentLessonNumber = 0;
+
+            // Music Toggle
+            musicBtn.addEventListener('click', () => {
+                musicPlaying = !musicPlaying;
+
+                if (musicPlaying) {
+                    bgMusic.play().catch(e => {
+                        console.log('Audio play failed:', e);
+                    });
+                    musicIcon.className = 'fas fa-volume-up text-xl music-playing';
+                    musicBtn.classList.remove('bg-white');
+                    musicBtn.classList.add('bg-green-500', 'text-white');
+                    musicStatusText.textContent = 'Musik: Hidup';
+                    musicStatus.classList.remove('hidden');
+                } else {
+                    bgMusic.pause();
+                    musicIcon.className = 'fas fa-volume-mute text-xl';
+                    musicBtn.classList.remove('bg-green-500', 'text-white');
+                    musicBtn.classList.add('bg-white', 'text-green-600');
+                    musicStatusText.textContent = 'Musik: Mati';
+                    setTimeout(() => {
+                        musicStatus.classList.add('hidden');
+                    }, 2000);
+                }
+            });
+
+            // Page Navigation
+            function showPage(pageName) {
+                document.querySelectorAll('.page').forEach(page => {
+                    page.classList.remove('active');
+                });
+                document.getElementById(pageName + 'Page').classList.add('active');
+                window.scrollTo(0, 0);
+            }
+
+            // Lesson Content - All lessons defined
+            const lessons = {
+                'pengenalan-1': {
+                    title: 'Apa itu Lingkungan?',
+                    type: 'article',
+                    content: `
+                    <div class="p-8 md:p-12">
+                        <div class="mb-6">
+                            <span class="badge bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-semibold">
+                                <i class="fas fa-book-open"></i> Materi Pembelajaran
+                            </span>
+                        </div>
+                        <h2 class="text-4xl font-bold mb-6 text-green-600"><i class="fas fa-globe-americas mr-3"></i>Apa itu Lingkungan?</h2>
+                        
+                        <div class="bg-gradient-to-r from-green-100 to-emerald-100 rounded-2xl p-8 mb-8">
+                            <p class="text-xl text-gray-800 leading-relaxed">
+                                <i class="fas fa-quote-left text-green-500 mr-2"></i>
+                                Lingkungan adalah segala sesuatu yang ada di sekitar kita. Lingkungan terdiri dari makhluk hidup seperti tumbuhan, hewan, dan manusia, serta benda mati seperti tanah, air, dan udara.
+                                <i class="fas fa-quote-right text-green-500 ml-2"></i>
+                            </p>
+                        </div>
+
+                        <h3 class="text-2xl font-bold text-gray-800 mb-6"><i class="fas fa-list-ul mr-2 text-green-600"></i>Komponen Lingkungan</h3>
+                        
+                        <div class="grid md:grid-cols-3 gap-6 my-8">
+                            <div class="bg-green-50 p-6 rounded-2xl text-center transform hover:scale-105 transition border-2 border-green-200">
+                                <i class="fas fa-tree text-6xl mb-4 text-green-600"></i>
+                                <h4 class="font-bold text-xl mb-3 text-green-700">Tumbuhan</h4>
+                                <p class="text-gray-700">Pohon, bunga, rumput, dan semua jenis tanaman yang memberikan oksigen untuk kita bernafas</p>
+                            </div>
+                            <div class="bg-emerald-50 p-6 rounded-2xl text-center transform hover:scale-105 transition border-2 border-emerald-200">
+                                <i class="fas fa-paw text-6xl mb-4 text-emerald-600"></i>
+                                <h4 class="font-bold text-xl mb-3 text-emerald-700">Hewan</h4>
+                                <p class="text-gray-700">Burung, kucing, ikan, dan semua makhluk hidup yang berbagi bumi dengan kita</p>
+                            </div>
+                            <div class="bg-teal-50 p-6 rounded-2xl text-center transform hover:scale-105 transition border-2 border-teal-200">
+                                <i class="fas fa-mountain text-6xl mb-4 text-teal-600"></i>
+                                <h4 class="font-bold text-xl mb-3 text-teal-700">Alam</h4>
+                                <p class="text-gray-700">Gunung, sungai, laut, dan semua keindahan alam yang perlu kita jaga</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-gradient-to-r from-green-500 to-emerald-600 text-white p-8 rounded-2xl mt-8">
+                            <h3 class="text-2xl font-bold mb-4"><i class="fas fa-lightbulb mr-2"></i>Tahukah Kamu?</h3>
+                            <ul class="space-y-3 text-lg">
+                                <li><i class="fas fa-check-circle mr-2"></i>Bumi adalah satu-satunya planet yang memiliki kehidupan</li>
+                                <li><i class="fas fa-check-circle mr-2"></i>Semua makhluk hidup saling bergantung satu sama lain</li>
+                                <li><i class="fas fa-check-circle mr-2"></i>Lingkungan yang sehat = Kehidupan yang sehat</li>
+                            </ul>
+                        </div>
+                    </div>
+                `
+                },
+                'pengenalan-2': {
+                    title: 'Pentingnya Lingkungan',
+                    type: 'article',
+                    content: `
+                    <div class="p-8 md:p-12">
+                        <div class="mb-6">
+                            <span class="badge bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-semibold">
+                                <i class="fas fa-book-open"></i> Materi Pembelajaran
+                            </span>
+                        </div>
+                        <h2 class="text-4xl font-bold mb-6 text-green-600"><i class="fas fa-heart mr-3"></i>Mengapa Lingkungan Penting?</h2>
+                        
+                        <div class="bg-gradient-to-r from-green-100 to-emerald-100 rounded-2xl p-8 mb-8 text-center">
+                            <i class="fas fa-heart text-7xl mb-4 text-green-600"></i>
+                            <p class="text-2xl font-bold text-gray-800">Lingkungan adalah rumah kita bersama!</p>
+                        </div>
+
+                        <div class="space-y-6">
+                            <div class="bg-green-50 p-6 rounded-2xl border-l-4 border-green-500">
+                                <h3 class="text-2xl font-bold text-green-700 mb-3 flex items-center">
+                                    <i class="fas fa-wind text-3xl mr-3"></i>
+                                    Udara Bersih
+                                </h3>
+                                <p class="text-gray-700 text-lg leading-relaxed">Lingkungan yang sehat memberikan udara bersih untuk kita bernafas. Pohon-pohon membantu membersihkan udara dari polusi dan menghasilkan oksigen yang kita butuhkan setiap hari.</p>
+                            </div>
+                            
+                            <div class="bg-emerald-50 p-6 rounded-2xl border-l-4 border-emerald-500">
+                                <h3 class="text-2xl font-bold text-emerald-700 mb-3 flex items-center">
+                                    <i class="fas fa-tint text-3xl mr-3"></i>
+                                    Air Bersih
+                                </h3>
+                                <p class="text-gray-700 text-lg leading-relaxed">Lingkungan yang terjaga memberikan kita air bersih untuk minum, mandi, dan kebutuhan sehari-hari. Hutan dan tanah yang sehat membantu menyaring air secara alami.</p>
+                            </div>
+                            
+                            <div class="bg-teal-50 p-6 rounded-2xl border-l-4 border-teal-500">
+                                <h3 class="text-2xl font-bold text-teal-700 mb-3 flex items-center">
+                                    <i class="fas fa-utensils text-3xl mr-3"></i>
+                                    Makanan Sehat
+                                </h3>
+                                <p class="text-gray-700 text-lg leading-relaxed">Tanah yang subur dan lingkungan yang sehat menghasilkan makanan yang bergizi untuk kita semua. Tanaman dan hewan yang sehat adalah sumber makanan yang baik.</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-gradient-to-r from-green-500 to-emerald-600 text-white p-8 rounded-2xl mt-8">
+                            <h3 class="text-2xl font-bold mb-4"><i class="fas fa-lightbulb mr-2"></i>Tips Menjaga Lingkungan</h3>
+                            <ul class="space-y-3 text-lg">
+                                <li><i class="fas fa-seedling mr-2"></i>Menanam pohon di sekitar rumah</li>
+                                <li><i class="fas fa-trash mr-2"></i>Membuang sampah pada tempatnya</li>
+                                <li><i class="fas fa-bicycle mr-2"></i>Berjalan kaki atau bersepeda untuk jarak dekat</li>
+                                <li><i class="fas fa-recycle mr-2"></i>Mengurangi penggunaan plastik sekali pakai</li>
+                            </ul>
+                        </div>
+                    </div>
+                `
+                },
+                'pengenalan-3': {
+                    title: 'Kuis Lingkungan',
+                    type: 'quiz',
+                    content: `
+                    <div class="p-8 md:p-12">
+                        <div class="mb-6">
+                            <span class="badge bg-yellow-100 text-yellow-700 px-4 py-2 rounded-full text-sm font-semibold">
+                                <i class="fas fa-gamepad"></i> Kuis Interaktif
+                            </span>
+                        </div>
+                        <h2 class="text-4xl font-bold mb-6 text-green-600"><i class="fas fa-question-circle mr-3"></i>Kuis Lingkungan</h2>
+                        
+                        <div class="bg-gradient-to-r from-yellow-100 to-amber-100 rounded-2xl p-8 mb-8 text-center">
+                            <i class="fas fa-brain text-7xl mb-4 text-yellow-600"></i>
+                            <p class="text-2xl font-bold text-gray-800">Ayo uji pengetahuanmu tentang lingkungan!</p>
+                        </div>
+
+                        <div id="quizContainer">
+                            <div class="quiz-question mb-8">
+                                <h3 class="text-2xl font-bold text-gray-800 mb-4">1. Apa yang dimaksud dengan lingkungan?</h3>
+                                <div class="space-y-3">
+                                    <button class="quiz-option w-full text-left bg-white hover:bg-green-50 p-4 rounded-xl border-2 border-gray-200 transition" data-correct="true">
+                                        <div class="flex items-center">
+                                            <div class="bg-green-500 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center mr-4">
+                                                A
+                                            </div>
+                                            <span>Segala sesuatu yang ada di sekitar kita</span>
+                                        </div>
+                                    </button>
+                                    <button class="quiz-option w-full text-left bg-white hover:bg-green-50 p-4 rounded-xl border-2 border-gray-200 transition" data-correct="false">
+                                        <div class="flex items-center">
+                                            <div class="bg-green-500 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center mr-4">
+                                                B
+                                            </div>
+                                            <span>Tempat tinggal manusia saja</span>
+                                        </div>
+                                    </button>
+                                    <button class="quiz-option w-full text-left bg-white hover:bg-green-50 p-4 rounded-xl border-2 border-gray-200 transition" data-correct="false">
+                                        <div class="flex items-center">
+                                            <div class="bg-green-500 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center mr-4">
+                                                C
+                                            </div>
+                                            <span>Hutan dan taman saja</span>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="quiz-question mb-8">
+                                <h3 class="text-2xl font-bold text-gray-800 mb-4">2. Manakah yang termasuk komponen lingkungan?</h3>
+                                <div class="space-y-3">
+                                    <button class="quiz-option w-full text-left bg-white hover:bg-green-50 p-4 rounded-xl border-2 border-gray-200 transition" data-correct="false">
+                                        <div class="flex items-center">
+                                            <div class="bg-green-500 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center mr-4">
+                                                A
+                                            </div>
+                                            <span>Gedung-gedung tinggi</span>
+                                        </div>
+                                    </button>
+                                    <button class="quiz-option w-full text-left bg-white hover:bg-green-50 p-4 rounded-xl border-2 border-gray-200 transition" data-correct="true">
+                                        <div class="flex items-center">
+                                            <div class="bg-green-500 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center mr-4">
+                                                B
+                                            </div>
+                                            <span>Tumbuhan, hewan, udara, dan air</span>
+                                        </div>
+                                    </button>
+                                    <button class="quiz-option w-full text-left bg-white hover:bg-green-50 p-4 rounded-xl border-2 border-gray-200 transition" data-correct="false">
+                                        <div class="flex items-center">
+                                            <div class="bg-green-500 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center mr-4">
+                                                C
+                                            </div>
+                                            <span>Kendaraan bermotor</span>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="quiz-question mb-8">
+                                <h3 class="text-2xl font-bold text-gray-800 mb-4">3. Mengapa lingkungan penting bagi kita?</h3>
+                                <div class="space-y-3">
+                                    <button class="quiz-option w-full text-left bg-white hover:bg-green-50 p-4 rounded-xl border-2 border-gray-200 transition" data-correct="false">
+                                        <div class="flex items-center">
+                                            <div class="bg-green-500 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center mr-4">
+                                                A
+                                            </div>
+                                            <span>Karena lingkungan tempat bermain</span>
+                                        </div>
+                                    </button>
+                                    <button class="quiz-option w-full text-left bg-white hover:bg-green-50 p-4 rounded-xl border-2 border-gray-200 transition" data-correct="false">
+                                        <div class="flex items-center">
+                                            <div class="bg-green-500 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center mr-4">
+                                                B
+                                            </div>
+                                            <span>Karena lingkungan tempat belajar</span>
+                                        </div>
+                                    </button>
+                                    <button class="quiz-option w-full text-left bg-white hover:bg-green-50 p-4 rounded-xl border-2 border-gray-200 transition" data-correct="true">
+                                        <div class="flex items-center">
+                                            <div class="bg-green-500 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center mr-4">
+                                                C
+                                            </div>
+                                            <span>Karena lingkungan memberikan udara, air, dan makanan</span>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <button id="submitQuiz" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-6 rounded-xl text-xl transition">
+                                <i class="fas fa-paper-plane mr-2"></i>Kirim Jawaban
+                            </button>
+                        </div>
+
+                        <div id="quizResult" class="quiz-result mt-8 text-center">
+                            <!-- Result will be shown here -->
+                        </div>
+                    </div>
+                `
+                },
+                'sampah-1': {
+                    title: 'Jenis-Jenis Sampah',
+                    type: 'article',
+                    content: `
+                    <div class="p-8 md:p-12">
+                        <div class="mb-6">
+                            <span class="badge bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-semibold">
+                                <i class="fas fa-book-open"></i> Materi Pembelajaran
+                            </span>
+                        </div>
+                        <h2 class="text-4xl font-bold mb-6 text-green-600"><i class="fas fa-trash mr-3"></i>Jenis-Jenis Sampah</h2>
+                        
+                        <div class="bg-gradient-to-r from-green-100 to-emerald-100 rounded-2xl p-8 mb-8">
+                            <p class="text-xl text-gray-800 leading-relaxed">
+                                <i class="fas fa-quote-left text-green-500 mr-2"></i>
+                                Sampah adalah bahan atau barang sisa yang dihasilkan dari suatu kegiatan dan proses produksi. Mari kenali jenis-jenis sampah agar kita bisa mengelolanya dengan benar!
+                                <i class="fas fa-quote-right text-green-500 ml-2"></i>
+                            </p>
+                        </div>
+
+                        <h3 class="text-2xl font-bold text-gray-800 mb-6"><i class="fas fa-list-ul mr-2 text-green-600"></i>Jenis Sampah Berdasarkan Sifatnya</h3>
+                        
+                        <div class="grid md:grid-cols-2 gap-6 my-8">
+                            <div class="bg-green-50 p-6 rounded-2xl border-2 border-green-200">
+                                <div class="flex items-center mb-4">
+                                    <i class="fas fa-apple-alt text-4xl text-green-600 mr-4"></i>
+                                    <h4 class="font-bold text-xl text-green-700">Sampah Organik</h4>
+                                </div>
+                                <p class="text-gray-700">Sampah yang mudah terurai secara alami, seperti sisa makanan, daun, dan ranting. Sampah ini bisa dijadikan kompos untuk menyuburkan tanah.</p>
+                                <div class="mt-4">
+                                    <span class="inline-block bg-green-200 text-green-800 px-3 py-1 rounded-full text-sm font-semibold">Contoh: sisa makanan, daun, buah busuk</span>
+                                </div>
+                            </div>
+                            <div class="bg-yellow-50 p-6 rounded-2xl border-2 border-yellow-200">
+                                <div class="flex items-center mb-4">
+                                    <i class="fas fa-plastic-bottle text-4xl text-yellow-600 mr-4"></i>
+                                    <h4 class="font-bold text-xl text-yellow-700">Sampah Anorganik</h4>
+                                </div>
+                                <p class="text-gray-700">Sampah yang tidak mudah terurai, seperti plastik, kaca, dan logam. Sampah ini bisa didaur ulang untuk mengurangi pencemaran lingkungan.</p>
+                                <div class="mt-4">
+                                    <span class="inline-block bg-yellow-200 text-yellow-800 px-3 py-1 rounded-full text-sm font-semibold">Contoh: plastik, kaca, kaleng</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-gradient-to-r from-green-500 to-emerald-600 text-white p-8 rounded-2xl mt-8">
+                            <h3 class="text-2xl font-bold mb-4"><i class="fas fa-lightbulb mr-2"></i>Tips Memilah Sampah</h3>
+                            <ul class="space-y-3 text-lg">
+                                <li><i class="fas fa-check-circle mr-2"></i>Pisahkan sampah organik dan anorganik</li>
+                                <li><i class="fas fa-check-circle mr-2"></i>Cuci sampah plastik sebelum dibuang</li>
+                                <li><i class="fas fa-check-circle mr-2"></i>Gunakan tempat sampah berbeda untuk jenis sampah yang berbeda</li>
+                                <li><i class="fas fa-check-circle mr-2"></i>Kumpulkan sampah yang bisa didaur ulang</li>
+                            </ul>
+                        </div>
+                    </div>
+                `
+                },
+                'sampah-2': {
+                    title: 'Dampak Sampah',
+                    type: 'article',
+                    content: `
+                    <div class="p-8 md:p-12">
+                        <div class="mb-6">
+                            <span class="badge bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-semibold">
+                                <i class="fas fa-book-open"></i> Materi Pembelajaran
+                            </span>
+                        </div>
+                        <h2 class="text-4xl font-bold mb-6 text-green-600"><i class="fas fa-exclamation-triangle mr-3"></i>Dampak Sampah bagi Lingkungan</h2>
+                        
+                        <div class="bg-gradient-to-r from-red-100 to-orange-100 rounded-2xl p-8 mb-8">
+                            <p class="text-xl text-gray-800 leading-relaxed">
+                                <i class="fas fa-quote-left text-red-500 mr-2"></i>
+                                Sampah yang tidak dikelola dengan baik dapat menimbulkan berbagai masalah lingkungan yang serius. Yuk, kita pelajari dampaknya!
+                                <i class="fas fa-quote-right text-red-500 ml-2"></i>
+                            </p>
+                        </div>
+
+                        <div class="space-y-6">
+                            <div class="bg-red-50 p-6 rounded-2xl border-l-4 border-red-500">
+                                <h3 class="text-2xl font-bold text-red-700 mb-3 flex items-center">
+                                    <i class="fas fa-tint text-3xl mr-3"></i>
+                                    Pencemaran Air
+                                </h3>
+                                <p class="text-gray-700 text-lg leading-relaxed">Sampah yang dibuang ke sungai atau laut dapat mencemari air. Plastik butuh ratusan tahun untuk terurai dan bisa membahayakan hewan laut.</p>
+                            </div>
+                            
+                            <div class="bg-orange-50 p-6 rounded-2xl border-l-4 border-orange-500">
+                                <h3 class="text-2xl font-bold text-orange-700 mb-3 flex items-center">
+                                    <i class="fas fa-wind text-3xl mr-3"></i>
+                                    Pencemaran Udara
+                                </h3>
+                                <p class="text-gray-700 text-lg leading-relaxed">Pembakaran sampah sembarangan dapat menghasilkan asap beracun yang mencemari udara dan berbahaya bagi kesehatan.</p>
+                            </div>
+                            
+                            <div class="bg-yellow-50 p-6 rounded-2xl border-l-4 border-yellow-500">
+                                <h3 class="text-2xl font-bold text-yellow-700 mb-3 flex items-center">
+                                    <i class="fas fa-bug text-3xl mr-3"></i>
+                                    Penyebaran Penyakit
+                                </h3>
+                                <p class="text-gray-700 text-lg leading-relaxed">Sampah yang menumpuk dapat menjadi sarang nyamuk dan bakteri penyebab penyakit seperti demam berdarah dan diare.</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-gradient-to-r from-green-500 to-emerald-600 text-white p-8 rounded-2xl mt-8">
+                            <h3 class="text-2xl font-bold mb-4"><i class="fas fa-lightbulb mr-2"></i>Solusi Mengatasi Sampah</h3>
+                            <ul class="space-y-3 text-lg">
+                                <li><i class="fas fa-check-circle mr-2"></i>Kurangi penggunaan plastik sekali pakai</li>
+                                <li><i class="fas fa-check-circle mr-2"></i>Pilah sampah organik dan anorganik</li>
+                                <li><i class="fas fa-check-circle mr-2"></i>Daur ulang sampah yang bisa digunakan kembali</li>
+                                <li><i class="fas fa-check-circle mr-2"></i>Buat kompos dari sampah organik</li>
+                            </ul>
+                        </div>
+                    </div>
+                `
+                },
+                'sampah-3': {
+                    title: 'Kuis Pilah Sampah',
+                    type: 'quiz',
+                    content: `
+                    <div class="p-8 md:p-12">
+                        <div class="mb-6">
+                            <span class="badge bg-yellow-100 text-yellow-700 px-4 py-2 rounded-full text-sm font-semibold">
+                                <i class="fas fa-gamepad"></i> Kuis Interaktif
+                            </span>
+                        </div>
+                        <h2 class="text-4xl font-bold mb-6 text-green-600"><i class="fas fa-question-circle mr-3"></i>Kuis Pilah Sampah</h2>
+                        
+                        <div class="bg-gradient-to-r from-yellow-100 to-amber-100 rounded-2xl p-8 mb-8 text-center">
+                            <i class="fas fa-brain text-7xl mb-4 text-yellow-600"></i>
+                            <p class="text-2xl font-bold text-gray-800">Ayo uji pengetahuanmu tentang sampah!</p>
+                        </div>
+
+                        <div id="quizContainer">
+                            <div class="quiz-question mb-8">
+                                <h3 class="text-2xl font-bold text-gray-800 mb-4">1. Manakah yang termasuk sampah organik?</h3>
+                                <div class="space-y-3">
+                                    <button class="quiz-option w-full text-left bg-white hover:bg-green-50 p-4 rounded-xl border-2 border-gray-200 transition" data-correct="true">
+                                        <div class="flex items-center">
+                                            <div class="bg-green-500 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center mr-4">
+                                                A
+                                            </div>
+                                            <span>Sisa makanan dan daun kering</span>
+                                        </div>
+                                    </button>
+                                    <button class="quiz-option w-full text-left bg-white hover:bg-green-50 p-4 rounded-xl border-2 border-gray-200 transition" data-correct="false">
+                                        <div class="flex items-center">
+                                            <div class="bg-green-500 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center mr-4">
+                                                B
+                                            </div>
+                                            <span>Botol plastik dan kaleng</span>
+                                        </div>
+                                    </button>
+                                    <button class="quiz-option w-full text-left bg-white hover:bg-green-50 p-4 rounded-xl border-2 border-gray-200 transition" data-correct="false">
+                                        <div class="flex items-center">
+                                            <div class="bg-green-500 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center mr-4">
+                                                C
+                                            </div>
+                                            <span>Kaca dan karet</span>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="quiz-question mb-8">
+                                <h3 class="text-2xl font-bold text-gray-800 mb-4">2. Berapa lama plastik butuh untuk terurai?</h3>
+                                <div class="space-y-3">
+                                    <button class="quiz-option w-full text-left bg-white hover:bg-green-50 p-4 rounded-xl border-2 border-gray-200 transition" data-correct="false">
+                                        <div class="flex items-center">
+                                            <div class="bg-green-500 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center mr-4">
+                                                A
+                                            </div>
+                                            <span>1-2 tahun</span>
+                                        </div>
+                                    </button>
+                                    <button class="quiz-option w-full text-left bg-white hover:bg-green-50 p-4 rounded-xl border-2 border-gray-200 transition" data-correct="false">
+                                        <div class="flex items-center">
+                                            <div class="bg-green-500 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center mr-4">
+                                                B
+                                            </div>
+                                            <span>10-20 tahun</span>
+                                        </div>
+                                    </button>
+                                    <button class="quiz-option w-full text-left bg-white hover:bg-green-50 p-4 rounded-xl border-2 border-gray-200 transition" data-correct="true">
+                                        <div class="flex items-center">
+                                            <div class="bg-green-500 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center mr-4">
+                                                C
+                                            </div>
+                                            <span>Ratusan tahun</span>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="quiz-question mb-8">
+                                <h3 class="text-2xl font-bold text-gray-800 mb-4">3. Apa yang terjadi jika sampah dibuang ke sungai?</h3>
+                                <div class="space-y-3">
+                                    <button class="quiz-option w-full text-left bg-white hover:bg-green-50 p-4 rounded-xl border-2 border-gray-200 transition" data-correct="false">
+                                        <div class="flex items-center">
+                                            <div class="bg-green-500 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center mr-4">
+                                                A
+                                            </div>
+                                            <span>Sungai menjadi lebih indah</span>
+                                        </div>
+                                    </button>
+                                    <button class="quiz-option w-full text-left bg-white hover:bg-green-50 p-4 rounded-xl border-2 border-gray-200 transition" data-correct="true">
+                                        <div class="flex items-center">
+                                            <div class="bg-green-500 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center mr-4">
+                                                B
+                                            </div>
+                                            <span>Air tercemar dan hewan air mati</span>
+                                        </div>
+                                    </button>
+                                    <button class="quiz-option w-full text-left bg-white hover:bg-green-50 p-4 rounded-xl border-2 border-gray-200 transition" data-correct="false">
+                                        <div class="flex items-center">
+                                            <div class="bg-green-500 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center mr-4">
+                                                C
+                                            </div>
+                                            <span>Sungai menjadi lebih bersih</span>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <button id="submitQuiz" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-6 rounded-xl text-xl transition">
+                                <i class="fas fa-paper-plane mr-2"></i>Kirim Jawaban
+                            </button>
+                        </div>
+
+                        <div id="quizResult" class="quiz-result mt-8 text-center">
+                            <!-- Result will be shown here -->
+                        </div>
+                    </div>
+                `
+                },
+                'pengelolaan-1': {
+                    title: 'Cara Memilah Sampah',
+                    type: 'article',
+                    content: `
+                    <div class="p-8 md:p-12">
+                        <div class="mb-6">
+                            <span class="badge bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-semibold">
+                                <i class="fas fa-book-open"></i> Materi Pembelajaran
+                            </span>
+                        </div>
+                        <h2 class="text-4xl font-bold mb-6 text-green-600"><i class="fas fa-sort mr-3"></i>Cara Memilah Sampah dengan Benar</h2>
+                        
+                        <div class="bg-gradient-to-r from-green-100 to-emerald-100 rounded-2xl p-8 mb-8">
+                            <p class="text-xl text-gray-800 leading-relaxed">
+                                <i class="fas fa-quote-left text-green-500 mr-2"></i>
+                                Memilah sampah adalah langkah pertama yang penting dalam pengelolaan sampah. Dengan memilah, kita memudahkan proses daur ulang dan pengomposan.
+                                <i class="fas fa-quote-right text-green-500 ml-2"></i>
+                            </p>
+                        </div>
+
+                        <h3 class="text-2xl font-bold text-gray-800 mb-6"><i class="fas fa-list-ul mr-2 text-green-600"></i>Kategori Sampah</h3>
+                        
+                        <div class="grid md:grid-cols-3 gap-6 my-8">
+                            <div class="bg-green-50 p-6 rounded-2xl text-center border-2 border-green-200">
+                                <i class="fas fa-apple-alt text-6xl mb-4 text-green-600"></i>
+                                <h4 class="font-bold text-xl mb-3 text-green-700">Organik</h4>
+                                <p class="text-gray-700">Sisa makanan, daun, ranting. Bisa dijadikan kompos</p>
+                                <div class="mt-3">
+                                    <span class="bg-green-200 text-green-800 px-2 py-1 rounded text-sm">Warna Hijau</span>
+                                </div>
+                            </div>
+                            <div class="bg-yellow-50 p-6 rounded-2xl text-center border-2 border-yellow-200">
+                                <i class="fas fa-plastic-bottle text-6xl mb-4 text-yellow-600"></i>
+                                <h4 class="font-bold text-xl mb-3 text-yellow-700">Anorganik</h4>
+                                <p class="text-gray-700">Plastik, kaca, logam. Bisa didaur ulang</p>
+                                <div class="mt-3">
+                                    <span class="bg-yellow-200 text-yellow-800 px-2 py-1 rounded text-sm">Warna Kuning</span>
+                                </div>
+                            </div>
+                            <div class="bg-red-50 p-6 rounded-2xl text-center border-2 border-red-200">
+                                <i class="fas fa-battery-full text-6xl mb-4 text-red-600"></i>
+                                <h4 class="font-bold text-xl mb-3 text-red-700">B3 (Berbahaya)</h4>
+                                <p class="text-gray-700">Baterai, obat kadaluarsa. Butuh penanganan khusus</p>
+                                <div class="mt-3">
+                                    <span class="bg-red-200 text-red-800 px-2 py-1 rounded text-sm">Warna Merah</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-gradient-to-r from-green-500 to-emerald-600 text-white p-8 rounded-2xl mt-8">
+                            <h3 class="text-2xl font-bold mb-4"><i class="fas fa-lightbulb mr-2"></i>Tips Memilah Sampah</h3>
+                            <ul class="space-y-3 text-lg">
+                                <li><i class="fas fa-check-circle mr-2"></i>Sediakan tempat sampah berbeda untuk setiap jenis</li>
+                                <li><i class="fas fa-check-circle mr-2"></i>Cuci sampah plastik sebelum memilah</li>
+                                <li><i class="fas fa-check-circle mr-2"></i>Pisahkan sampah basah dan kering</li>
+                                <li><i class="fas fa-check-circle mr-2"></i>Ajarkan seluruh keluarga cara memilah</li>
+                            </ul>
+                        </div>
+                    </div>
+                `
+                },
+                'pengelolaan-2': {
+                    title: '3R: Reduce, Reuse, Recycle',
+                    type: 'article',
+                    content: `
+                    <div class="p-8 md:p-12">
+                        <div class="mb-6">
+                            <span class="badge bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-semibold">
+                                <i class="fas fa-book-open"></i> Materi Pembelajaran
+                            </span>
+                        </div>
+                        <h2 class="text-4xl font-bold mb-6 text-green-600"><i class="fas fa-sync-alt mr-3"></i>3R: Reduce, Reuse, Recycle</h2>
+                        
+                        <div class="bg-gradient-to-r from-green-100 to-emerald-100 rounded-2xl p-8 mb-8">
+                            <p class="text-xl text-gray-800 leading-relaxed">
+                                <i class="fas fa-quote-left text-green-500 mr-2"></i>
+                                3R adalah cara bijak mengelola sampah: Reduce (mengurangi), Reuse (menggunakan kembali), dan Recycle (mendaur ulang). Mari kita praktikkan!
+                                <i class="fas fa-quote-right text-green-500 ml-2"></i>
+                            </p>
+                        </div>
+
+                        <div class="space-y-6">
+                            <div class="bg-green-50 p-6 rounded-2xl border-l-4 border-green-500">
+                                <h3 class="text-2xl font-bold text-green-700 mb-3 flex items-center">
+                                    <i class="fas fa-minus-circle text-3xl mr-3"></i>
+                                    REDUCE (Mengurangi)
+                                </h3>
+                                <p class="text-gray-700 text-lg leading-relaxed">Mengurangi jumlah sampah yang kita hasilkan. Gunakan barang yang benar-benar diperlukan dan hindari pemborosan.</p>
+                                <div class="mt-4">
+                                    <span class="inline-block bg-green-200 text-green-800 px-3 py-1 rounded-full text-sm font-semibold">Contoh: Bawa tas belanja sendiri, kurangi penggunaan plastik</span>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-blue-50 p-6 rounded-2xl border-l-4 border-blue-500">
+                                <h3 class="text-2xl font-bold text-blue-700 mb-3 flex items-center">
+                                    <i class="fas fa-redo-alt text-3xl mr-3"></i>
+                                    REUSE (Menggunakan Kembali)
+                                </h3>
+                                <p class="text-gray-700 text-lg leading-relaxed">Menggunakan kembali barang-barang yang masih bisa dipakai sebelum akhirnya menjadi sampah.</p>
+                                <div class="mt-4">
+                                    <span class="inline-block bg-blue-200 text-blue-800 px-3 py-1 rounded-full text-sm font-semibold">Contoh: Gunakan botol minum isi ulang, pakai kertas bekas untuk corat-coret</span>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-purple-50 p-6 rounded-2xl border-l-4 border-purple-500">
+                                <h3 class="text-2xl font-bold text-purple-700 mb-3 flex items-center">
+                                    <i class="fas fa-recycle text-3xl mr-3"></i>
+                                    RECYCLE (Mendaur Ulang)
+                                </h3>
+                                <p class="text-gray-700 text-lg leading-relaxed">Mengolah kembali sampah menjadi barang baru yang bermanfaat.</p>
+                                <div class="mt-4">
+                                    <span class="inline-block bg-purple-200 text-purple-800 px-3 py-1 rounded-full text-sm font-semibold">Contoh: Daur ulang kertas, plastik, dan kaleng menjadi barang baru</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-gradient-to-r from-green-500 to-emerald-600 text-white p-8 rounded-2xl mt-8">
+                            <h3 class="text-2xl font-bold mb-4"><i class="fas fa-lightbulb mr-2"></i>Ide Kreatif 3R</h3>
+                            <ul class="space-y-3 text-lg">
+                                <li><i class="fas fa-check-circle mr-2"></i>Botol plastik bisa jadi pot tanaman</li>
+                                <li><i class="fas fa-check-circle mr-2"></i>Kardus bekas bisa jadi mainan atau tempat penyimpanan</li>
+                                <li><i class="fas fa-check-circle mr-2"></i>Kaleng bekas bisa jadi celengan atau tempat pensil</li>
+                                <li><i class="fas fa-check-circle mr-2"></i>Kertas bekas bisa jadi kertas daur ulang</li>
+                            </ul>
+                        </div>
+                    </div>
+                `
+                },
+                'pengelolaan-3': {
+                    title: 'Kuis Pengelolaan',
+                    type: 'quiz',
+                    content: `
+                    <div class="p-8 md:p-12">
+                        <div class="mb-6">
+                            <span class="badge bg-yellow-100 text-yellow-700 px-4 py-2 rounded-full text-sm font-semibold">
+                                <i class="fas fa-gamepad"></i> Kuis Interaktif
+                            </span>
+                        </div>
+                        <h2 class="text-4xl font-bold mb-6 text-green-600"><i class="fas fa-question-circle mr-3"></i>Kuis Pengelolaan Sampah</h2>
+                        
+                        <div class="bg-gradient-to-r from-yellow-100 to-amber-100 rounded-2xl p-8 mb-8 text-center">
+                            <i class="fas fa-brain text-7xl mb-4 text-yellow-600"></i>
+                            <p class="text-2xl font-bold text-gray-800">Ayo uji pengetahuanmu tentang pengelolaan sampah!</p>
+                        </div>
+
+                        <div id="quizContainer">
+                            <div class="quiz-question mb-8">
+                                <h3 class="text-2xl font-bold text-gray-800 mb-4">1. Apa arti dari Reduce dalam 3R?</h3>
+                                <div class="space-y-3">
+                                    <button class="quiz-option w-full text-left bg-white hover:bg-green-50 p-4 rounded-xl border-2 border-gray-200 transition" data-correct="true">
+                                        <div class="flex items-center">
+                                            <div class="bg-green-500 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center mr-4">
+                                                A
+                                            </div>
+                                            <span>Mengurangi jumlah sampah</span>
+                                        </div>
+                                    </button>
+                                    <button class="quiz-option w-full text-left bg-white hover:bg-green-50 p-4 rounded-xl border-2 border-gray-200 transition" data-correct="false">
+                                        <div class="flex items-center">
+                                            <div class="bg-green-500 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center mr-4">
+                                                B
+                                            </div>
+                                            <span>Menggunakan kembali sampah</span>
+                                        </div>
+                                    </button>
+                                    <button class="quiz-option w-full text-left bg-white hover:bg-green-50 p-4 rounded-xl border-2 border-gray-200 transition" data-correct="false">
+                                        <div class="flex items-center">
+                                            <div class="bg-green-500 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center mr-4">
+                                                C
+                                            </div>
+                                            <span>Mendaur ulang sampah</span>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="quiz-question mb-8">
+                                <h3 class="text-2xl font-bold text-gray-800 mb-4">2. Manakah contoh Reuse yang benar?</h3>
+                                <div class="space-y-3">
+                                    <button class="quiz-option w-full text-left bg-white hover:bg-green-50 p-4 rounded-xl border-2 border-gray-200 transition" data-correct="false">
+                                        <div class="flex items-center">
+                                            <div class="bg-green-500 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center mr-4">
+                                                A
+                                            </div>
+                                            <span>Membakar sampah plastik</span>
+                                        </div>
+                                    </button>
+                                    <button class="quiz-option w-full text-left bg-white hover:bg-green-50 p-4 rounded-xl border-2 border-gray-200 transition" data-correct="true">
+                                        <div class="flex items-center">
+                                            <div class="bg-green-500 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center mr-4">
+                                                B
+                                            </div>
+                                            <span>Menggunakan botol minum isi ulang</span>
+                                        </div>
+                                    </button>
+                                    <button class="quiz-option w-full text-left bg-white hover:bg-green-50 p-4 rounded-xl border-2 border-gray-200 transition" data-correct="false">
+                                        <div class="flex items-center">
+                                            <div class="bg-green-500 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center mr-4">
+                                                C
+                                            </div>
+                                            <span>Membuang sampah di tempatnya</span>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="quiz-question mb-8">
+                                <h3 class="text-2xl font-bold text-gray-800 mb-4">3. Sampah organik sebaiknya diolah menjadi apa?</h3>
+                                <div class="space-y-3">
+                                    <button class="quiz-option w-full text-left bg-white hover:bg-green-50 p-4 rounded-xl border-2 border-gray-200 transition" data-correct="true">
+                                        <div class="flex items-center">
+                                            <div class="bg-green-500 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center mr-4">
+                                                A
+                                            </div>
+                                            <span>Kompos untuk menyuburkan tanah</span>
+                                        </div>
+                                    </button>
+                                    <button class="quiz-option w-full text-left bg-white hover:bg-green-50 p-4 rounded-xl border-2 border-gray-200 transition" data-correct="false">
+                                        <div class="flex items-center">
+                                            <div class="bg-green-500 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center mr-4">
+                                                B
+                                            </div>
+                                            <span>Bahan bakar</span>
+                                        </div>
+                                    </button>
+                                    <button class="quiz-option w-full text-left bg-white hover:bg-green-50 p-4 rounded-xl border-2 border-gray-200 transition" data-correct="false">
+                                        <div class="flex items-center">
+                                            <div class="bg-green-500 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center mr-4">
+                                                C
+                                            </div>
+                                            <span>Mainan anak-anak</span>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <button id="submitQuiz" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-6 rounded-xl text-xl transition">
+                                <i class="fas fa-paper-plane mr-2"></i>Kirim Jawaban
+                            </button>
+                        </div>
+
+                        <div id="quizResult" class="quiz-result mt-8 text-center">
+                            <!-- Result will be shown here -->
+                        </div>
+                    </div>
+                `
+                }
+            };
+
+            // Show Lesson
+            function showLesson(topic, lessonNumber) {
+                currentTopic = topic;
+                currentLessonNumber = lessonNumber;
+                const lessonKey = `${topic}-${lessonNumber}`;
+                const lesson = lessons[lessonKey];
+
+                if (lesson) {
+                    document.getElementById('lessonContent').innerHTML = lesson.content;
+                    showPage('lesson');
+
+                    // Update navigation buttons
+                    updateLessonNavigation();
+
+                    // Initialize quiz if it's a quiz lesson
+                    if (lesson.type === 'quiz') {
+                        initializeQuiz();
+                    }
+                }
+            }
+
+            // Update Lesson Navigation
+            function updateLessonNavigation() {
+                const prevBtn = document.getElementById('prevLesson');
+                const nextBtn = document.getElementById('nextLesson');
+
+                // Hide both buttons initially
+                prevBtn.classList.add('hidden');
+                nextBtn.classList.add('hidden');
+
+                // Check if previous lesson exists
+                const prevLessonKey = `${currentTopic}-${currentLessonNumber - 1}`;
+                if (lessons[prevLessonKey]) {
+                    prevBtn.classList.remove('hidden');
+                }
+
+                // Check if next lesson exists
+                const nextLessonKey = `${currentTopic}-${currentLessonNumber + 1}`;
+                if (lessons[nextLessonKey]) {
+                    nextBtn.classList.remove('hidden');
+                }
+            }
+
+            // Navigate between lessons
+            function navigateLesson(direction) {
+                const newLessonNumber = currentLessonNumber + direction;
+                showLesson(currentTopic, newLessonNumber);
+            }
+
+            // Initialize Quiz
+            function initializeQuiz() {
+                const quizOptions = document.querySelectorAll('.quiz-option');
+                const submitBtn = document.getElementById('submitQuiz');
+                const quizResult = document.getElementById('quizResult');
+
+                let selectedAnswers = [];
+
+                quizOptions.forEach(option => {
+                    option.addEventListener('click', function () {
+                        // Remove selection from other options in the same question
+                        const question = this.closest('.quiz-question');
+                        question.querySelectorAll('.quiz-option').forEach(opt => {
+                            opt.classList.remove('bg-green-100', 'border-green-500');
+                        });
+
+                        // Select this option
+                        this.classList.add('bg-green-100', 'border-green-500');
+
+                        // Store the answer
+                        const questionIndex = Array.from(document.querySelectorAll('.quiz-question')).indexOf(question);
+                        selectedAnswers[questionIndex] = this.getAttribute('data-correct') === 'true';
+                    });
+                });
+
+                submitBtn.addEventListener('click', function () {
+                    const totalQuestions = document.querySelectorAll('.quiz-question').length;
+                    const correctAnswers = selectedAnswers.filter(answer => answer === true).length;
+                    const score = Math.round((correctAnswers / totalQuestions) * 100);
+
+                    let resultHTML = '';
+
+                    if (score === 100) {
+                        resultHTML = `
+                        <div class="bg-gradient-to-r from-green-500 to-emerald-600 text-white p-8 rounded-2xl">
+                            <i class="fas fa-trophy text-7xl mb-4"></i>
+                            <h3 class="text-3xl font-bold mb-4">Luar Biasa!</h3>
+                            <p class="text-xl mb-4">Kamu menjawab semua pertanyaan dengan benar!</p>
+                            <p class="text-2xl font-bold">Skor: ${score}%</p>
+                        </div>
+                    `;
+                    } else if (score >= 70) {
+                        resultHTML = `
+                        <div class="bg-gradient-to-r from-yellow-500 to-amber-600 text-white p-8 rounded-2xl">
+                            <i class="fas fa-star text-7xl mb-4"></i>
+                            <h3 class="text-3xl font-bold mb-4">Bagus Sekali!</h3>
+                            <p class="text-xl mb-4">Kamu sudah memahami materi dengan baik!</p>
+                            <p class="text-2xl font-bold">Skor: ${score}%</p>
+                        </div>
+                    `;
+                    } else {
+                        resultHTML = `
+                        <div class="bg-gradient-to-r from-red-500 to-pink-600 text-white p-8 rounded-2xl">
+                            <i class="fas fa-redo text-7xl mb-4"></i>
+                            <h3 class="text-3xl font-bold mb-4">Ayo Coba Lagi!</h3>
+                            <p class="text-xl mb-4">Pelajari lagi materinya dan coba kuis sekali lagi!</p>
+                            <p class="text-2xl font-bold">Skor: ${score}%</p>
+                            <button onclick="showLesson('${currentTopic}', ${currentLessonNumber - 1})" class="mt-4 bg-white text-red-500 font-bold py-2 px-6 rounded-full">
+                                Pelajari Materi
+                            </button>
+                        </div>
+                    `;
+                    }
+
+                    quizResult.innerHTML = resultHTML;
+                    quizResult.classList.add('active');
+
+                    // Show correct answers
+                    document.querySelectorAll('.quiz-option').forEach(option => {
+                        if (option.getAttribute('data-correct') === 'true') {
+                            option.classList.add('correct-answer');
+                        } else {
+                            option.classList.add('wrong-answer');
+                        }
+                        option.disabled = true;
+                    });
+
+                    submitBtn.disabled = true;
+                });
+            }
+
+            // Auto-play background video with user interaction
+            document.addEventListener('click', function () {
+                const video = document.querySelector('.video-background');
+                if (video.paused) {
+                    video.play().catch(e => console.log('Video play failed:', e));
+                }
+            }, { once: true });
+        </script>
+</body>
+
+</html>

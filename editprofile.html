@@ -34,8 +34,8 @@
             <!-- Cover Image Section -->
             <div class="relative">
                 <div class="h-48 bg-gradient-to-r from-emerald-400 to-teal-500 relative">
-                    <img id="coverPreview" src="assets/image/images/banner.png"
-                        alt="Cover" class="w-full h-full object-cover">
+                    <img id="coverPreview" src="assets/image/images/banner.png" alt="Cover"
+                        class="w-full h-full object-cover">
                     <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
                         <label for="coverInput"
                             class="cursor-pointer bg-white bg-opacity-90 hover:bg-opacity-100 text-gray-800 px-4 py-2 rounded-full transition flex items-center space-x-2">
@@ -109,19 +109,22 @@
                             Keahlian/Tag
                         </label>
                         <div id="tagsContainer" class="flex flex-wrap gap-2 mb-3">
-                            <span class="tag-item bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-sm flex items-center space-x-2">
+                            <span
+                                class="tag-item bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-sm flex items-center space-x-2">
                                 <span>Organik Expert</span>
                                 <button type="button" onclick="removeTag(this)" class="hover:text-emerald-900">
                                     <i class="fas fa-times text-xs"></i>
                                 </button>
                             </span>
-                            <span class="tag-item bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-sm flex items-center space-x-2">
+                            <span
+                                class="tag-item bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-sm flex items-center space-x-2">
                                 <span>Plastik Recycler</span>
                                 <button type="button" onclick="removeTag(this)" class="hover:text-emerald-900">
                                     <i class="fas fa-times text-xs"></i>
                                 </button>
                             </span>
-                            <span class="tag-item bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-sm flex items-center space-x-2">
+                            <span
+                                class="tag-item bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-sm flex items-center space-x-2">
                                 <span>Food Savior</span>
                                 <button type="button" onclick="removeTag(this)" class="hover:text-emerald-900">
                                     <i class="fas fa-times text-xs"></i>
@@ -159,7 +162,7 @@
                     <!-- Social Media -->
                     <div class="border-t pt-6">
                         <h3 class="text-lg font-bold text-gray-800 mb-4">Media Sosial</h3>
-                        
+
                         <div class="space-y-4">
                             <div>
                                 <label class="block text-sm font-semibold text-gray-700 mb-2">
@@ -204,7 +207,8 @@
     </div>
 
     <!-- Success Modal -->
-    <div id="successModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+    <div id="successModal"
+        class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
         <div class="bg-white rounded-2xl p-8 max-w-md w-full transform transition-all">
             <div class="text-center">
                 <div class="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -222,11 +226,11 @@
 
     <script>
         // Preview Cover Image
-        document.getElementById('coverInput').addEventListener('change', function(e) {
+        document.getElementById('coverInput').addEventListener('change', function (e) {
             const file = e.target.files[0];
             if (file) {
                 const reader = new FileReader();
-                reader.onload = function(e) {
+                reader.onload = function (e) {
                     document.getElementById('coverPreview').src = e.target.result;
                 }
                 reader.readAsDataURL(file);
@@ -234,11 +238,11 @@
         });
 
         // Preview Profile Image
-        document.getElementById('profileInput').addEventListener('change', function(e) {
+        document.getElementById('profileInput').addEventListener('change', function (e) {
             const file = e.target.files[0];
             if (file) {
                 const reader = new FileReader();
-                reader.onload = function(e) {
+                reader.onload = function (e) {
                     document.getElementById('profilePreview').src = e.target.result;
                 }
                 reader.readAsDataURL(file);
@@ -249,7 +253,7 @@
         function addTag() {
             const input = document.getElementById('newTag');
             const tagText = input.value.trim();
-            
+
             if (tagText) {
                 const tagsContainer = document.getElementById('tagsContainer');
                 const newTag = document.createElement('span');
@@ -271,7 +275,7 @@
         }
 
         // Add tag on Enter key
-        document.getElementById('newTag').addEventListener('keypress', function(e) {
+        document.getElementById('newTag').addEventListener('keypress', function (e) {
             if (e.key === 'Enter') {
                 e.preventDefault();
                 addTag();
@@ -279,9 +283,9 @@
         });
 
         // Form Submit
-        document.getElementById('editProfileForm').addEventListener('submit', function(e) {
+        document.getElementById('editProfileForm').addEventListener('submit', function (e) {
             e.preventDefault();
-            
+
             // Collect form data
             const formData = {
                 fullName: document.getElementById('fullName').value,
@@ -297,16 +301,16 @@
             };
 
             console.log('Form Data:', formData);
-            
+
             // Show success modal
             document.getElementById('successModal').classList.remove('hidden');
-            
+
             // Save to localStorage for demo
             localStorage.setItem('userProfile', JSON.stringify(formData));
         });
 
         // Save button in navbar
-        document.getElementById('saveBtn').addEventListener('click', function() {
+        document.getElementById('saveBtn').addEventListener('click', function () {
             document.getElementById('editProfileForm').requestSubmit();
         });
 
@@ -321,11 +325,11 @@
 
         // Character counter for bio
         const bioTextarea = document.getElementById('bio');
-        bioTextarea.addEventListener('input', function() {
+        bioTextarea.addEventListener('input', function () {
             const maxLength = 500;
             const currentLength = this.value.length;
             const remaining = maxLength - currentLength;
-            
+
             if (currentLength > maxLength) {
                 this.value = this.value.substring(0, maxLength);
             }
