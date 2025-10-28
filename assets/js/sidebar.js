@@ -157,7 +157,7 @@ if (logoutModal) {
 const pageTitles = {
     'dashboard': 'Dashboard',
     'sampahtersedia': 'Item Tersedia',
-    'upload': 'Upload Sampah',
+    'upload': 'Upload Item',
     'booking': 'Booking Saya',
      'statusupload': 'Status Upload',
     'leaderboard': 'Leaderboard',
