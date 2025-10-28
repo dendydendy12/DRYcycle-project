@@ -191,36 +191,9 @@
                     Kemarin
                 </h2>
 
-                <!-- Notifikasi 4 - KOMUNITAS -->
-                <div class="notification-item notification-read mb-4 p-4 rounded-lg transition-all duration-300 hover:shadow-md"
-                    data-id="4">
-                    <div class="flex justify-between items-start mb-2">
-                        <h3 class="font-semibold text-gray-800 flex items-center">
-                            <i class="fas fa-users text-emerald-500 mr-2"></i>
-                            Event Komunitas
-                        </h3>
-                        <div class="flex items-center space-x-2">
-                            <span class="text-xs text-gray-500">1 hari lalu</span>
-                            <button class="mark-read-btn text-emerald-500">
-                                <i class="fas fa-check-circle"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <p class="text-sm text-gray-600 mb-2 line-clamp-1">
-                        "Clean Up Day" di Taman Merdeka Minggu depan. Daftar sekarang dapat 100 poin!
-                    </p>
-                    <div class="flex justify-between items-center mt-3">
-                        <span
-                            class="inline-block bg-emerald-500 text-white text-xs px-3 py-1 rounded-full font-medium">Komunitas</span>
-                        <button
-                            class="view-detail-btn text-emerald-500 hover:text-emerald-600 text-sm font-medium flex items-center transition-colors">
-                            Selengkapnya
-                            <i class="fas fa-chevron-right ml-1 text-xs"></i>
-                        </button>
-                    </div>
-                </div>
 
-                <!-- Notifikasi 5 - REWARD -->
+
+                <!-- Notifikasi 4 - REWARD -->
                 <div class="notification-item notification-read mb-4 p-4 rounded-lg transition-all duration-300 hover:shadow-md"
                     data-id="5">
                     <div class="flex justify-between items-start mb-2">
@@ -317,13 +290,7 @@
             </div>
         </div>
 
-        <!-- Tombol Lihat Semua Notifikasi -->
-        <div class="mt-6 text-center">
-            <button
-                class="bg-emerald-500 hover:bg-emerald-600 text-white font-medium py-3 px-6 rounded-full transition-all duration-300 transform hover:scale-105 shadow-md">
-                Lihat Semua Notifikasi
-            </button>
-        </div>
+
     </div>
 
     <!-- Modal Detail Notifikasi -->
@@ -529,50 +496,9 @@
                 `,
                 actionText: "Lihat Laporan"
             },
-            4: {
-                title: "Event Komunitas",
-                time: "1 hari lalu",
-                category: "Komunitas",
-                status: "Terbuka",
-                isRead: true,
-                content: `
-                    <div class="space-y-4">
-                        <div class="bg-gradient-to-r from-blue-400 to-cyan-500 p-4 rounded-lg text-white">
-                            <h4 class="font-bold text-lg mb-2">Clean Up Day</h4>
-                            <div class="flex items-center space-x-4 text-sm">
-                                <div class="flex items-center">
-                                    <i class="far fa-calendar mr-2"></i>
-                                    <span>Minggu, 29 Okt 2023</span>
-                                </div>
-                                <div class="flex items-center">
-                                    <i class="far fa-clock mr-2"></i>
-                                    <span>07:00 - 11:00</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <h4 class="font-semibold text-gray-800 mb-2">Lokasi Acara</h4>
-                            <div class="bg-gray-50 p-4 rounded-lg">
-                                <p class="text-sm font-medium">Taman Merdeka, Jakarta Pusat</p>
-                                <p class="text-xs text-gray-600 mt-1">Jl. Medan Merdeka Selatan, Gambir</p>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <h4 class="font-semibold text-gray-800 mb-2">Benefit Mengikuti</h4>
-                            <ul class="list-disc list-inside text-gray-700 space-y-2 text-sm">
-                                <li>+100 poin untuk partisipasi</li>
-                                <li>Goodie bag ramah lingkungan</li>
-                                <li>Sertifikat partisipasi</li>
-                                <li>Networking dengan komunitas eco-friendly</li>
-                            </ul>
-                        </div>
-                    </div>
-                `,
-                actionText: "Daftar Sekarang"
-            }
-        };
+
+        }
+            ;
 
         // Variabel global untuk melacak notifikasi yang sedang dilihat
         let currentNotificationId = null;
