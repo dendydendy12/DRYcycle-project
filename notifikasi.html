@@ -50,7 +50,7 @@
     <nav class="bg-white sticky top-0 z-50 flex items-center justify-between px-4 py-3 shadow-md">
         <!-- Kiri: Tombol Back + Judul -->
         <div class="flex items-center space-x-3">
-            <button id="backBtn"
+            <button onclick="goBack()"
                 class="text-gray-700 hover:text-emerald-600 transition transform hover:scale-110">
                 <i class="fa-solid fa-arrow-left text-xl"></i>
             </button>
@@ -503,7 +503,6 @@
         // Variabel global untuk melacak notifikasi yang sedang dilihat
         let currentNotificationId = null;
 
-
         // Fungsi kembali yang cerdas
         function goBack() {
             // Daftar semua halaman yang valid di aplikasi DRYcycle
@@ -556,15 +555,6 @@
 
         // Inisialisasi setelah DOM dimuat
         document.addEventListener('DOMContentLoaded', function () {
-=======
-        // Inisialisasi setelah DOM dimuat
-        document.addEventListener('DOMContentLoaded', function() {
-            // Fungsi kembali yang sudah diperbaiki
-            document.getElementById('backBtn').addEventListener('click', () => {
-                window.history.back();
-            });
-
- 2322b7a9cbc3918c8a394864ee0ff2aaf25295ff
             const modal = document.getElementById('notificationModal');
             const modalTitle = document.getElementById('modalTitle');
             const modalTime = document.getElementById('modalTime');
