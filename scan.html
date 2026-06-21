@@ -558,6 +558,36 @@
                 subcategory: 'Televisi, monitor',
                 text: 'TV mengandung logam berat dan bahan berbahaya. Serahkan ke pusat pengumpulan e-waste atau program tukar tambah.'
             },
+            'umbrella': {
+                category: 'Sampah Anorganik Lainnya',
+                color: 'plastic-other',
+                subcategory: 'Payung bekas, material kain & logam',
+                text: 'Pisahkan bagian kain dari rangka logam. Logam bisa didaur ulang, sedangkan kain payung seringkali merupakan material komposit.'
+            },
+            'handbag': {
+                category: 'Sampah Alternatif',
+                color: 'paper',
+                subcategory: 'Tas tangan, dompet bekas',
+                text: 'Jika masih layak, donasikan. Jika rusak parah, kumpulkan sebagai sampah tekstil untuk pengolahan lebih lanjut.'
+            },
+            'backpack': {
+                category: 'Sampah Alternatif',
+                color: 'paper',
+                subcategory: 'Ransel bekas',
+                text: 'Donasikan jika masih layak pakai. Material kain ransel bisa didaur ulang menjadi serat tekstil baru.'
+            },
+            'scissors': {
+                category: 'Logam',
+                color: 'metal',
+                subcategory: 'Gunting, benda tajam logam',
+                text: 'Bungkus bagian tajam dengan kertas/kardus tebal sebelum dibuang ke kontainer logam untuk keamanan petugas.'
+            },
+            'toothbrush': {
+                category: 'Plastik Non-Daur Ulang',
+                color: 'plastic-other',
+                subcategory: 'Sikat gigi bekas',
+                text: 'Sikat gigi umumnya terbuat dari plastik komposit yang sulit didaur ulang secara reguler. Pertimbangkan program ecobrick.'
+            },
         };
 
         // Tombol Kembali
@@ -592,10 +622,23 @@
             }
         }
 
+        const CONFIDENCE_THRESHOLD = 0.6; // Minimal 60% untuk dianggap valid
+        const BUZZER_THRESHOLD = 0.75; // Hanya bunyi bip jika sangat yakin
+
+        // Daftar objek yang relevan untuk scanner sampah (Noise Filtering)
+        const WASTE_CLASSES = [
+            'bottle', 'cup', 'wine glass', 'fork', 'knife', 'spoon',
+            'banana', 'apple', 'orange', 'broccoli', 'carrot',
+            'cake', 'pizza', 'hot dog', 'sandwich', 'book', 'newspaper',
+            'handbag', 'scissors', 'umbrella', 'clock', 'vase',
+            'remote', 'keyboard', 'mouse', 'laptop', 'cell phone',
+            'microwave', 'oven', 'toaster', 'sink', 'refrigerator',
+            'hair drier', 'toothbrush', 'backpack', 'suitcase'
+        ];
+
         async function detectFrame() {
             if (!model) return;
 
-            // Pastikan video sudah siap untuk dideteksi
             if (video.readyState < 2) {
                 requestAnimationFrame(detectFrame);
                 return;
@@ -605,32 +648,58 @@
                 const predictions = await model.detect(video);
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-                if (predictions.length > 0) {
-                    const p = predictions[0];
-                    const conf = Math.round(p.score * 100);
+                // Filter: Harus ada di whitelist WASTE_CLASSES dan skor >= 0.2 untuk visual
+                const validPredictions = predictions
+                    .filter(p => WASTE_CLASSES.includes(p.class.toLowerCase()) && p.score >= 0.2)
+                    .sort((a, b) => b.score - a.score);
 
-                    ctx.strokeStyle = '#10b981';
-                    ctx.lineWidth = 3;
-                    ctx.strokeRect(p.bbox[0], p.bbox[1], p.bbox[2], p.bbox[3]);
+                if (validPredictions.length > 0) {
+                    const topP = validPredictions[0];
+                    const conf = Math.round(topP.score * 100);
 
-                    ctx.fillStyle = '#10b981';
-                    ctx.fillRect(p.bbox[0], p.bbox[1] - 30, p.bbox[2], 30);
-                    ctx.fillStyle = '#ffffff';
-                    ctx.font = 'bold 14px sans-serif';
-                    ctx.fillText(`${p.class} (${conf}%)`, p.bbox[0] + 5, p.bbox[1] - 10);
+                    // Visual feedback: Bounding Box
+                    validPredictions.forEach(p => {
+                        const score = Math.round(p.score * 100);
+                        const isHighConf = p.score >= CONFIDENCE_THRESHOLD;
+                        const color = isHighConf ? '#10b981' : '#f59e0b';
 
-                    if (p.class !== lastLabel) {
-                        lastLabel = p.class;
-                        beep.play().catch(e => console.log("Audio play failed:", e));
-                        updateDetection(p.class, conf);
-                        addToHistory(p.class, conf);
+                        ctx.strokeStyle = color;
+                        ctx.lineWidth = 2;
+                        ctx.setLineDash(isHighConf ? [] : [5, 5]); // Garis putus-putus jika belum yakin
+                        ctx.strokeRect(p.bbox[0], p.bbox[1], p.bbox[2], p.bbox[3]);
+                        ctx.setLineDash([]);
+                    });
+
+                    if (topP.score >= CONFIDENCE_THRESHOLD) {
+                        ctx.fillStyle = '#10b981';
+                        ctx.fillRect(topP.bbox[0], topP.bbox[1] - 30, topP.bbox[2], 30);
+                        ctx.fillStyle = '#ffffff';
+                        ctx.font = 'bold 16px sans-serif';
+                        ctx.fillText(`${topP.class.toUpperCase()} ${conf}%`, topP.bbox[0] + 5, topP.bbox[1] - 8);
+
+                        if (topP.class !== lastLabel) {
+                            lastLabel = topP.class;
+                            if (topP.score >= BUZZER_THRESHOLD) {
+                                beep.play().catch(e => console.log("Audio play failed:", e));
+                            }
+                            updateDetection(topP.class, conf);
+                            addToHistory(topP.class, conf);
+                        }
+
+                        confidenceBar.style.width = conf + '%';
+                        confidenceText.textContent = conf + '%';
+                        confidenceSection.style.display = 'block';
+                    } else {
+                        // Jika ada objek tapi belum yakin
+                        detectionLabel.textContent = 'Menganalisis objek... (' + conf + '%)';
+                        detectionLabel.className = "text-lg sm:text-2xl font-bold text-amber-600";
+                        categorySection.style.display = 'none';
+                        recommendationSection.style.display = 'none';
+                        confidenceSection.style.display = 'none';
                     }
-
-                    confidenceBar.style.width = conf + '%';
-                    confidenceText.textContent = conf + '%';
-                    confidenceSection.style.display = 'block';
                 } else {
                     detectionLabel.textContent = 'Tidak ada sampah terdeteksi';
+                    detectionLabel.className = "text-lg sm:text-2xl font-bold text-blue-700";
                     categorySection.style.display = 'none';
                     recommendationSection.style.display = 'none';
                     lastLabel = "";
@@ -720,10 +789,11 @@
                 iotStatus.innerHTML = '<i class="fas fa-spinner spin-slow"></i> Menyiapkan Kamera...';
                 await setupCamera();
 
-                iotStatus.innerHTML = '<i class="fas fa-spinner spin-slow"></i> Memuat AI Model...';
-                model = await cocoSsd.load();
+                iotStatus.innerHTML = '<i class="fas fa-spinner spin-slow"></i> Memuat AI Model (Lite)...';
+                // Gunakan model Lite untuk performa lebih cepat
+                model = await cocoSsd.load({ base: 'lite_mobilenet_v2' });
 
-                iotStatus.innerHTML = '<i class="fas fa-check-circle text-emerald-600"></i> IoT Terhubung';
+                iotStatus.innerHTML = '<i class="fas fa-check-circle text-emerald-600"></i> Scanner Siap';
                 detectFrame();
             } catch (err) {
                 console.error("Inisialisasi gagal:", err);
