@@ -2,158 +2,6 @@
    DRYcycle - Index Page Animations & Styles
    ======================================== */
 
-/* ===== PRELOADER ANIMATIONS ===== */
-#preloader {
-    position: fixed;
-    inset: 0;
-    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
-    transition: opacity 0.5s ease, visibility 0.5s ease;
-}
-
-#preloader.hidden {
-    opacity: 0;
-    visibility: hidden;
-}
-
-.loader-content {
-    text-align: center;
-}
-
-.logo-container {
-    position: relative;
-    width: 150px;
-    height: 150px;
-    margin: 0 auto 30px;
-}
-
-.recycle-particles {
-    position: absolute;
-    inset: 0;
-}
-
-.particle {
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    background: rgba(255, 255, 255, 0.6);
-    border-radius: 50%;
-    animation: orbit 3s linear infinite;
-}
-
-.particle:nth-child(1) { animation-delay: 0s; }
-.particle:nth-child(2) { animation-delay: 0.5s; }
-.particle:nth-child(3) { animation-delay: 1s; }
-.particle:nth-child(4) { animation-delay: 1.5s; }
-.particle:nth-child(5) { animation-delay: 2s; }
-.particle:nth-child(6) { animation-delay: 2.5s; }
-
-@keyframes orbit {
-    0% {
-        transform: rotate(0deg) translateX(60px) rotate(0deg);
-        opacity: 1;
-    }
-    100% {
-        transform: rotate(360deg) translateX(60px) rotate(-360deg);
-        opacity: 0.3;
-    }
-}
-
-.logo-circle {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 80px;
-    height: 80px;
-    background: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-    animation: pulse 2s ease-in-out infinite;
-}
-
-@keyframes pulse {
-    0%, 100% {
-        transform: translate(-50%, -50%) scale(1);
-    }
-    50% {
-        transform: translate(-50%, -50%) scale(1.1);
-    }
-}
-
-.logo-icon {
-    width: 50px;
-    height: 50px;
-    animation: spin 3s linear infinite;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-.loader-text {
-    color: white;
-    font-size: 2.5rem;
-    font-weight: bold;
-    margin-bottom: 10px;
-    animation: fadeInUp 0.8s ease-out;
-}
-
-.loader-subtitle {
-    color: rgba(255, 255, 255, 0.9);
-    font-size: 1rem;
-    margin-bottom: 30px;
-    animation: fadeInUp 0.8s ease-out 0.2s both;
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.progress-bar {
-    width: 250px;
-    height: 4px;
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 2px;
-    overflow: hidden;
-    margin: 0 auto;
-}
-
-.progress-fill {
-    height: 100%;
-    background: white;
-    border-radius: 2px;
-    animation: loading 2s ease-in-out infinite;
-}
-
-@keyframes loading {
-    0% {
-        width: 0%;
-        transform: translateX(0);
-    }
-    50% {
-        width: 100%;
-        transform: translateX(0);
-    }
-    100% {
-        width: 100%;
-        transform: translateX(100%);
-    }
-}
 
 /* ===== MAIN CONTENT FADE IN ===== */
 .main-content {
@@ -508,15 +356,6 @@ html {
 
 /* ===== RESPONSIVE ADJUSTMENTS ===== */
 @media (max-width: 768px) {
-    .loader-text {
-        font-size: 2rem;
-    }
-    
-    .logo-container {
-        width: 120px;
-        height: 120px;
-    }
-    
     .step-card:hover {
         transform: translateY(-5px);
     }
@@ -528,7 +367,6 @@ html {
 
 /* ===== PRINT STYLES ===== */
 @media print {
-    #preloader,
     nav,
     footer,
     .btn-primary {
