@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DRYcycle - Smart Waste Scanner</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.10.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.2.3"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         .gradient-emerald {
@@ -594,38 +594,50 @@
 
         async function detectFrame() {
             if (!model) return;
-            const predictions = await model.detect(video);
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            if (predictions.length > 0) {
-                const p = predictions[0];
-                const conf = Math.round(p.score * 100);
+            // Pastikan video sudah siap untuk dideteksi
+            if (video.readyState < 2) {
+                requestAnimationFrame(detectFrame);
+                return;
+            }
 
-                ctx.strokeStyle = '#10b981';
-                ctx.lineWidth = 3;
-                ctx.strokeRect(p.bbox[0], p.bbox[1], p.bbox[2], p.bbox[3]);
+            try {
+                const predictions = await model.detect(video);
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-                ctx.fillStyle = '#10b981';
-                ctx.fillRect(p.bbox[0], p.bbox[1] - 30, p.bbox[2], 30);
-                ctx.fillStyle = '#ffffff';
-                ctx.font = 'bold 14px sans-serif';
-                ctx.fillText(`${p.class} (${conf}%)`, p.bbox[0] + 5, p.bbox[1] - 10);
+                if (predictions.length > 0) {
+                    const p = predictions[0];
+                    const conf = Math.round(p.score * 100);
 
-                if (p.class !== lastLabel) {
-                    lastLabel = p.class;
-                    beep.play();
-                    updateDetection(p.class, conf);
-                    addToHistory(p.class, conf);
+                    ctx.strokeStyle = '#10b981';
+                    ctx.lineWidth = 3;
+                    ctx.strokeRect(p.bbox[0], p.bbox[1], p.bbox[2], p.bbox[3]);
+
+                    ctx.fillStyle = '#10b981';
+                    ctx.fillRect(p.bbox[0], p.bbox[1] - 30, p.bbox[2], 30);
+                    ctx.fillStyle = '#ffffff';
+                    ctx.font = 'bold 14px sans-serif';
+                    ctx.fillText(`${p.class} (${conf}%)`, p.bbox[0] + 5, p.bbox[1] - 10);
+
+                    if (p.class !== lastLabel) {
+                        lastLabel = p.class;
+                        beep.play().catch(e => console.log("Audio play failed:", e));
+                        updateDetection(p.class, conf);
+                        addToHistory(p.class, conf);
+                    }
+
+                    confidenceBar.style.width = conf + '%';
+                    confidenceText.textContent = conf + '%';
+                    confidenceSection.style.display = 'block';
+                } else {
+                    detectionLabel.textContent = 'Tidak ada sampah terdeteksi';
+                    categorySection.style.display = 'none';
+                    recommendationSection.style.display = 'none';
+                    lastLabel = "";
                 }
-
-                confidenceBar.style.width = conf + '%';
-                confidenceText.textContent = conf + '%';
-                confidenceSection.style.display = 'block';
-            } else {
-                detectionLabel.textContent = 'Tidak ada sampah terdeteksi';
-                categorySection.style.display = 'none';
-                recommendationSection.style.display = 'none';
-                lastLabel = "";
+            } catch (err) {
+                console.error("Kesalahan deteksi:", err);
+                detectionLabel.textContent = 'Gagal memproses gambar...';
             }
 
             requestAnimationFrame(detectFrame);
@@ -704,10 +716,20 @@
         });
 
         async function main() {
-            await setupCamera();
-            model = await cocoSsd.load();
-            iotStatus.innerHTML = '<i class="fas fa-check-circle text-emerald-600"></i> IoT Terhubung';
-            detectFrame();
+            try {
+                iotStatus.innerHTML = '<i class="fas fa-spinner spin-slow"></i> Menyiapkan Kamera...';
+                await setupCamera();
+
+                iotStatus.innerHTML = '<i class="fas fa-spinner spin-slow"></i> Memuat AI Model...';
+                model = await cocoSsd.load();
+
+                iotStatus.innerHTML = '<i class="fas fa-check-circle text-emerald-600"></i> IoT Terhubung';
+                detectFrame();
+            } catch (err) {
+                console.error("Inisialisasi gagal:", err);
+                iotStatus.innerHTML = '<i class="fas fa-exclamation-triangle text-red-500"></i> Gagal Memuat';
+                alert('Gagal menginisialisasi scanner. Silakan muat ulang halaman.');
+            }
         }
 
         main();
